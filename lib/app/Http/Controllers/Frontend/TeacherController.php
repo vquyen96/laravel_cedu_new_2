@@ -10,6 +10,8 @@ use App\Models\Group;
 use App\Models\Code;
 use App\Models\Teacher;
 use App\Models\Teacher_Rating;
+use App\Models\Lesson;
+use App\Models\Part;
 use Auth;
 use DateTime;
 
@@ -224,8 +226,42 @@ class TeacherController extends Controller
         if (!Course::create($course)) {
             return back()->with('error', 'Lỗi thêm khóa học');
         }
-        return redirect('teacher/courses'); 
+        return redirect('teacher/courses/'.$course['cou_slug']); 
 
     }
+
+
+    public function postPart(Request $request,$id){
+        $part = new Part;
+        $part->part_name = $request->part_name;
+        $part->part_cou_id = $id;
+        $part->save();
+        return back();
+    }
+
+
+    //POST VIDEO COURSE
+    public function postVideo(Request $request,$id){
+
+        $lesson = new Lesson;
+        $lesson->les_name = $request->les_name;
+        $lesson->les_slug = str_slug($request->les_name);
+        $lesson->les_part_id = $id;
+
+        $lesson->les_video_duration = gmdate("i:s", $request->duration);
+        $video = $request->file('file');
+
+        if ($request->hasFile('file')) {
+            $filename = time() . '.' . $video->getClientOriginalExtension();
+            $lesson->les_link = $filename;
+            $path = public_path().'/uploads/';
+            $video->move($path, $filename);
+        }
+        $lesson->save();
+
+        return back()->with('success','Thêm bài học thành công');
+
+    }
+
 
 }

@@ -1,5 +1,5 @@
 @extends('frontend.master')
-@section('title','Thông tin cá nhân')
+@section('title', Request::segment(2) == 'add' ? 'Tạo khóa học' : $course->cou_name)
 @section('fb_title','Top khóa học hàng đầu')
 @section('fb_description','Nơi cung cấp cho bạn những khóa học tốt nhất, rẻ nhất. Tạo lên một môi trường học tập trên cuộc cách mạng công nghệ 4.0')
 @section('fb_image',asset('public/layout/frontend/img/dayne-topkin-60559-unsplash.png'))
@@ -36,7 +36,7 @@
 		<div class="row">
 			<div class="col-md-8">
 				<div class="title">
-					<h1>{{!isset($course) ? 'Thêm bài giảng'  : 'Chỉnh sửa bài giảng' }}</h1>
+					<h1>{{ Request::segment(2) == 'add' ? 'Thêm bài giảng' : 'Chỉnh sửa bài giảng' }}</h1>
 					<div class="titleContent">
 						Chúng tôi cung cấp cho các bạn những khoá học đa dạng và chất lượng nhất
 					</div>
@@ -47,7 +47,7 @@
 			
 			
 			<div class="col-md-4 {{ Request::segment(2) == 'add' ? 'd-none' : '' }}">
-				<a href="{{asset('teacher/addcourse')}}"class="button-add">Thêm khóa học mới</a> 
+				<a href="{{asset('teacher/add')}}"class="button-add">Thêm khóa học mới</a> 
 			</div>
 			
 			
@@ -105,11 +105,8 @@
 								</div>
 								@endif
 								<div class="inputMain">
-									<input type="number" name="cou[cou_price]" class="inputProfile" @if(isset($course)) value="{{ $course->cou_price }} @endif">
-									
+									<input type="number" name="cou[cou_price]" class="inputProfile" value="{{ $course->cou_price }}">
 								</div>
-
-
 							</div>
 						</div>
 						<div class="row">
@@ -229,7 +226,7 @@
 								Hủy
 							</button>
 							<button type="submit" class="btnSubmit">
-								{{ Request::segment(2) == 'add' ? 'Lưu thay đổi ' : 'Tạo mới' }}
+								{{ Request::segment(2) == 'add' ? 'Tạo mới' : 'Lưu thay đổi ' }}
 							</button>
 						</div>
 						
@@ -278,7 +275,7 @@
 										<i class="fas fa-plus" data-toggle="modal" data-target="#myModal3{{$item->part_id}}"></i>
 										Thêm video
 										<div class="d-none action_form">
-											{{asset('teacher/postvideocourse/'.$item->part_id)}}
+											{{asset('teacher/video/'.$item->part_id)}}
 										</div>
 									</li>
 								</ul>
@@ -390,7 +387,7 @@
 			<div class="modal-title">
 				Tạo bài giảng
 			</div>
-			<form method="post" enctype="multipart/form-data" action="{{asset('teacher/posttitlecourse/'.$course->cou_id)}}">
+			<form method="post" enctype="multipart/form-data" action="{{asset('teacher/part/'.$course->cou_id)}}">
 				{{ csrf_field() }}
 				<div class="form_group">
 					<label>Tên bài giảng</label>
