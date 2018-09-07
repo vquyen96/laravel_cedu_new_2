@@ -1,0 +1,12 @@
+.about{
+	margin-top: 50px;
+	margin-bottom: 50px;
+	background: #fff;
+	border-radius: 20px;
+	box-shadow: 5px 5px 20px #0009;
+	padding: 20px 30px;
+}
+.about h1{
+	text-align: center;
+	margin-bottom: 50px;
+}

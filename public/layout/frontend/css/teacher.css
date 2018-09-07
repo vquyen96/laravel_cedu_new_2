@@ -1,0 +1,63 @@
+.teacherBody{
+	background: #99d;
+	padding: 30px 0;
+}
+
+
+.user{
+	
+}
+
+
+
+.userDetail{
+	padding: 30px 0;
+	min-height: 500px;
+}
+.userAvaImg{
+	width: 150px;
+	margin:50px auto;
+	border-radius: 50%;
+}
+.userAvaImg img{
+	width: 100%;
+	border-radius: 50%;
+}
+.userInfoContent{
+	font-size: 17px;
+	color: #666;
+}
+
+
+.userCourse a{
+	text-decoration: none;
+	color: #666;
+}
+
+.userCourseItem{
+	background: #fff;
+	transition: 0.3s;
+	display: block;
+
+}
+.userCourseItem:hover{
+	box-shadow: 2px 5px 20px #666;
+	transform: translate(0 ,-5px);
+}
+
+.userCourseItemImg img{
+	width: 100%;
+}
+
+.userCourseItemContent{
+	padding: 20px;
+}
+.userCourseItemName{
+	font-weight: 500;
+	font-size: 16px;
+}
+.userCourseItemStar .starActive{
+	color: #ffbc00;
+}
+
+

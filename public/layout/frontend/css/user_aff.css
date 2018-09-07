@@ -1,0 +1,370 @@
+
+a.canvasjs-chart-credit{
+	display: none;
+}
+
+.user{
+	width: 1142px;
+	margin: 20px auto 30px;
+	min-height: 500px;
+	overflow: hidden;
+	padding: 5px;
+}	
+
+.userLeft{
+	background: #eee;
+	width: 200px;
+	float: left;
+	position: relative;
+}
+.userLeftItem{
+	display: block;
+	padding: 10px;
+	border-bottom: 1px solid #fff;
+	cursor: pointer;
+}
+.userLeftBorder{
+	position: absolute;
+    height: 40px;
+    width: 4px;
+    background: #2d317f;
+    top: 202px;
+    right: 0;
+    transition: 0.3s;
+}
+a.userLeftItem{
+	color: #000;
+	text-decoration: none;
+}
+.userLeftItem>img{
+	display: block;
+    width: 120px;
+    height: 120px;
+    margin: 10px auto;
+	border-radius: 50%;
+}
+.userLeftItem:first-child{
+	border-bottom: 20px solid #fff;
+    font-size: 16px;
+    font-weight: 500;
+    text-align: center;
+    display: block;
+    color: #2d317f;
+}
+.userLeftItem i{
+	width: 30px;
+	text-align: center;
+}
+.userLeftItem.history{
+	border-bottom: 20px solid #fff;
+}
+
+.userRight{
+	width: 912px;
+	box-shadow: 0 1px 3px #0004;
+	min-height: 400px;
+	float: right;
+	padding: 10px 0 30px;
+}
+.userRightMain{
+	overflow: hidden;
+
+}
+.userRightLine{
+	width: 3648px;
+	transition: 1s;
+
+}
+.userRightLineItem{
+	width: 912px;
+	float: left;
+    overflow: hidden;
+}
+a.homeCourseMainItem{
+	width: 216px;
+    height: 260px;
+    margin: 6px;
+    /* display: inline-block; */
+    float: left;
+    position: relative;
+    transition: 0.3s;
+    color: #000;
+    text-decoration: none;
+    background: #fff;
+
+}
+.homeCourseMainItem:hover{
+	transform: translate(0 , -5px);
+	box-shadow: 0px 1px 4px #0000005c;
+}
+.homeCourseMainItemImg{
+	height: 144px;
+	overflow: hidden;
+	position: relative;
+	margin: 10px;
+}
+.homeCourseMainItemImg img{
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 50%;
+	transform: translate(-50% ,0);
+}/*
+.homeCourseMainItemSale{
+    width: 45px;
+    height: 26px;
+    line-height: 26px;
+    background: #FE5252;
+    color: #fff;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    text-align: center;
+    font-weight: 500;
+    border-radius: 5px;
+}*/
+.homeCourseMainItemContent{
+	height: 145px;
+    padding: 5px 9px;
+}
+.homeCourseMainItemContentTea{
+
+	font-weight: 500;
+}
+.homeCourseMainItemContentTea img{
+	height: 30px;
+	width: 30px;
+	border-radius: 50%;
+}
+/*.homeCourseMainItemContentStar{
+	font-size: 12px;
+	float: right;
+	padding: 5px;
+}
+.fa.fa-star{
+	margin-right: 3px;
+}
+.fa.fa-star.starActive{
+	color: #F7E276;
+}*/
+
+.homeCourseMainItemContentCourse{
+	height: 50px;
+	font-size: 16px;
+	font-weight: 500;
+	margin : 8px 0;
+}
+/*.userAva{
+
+}
+.userAvaImg{
+	position: relative;
+	width: 200px;
+	height: 200px;
+	border-radius: 50%;
+	overflow: hidden;
+	margin: auto;
+}
+.userAvaImg img{
+	border-radius: 50%;
+	width: 100%;
+
+}
+.userAvaImg:hover .userAvaHover{
+	display: block;
+}
+.userAvaHover{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	display: none;
+	padding: 90px 0;
+	text-align: center;
+	background: #284da95e;
+	color: #fff;
+	font-size: 20px;
+	border-radius: 50%;
+	cursor: pointer;
+}*/
+.userInfoTitle{
+
+}
+h4{
+	text-align: center;
+}
+/*.userInfoForm{
+	width: 500px;
+	margin: auto;
+}
+
+.error_mess{
+	color: #da00008c;
+	font-size: 12px;
+	font-style: italic;
+}*/
+.historyTable{
+	margin: 20px;
+}
+img.tableImg{
+	height: 30px;
+	border-radius: 5px;
+}
+.courseSale{
+	background: rgb(237, 28, 36);
+	padding: 0 10px;
+	color: #fff;
+	font-weight: bold;
+	display: inline-block;
+}
+.userTableLink{
+	margin: 10px; 
+}
+.userTableHistory{
+	margin: 10px;
+}
+
+
+
+.chart{
+	padding: 20px;
+    margin: 20px;
+    background: #fff;
+    box-shadow: 1px 1px 4px #a7a7a7;
+}
+.chart.haft{
+	width: 45%;
+	display: inline-block;
+}
+#chartSpLine_month{
+	position: absolute;
+	right: 50%;
+    top: 50%;
+    transform: translate(50%, -50%);
+	width: 90%;
+	height: 90%;
+	transition: 1s;
+}
+#chartSpLine_year{
+	position: absolute;
+	right: -50%;
+    top: 50%;
+    transform: translate(50%, -50%);
+	width: 90%;
+	height: 90%;
+	transition: 1s;
+
+}
+.chartSpLine{
+	position: relative;
+	overflow: hidden;
+	display: flex;
+	height: 370px;
+	
+}
+.btnShow{
+	padding: 10px 20px;
+	text-align: center;
+	font-size: 24px;
+	font-weight: bold;
+    margin-bottom: 15px;
+	background: #fff;
+	box-shadow: 3px 4px 20px #a7a7a7;
+	display: none;
+
+}
+.btnHideChart{
+	position: absolute;
+    top: 10px;
+    right: 120px;
+    padding: 5px 12px;
+    cursor: pointer;
+    box-shadow: 2px 2px 20px 0px #00000029;
+    z-index: 1;
+    border-radius: 0px;
+    background: #fff;
+}
+.btnChangeChart{
+	position: absolute;
+    top: 10px;
+    right: 20px;
+    padding: 5px 15px;
+    cursor: pointer;
+    box-shadow: 2px 2px 20px 0px #00000029;
+    z-index: 1;
+    border-radius: 0px;
+    background: #fff;
+}
+
+
+
+.dashboard{
+	display: flex;
+	margin: 20px;
+}
+.dashboard .item{
+	height: 100px;
+	flex: 1;
+	box-shadow: 1px 1px 4px #0005;
+	margin-left: 20px;
+	display: block;
+	position: relative;
+	transition: 0.5s;
+	cursor: pointer;
+}
+.dashboard>.item:first-child {
+	margin-left: 0;
+}
+.dashboard .student{
+	background: #d43939;
+}
+.dashboard .rating{
+	background: #ffbe00;
+}
+.dashboard .course{
+	background: #32569c;
+}
+.dashboard .earnings{
+	background: #51b76c;
+}
+.dashboard .item .icon{
+	height: 100%;
+    line-height: 100px;
+    font-size: 40px;
+    width: 55px;
+    text-align: center;
+    color: #fff;
+    transition: 0.5s;
+    position: absolute;
+}
+
+.dashboard .item:hover {
+	transform: scale(1.1);
+}
+.dashboard .item .content{
+	
+	font-weight: bold;
+	display: inline-block;
+	padding-left: 5px;
+	color: #fff;
+	position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    padding: 10px;
+	text-align: right;
+}
+.dashboard .item .content .contentNum{
+    position: relative;
+    right: 0px;
+    bottom: 0px;
+    font-size: 20px;
+    color: #fff9;
+}
+.dashboard .item .content p{
+	font-size: 18px;
+	font-weight: bold;
+    
+}

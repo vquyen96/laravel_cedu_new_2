@@ -1,0 +1,25 @@
+.error{
+	background: url(../img/joanna-kosinska-129039-unsplash.jpg) no-repeat;
+    background-size: 100%;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+.errorContent{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%) scale(0);
+	text-align: center;
+	transition: 1s;
+}
+.errorContent .text{
+	font-size: 60px;
+	font-weight: bold;
+	color: #fff;
+	text-shadow: 2px 2px #999;
+	font-family: 'IBM Plex Serif', serif;
+	
+}

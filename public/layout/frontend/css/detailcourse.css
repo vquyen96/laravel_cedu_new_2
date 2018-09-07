@@ -1,0 +1,533 @@
+.mainHead{
+	margin: 30px 0;
+	text-align: center;
+}
+.mainItem{
+	margin-bottom: 15px;
+}
+.headMain h4{
+	text-transform: uppercase;
+}
+.headMain{
+	position: relative;
+}
+.headMenu {
+	transition: top 1s;
+	box-shadow: 0px 1px 3px #0003, 0 0 1px #0001;
+
+}
+.headMenu ul{
+	padding: 0;
+	width: 100%;
+	display: flex;
+	overflow: hidden;
+	margin: 0;
+	z-index: -2;
+}
+.headMenu ul li::after{
+	content: "";
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	background: #fff;
+	z-index: -2;
+}
+.headMenu ul li{
+	list-style: none;
+	flex: 1;
+	padding: auto;
+	position: relative;
+}
+.headMenu ul li a{
+	text-decoration: none;
+	display: block;
+	padding: 20px;
+	color: #000;
+	text-align: center;
+	
+	width: 100%;
+	z-index: 99;
+	cursor: pointer;
+}
+.headMenu ul li a.active::after{
+	content: "";
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    height: 100%;
+    transform: skewX(-40deg);
+    background: #284ea9;
+    
+    z-index: -1;
+
+}
+.headMenu ul li:first-child a.active::before {
+	content: "";
+    position: absolute;
+    width: 20%;
+    top: 0;
+    left: 0;
+    height: 100%;
+    
+    background: #284ea9;
+    
+    z-index: -1;
+}
+.headMenu ul li:last-child a.active::before {
+	content: "";
+    position: absolute;
+    width: 20%;
+    top: 0;
+    right: 0;
+    height: 100%;
+    
+    background: #284ea9;
+    
+    z-index: -1;
+}
+.headMenu ul li a.active{
+	color: #fff;
+	z-index: 9;
+	pointer-events: none;
+
+}
+.headMenu ul li::first a.active{
+	background: #284ea9;
+}
+
+.headMenu .menuRate{
+	color: #f5b222;
+}
+
+.affiliate{
+	height: 60px;
+	background: #fff;
+	position: relative;
+	overflow: hidden;
+}
+.affiliate .content{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	padding: 15px 10px;
+	background: #284ea9;
+}
+.affiliate .content input[type=text]{
+	height: 30px;
+	width: 100%;
+	padding: 0 5px;
+}
+.affiliate .btnGetLink{
+	position: absolute;
+	width: 100%;
+	padding: 10px;
+	text-align: center;
+	font-size: 30px;
+	font-weight: bold;
+	background: #284ea9;
+	color: #fff;
+	cursor: pointer;
+	transition: 1.5s;
+	
+}
+
+.alertCopy{
+	position: absolute;
+	width: 90%;
+	height: 50px;
+	line-height: 50px;
+	top: -50px;
+	text-align: center;
+	font-weight: bold;
+	color: #000;
+	display: none;
+}
+/*.affiliate .btnGetLink:hover{
+	box-shadow: 4px 4px 20px #00000073;
+	transform: translate(0px, -5px);
+}
+*/
+.mainItem.course{
+	position: relative;
+}
+.coursePriceSale{
+	text-decoration: line-through;
+    font-size: 12px;
+    color: #999;
+    margin: 5px 5px 10px;
+    display: inline-block;
+}
+.courseItemSale{
+	position: absolute;
+    top: 0px;
+    right: 40px;
+    width: 80px;
+}
+.courseItemSaleContent{
+	color: #fff;
+    position: absolute;
+    top: 15px;
+    left: 0px;
+    width: 100%;
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+}
+.courseItemSale img{
+	width: 100%;
+}
+.courseParameter{
+	
+	height: 500px;
+	
+	background: #fff;
+	padding: 20px 10px;
+	position: relative;
+	transition: 1s;
+	box-shadow: 0px 1px 3px #0003, 0 0 1px #0001;
+}
+.courseImg img{
+	width: 100%;
+}
+
+.courseParameter ul{
+	padding: 0 20px;
+}
+.courseParameter ul li{
+	list-style: none;
+	display: block;
+	clear: both;
+	padding: 10px 0;
+}
+
+.courseParameter .coursePrice{
+	font-size: 20px;
+	color: #284da9;
+	font-weight: 500;
+}
+
+.courseParameter .paraName{
+	float: left;
+	color: #666;
+}
+.courseParameter .paraValue{
+	float: right;
+	color: #284da9;
+}
+
+.btnCourse{
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+}
+.btnBuyNow a{
+	padding: 10px 30px;
+	border-radius: 30px;
+	display: block;
+	width: 80%;
+	margin: auto;
+	text-align: center;
+	background: #284da9;
+	color: #fff;
+	margin-bottom: 10px;
+	text-transform: uppercase;
+	text-decoration: none;
+}
+.btnAddToCart a{
+	padding: 10px 30px;
+	border-radius: 30px;
+	display: block;
+	width: 80%;
+	margin: auto;
+	text-align: center;
+	border: 1px solid #284da9; 
+	margin-bottom: 30px;
+	text-transform: uppercase;
+	text-decoration: none;
+}
+
+.mainItem.teacher{
+	background: #fff;
+	padding: 15px 10px;
+	position: relative;
+
+}
+.mainItem.teacher img{
+	float: left;
+	width: 70px;
+	margin-right:15px;
+	margin-bottom: 100px;
+	border-radius: 50%;
+}
+.mainItem.teacher .teacherName{
+	font-weight: bold;
+	font-size: 16px;
+	display: block;
+}
+.mainItem.teacher .teacherContent{
+	display: block;
+	margin: 5px 0;
+	color: #999;
+}
+.mainItem.teacher .btnTeacher{
+	padding: 7px 15px;
+	border-radius: 20px;
+	border: 2px solid #284da9;
+	color: #284da9;
+	text-decoration: none;
+	display: inline-block;
+}
+.mainItem.teacher .teacherStar{
+	position: absolute;
+	right: 30px;
+	top: 10px;
+	
+}
+.starActive{
+	color: #f5ab00;
+}
+.courseDetail{
+	background: #fff;
+	padding: 15px 20px;
+	position: relative;
+}
+.courseDetail .courseDetailHead{
+	padding-bottom: 15px;
+	border-bottom: 1px solid #999;
+}
+
+.courseDetail .courseContent{
+	padding: 30px;
+	overflow: hidden;
+	
+}
+.courseDetail .btnSeeMore{
+	position: absolute;
+	width: 100%;
+	text-align: center;
+	bottom: 0;
+	left: 0;
+	color: #284da9;
+	cursor: pointer;
+	background: #fff;
+	height: 40px;
+	line-height: 40px;
+	border-top: 1px solid #ccc;
+}
+.courseDetail .btnSeeMore .btnSeeMoreText{
+	width: 80px;
+	display: inline-block;
+}
+.courseDetail .btnSeeMore i{
+	
+	transform: rotate(180deg);
+}
+
+
+
+.videoDetail{
+	background: #fff;
+	padding: 15px 20px;
+	position: relative;
+}
+.videoDetail .videoDetailHead{
+	padding-bottom: 15px;
+	border-bottom: 1px solid #999;
+}
+
+.videoDetail .videoContent{
+	padding: 30px;
+	overflow: hidden;
+	
+}
+.videoDetail .btnSeeMore{
+	position: absolute;
+	width: 100%;
+	text-align: center;
+	bottom: 20px;
+	left: 0;
+	color: #284da9;
+	cursor: pointer;
+}
+
+.videoContent .videoItem{
+	padding: 0 10px 0 50px;
+    border-radius: 10px;
+    height: 70px;
+    line-height: 70px;
+    position: relative;
+    transition: 0.2s;
+}
+.videoContent .videoItem:hover{
+	box-shadow: 2px 5px 20px #333;
+	transform: translate(0px -5px);
+}
+.videoContent .videoItem:hover .videoItemTitle{
+	color: #000;
+	font-weight: bold;
+}
+.videoContent .videoItem:last-child{
+	border-left: none;
+}
+.videoContent .videoItem .videoItemTitle{
+	color: #999;
+	display: inline-block;
+}
+.videoContent .videoItem .videoItemTime{
+	float: right;
+	color: #999;
+}
+.videoContent .videoItem .videoItemBtnPlay{
+	
+    position: absolute;
+    left: 12px;
+    top: 0;
+    display: inline-block;
+}
+.videoContent .videoItem .videoItemBtnPlay img{
+	width: 20px;
+}
+
+.videoDetail .videoBtnSeeMore{
+	position: absolute;
+	width: 100%;
+	text-align: center;
+	bottom: 0;
+	left: 0;
+	color: #284da9;
+	cursor: pointer;
+	background: #fff;
+	height: 40px;
+	line-height: 40px;
+	border-top: 1px solid #ccc;
+}
+.videoDetail .videoBtnSeeMore .videoBtnSeeMoreText{
+	width: 80px;
+	display: inline-block;
+}
+.videoDetail .videoBtnSeeMore i{
+	
+	transform: rotate(180deg);
+}
+
+.courseRate{
+	background: #fff;
+	padding: 15px 20px;
+	position: relative;
+}
+.courseRate .courseRatelHead{
+	margin-bottom: 20px;
+}
+.courseRate .courseRateDetail{
+	border-top: 1px solid #999;
+	border-bottom: 1px solid #999;
+	padding: 40px 40px 40px 10px;
+}
+.courseRateLeft{
+	border-right: 1px solid #999;
+
+}
+
+.courseCircle{
+	text-align: center;	
+
+}
+.clearfix{
+	display: block;
+	width: 132px;
+	margin: auto;
+}
+.rateStar{
+	font-size: 26px;
+
+}
+.rateStar .active{
+	color: #ff9d0a;
+}
+
+.courseRateRight ul li{
+	list-style: none;
+	width: 100%;
+	clear: both;
+	padding: 10px;
+}
+.courseRateRight ul li .rateName{
+	float: left;
+	margin-right: 20px;
+}
+.courseRateRight ul li .rateSlide{
+	height: 5px;
+	border-radius: 5px;
+	background: #5b76bc;
+	width: 10%;
+	display: inline-block;
+}
+.courseRateRight ul li .rateValue{
+	float: right;
+}
+
+.rateComment{
+	padding: 30px 30px 50px;
+	clear: both;
+	overflow: hidden;
+	
+}
+.comItem{
+	padding: 10px 0;
+	clear: both;
+	position: relative;
+	border-bottom: 1px solid #999;
+	height: 110px;
+}
+.comItem .comItemAva{
+	float: left;
+    display: inline-block;
+    height: 100px;
+    margin-right: 10px;
+}
+.comItem .comItemAva img{
+	width: 50px;
+	border-radius: 50%;
+}
+.comItem .comItemName{
+	font-size: 16px;
+}
+.comItem .comItemStar{
+	font-size: 12px;
+	margin: 5px;
+}
+.comItem .comItemStar .active{
+	color: #ff9d0a;
+}
+.comItem .comItemTime{
+	position: absolute;
+	top: 10px;
+	right: 0px;
+}
+
+
+.courseRate .comBtnSeeMore{
+	position: absolute;
+	width: 100%;
+	text-align: center;
+	bottom: 0;
+	left: 0;
+	color: #284da9;
+	cursor: pointer;
+	background: #fff;
+	height: 40px;
+	line-height: 40px;
+	
+}
+.courseRate .comBtnSeeMore .comBtnSeeMoreText{
+	width: 80px;
+	display: inline-block;
+}
+.courseRate .comBtnSeeMore i{
+	
+	transform: rotate(180deg);
+}

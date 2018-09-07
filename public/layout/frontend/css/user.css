@@ -1,0 +1,328 @@
+
+
+.user{
+	margin-top: 50px;
+}
+/*.userCourse{
+	background: #fff;
+	padding: 30px 0;
+}*/
+.chart{
+	padding: 20px;
+	margin-bottom: 30px;
+	background: #fff;
+	box-shadow: 3px 4px 20px #a7a7a7;
+}
+#chartSpLine_month{
+	position: absolute;
+	right: 50%;
+    top: 50%;
+    transform: translate(50%, -50%);
+	width: 90%;
+	height: 90%;
+	transition: 1s;
+}
+#chartSpLine_year{
+	position: absolute;
+	right: -50%;
+    top: 50%;
+    transform: translate(50%, -50%);
+	width: 90%;
+	height: 90%;
+	transition: 1s;
+
+}
+.chartSpLine{
+	position: relative;
+	overflow: hidden;
+	display: flex;
+	height: 370px;
+	
+}
+.btnShow{
+	padding: 10px 20px;
+	text-align: center;
+	font-size: 24px;
+	font-weight: bold;
+    margin-bottom: 15px;
+	background: #fff;
+	box-shadow: 3px 4px 20px #a7a7a7;
+	display: none;
+
+}
+.btnHideChart{
+	position: absolute;
+    top: 10px;
+    right: 120px;
+    padding: 5px 12px;
+    cursor: pointer;
+    box-shadow: 2px 2px 20px 0px #00000029;
+    z-index: 1;
+    border-radius: 0px;
+    background: #fff;
+}
+.btnChangeChart{
+	position: absolute;
+    top: 10px;
+    right: 20px;
+    padding: 5px 15px;
+    cursor: pointer;
+    box-shadow: 2px 2px 20px 0px #00000029;
+    z-index: 1;
+    border-radius: 0px;
+    background: #fff;
+}
+.btnHideTable{
+	position: absolute;
+    top: 25px;
+    right: 45px;
+    padding: 5px 12px;
+    cursor: pointer;
+    box-shadow: 2px 2px 20px 0px #00000029;
+    z-index: 1;
+    border-radius: 0px;
+    background: #fff;
+}
+a.courseItem{
+	width: 100%;
+	display: block;
+	text-decoration: none;
+	background: #fff;
+	color: #000;
+	transition: 0.5s;
+	box-shadow: 3px 4px 20px #a7a7a7;
+	margin-bottom: 30px;
+	height: 280px;
+	overflow: hidden;
+	
+}
+a.courseItem:hover{
+	box-shadow: 9px 11px 20px #565656;
+	transform: translate(0px, -5px);
+}
+.courseImg{
+    width: 100%;
+    height: 147px;
+    position: relative;
+    overflow: hidden;
+}
+.courseImg img{
+	width: 100%;
+	
+}
+.courseWait{
+	position: absolute;
+	background: #9999;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	
+
+}
+.courseWaitContent{
+	margin: 50px auto;
+	padding: 10px;
+	color: #fff;
+	background: #f44;
+	width: 150px;
+	
+}
+.courseContent{
+	padding: 10px;
+}
+.courseContent h4{
+	height: 60px;
+	text-transform: capitalize;
+
+}
+.courseTeacher{
+
+}
+.courseTeacher img{
+	width: 30px;
+	border-radius: 50%;
+	margin-right: 10px;
+}
+.userDetail{
+	margin: 0 0 30px;
+	background: #fff;
+	padding: 20px 0;
+	color: #666;
+	box-shadow: 7px 9px 20px #969696;
+	position: relative;
+}
+.userAva{
+
+}
+.userAvaImg{
+	border-radius: 50%;
+	margin:50px auto;
+	width: 200px;
+	position: relative;
+}
+.userAvaImg img{
+	width: 100%;
+	border-radius: 50%;
+	margin:50px auto;
+}
+.userAva:hover .userAvaHover{
+	display: block;
+}
+.userAvaHover{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	display: none;
+	padding: 90px 0;
+	text-align: center;
+	background: #284da95e;
+	color: #fff;
+	font-size: 20px;
+	border-radius: 50%;
+	cursor: pointer;
+}
+.form-group{
+	display: block;
+	width: 100%;
+}
+.formName{
+	
+	display: inline-block;
+}
+
+.inputGr{
+	display: inline-block;
+	float: right;
+}
+
+.userTable{
+	background: #fff;
+	padding: 20px;
+	box-shadow: 7px 9px 20px #969696;
+	margin-bottom: 50px;
+}
+.userTable .tableCourseImg img{
+	height: 50px;
+	/*border: 2px solid #000;*/
+	box-shadow: 4px 8px 12px 0px #0000003b;
+	border-radius: 5px;
+}
+input[name=password]{
+	display: none;
+}
+
+
+.courseSale{
+	background: rgb(237, 28, 36);
+	padding: 0 10px;
+	color: #fff;
+	font-weight: bold;
+	display: inline-block;
+}
+
+
+.showTableLink{
+	padding: 10px 20px;
+	text-align: center;
+	font-size: 24px;
+	font-weight: bold;
+    margin-bottom: 15px;
+	background: #fff;
+	box-shadow: 3px 4px 20px #a7a7a7;
+	display: none;
+
+}
+.btnHideTableLink{
+	position: absolute;
+    top: 30px;
+    right: 40px;
+    padding: 5px 12px;
+    cursor: pointer;
+    box-shadow: 2px 2px 20px 0px #00000029;
+    z-index: 1;
+    border-radius: 0px;
+    background: #fff;
+}
+.btnHideDetail{
+	position: absolute;
+    top: 20px;
+    right: 46px;
+    padding: 5px 12px;
+    cursor: pointer;
+    box-shadow: 2px 2px 20px 0px #00000029;
+    z-index: 1;
+    border-radius: 0px;
+    background: #fff;
+}
+
+.dashboard{
+	display: flex;
+	margin-bottom:  30px;
+}
+.dashboard .item{
+	height: 100px;
+	flex: 1;
+	box-shadow: 5px 5px 10px #999;
+	margin-left: 20px;
+	display: block;
+	position: relative;
+	transition: 0.5s;
+	cursor: pointer;
+}
+.dashboard>.item:first-child {
+	margin-left: 0;
+}
+.dashboard .student{
+	background: #d43939;
+}
+.dashboard .rating{
+	background: #ffbe00;
+}
+.dashboard .course{
+	background: #32569c;
+}
+.dashboard .earnings{
+	background: #51b76c;
+}
+.dashboard .item .icon{
+	height: 100%;
+	line-height: 100px;
+	font-size: 50px;
+	width: 100px;
+	text-align: center;
+	color: #fff;
+	transition: 0.5s;
+	position: absolute;
+}
+
+.dashboard .item:hover {
+	transform: scale(1.1);
+}
+.dashboard .item .content{
+	font-size: 25px;
+	font-weight: bold;
+	display: inline-block;
+	padding-left: 5px;
+	color: #fff;
+	position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    padding: 10px;
+	text-align: right;
+}
+.dashboard .item .content .contentNum{
+	position: relative;
+    right: 10px;
+    bottom: 0px;
+    font-size: 24px;
+    color: #fff9;
+}
+.dashboard .item .content p{
+	font-size: 20px;
+	font-weight: bold;
+    
+}

@@ -1,0 +1,523 @@
+
+.title{
+
+	position: relative;
+	width: 100%;
+}
+.titleLine{
+	top: 28px;
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    background: #ccc;
+    z-index: -1;
+}
+.titleContent{
+	display: block;
+	background: #eee;
+	width: 230px;
+	margin: auto;
+	text-align: center;
+}
+.mainHead{
+
+}
+.mainHead h3{
+	text-transform: uppercase;
+}
+.mainMenu {
+	width: 100%;
+	transition: top 1s;
+	box-shadow: rgb(162, 162, 162) 7px 7px 20px;
+}
+.mainMenu ul{
+	padding: 0;
+	width: 100%;
+	display: flex;
+	overflow: hidden;
+	z-index: -2;
+	margin: 0;
+}
+.mainMenu ul li::after{
+	content: "";
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	background: #fff;
+	z-index: -2;
+}
+.mainMenu ul li{
+	list-style: none;
+	flex: 1;
+	padding: auto;
+	position: relative;
+    margin: 0 -1px;
+
+}
+.mainMenu ul li a{
+	text-decoration: none;
+	display: block;
+	padding: 20px;
+	color: #000;
+	text-align: center;
+	
+	width: 100%;
+	z-index: 99;
+	cursor: pointer;
+}
+.mainMenu ul li a.active::after{
+	content: "";
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    height: 100%;
+    transform: skewX(-40deg);
+    background: #284ea9;
+    
+    z-index: -1;
+
+}
+.mainMenu ul li:first-child a.active::before {
+	content: "";
+    position: absolute;
+    width: 20%;
+    top: 0;
+    left: 0;
+    height: 100%;
+    
+    background: #284ea9;
+    
+    z-index: -1;
+}
+.mainMenu ul li:last-child a.active::before {
+	content: "";
+    position: absolute;
+    width: 20%;
+    top: 0;
+    right: 0;
+    height: 100%;
+    background: #284ea9;
+    z-index: -1;
+}
+.mainMenu ul li a.active{
+	color: #fff;
+	z-index: 9;
+	pointer-events: none;
+
+}
+.mainMenu ul li::first a.active{
+	background: #284ea9;
+}
+.mainHeadNum{
+	clear: both;
+	margin: 10px 0;
+    color: #f5b834;
+}
+.mainHeadTagItem{
+	display: inline-block;
+	margin-right: 30px;
+	box-shadow: 2px 2px 5px #0005;
+}
+.mainHeadTagItemContent{
+	display: inline-block;
+	padding: 10px 20px;
+	background: #fff;
+	font-weight: 500;
+}
+.mainHeadTagItemRemove{
+	display: inline-block;
+	padding: 10px 20px;
+	background: #fff;
+	font-weight: 500;
+	cursor: pointer;
+	border-left: 1px solid #ccc;
+}
+
+.courseMain{
+	overflow: hidden;
+	position: relative;
+	height: 1850px;
+
+}
+.couserLine{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 3500px;
+	padding-top: 20px;
+	transition: 1s;
+
+}
+.couserLineItem{
+	height: 1850px;
+	width: 850px;
+	display: inline-block;
+
+}
+
+.courseItem{
+	margin: 0 0 30px;
+	transition: .6s;
+	position: relative;
+	cursor: pointer;
+	height: 360px;
+	background: #fff;
+	overflow: hidden;
+	display: block;
+}
+.courseItem:hover{
+	box-shadow:  10px 7px 20px #909090;
+	transform: translate(0, -10px);
+
+}
+/*.courseItem:hover .courseItemSale{
+	display: none;
+}
+.courseItem:hover .courseItemCart{
+	display: block;
+}*/
+
+.courseItemPrice{
+	background: url(../img/BG_price.png) no-repeat;
+    background-size: 100%;
+    position: absolute;
+    height: 32px;
+    top: 0;
+    left: 0;
+    color: #fff;
+    padding: 5px;
+    padding-right: 20px;
+    display: block;
+    min-width: 115px;
+}
+.coursePrice{
+	font-size: 16px;
+	font-weight: 500;
+}
+.coursePriceSale{
+	text-decoration: line-through;
+	font-size: 10px;
+	margin-bottom: 5px;
+}
+.courseItemCart{
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	border-radius: 50%;
+	transition: 0.3s;
+}
+.courseItemCart:hover{
+	box-shadow: 3px 3px 10px #00000085;
+	transform: translate(-5px , 5px) scale(1.1);
+}
+.courseItemImg{
+	height: 230px;
+	overflow: hidden;
+}
+.courseItemImg img{
+	height: 230px;
+	margin: 0 -20%;
+}
+.courseItemSale{
+	position: absolute;
+	top: 0px;
+	right: 5px;
+	width: 60px;
+}
+.courseItemSaleContent{
+	color: #fff;
+    position: absolute;
+    top: 10px;
+    left: 0px;
+    width: 100%;
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+}
+.courseItemSale img{
+	width: 100%;
+}
+.courseItemTeacher{
+	background: #fff;
+	position: relative;
+	padding: 10px;
+}
+.courseItemStar{
+	position: absolute;
+	top: 15px;
+	right: 5px;
+	color: #999;
+    font-size: 12px
+	
+}
+
+.starActive{
+	color: #ffbf2a;
+}
+.courseItemTeacherInfo img{
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+}
+.courseItemTeacherInfo h4{
+	font-size: 17px;
+}
+.right{
+	height: 100%;
+}
+.rightItem{
+	background: #fff;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+}
+.rightItem h4{
+
+	text-transform: uppercase;
+}
+
+.customPrice{
+	
+}
+
+
+
+
+.slidecontainer {
+    width: 100%;
+    padding: 10px;
+}
+
+.slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 5px;
+    border-radius: 5px;
+    background: #fba225;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+	transition: opacity .2s;
+}
+
+.slider:hover {
+    opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: #fff;
+    cursor: pointer;
+    box-shadow: 0px 1px 10px 5px #f5b222;
+    
+}
+
+input[type=range]:focus::-ms-fill-lower {
+  background: #f5b222;
+}
+#slider{
+	background: #fff;
+}
+#slider .noUi-connect{
+	background: #eea236;
+}
+.noUi-horizontal .noUi-handle {
+    width: 20px !important;
+    height: 20px !important;
+    border-radius: 50% !important;
+    border: 2px solid #f5b222;
+    outline: none;
+}
+.noUi-horizontal {
+    height: 10px !important;
+}
+#slider .noUi-handle:after, .noUi-handle:before {
+    display: none !important;
+}
+.sliderValueItem{
+	display: inline-block;
+	width: 50px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	box-shadow: 2px 2px 5px #0005;
+	border-radius: 5px;
+	cursor: pointer;
+}
+.customPriceBtn{
+	height: 30px;
+    line-height: 30px;
+    width: 50px;
+    float: right;
+    box-shadow: 2px 2px 5px #0005;
+    border-radius: 5px;
+    background: #fba225;
+    color: #fff;
+    text-align: center;
+    font-weight: 500;
+    margin-top: -10px;
+    cursor: pointer;
+}
+.customLevel{
+	padding-bottom: 20px;
+}
+
+.btn-level{
+	border-color: #eea236;
+	cursor: pointer;
+}
+.btn-level:hover{
+	background: #fba225;
+	color: #fff;
+}
+.btn-level.active{
+	background: #fba225;
+	color: #fff;
+	box-shadow: none;
+}
+.btn-warning{
+	background: #fba225;
+}
+.listTeacher{
+	padding: 10px;
+}
+.listTeacher li{
+	display: block;
+	width: 100%;
+	list-style: none;
+	clear: both;
+
+}
+.listTeacher li a{
+	display: block;
+    padding: 10px 5px;
+    overflow: hidden;
+}
+.courseTeacher{
+	transition: 0.2s;
+	background: #fff;
+}
+.courseTeacher:hover{
+	box-shadow: 2px 2px 10px #666;
+	transform: rotate(4deg);
+}
+.rightTeacherName{
+	color: #666;
+	float: left;
+}
+.rightNumCourse{
+	color: #fba225;
+	float: right;
+}
+
+.tag{
+	padding-bottom: 50px;
+}
+.tagItem{
+	display: inline-block;
+	margin: 5px;
+	cursor: pointer;
+}
+.tagItem.active{
+	background: #fba225;
+	color: #fff;
+	border: 1px solid #fba225;
+}
+.tagItem{
+	display: inline-block;
+	padding: 5px 15px;
+	border-radius: 20px;
+	border: 1px solid #ccc;
+	color: #333;
+}
+
+
+.rightItem.Ads{
+	background: #999;
+	min-height: 500px;
+	display: block;
+}
+
+
+
+
+a.homeCourseMainItem{
+	width: 265px;
+    height: 365px;
+    margin: 0 6px;
+    display: inline-block;
+    position: relative;
+    transition: 0.3s;
+    color: #000;
+    text-decoration: none;
+    background: #fff;
+    /*transform: translate(-15px, 0px);*/
+}
+.homeCourseMainItem:hover{
+	transform: translate(0 , -10px);
+	box-shadow: 1px 1px 15px #0000005c;
+}
+.homeCourseMainItemImg{
+	height: 200px;
+	overflow: hidden;
+	position: relative;
+	margin: 10px;
+}
+.homeCourseMainItemImg img{
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 50%;
+	transform: translate(-50% ,0);
+}
+.homeCourseMainItemSale{
+    width: 45px;
+    height: 26px;
+    line-height: 26px;
+    background: #FE5252;
+    color: #fff;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    text-align: center;
+    font-weight: 500;
+    border-radius: 5px;
+}
+.homeCourseMainItemContent{
+	height: 145px;
+    padding: 5px 9px;
+}
+.homeCourseMainItemContentTea{
+
+	font-weight: 500;
+}
+.homeCourseMainItemContentTea img{
+	height: 30px;
+	width: 30px;
+	border-radius: 50%;
+}
+.homeCourseMainItemContentStar{
+	font-size: 12px;
+	float: right;
+	padding: 5px;
+}
+.fa.fa-star{
+	margin-right: 3px;
+}
+.fa.fa-star.starActive{
+	color: #F7E276;
+}
+
+.homeCourseMainItemContentCourse{
+	height: 50px;
+	font-size: 16px;
+	font-weight: 500;
+	margin : 8px 0;
+}

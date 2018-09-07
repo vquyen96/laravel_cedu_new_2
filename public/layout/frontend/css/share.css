@@ -1,0 +1,50 @@
+
+
+.share{
+	padding: 20px;
+	margin-bottom: 30px;
+	background: #fff;
+	box-shadow: 3px 4px 20px #a7a7a7;
+	border-radius: 20px;
+}
+.share:first-child{
+	margin-top: 50px;
+}
+.tableCourseImg{
+	height: 100px;
+	width: 180px;
+}
+.tableCourseImg img{
+	height: 100px;
+	max-width: 180px;
+	box-shadow: 4px 8px 12px 0px #0000003b;
+	border-radius: 5px;
+}
+.courseSale{
+	background: rgb(237, 28, 36);
+	padding: 0 10px;
+	color: #fff;
+	font-weight: bold;
+	display: inline-block;
+}
+.courseName{
+	font-size: 18px;
+	font-weight: 600;
+}
+.tableCourseTeacherImg{
+	display: block;
+	color: #666;
+}
+.tableCourseTeacherImg img{
+	height: 50px;
+	box-shadow: 4px 8px 12px 0px #0000003b;
+	border-radius: 50%;
+}
+.starActive{
+	color: #ffbf2a;
+}
+.inputCopied{
+	width: 100%;
+	text-align: center;
+	display: none;
+}

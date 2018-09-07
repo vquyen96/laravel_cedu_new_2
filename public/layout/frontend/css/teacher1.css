@@ -1,0 +1,489 @@
+h1{
+	font-family: 'IBM Plex Serif', serif;
+	text-transform: uppercase;
+}
+
+.masterError{
+	position: fixed;
+	z-index: 9;
+	width: 100%;
+	top: 10px;
+	left: 0;
+}
+.masterErrorContent{
+	width: 30%;
+	margin: auto;
+	
+}
+
+
+.headLogo{
+	padding: 45px 0 0;
+}
+.headLogo img{
+	transform: translate(-75px,0);
+}
+
+.headIntro{
+	position: relative;
+	margin: 0 20px;
+	padding-top: 100px;
+}
+.headIntro .border1{
+	position: absolute;
+	width: 100%;
+	height: 500px;
+
+	border: 3px solid #eeb439;
+}
+
+.headIntro .border2{
+	position: absolute;
+	width: 100%;
+	height:  450px;
+	border: 3px solid #284da9;
+	transform: scale(1.03) translate(0px, 25px);
+}
+.headIntro .content{
+	position: absolute;
+	padding: 50px;
+	height: 500px;
+	top: 0;
+	left: 0;
+	position: relative;
+}
+.headIntro .content .IntroImg{
+	position: absolute;
+	height: 580px;
+	bottom: 20px;
+}
+.headIntro .content .IntroImg img{
+	height: 100%;
+}
+
+.headIntro .content .IntroContent {
+	position: absolute;
+	height: 500px;
+	top: 0;
+	right: 0;
+	padding: 150px 50px;
+	font-weight: 500;
+}
+.headIntro .content .IntroContent h1{
+	text-align: right;
+	font-weight: bold;
+}
+.headIntro .content .IntroContent h3{
+	text-align: right;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+.follow{
+	padding-top:85px;
+
+}
+.follow .followItem{
+	padding: 60px 0;
+	text-align: center;
+	background: #e9e9e9;
+	border: 2px solid #eeb439;
+	box-shadow: -10px 10px 0px #284da9;
+}
+.follow .followItem h2{
+	font-family: 'IBM Plex Serif', serif;
+	font-size: 30px;
+	font-weight: bold;
+}
+.follow .followItem p{
+	font-size: 20px;
+	font-weight: 600;
+}
+.introduct{
+	padding-top:160px;
+
+}
+.introduct #slide_intro .slide_item{
+	padding: 20px;
+	height: 550px;
+}
+.introduct #slide_intro .slide_item h3{
+	font-family: 'IBM Plex Serif', serif;
+	text-align: center;
+	font-weight: bold;
+	font-size: 22px;
+	margin-bottom: 40px;
+}
+.introduct #slide_intro .btnControl a{
+	display: block;
+	height: 50px;
+	line-height: 50px;
+	width: 50px;
+	text-align: center;
+	border: 2px solid #000;
+	border-radius: 50%;
+	font-size: 18px;
+	color: #000;
+}	
+.introduct #slide_intro .btnControl a.left{
+	float: left;
+}
+.introduct #slide_intro .inforItem{
+	padding:10px 0;
+	font-size: 18px;
+}
+.introduct #slide_intro .inforItem b{
+
+}
+.introduct #slide_intro .btnControl a.right{
+	float: right;
+}
+.introductImg{
+	position: relative;
+}
+.introductImg .border1{
+	position: absolute;
+	width: 100%;
+	height: 570px;
+	border: 3px solid #284da9;
+	transform: translate(30px, 30px);
+}
+.introductImg .border2{
+	position: absolute;
+	width: 100%;
+	height: 570px;
+	border: 3px solid #eeb439;
+	
+	background: #fff;
+}
+.introductImg .img{
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	
+	margin-left: 50px;
+
+}
+.introductImg .img img{
+	width: 350px;
+	margin: auto;
+}
+.rate{
+	padding-top: 230px;
+}
+.rate .rateItem{
+	position: relative;
+	width: 515px;
+	height: 460px;
+}
+.rate .rateItem .border1{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	border: 3px solid #284da9;
+	transform: translate(-30px , 30px);
+}
+.rate .rateItem .border2{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background: #fff;
+	border: 3px solid #eeb439;
+}
+.rate .rateItem .rateItemIcon{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	padding: 60px 0;
+}
+.rate .rateItem .rateItemIcon img{
+	width: 275px;
+	margin: auto;
+	display: block;
+}
+.rate .rateItem .rateItemIcon p{
+	text-align: center;
+	font-size: 23px;
+	padding: 20px;
+	font-weight: bold;
+
+}
+.rate .rateContent{
+	margin-top: 50px;
+	display: flex;
+}
+.rate .rateContent .rateContentItem{
+	display: inline-block;
+	flex: 1;
+}
+.rate .rateContent .rateContentItem .rateContentItemImg{
+	width: 70px;
+	height: 100px;
+	margin: auto;
+	display: block;
+	transition: 0.3s;
+}
+.rate .rateContent .rateContentItem:hover .rateContentItemImg{
+	transform: scale(1.3) translate(0px, -5px);
+	
+}
+.rate .rateContent .rateContentItem:hover p{
+	font-size: 18px;
+}
+.rate .rateContent .rateContentItem img{
+	width: 100%;
+	
+}
+
+.rate .rateContent .rateContentItem p{
+	display: block;
+	text-align: center;
+	font-weight: bold;
+	transition: 0.3s;
+}
+.rate h3{
+	margin-top: 90px;
+	font-family: 'IBM Plex Serif', serif;
+	text-align: center;
+	font-weight: bold;
+	font-size: 25px;
+}
+.course{
+	padding-top: 165px;
+	padding-bottom: 240px;
+	    min-height: 860px;
+
+}
+.course h3{
+	font-family: 'IBM Plex Serif', serif;
+	text-align: center;
+	font-weight: bold;
+	font-size: 25px;
+	margin-bottom: 50px;
+}
+.course #slide_course .slide_item{
+	position: relative;
+	width: 100%;
+	display: block;
+}
+.course #slide_course a.slide_item{
+	text-decoration: none;
+}
+.course #slide_course .slide_item .coursePrice{
+	background: url(../img/BG_price.png) no-repeat;
+    background-size: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: #fff;
+    padding: 5px;
+    display: block;
+    min-width: 150px;
+    padding-right: 20px;
+}
+.course #slide_course .slide_item .courseImg{
+	width: 100%;
+}
+.course #slide_course .slide_item .courseImg img{
+	width: 100%;
+}
+.course #slide_course .slide_item .courseContent{
+	background: #fff;
+	border: 1px solid #ccc ;
+	height: 100px;
+	padding: 10px;
+	color: #000;
+
+
+}
+.course #slide_course .slide_item .courseContent h4{
+	font-size: 20px;
+	font-weight: bold;
+}
+.course  #slide_course .slide_dot{
+	position: absolute;
+	bottom: -50px;
+}
+.course  #slide_course .slide_dot li.active{
+	
+	background: #000;
+	border:1px solid #000;
+}
+.course  #slide_course .slide_dot li{
+	width: 15px;
+	height: 15px;
+	border:1px solid #000;
+}
+
+
+
+
+footer{
+	background: url('../img/bg_footer.png') no-repeat 100%;
+	background-size: 100% 100%;
+	height: 500px;
+	position: relative;
+	color: #fff;
+	padding: 40px 0;
+	overflow: hidden;
+}
+
+.footerMainItemPlace{
+    max-width: 327px;
+}
+.footerHoverBorder{
+	width: 20%;
+	height: 5px;
+	background: #fff;
+	margin: 20px 0; 
+	transition: width 2s;
+}
+.footerItem:hover .footerHoverBorder{
+	width: 170px;
+}
+.footerMainItemContent{
+	min-height: 140px;
+}
+.footerMainItemContent p{
+	font-size: 14px;
+	color: #aaa;
+	margin-bottom: 10px;
+	/*white-space: inherit;*/
+}
+.footerMainItemContent p img{
+	width: 32px;
+    float: left;
+    margin-right: 10px;
+}
+.footerMainItemContent ul{
+	padding: 0;
+}
+.footerMainItemContent ul li{
+	list-style: none;
+
+}
+.footerMainItemContent ul li:hover a{
+	color: #eee;
+
+}
+.footerMainItemContent ul li a{
+	color: #aaa;
+	text-decoration: none;
+}
+.footerContact{
+	max-width: 240px;
+	margin: auto;
+}
+.footerItemFoot a{
+	padding: 5px;
+	display: inline-block;
+	width: 35px;
+	transition: transform 0.5s;
+}
+.footerItemFoot a img{
+	width: 30px;
+}
+.footerItemFoot a:hover{
+	transform: scale(1.3);
+
+}
+.footerInfo{
+	max-width: 260px;
+	margin: auto;
+}
+
+.footerCopyright{
+	position: absolute;
+	width: 100%;
+	bottom: 10px;
+	left: 0;
+	text-align: center;
+}
+.foooterCart{
+	position: absolute;
+	bottom: 10px;
+	right: 30px;
+}
+.foooterCart ul li {
+	float: left;
+	list-style: none;
+	margin: 15px 10px;
+}
+.footerFly{
+	position: absolute;
+	width: 40px;
+	-webkit-animation-name: footerFly; /* Safari 4.0 - 8.0 */
+    -webkit-animation-duration: 10s; /* Safari 4.0 - 8.0 */
+    animation-name: footerFly;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+    animation-timing-function: cubic-bezier(1,1,1,1);
+
+}
+.footerFly img{
+	width: 100%;
+}
+
+
+/* Safari 4.0 - 8.0 */
+
+@-webkit-keyframes footerFly {
+    0%   {
+    	bottom: 10%;
+		left: -10%;
+		transform: rotate(-8deg);
+    }
+    60%  {
+    	bottom: 20%;
+		left: 125%;
+		transform: rotate(-8deg);
+    }
+    64%  {
+    	bottom: -35%;
+		left: 90%;
+    	transform: rotate(-45deg);
+    }
+    65%  {
+    	bottom: -15%;
+		left: 90%;
+    	transform: rotate(-90deg);
+    }
+    
+    100% {
+		bottom: 105%;
+		left: 90%;
+    	transform: rotate(-90deg);
+
+    }
+}
+
+@keyframes footerFly {
+    0%   {
+    	bottom: 10%;
+		left: -10%;
+		transform: rotate(-8deg);
+    }
+    60%  {
+    	bottom: 20%;
+		left: 125%;
+		transform: rotate(-8deg);
+    }
+    64%  {
+    	bottom: -35%;
+		left: 90%;
+    	transform: rotate(-45deg);
+    }
+    65%  {
+    	bottom: -15%;
+		left: 90%;
+    	transform: rotate(-90deg);
+    }
+    
+    100% {
+		bottom: 105%;
+		left: 90%;
+    	transform: rotate(-90deg);
+
+    }
+}

@@ -1,0 +1,163 @@
+
+*{
+	/*font-family: 'Roboto', sans-serif;*/
+	font-family: 'Montserrat', sans-serif;
+}
+body{
+
+	background: url('../img/Mask Group.png') no-repeat;
+	background-size: 100% 100%;
+}
+.login{
+	height: 350px;
+	width: 1024px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background: rgba(0, 0, 0, 0.38);
+	display: flex;
+	border-radius: 10px;
+}
+.loginBody{
+	position: absolute;
+	height: 450px;
+	width: 513px;
+	top: 50%;
+	left: 20px;
+	transform: translate(0, -50%);
+	background: #fff;
+	transition: 1s;
+	z-index: 1;
+	border-radius: 10px;
+}
+.loginMain{
+	width: 400px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+.loginMainTitle{
+	height: 100px;
+	line-height: 100px;
+}
+.loginMainTitleLeft{
+	float: left;
+	font-size: 24px;
+	font-weight: bold;
+	text-transform: uppercase;
+	color: #1E2782;
+	
+}
+.loginMainTitleRight{
+	float: right;
+}
+.loginMainTitleRight a{
+	margin-left: 10px;
+	text-decoration: none;
+}
+/*.loginMainTitle::after {
+	clear: both;
+}
+*/
+form{
+	clear: both;
+}
+.formRegister{
+	display: none;
+}
+.inputItem{
+	display: block;
+	width: 100%;
+	margin-top: 30px;
+	border:none;
+	border-bottom: 1px solid #000;
+	height: 33px;
+	outline: none;
+}
+.inputItem:first-child{
+	margin-top: 0;
+}
+
+.formBot{
+	height: 46px;
+	line-height: 46px;
+	margin-top: 30px;
+}
+.forgotPass{
+	color: #999;
+	display: inline-block;
+}
+.formSbm{
+	float: right;
+}
+.inputSbm{
+	width: 144px;
+	height: 46px;
+	background: #1E2782;
+	color: #fff;
+	line-height: 46px;
+	text-align: center;
+	border: none;
+	font-weight: bold;
+}
+
+.loginItem{
+	flex: 1;
+	
+	color: #fff;
+	position: relative;
+}
+.loginItemMain{
+	width: 316px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	text-align: center;
+}
+.loginTitle{
+	font-size: 24px;
+	font-weight: 600;
+	margin: 20px 0;
+	text-transform: uppercase;
+}
+.loginTitleSmall{
+	font-size: 18px;
+	font-weight: 300;
+	margin-bottom: 50px;
+}
+.btnRegister{
+	width: 144px;
+	height: 46px;
+	line-height: 46px;
+	font-size: 16px;
+	border: 1px solid #fff;
+	margin: auto;
+	text-align: center;
+	cursor: pointer;
+	font-weight: bold;
+}
+.btnLogin{
+	width: 144px;
+	height: 46px;
+	line-height: 46px;
+	font-size: 16px;
+	border: 1px solid #fff;
+	margin: auto;
+	text-align: center;
+	cursor: pointer;
+	font-weight: bold;
+}
+.error_mess{
+	color: #ff0000ad;
+	font-size: 12px;
+	font-style: italic;
+}
+@media screen and (max-width: 800px) {
+  	
+}
+@media screen and (max-width: 500px) {
+  	
+}

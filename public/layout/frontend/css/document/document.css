@@ -1,0 +1,113 @@
+body{
+	font-family: 'Montserrat', sans-serif;
+}
+.instruction{
+
+	background: #F8F8FB;
+	height: 50px;
+
+}
+.instruction_body{
+	padding:  0 133px;
+	display: flex;
+}
+a.instruction_item{
+	height: 50px;
+	line-height: 50px;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 500;
+	font-size: 12px;
+	display: block;
+	margin-right: 15px;
+	color: #C4C4C4;
+	text-decoration: none;
+}
+.main_body{
+	padding-top: 75px;
+	overflow: hidden;
+	margin-bottom: 100px;
+}
+
+.title h1{
+	width: 100%;
+	color: #2D317F;
+	font-size: 48px;
+	font-weight:bold;
+}
+.title p{
+	color: #999999;
+	font-size: 16px;
+	line-height: 20px;
+
+}
+.selectGr select{
+	height: 60px;
+	width: 100%;
+	border-radius: 5px;
+	border: 1px solid #CCCCCC;
+	padding-left: 15px;
+	color: #999999;
+	font-size: 18px;
+	font-weight:bold;
+	outline: none;
+}
+.selectGr option{
+	height: 60px;
+}
+.img{
+	display: block;
+	width: 100%;
+	height: 250px;
+	border-radius: 10px;
+}
+.document{
+	margin-top: 20px;
+	margin-bottom: 50px;
+}
+.text{
+	padding: 20px 0;
+
+}
+.text p{
+	color: #666666;
+	font-size: 16px;
+	font-weight: 1000;
+	line-height: 20px;
+	margin-bottom: 20px;
+}
+#list-document{
+	margin-top: 50px; 
+}
+a.download{
+	text-decoration: none;
+}
+.download{
+	display: block;
+	width: 140px;
+	line-height: 45px;
+	background:#FCC72E;
+	text-align: center;
+	color: #fff;
+	font-size: 18px;
+	font-weight: bold;
+	border-radius: 5px;
+}
+
+a.number{
+	text-decoration: none;
+}
+.number{
+	color: #999999;
+	font-size: 14px;
+	font-weight: 1000;
+	margin-right: 20px;
+}
+.number:hover{
+	color: #000;
+}
+#page-number .fas{
+	color: #999999;
+}
+#body{
+	margin-bottom: 80px;
+}

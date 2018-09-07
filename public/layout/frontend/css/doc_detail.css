@@ -1,0 +1,96 @@
+.mainHead{
+	height: 70px;
+	background: #284da9;
+	margin-top: 50px;
+}
+.docGroup{
+	background: #f5b222;
+	color: #fff;
+	font-size: 18px;
+	line-height: 70px;
+	text-transform: uppercase;
+}
+.docSearch{
+	
+}
+.docSearchInput{
+	float: right;
+	color: #fff;
+	position: relative;
+}
+.docSearchInput .inputSearch{
+	background: none;
+	border: 1px solid #999;
+	height: 40px;
+	margin: 15px;
+	color: #fff;
+	padding: 5px 20px;
+}
+.docSearchInput i{
+	position: absolute;
+    right: 30px;
+    top: 25px;
+    display: block;
+    cursor: pointer;
+}
+.docSearchIcon{
+	float: right;
+	color: #fff;
+}
+
+.mainBody{
+	margin-top: 30px;
+	min-height: 500px;
+	
+}
+.docGroupSmail{
+	background: #fdca5d;
+	height: 100%;
+	
+	
+}
+.docGroupSmail ul {
+	padding: 0;
+}
+.docGroupSmail ul li {
+	list-style: none;
+	float: left;
+	border-bottom: 1px solid #eee;
+	width: 100%;
+}
+.docGroupSmail ul li a{
+	width: 100%;
+	padding: 10px 20px;
+	display: block;
+	text-decoration: none;
+	background: #fdca5d;
+	color: #fff;
+}
+
+.docName{
+	
+	height: 100%;
+	
+}
+.docName ul {
+	padding: 0;
+}
+.docName ul li {
+	list-style: none;
+	float: left;
+	border-bottom: 1px solid #eee;
+	width: 100%;
+}
+.docName ul li a{
+	width: 100%;
+	padding: 10px 20px;
+	display: block;
+	text-decoration: none;
+	background: #fff;
+	color: #000;
+	
+}
+
+.btnDow{
+	float: right;
+}

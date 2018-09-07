@@ -1,0 +1,92 @@
+.instruction{
+
+	background: #F8F8FB;
+	height: 50px;
+
+}
+.instruction_body{
+	padding:  0 133px;
+	display: flex;
+}
+a.instruction_item{
+	height: 50px;
+	line-height: 50px;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 500;
+	font-size: 12px;
+	display: block;
+	margin-right: 15px;
+	color: #C4C4C4;
+	text-decoration: none;
+}
+.main_body{
+	padding-top: 75px;
+	overflow: hidden;
+	margin-bottom: 100px;
+}
+
+p{
+	margin-bottom: 0;
+}
+#body{
+	margin: 80px 0;
+}
+.heading h1{
+	font-size: 48px;
+	font-weight: bold;
+	color: #2D317F;
+	line-height: 60px;
+	margin: 0;
+	margin-bottom: 25px;
+}
+.heading p{
+	font-size: 16px;
+	color: #999999;
+}
+#list{
+	border: 1px solid #E1E1E1;
+	padding: 25px 25px 60px;	
+	border-radius: 10px;
+	margin-top: 65px;
+}
+.tieu-de{
+	font-size: 16px;
+	color: #666666;
+}
+.table-striped>tbody>tr:nth-of-type(odd){
+	background-color: unset;
+}
+.table-striped>tbody>tr:nth-of-type(odd){
+	background-color: unset;
+}
+tbody p{
+	font-size: 16px;
+	color: #999999;
+	line-height: 40px;
+}
+.img{
+	width: 53px;
+	
+	border-radius: 50%;
+}
+.img:after{
+	content: '';
+	display: block;
+	padding-top: 100%;
+}
+.image{
+	border-radius: 5px;
+	overflow: hidden;
+}
+.image:after{
+	content: '';
+	display: block;
+	padding-top: 56%;
+}
+.table>tbody>tr>td{
+	/*vertical-align: unset;*/
+}
+
+#list{
+	margin-bottom: 40px;
+}

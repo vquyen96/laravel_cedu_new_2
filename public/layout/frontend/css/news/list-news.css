@@ -1,0 +1,101 @@
+body{
+	font-family: 'Montserrat', sans-serif;
+}
+.instruction{
+
+	background: #F8F8FB;
+	height: 50px;
+
+}
+.instruction_body{
+	padding:  0 133px;
+	display: flex;
+}
+a.instruction_item{
+	height: 50px;
+	line-height: 50px;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 500;
+	font-size: 12px;
+	display: block;
+	margin-right: 15px;
+	color: #C4C4C4;
+	text-decoration: none;
+}
+.main_body{
+	padding-top: 75px;
+	overflow: hidden;
+	margin-bottom: 100px;
+}
+
+.title{
+	margin-bottom: 60px;
+}
+.title h1{
+	width: 100%;
+    color: #2D317F;
+    font-size: 48px;
+    font-weight: 1000;
+    margin: 0;
+    margin-bottom: 20px;
+
+}
+.title .titleContent{
+	color: #999999;
+	font-size: 16px;
+	line-height: 20px;
+
+}
+.newsItemImg{
+	display: block;
+	width: 100%;
+	height: 250px;
+	border-radius: 10px;
+}
+.newsItem{
+	margin-top: 20px;
+	margin-bottom: 50px;
+}
+.newsItemContent{
+	padding: 20px 0;
+}
+.newsItemContent a.newsItemTitle{
+	display: block;
+	text-decoration: none;
+	color: #666666;
+	font-size: 16px;
+	font-weight: 1000;
+	line-height: 20px;
+	margin-bottom: 20px;
+	height: 60px;
+}
+#list-news{
+	margin-top: 50px; 
+}
+.newsItemContent a.button{
+	text-decoration: none;
+	padding: 2px 5px;
+	color: #999999;
+	font-size: 14px;
+	border: 1px solid #C4C4C4;
+	border-radius: 5px;
+}
+a.number{
+	text-decoration: none;
+}
+.number{
+	color: #999999;
+	font-size: 14px;
+	font-weight: 1000;
+	margin-right: 20px;
+}
+.number:hover{
+	color: #000;
+}
+#page-number .fas{
+	color: #999999;
+}
+#body{
+	margin-bottom: 80px;
+}
+

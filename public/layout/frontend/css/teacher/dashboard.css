@@ -1,0 +1,387 @@
+.instruction{
+
+	background: #F8F8FB;
+	height: 50px;
+
+}
+.instruction_body{
+	padding:  0 133px;
+	display: flex;
+}
+a.instruction_item{
+	height: 50px;
+	line-height: 50px;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 500;
+	font-size: 12px;
+	display: block;
+	margin-right: 15px;
+	color: #C4C4C4;
+	text-decoration: none;
+}
+.main_body{
+	padding-top: 75px;
+	overflow: hidden;
+	margin-bottom: 100px;
+}
+
+.title{
+	margin-bottom: 50px;
+}
+.title h1{
+	font-weight: bold;
+	font-size: 48px;
+	line-height: 59px;
+	color: #2D317F;
+	margin: 0 0 25px;
+}
+.titleContent{
+	font-weight: 500;
+	font-size: 16px;
+	line-height: 25px;
+	color: #999999;
+}
+a.titleBtn{
+	float: right;
+	display: block;
+	height: 60px;
+	line-height: 60px;
+	font-weight: bold;
+	font-size: 18px;
+ 	color: #fff;
+ 	background: #FCC72E;
+ 	width: 323px;
+ 	text-align: center;
+ 	text-decoration: none;
+ 	border-radius: 10px;
+}
+.main_bodyItem{
+	/*margin-bottom: 36px;*/
+}
+.mainBodyItemMain{
+	border: 1px solid #C4C4C4;
+	border-radius: 10px;
+	padding: 40px 25px 10px;
+	margin-bottom: 36px;
+
+}
+.main_bodyItem>div:first-child .mainBodyItemMain{
+	padding: 40px 50px 10px;
+}
+.mainBodyItemMainTitle{
+	font-weight: 500;
+	font-size: 16px;
+	color: #999;
+	white-space: nowrap;
+	margin-bottom: 12px;
+}
+.mainBodyItemMainAmount{
+	font-weight: bold;
+	font-size: 36px;
+	color: #666;
+	white-space: nowrap;
+	margin-bottom: 40px;
+}
+
+
+
+
+
+
+.mainBodyItemMain.rate {
+
+}
+.mainBodyItemMain.rate .title{
+	font-weight: bold;
+	font-size: 24px;
+	color: #999;
+	margin-bottom: 25px;
+}
+.rateChart{
+	display: flex;
+	margin-bottom: 35px;
+}
+.rateChartLeft{
+	width: 175px;
+	margin-right: 20px;
+	flex-shrink: 0;
+}
+.rateChartLeftNum{
+	font-weight: 600;
+	font-size: 86px;
+	line-height: 117x;
+	color: #2D317F;
+	text-align: center;
+}
+
+.rateChartLeftStar{
+	display: flex;
+	margin-bottom: 10px;
+}
+.rateChartLeftStar i{
+	font-size: 24px;
+	line-height: 31px;
+	flex: 1;
+}
+.rateChartLeftCount{
+	font-weight: 500;
+	font-size: 14px;
+	color: #999999;
+	text-align: center;
+}
+.rateChartRight{
+ 	width: 100%; 
+ 	padding-top: 20px;
+}
+.rateChartRightItem{
+	margin-bottom: 10px;
+	display: flex;
+}
+.rateChartRightItemLine{
+	flex: 1;
+	background: #F8F8FB;
+	border-radius: 5px;
+	height: 20px;
+	margin-right: 10px;
+	overflow: hidden;
+}
+.rateChartRightItemNum{
+	font-weight: bold;
+	font-size: 16px;
+	line-height: 25px;
+	color: #999;
+	width: 50px;
+}
+
+.rateChartRightItemValue{
+	display: none;
+}
+.rateChartRightItemLineActive{
+	height: 100%;
+	width: 50%;
+	background: #EAEAF3;
+	transition: 2s;
+}
+.starActive{
+	color: #FCC72E;
+}
+
+.rateDetailItem{
+	display: flex;
+	margin-bottom: 15px;
+
+}
+.rateDetailItemAva{
+	width: 45px;
+	height: 45px;
+	margin-right: 23px;
+	border-radius: 50%;
+}
+.rateDetailItemStar{
+	line-height: 45px;
+	font-size: 18px;
+	color: #C4C4C4;
+}
+.rateDetailItemStar i:last-child{
+	margin-right: 15px;
+}
+
+.mainBodyItemMain.rate.detail{
+	height: 341px;
+	overflow: hidden;
+	position: relative;
+}
+.mainBodyItemMain.rate.detail:after {
+    position: absolute;
+    width: 100%;
+    height: 100px;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(#fff0, #fff);
+    content: '';
+    
+}
+.rateDetail{
+	overflow: auto;
+    height: 255px;
+}
+.rateDetail::-webkit-scrollbar {
+    width: 2px;
+}
+.nowrap{
+	white-space: nowrap;
+}
+
+.mainBodyItemMain table tr{
+	height: 52px;
+	line-height: 52px;
+}
+.mainBodyItemMain table tr td{
+	padding: 15px 8px;
+	font-size: 16px;
+	color: #999;
+	line-height: 1.6;
+}
+.stausItem{
+	height: 25px;
+	line-height: 25px;
+	color: #fff;
+	padding: 0 10px;
+}
+.stausItem.doing{
+	background: #2D317F;
+}
+.stausItem.wait{
+	background: #999999;
+}
+.stausItem.sale{
+	background: #FCC72E;
+}
+
+.stausItem.stop{
+	background: #cc2323;
+}
+.stausItem.error{
+	background: #FC672E;
+}
+
+
+.mainBodyItemTitle{
+	display: flex;
+}
+.mainBodyItemTitle h3{
+	font-weight: bold;
+	font-size: 24px;
+	color: #999;
+	line-height: 29px;
+	flex: 1;
+	margin: 0;
+}
+.numOfCourse{
+	line-height: 29px;
+	font-size: 16px;
+	color: #999;
+
+}
+
+
+.homeChartRevenue{
+	
+	margin: 20px auto;
+	width: auto;
+	height: 450px;
+	padding: 15px;
+	position: relative;
+	overflow: hidden;
+
+}
+.btnChangeChartRevenuePre{
+	position: absolute;
+	top: 10px;
+	right: 150px;
+	padding: 10px 25px;
+	cursor: pointer;
+	box-shadow: 2px 2px 10px #0004;
+	border-radius: 5px;
+	z-index: 1;
+	display: none;
+	
+}
+.btnChangeChartRevenueNext{
+	position: absolute;
+	top: 10px;
+	right: 20px;
+	padding: 10px 25px;
+	cursor: pointer;
+	box-shadow: 2px 2px 10px #0004;
+	border-radius: 5px;
+	z-index: 1;
+}
+.homeChartRevenue .chart{
+	position: absolute;
+    top: 50%;
+    left: 50%;
+    height: 100%;
+    width: 100%;
+    transform: translate(-50%, -50%);
+    transition: 1s;
+}
+#chartRevenue01{
+	z-index: 1;
+}
+#chartRevenue02{
+	z-index: 0;
+}
+#chartRevenue03{
+	z-index: 0;
+}
+
+.btndropdown{
+	font-weight: 600;
+	line-height: 29px;
+	font-size: 16px;
+	color: #999;
+	position: relative;
+}
+.dropdownMain{
+	cursor: pointer;
+    padding: 5px 25px;
+}
+.dropdownHide{
+	display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: auto;
+    z-index: 2;
+    box-shadow: 1px 1px 2px #0004;
+    padding: 0 5px;
+    background: #fff;
+}
+.dropdownItem{
+	cursor: pointer;
+    white-space: nowrap;
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+
+}
+.dropdownItem:last-child {
+    border-bottom: 0;
+}
+a.canvasjs-chart-credit{
+	display: none;
+}
+
+
+
+
+/*aff dashboard*/
+
+.linkText{
+	display: none;
+}
+.linkCopy{
+	font-weight: 600;
+	color: #2D317F;
+	cursor: pointer;
+	position: relative;
+}
+.linkCopyAlert{
+	position: absolute;
+    top: 0;
+    left: 100%;
+     display: none; 
+    color: #999;
+    background: #fff;
+    padding: 0 10px;
+    border: 1px solid #2d317f;
+    border-radius: 5px;
+
+}
+input[name="link"]{
+	display: none;
+}
+.linkCopy:hover{
+
+}

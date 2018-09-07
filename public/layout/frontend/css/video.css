@@ -1,0 +1,50 @@
+a{
+	color: #000;
+	text-decoration: none;
+}
+.videoMain{
+	background: #09142f;
+}
+.videoCourse{
+	margin:20px 0;
+}
+#my-video{
+	width: 100%;
+
+}
+.videoMainItem h4{
+
+	color: #ccc;
+}
+.videoMainItem h4:first-child{
+	margin-top: 30px;
+}
+.videoMainItem a{
+	color: #b5b5b5;
+	text-decoration: none;
+}
+.videoItem{
+	width: 100%;
+	transition: 0.2s;
+	padding: 20px 10px;
+}
+.videoItem:hover{
+	box-shadow: 0 0 20px 4px #929191;
+    color: #fff;
+    text-decoration: none;
+}
+.videoIctemBtnPlay{
+	display: inline-block;
+}
+.videoIctemBtnPlay i{
+	font-size: 18px;
+}
+.videoItemTitle{
+	display: inline-block;
+	margin-left: 10px;
+
+}
+.videoItemTime{
+	float: right;
+	display: inline-block;
+}

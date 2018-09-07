@@ -1,0 +1,251 @@
+#banner{
+	background: url('../../img/image-partner.png') no-repeat center/cover;
+	height: 70vh; 
+	position: relative;
+	display: flex;
+	align-items: center;
+	z-index: 0;
+}
+#banner:after{
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background:#000;
+	opacity: 0.3;
+	z-index: -1;
+
+}
+.main-top{
+	z-index: 999;
+}
+.heading h1{
+	color: #fff;
+	font-size: 64px;
+	font-weight: bold;
+}
+.heading p{
+	margin-top: 30px;
+	margin-bottom: 30px;
+	color: #fff;
+	font-size: 16px;
+	line-height: 20px;
+}
+a.ctv{
+	display: inline-block;
+	text-decoration: none;
+	color: #fff;
+	border-radius: 20px;
+	border: 1px solid #fff;
+	width: 380px;
+	height: 75px;
+	text-align: center;
+	line-height: 75px;
+	font-weight: bold;
+	font-size: 24px;
+	margin-right: 25px;
+}
+a.gv{
+	display: inline-block;
+	text-decoration: none;
+	color: #fff;
+	border-radius: 20px;
+	width: 445px;
+	height: 75px;
+	text-align: center;
+	line-height: 75px;
+	font-weight: bold;
+	font-size: 24px;
+	background:#FCC72E;
+}
+#content{
+	margin-top: 100px;
+}
+.heading-1 h2{
+	font-size: 36px;
+	color: #2D317F;
+	font-weight: bold;
+}
+.heading-1 p{
+	margin-top: 25px;
+	color: #999999;
+	font-size: 16px;
+}
+
+.images{
+	text-align: center;
+	margin-top: 25px;
+}
+.images img{
+	width: 80px;
+	height: 80px;
+	color: #666666;
+	filter: grayscale(100%);
+	opacity: 0.5;
+
+}
+.images p{
+	margin-top: 25px;
+	color: #666666;
+	font-weight: bold;
+	font-size: 16px;
+}
+.ly-do:hover.ly-do .images img{
+	filter: grayscale(0%);
+	opacity: 1;
+}
+.ly-do:hover.ly-do .images p{
+	color: #2D317F;
+}
+.summary {
+	color: #999999;
+	font-size: 16px;
+	line-height: 20px;
+	text-align: center;
+}
+#content-2{
+	margin-top: 115px;
+	background:#F8F8FB;
+	padding: 85px 0;
+}
+.quy-trinh{
+	border-radius: 10px;
+	border: 1px solid #C4C4C4;
+	padding: 0 35px 0px 45px;
+	margin-top: 45px;
+}
+.quy-trinh h3{
+	font-size: 24px;
+	font-weight: bold;
+	color: #666666;
+	border-bottom: 1px solid #C4C4C4;
+	line-height: 70px;
+	margin-top: unset;
+	margin-bottom: unset;
+	margin-left: -45px;
+	margin-right: -35px; 
+	padding-left: 45px;
+}
+.cac-buoc span{
+	font-weight: bold;
+	font-size: 18px;
+	color: #2D317F;
+	float: left;
+}
+.cac-buoc{
+	margin-top: 20px;
+	margin-bottom: 50px;
+}
+.cac-buoc p{
+	font-weight: bold;
+	font-size: 16px;
+	color: #999999;
+	margin-left: 85px;
+	line-height: 23px;
+}
+.summary-2 {
+	color: #999999;
+	font-size: 16px;
+	line-height: 20px;
+
+}
+#content-3{
+	margin-top: 100px;
+	margin-bottom: 80px;
+}
+#content-3 .heading-1{
+	display: flex;
+}
+#content-3 .heading-1 h2{
+	flex: 6;
+}
+#content-3 .heading-1 p{
+	width: 80%;
+	text-align: right;
+	flex: 4;
+}
+.teacher{
+	margin: 90px 0;
+	background: #fff;
+}
+.teacherTitle{
+	margin-bottom: 125px;
+}
+.teacherTitleLeft{
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 700;
+    font-size: 48px;
+    color: #2D317F;
+    display: inline-block;
+}
+.teacherTitleRight{
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 500;
+    font-size: 16px;
+    color: #999;
+    float: right;
+    width: 450px;
+    border-right: 3px solid #FCC72E;
+    padding-right: 20px;
+    line-height: 2.2;
+    text-align: right;
+}
+
+.owl-carousel{
+	
+	min-height: 420px;
+}
+a.owlItemImg{
+	width: 184px;
+	border-radius: 50%;
+	margin: 50px auto 20px;
+	transition: 0.5s;
+	display: block;
+}
+a.owlItemImg:after{
+	content: '';
+	display: block;
+	padding-top: 100%;
+
+}
+a.owlItemName{
+	text-align: center;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 700;
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 15px;
+    display: block;
+}
+.owlItemContent{
+	text-align: center;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 500;
+    font-size: 14px;
+    color: #999;
+    display: none;
+    transition: 1s;
+}
+.owl-nav{
+	position: absolute;
+	height: 0;
+	width: 100%;
+	top: 0;
+	left: 0;
+
+}
+.owl-nav button{
+	font-family: 'Montserrat', sans-serif !important;
+	font-weight: 700 !important;
+	font-size: 42px !important;
+	color: #999 !important;
+	height: 284px;
+	line-height: 284px;
+	outline: none;
+
+}	
+button.owl-next{
+	float: right;
+}

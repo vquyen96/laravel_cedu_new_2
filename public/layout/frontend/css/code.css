@@ -1,0 +1,79 @@
+.code{
+	background: #fff;
+    text-align: center;
+    padding: 50px 0;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    border-radius: 10px;
+    border: 2px solid #999;
+    color: #999;
+}
+h3{
+	font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    font-size: 36px;
+    color: #2d317f;
+}
+.code input[type=text]{
+    width: 600px;
+    margin: auto;
+    height: 55px;
+    font-size: 24px;
+    border-radius: 10px;
+    text-align: center;
+    background: #f5f5f5;
+    border: none;
+    outline: none;
+    text-align: left;
+    padding: 5px 20px;
+    color: #999;
+    font-size: 18px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+}
+.code input[type=password]{
+	display: block;
+	width: 600px;
+	margin: 20px auto;
+	height: 70px;
+	border-radius: 50px;
+	text-align: center;
+	font-size: 30px;
+	background: #ccc;
+	border:none;
+	outline: none;
+}
+.code input[type=submit]{
+	margin-top: 30px;
+    margin-bottom: 30px;
+    width: 200px;
+    height: 55px;
+    color: #fff;
+    background: #FCC72E;
+    border-radius: 10px;
+    border: none;
+    font-size: 18px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    margin-left: 20px;
+}
+.hotline{
+	color: #666;
+}
+.btnCode {
+    margin: 30px auto;
+    width: 150px;
+    height: 50px;
+    line-height: 50px;
+    color: #fff;
+    background: #284da9;
+    border-radius: 50px;
+    border: none;
+    font-size: 22px;
+}
+.formPass{
+	display: none;
+}
+.formCode{
+	
+}

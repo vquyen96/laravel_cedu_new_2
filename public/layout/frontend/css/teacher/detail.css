@@ -1,0 +1,467 @@
+
+a.button-add{
+	text-decoration: none;
+	display: block;
+	background:#FCC72E;
+	height: 60px;
+	width: 100%;
+	border-radius: 7px;
+	line-height: 60px;
+	text-align: center;
+	color: #fff;
+	font-weight: bold;
+	font-size: 18px;
+
+}
+.instruction{
+
+	background: #F8F8FB;
+	height: 50px;
+
+}
+.instruction_body{
+	padding:  0 133px;
+	display: flex;
+}
+a.instruction_item{
+	height: 50px;
+	line-height: 50px;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 500;
+	font-size: 12px;
+	display: block;
+	margin-right: 15px;
+	color: #C4C4C4;
+	text-decoration: none;
+}
+.main_body{
+	padding-top: 75px;
+	overflow: hidden;
+	margin-bottom: 100px;
+}
+
+
+
+.title{
+	margin-bottom: 45px;
+}
+.title h1{
+	font-weight: bold;
+	font-size: 36px;
+	color: #2D317F;
+	margin-bottom: 20px;
+}
+.titleContent{
+	font-weight: 500;
+	font-size: 16px;
+	color: #999;
+	
+}
+
+.profileLeftAva{
+	margin-bottom: 30px;
+
+}
+.profileLeftAva img{
+	width: 100%;
+	border-radius: 10px;
+
+}
+.profileLeftButton{
+	height: 50px;
+	line-height: 50px;
+	width: 76%;
+	margin: auto;
+	font-weight: bold;
+	font-size: 18px;
+	color: #999999;
+	border: 1px solid #C4C4C4;
+	border-radius: 10px;
+	text-align: center;
+	cursor: pointer;
+}
+.profileLeftButton:hover{
+	background: #fcc72e;
+	color: #fff;
+	border: 1px solid #fcc72e;
+}
+.profileRight{
+	padding-left: 30px;
+}
+.profileRightTitle{
+	font-weight: bold;
+	font-size: 18px;
+	color: #666;
+	margin-bottom: 30px;
+	
+}
+.form_group{
+	display: flex;
+    line-height: 42px;
+    margin-bottom: 20px;
+}
+.form_group label{
+	width: 150px;
+	font-weight: 500;
+	font-size: 14px;
+	color: #999;
+	flex-shrink: 0;
+}
+.form_item{
+
+	flex:1;
+	position: relative;
+}
+.inputText{
+	font-weight: 500;
+	font-size: 16px;
+	color: #999;
+}
+.inputMain{
+	display: none;
+	position: relative;
+	top: 0;
+	right: 0;
+
+}
+
+.inputProfile{
+	width: 100%;
+	height: 42px;
+	line-height: 42px;
+	border-radius: 5px;
+	border: 0;
+	background: rgba(229, 229, 229, 0.5);
+	font-weight: 500;
+	font-size: 16px;
+	color: #999;
+	padding: 0 15px;
+	outline: none;
+
+}
+.inputButon{
+	margin-bottom: 60px;
+	opacity: 0;
+	display: flex;
+}
+.inputButon button{
+	flex: 1;
+	height: 60px;
+
+}
+.inputButon .btnDeni {
+	font-weight: bold;
+	font-size: 16px;
+	color: #999;
+	border-radius: 5px;
+	border: 1px solid #C4C4C4;
+	margin-right: 8px;
+	background: #fff;
+}
+.inputButon .btnSubmit {
+	font-weight: bold;
+	font-size: 16px;
+	color: #fff;
+	border-radius: 5px;
+	border: 0;
+	background: #FCC72E;
+}
+.btnNoSubmit{
+	font-weight: bold;
+	font-size: 16px;
+	color: #999999;
+	border-radius: 5px;
+	border: 1px #C4C4C4 solid;
+	background:#fff;
+	margin-right: 15px;
+
+}
+.inputEdit{
+	position: absolute;
+	top: 0;
+	right: 0;
+	font-weight: 500;
+	font-size: 16px;
+	color: #2D317F;
+	cursor: pointer;
+}
+.inputDeni{
+	position: absolute;
+	top: 0;
+	right: 0;
+	font-weight: 500;
+	font-size: 16px;
+	color: #2D317F;
+	cursor: pointer;
+	display: none;
+}
+
+
+
+
+
+/*change password*/
+.changePass{
+	padding: 75px 0;
+	border-radius: 10px;
+	border: 1px solid #C4C4C4;
+}
+.changePassItem{
+	height: 50px;
+	line-height: 50px;
+	margin-bottom: 54px;
+}
+.changePassItemLeft{
+	font-weight: 500;
+	font-size: 16px;
+	color: #999;
+}
+.changePassItemRight{
+
+}
+.changePassItemRight input[type=password]{
+	width: 100%;
+	height: 42px;
+	line-height: 42px;
+	border-radius: 5px;
+	border: 0;
+	background: rgba(229, 229, 229, 0.5);
+	font-weight: 500;
+	font-size: 16px;
+	color: #999;
+	padding: 0 15px;
+	outline: none;
+}
+.changePassItemRight input[type=submit]{
+	font-weight: bold;
+	font-size: 18px;
+	color: #fff;
+	border-radius: 5px;
+	border: 0;
+	background: #FCC72E;
+	width: 270px;
+	height: 62px;
+}
+.inputTextarea{
+	font-size: 14px;
+	color: #999999;
+	line-height: 23px;
+	background:#F5F5F5;
+	padding: 25px;
+	border-radius: 10px;
+	max-height: 338px;
+	overflow: auto;
+}
+.inputTextarea::-webkit-scrollbar {
+    width: 5px;
+}
+.inputProfileTextarea{
+	width: 100%;
+	height: 200px;
+	padding: 0 15px;
+	outline: none;
+	font-size: 14px;
+	color: #999999;
+	line-height: 23px;
+	background:#F5F5F5;
+	padding: 25px;
+	border-radius: 10px;
+	border:none;
+}
+.editCourse{
+	margin-bottom: 50px;
+}
+.editCourse ul{
+	list-style: none;
+	margin-left: -40px;
+}
+.listUnit{
+	color: #666666;
+	font-size: 16px;
+	background:#F8F8FB;
+	line-height: 55px;
+	width: 100%;
+}
+.listUnit ul{
+	display: none;
+}
+.unit li{
+	color: #999999;
+	font-size: 14px;
+	background:#fff;
+	border:#FAFAFC 1px solid;
+	border-top: unset;
+	width: 100%;
+}
+.unit{
+	margin-left: -39px;
+}
+.listUnit .fas{
+	color: #999999;
+	margin-left: 25px;
+	margin-right: 15px;
+}
+
+.listUnit{
+	position: relative;
+}
+.tool a{
+	text-decoration: none;
+	color: unset;
+}
+.tool{
+	position: absolute;
+	top: 0;
+	right: 20px;
+	font-size: 16px;
+	color: #999999;
+}
+.tool .fas{
+	margin-left: 0px;
+	margin-right: 15px;
+}
+.unit .fas{
+	color: #E5E5E5;
+}
+.unit li{
+	position: relative;
+}
+.tool-2 a{
+	text-decoration: none;
+	color: unset;
+}
+.tool-2{
+	position: absolute;
+	top: 0;
+	right: 20px;
+	font-size: 16px;
+	
+}
+.tool-2 .fas{
+	color: #999999;
+	margin-left: 0px;
+	margin-right: 15px;
+}
+.add-video .fas{
+	color: #999999;
+	border: 2px solid #BFBFBF;
+	padding: 10px;
+}
+.addListUnit .fas,.addDocument .fas{
+	color: #2D317F;
+	border: 2px solid #2D317F;
+	padding: 10px;
+	margin-right: 5px;
+}
+
+.addListUnit,.addDocument{
+	margin-top: 15px;
+	color: #2D317F;
+	font-size: 14px;
+}
+.editDocument ul{
+	list-style: none;
+	margin-left: -40px;
+}
+
+.editDocument{
+	margin-bottom: 30px;
+}
+.editDocument .fa-trash-alt{
+	margin: 0 25px;
+}
+.document{
+	position: relative;
+	line-height: 55px;
+	border:#F2F2F2 1px solid;
+	color: #999999;
+	font-size: 16px;
+	margin-bottom: 8px;
+}
+.document a{
+	text-decoration: none;
+	color: unset;
+}
+.editDocument .fa-edit{
+	position: absolute;
+	top: 0;
+	right: 30px;
+	line-height: 55px;
+}
+.fas:hover{
+	cursor: pointer;
+}
+.modal-content{
+	width: 100%;
+}
+.modal-dialog{
+	height: 100vh;
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+}
+.modal-title{
+	font-size: 24px;
+	color: #999999;
+	font-weight: bold;
+	margin-bottom: 25px;
+}
+.modal-content{
+	padding: 30px 50px 30px 45px;
+}
+.input input{
+	line-height: 45px;
+	border: none;
+	background:#F5F5F5;
+	border-radius: 7px;
+	outline: none;
+	color: #999999;
+	font-size: 14px;
+	padding: 0 15px;
+	font-style: italic;
+	width: 100%;
+}
+.modal-footer{
+	border-top: unset;
+	padding: unset;
+}
+.btn-miss{
+	border:1px #C4C4C4 solid;
+	border-radius: 4px;
+	background:none;
+	height: 45px;
+	width: 135px;
+	color: #999999;
+	font-size: 18px;
+	font-weight: bold;
+}
+.btn-create{
+	border-radius: 4px;
+	background:#FCC72E;
+	height: 45px;
+	width: 135px;
+	color: #fff;
+	font-size: 18px;
+	font-weight: bold;
+	border:none;
+}
+.inputFile{
+	line-height: 45px;
+	width: 175px;
+	background: #F5F5F5;
+	border: 1px solid #C4C4C4;
+	color: #999999;
+	text-align: center;
+	font-size: 14px;
+	border-radius: 5px;
+	position: relative;
+}
+.inputFile:hover{
+	cursor: pointer;
+}
+#fileItem{
+	position: absolute;
+	top: 0;
+	left: 0;
+	opacity: 0;
+}

@@ -1,0 +1,149 @@
+
+.paymentHeader{
+	width: 100%;
+}
+.paymentHeaderMain{
+	width: 700px;
+	margin:auto;
+	padding: 30px 0 10px;
+}
+.headerCircle{
+	    width: 20px;
+    height: 20px;
+    background: #fff;
+    border: 3px solid #999;
+    border-radius: 50px;
+    display: inline-block;
+    color: #fff;
+    font-size: 13px;
+}
+.headerLine{
+	    width: 300px;
+    height: 5px;
+    background: #999;
+    display: inline-block;
+    margin: 3px -5px;
+}
+.headerCircle.active{
+	transform: scale(1);
+    box-shadow: 1px 1px 20px 6px #ffa500;
+    border: 2px solid #ffffff;
+}
+.headerCircle.done{
+	    background: #284da9;
+    border: 3px solid #284da9;
+}
+.headerLine.done{
+	background: #44f;
+}
+.paymentHeaderContent{
+	width: 710px;
+	margin:auto;
+}
+.paymentHeaderContent span{
+	margin-left: 200px;
+	font-weight: 400;
+	font-size: 16px;
+	color: #999;
+}
+.paymentHeaderContent span:first-child{
+	margin-left: 0px;
+}
+.paymentHeaderContent .active{
+	font-weight: 500;
+	font-size: 16px;
+	color: #000;
+}
+
+
+.paymentBody{
+	margin-top: 30px;
+	margin-bottom: 50px;
+}
+.paymentListCart{
+	background: #fff;
+	padding: 20px;
+	min-height: 500px;
+}
+.listCartItem{
+	border-bottom: 1px solid #666;
+	clear: both;
+	position: relative;
+}
+.listCartItem.head a{
+	position: absolute;
+    top: 0px;
+    right: 0px;
+    font-size: 20px;
+    color: #000;
+}
+.listCartItemTable{
+	padding: 20px 5px;
+	position: relative;
+
+}
+.listCartItem:last-child{
+	border-bottom: none;
+}
+.listCartItemTable .nameItem{
+	display: inline-block;
+	width: 70%;
+	font-weight: 500;
+}
+.listCartItemTable .priceItem{
+	position: absolute;
+	top: 15px;
+	right: 5px;
+	text-align: right;
+	width: 100px;
+	font-weight: 500;
+}
+.listCartItem.footer .nameItem,.listCartItem.footer .priceItem{
+	font-weight: 600;
+}
+
+.payment-Login{
+	background: #fff;
+	
+}
+.loginHeader{
+	display: block;
+	height: 70px;
+}
+.loginMain{
+	min-height: 500px;
+}
+.loginHeaderItem{
+	text-align: center;
+	padding: 18px 0;
+	position: relative;
+	font-size: 18px;
+	font-weight: 500;
+	border-bottom: 3px solid #eee;
+	cursor: pointer;
+}
+.loginHeaderBorderLeft{
+	width: 0%;
+	position: absolute;
+	height: 3px;
+	background: #284da9;
+	bottom: -3px;
+	right: 0;
+	transition: 0.5s;
+}
+.loginHeaderBorderRight{
+	width: 0%;
+	position: absolute;
+	height: 3px;
+	background: #284da9;
+	bottom: -3px;
+	transition: 0.5s;
+}
+.loginMain h4{
+	text-align: center;
+	margin:20px 0;
+	text-transform: uppercase;
+}
+#paymentRegister{
+	display: none;
+}

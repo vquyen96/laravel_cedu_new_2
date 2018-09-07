@@ -1,0 +1,304 @@
+.paymentHeader{
+	width: 100%;
+}
+.paymentHeaderMain{
+	width: 655px;
+	margin:auto;
+	padding: 30px 0 10px;
+}
+.headerCircle{
+	    width: 20px;
+    height: 20px;
+    background: #fff;
+    border: 3px solid #999;
+    border-radius: 50px;
+    display: inline-block;
+    color: #fff;
+    font-size: 13px;
+}
+.headerLine{
+	    width: 300px;
+    height: 5px;
+    background: #999;
+    display: inline-block;
+    margin: 3px -5px;
+}
+.headerCircle.active{
+	transform: scale(1);
+    box-shadow: 1px 1px 20px 6px #ffa500;
+    border: 2px solid #ffffff;
+}
+.headerCircle.done{
+	    background: #284da9;
+    border: 3px solid #284da9;
+}
+.headerLine.done{
+	background: #44f;
+}
+.paymentHeaderContent{
+	width: 710px;
+	margin:auto;
+}
+.paymentHeaderContent span{
+	margin-left: 200px;
+	font-weight: 400;
+	font-size: 16px;
+	color: #999;
+}
+.paymentHeaderContent span:first-child{
+	margin-left: 0px;
+}
+.paymentHeaderContent .active{
+	font-weight: 500;
+	font-size: 16px;
+	color: #000;
+}
+
+
+.paymentBody{
+	background: #fff;
+	padding: 20px;
+	margin: 30px 0;
+	box-shadow: 2px 2px 20px #0005;
+}
+.paymentBodyLeft{
+	padding: 0 40px ;
+	border-right: 1px solid #666;
+}
+.paymentBodyLeftItem{
+	position: relative;
+}
+input[type=radio]{
+	position: absolute;
+    top: 17px;
+    left: 0;
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+    color: #284da9;
+    background: #284da9;
+}
+input[type='radio']:after {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    top: -2px;
+    left: 2px;
+    position: relative;
+    background-color: #d1d3d1;
+    content: '';
+    display: inline-block;
+    visibility: visible;
+    border: 2px solid white;
+}
+
+input[type='radio']:checked:after {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    top: -2px;
+    left: 2px;
+    position: relative;
+    background-color: #284da9;
+    content: '';
+    display: inline-block;
+    visibility: visible;
+    border: 2px solid #fff;
+}
+.paymentBodyContent{
+	padding: 5px 20px 5px 30px;
+
+}
+..paymentBodyContent p{
+	font-size: 12px;
+	color: #666;
+}
+
+.paymentBodyRight{
+	padding: 0 40px;
+	min-height: 500px;
+}
+.ship{
+	/*display: none;*/
+}
+.online{
+	display: none;
+}
+.office{
+	display: none;
+}
+.card{
+	display: none;
+}
+.paymentRightHeaderLogo{
+	border: 2px dashed #284da99e;
+    padding: 10px 0;
+    width: 95px;
+    height: 70px;
+    display: inline-block;
+    margin-right: 20px;
+    float: left;
+}
+.paymentRightHeaderLogo img{
+	height: 90%;
+    margin: 3px auto;
+    display: block;
+
+}
+
+.paymentRightHeaderName{
+	display: inline-block;
+	font-size: 16px;
+	margin: 25px 10px;
+	text-align: left;
+}
+
+.paymentBodyRightItem{
+	margin: 10px 0;
+	clear: both;
+	position: relative;
+}
+
+.paymentBodyRightContent{
+	padding: 20px 10px 10px 30px;
+}
+.tableChoose{
+	border:1px solid #666;
+	border-radius: 5px;
+	padding: 10px;
+	
+    height: 85px;
+    overflow: hidden;
+}
+.tableChoose .chooseItem{
+	border: 1px dashed #999;
+    width: 120%;
+    margin: 6px -5px;
+    border-radius: 8px;
+    height: 55px;
+    cursor: pointer;
+
+}
+.tableChoose .chooseItem img{
+	width: 95%;
+    margin: 0 auto;
+    display: block;
+}
+
+.formOnline{
+	padding: 25px 10px;
+    border-radius: 15px;
+    box-shadow: 4px 4px 20px 0px #c5c5c5;
+    margin: 20px 0;
+    display: none;
+}
+.formOnlineItem{
+	margin:10px 0;
+}
+.formOnlineItem input[type=text]{
+	width: 100%;
+	height: 30px;
+
+}
+.formOnlineItem input[type=number]{
+	display: inline-block;
+	width: 50px;
+}
+
+.inputBank{
+	position: relative;
+}
+.inputLogoBank{
+	position: absolute;
+    width: 50px;
+    height: 30px;
+    top: 0;
+    right: 18px;
+    border-left: 1px solid #aba9a9;
+    padding: 1px;
+
+}
+.inputLogoBank img{
+	width: 100%;
+}
+
+.paymentBodyShipRightItem{
+	margin: 30px 0;
+}
+.formControl{
+	margin: 15px 0;
+
+}
+.formControl input[type=text],.formControl select{
+	width: 100%;
+	height: 35px;
+	border: 1px solid #999;
+	padding: 0 20px;
+}
+.formControl .btnBack a{
+	display: block;
+	width: 100%;
+	color: #999;
+	border: 1px solid #999;
+	padding: 10px;
+	text-align: center;
+}
+.formControl .btnSbm input[type=submit]{
+	display: block;
+	background: #284da9;
+	border: 1px solid #284da9;
+	width: 100%;
+	color: #fff;
+	border: none;
+	padding: 10px;
+	text-align: center;
+}
+.paymentBodyOfficeRightItem{
+	padding: 20px 0;
+}
+
+.paymentBodyOfficeRightItem .row a{
+	margin-top:30px;
+	display: block;
+	background: #284da9;
+	border: 1px solid #284da9;
+	width: 100%;
+	color: #fff;
+	border: none;
+	padding: 10px;
+	text-align: center;
+}
+.paymentBodyCardRightItem{
+	padding: 30px 0;
+}
+.paymentBodyCardRightItem .cardLogo{
+	border: 2px dashed #999;
+	border-radius: 10px;
+	transform: scale(1.05);
+	cursor: pointer;
+}
+
+.paymentBodyCardRightItem .cardLogo img{
+	width: 100%;
+}
+.btnFoot{
+	margin: 30px 0;
+}
+.btnFoot .btnBack a{
+	display: block;
+	width: 100%;
+	color: #999;
+	border: 1px solid #999;
+	padding: 10px;
+	text-align: center;
+}
+.btnFoot .btnSbm input[type=submit]{
+	display: block;
+	background: #284da9;
+	border: 1px solid #284da9;
+	width: 100%;
+	color: #fff;
+	border: none;
+	padding: 10px;
+	text-align: center;
+}
