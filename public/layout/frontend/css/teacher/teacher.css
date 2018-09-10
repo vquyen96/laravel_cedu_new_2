@@ -1,39 +1,17 @@
-.instruction{
-
-	background: #F8F8FB;
-	height: 50px;
-
-}
-.instruction_body{
-	padding:  0 133px;
-	display: flex;
-}
-a.instruction_item{
-	height: 50px;
-	line-height: 50px;
-	font-family: 'Montserrat', sans-serif;
-	font-weight: 500;
-	font-size: 12px;
-	display: block;
-	margin-right: 15px;
-	color: #C4C4C4;
-	text-decoration: none;
-}
-.main_body{
-	padding-top: 75px;
-	overflow: hidden;
-	margin-bottom: 100px;
-}
 
 #teacher{
 	margin-top: 85px;
 }
 .img{
-	height: 365px;
+	
 	width: 100%;
 	border-radius: 10px;
 }
-
+.img:after{
+	content: '';
+	display: block;
+	padding-top: 100%;
+}
 .contact{
 	text-align: center;
 	margin-top: 30px;
@@ -86,12 +64,39 @@ a.icon{
 a.img{
 	text-decoration: none;
 	display: block;
-	height: 250px;
 	width: 100%;
 	position: relative;
+	border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 20px;
 	
 }
 a.img::after{
+	content: "";
+	display: block;
+	padding-top: 75%;
+
+}
+
+.text{
+	margin-bottom: 20px;
+	font-size: 16px;
+	line-height: 25px;
+	font-weight: bold;
+	color: #666666;
+	height: 52px;
+    overflow: hidden;
+}
+
+.tieu-de{
+	position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    padding: 25px;
+    width: 100%;
+}
+.tieu-de::after{
 	content: "";
 	position: absolute;
 	width: 100%;
@@ -99,24 +104,7 @@ a.img::after{
 	top: 0;
 	left: 0;
 	background-image: linear-gradient(#fff0, #000);
-	border-radius: 10px;
-
-}
-.text{
-	padding: 20px 0;
-}
-.text p{
-	font-size: 16px;
-	font-weight: bold;
-	color: #666666;
-	margin-bottom: unset;
-}
-.tieu-de{
-	position: absolute;
-	bottom: 25px;
-	left: 25px;
-	z-index: 3;
-
+	z-index: -1;
 }
 .tieu-de p{
 	font-size: 24px;
@@ -167,4 +155,17 @@ a.number{
 }
 #page-number{
 	margin-bottom: 80px;
+}
+
+.star{
+	font-size: 16px;
+    color: #C4C4C4;
+    flex-shrink: 0;
+    white-space: nowrap;
+}
+.starActive {
+	color: #FCC72E;
+}
+.star i{
+	margin-left: 6px;
 }

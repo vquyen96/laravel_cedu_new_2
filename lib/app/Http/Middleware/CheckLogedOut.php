@@ -16,12 +16,15 @@ class CheckLogedOut
     public function handle($request, Closure $next)
     {
         if(Auth::guest()){
-            return redirect('login');
+            return $next($request);
         }
-
-        if(Auth::user()->level > 7){
+        else{
             return redirect('/');
         }
-        return $next($request);
+
+        // if(Auth::user()->level > 7){
+        //     return redirect('/');
+        // }
+        
     }
 }

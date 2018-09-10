@@ -15,14 +15,17 @@ class CheckLogedIn
      */
     public function handle($request, Closure $next)
     {   
-        if(Auth::check() && Auth::user()->level < 8){
-            return redirect('admin');
+        if(Auth::check()){
+            return $next($request);
         }
-        if(Auth::check() && Auth::user()->level > 7){
-            // Auth::logout();
-            return redirect('/sairoi');
+        else{
+            return redirect('');
         }
+        // if(Auth::check() && Auth::user()->level > 7){
+        //     // Auth::logout();
+        //     return redirect('/sairoi');
+        // }
         
-        return $next($request);
+        
     }
 }

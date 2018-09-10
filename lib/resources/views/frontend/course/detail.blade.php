@@ -45,15 +45,11 @@
 				<div class="courseRate">
 					<div class="courseRateStar">
 						@for($i=0;$i<5;$i++)
-							@if($course->cou_star > $i)
-								<i class="fa fa-star starActive" aria-hidden="true"></i>
-							@else
-								<i class="fa fa-star" aria-hidden="true"></i>
-							@endif
+							<i class="fa fa-star {{ $course->cou_star > $i ? 'starActive' : '' }} " aria-hidden="true"></i>
 						@endfor
 					</div>
 					<div class="courseRateContent">
-						{{ $course->cou_star }} ( {{ $course->rating->count() }} người bình chọn)
+						{{ number_format($course->cou_star, 1, '.', ',') }} ( {{ $course->rating->count() }} người bình chọn)
 					</div>
 				</div>
 				<div class="courseInfo">
@@ -94,40 +90,43 @@
 							356 bài giảng
 						</div>
 						<div class="timeOfLesson">
-							{{gmdate("H:i", $course->cou_video)}}p 
+							{{gmdate("H:i:s", $course->cou_video)}}
 						</div>
 					</div>
 					<div class="lessonMain">
 						<?php $video = 0 ?>
 						@foreach($course->part as $item)
-							<div class="lessonMainPart">
-								<div class="lessonMainPartIcon">
-									<i class="fas fa-minus"></i>
-									<i class="fas fa-minus"></i>
-								</div>
-								<div class="lessonMainPartTitle">
-									{{$item->part_name}}
-								</div>
-								<div class="lessonMainPartTime">
-									4:30
-								</div>
-							</div>
-							<div class="lessonMainVideo">
-								@foreach($item->lesson as $itemTiny)	
-									<div class="lessonMainVideoItem">
-										<div class="lessonMainVideoIcon">
-											<i class="fas fa-video"></i>
-										</div>
-										<div class="lessonMainVideoTitle">
-											{{$itemTiny->les_name}}
-										</div>
-										<div class="lessonMainVideoTime">
-											{{$itemTiny->les_video_duration}}
-										</div>
+							<div class="lessonMainItem">
+								<div class="lessonMainPart">
+									<div class="lessonMainPartIcon">
+										<i class="fas fa-minus"></i>
+										<i class="fas fa-minus"></i>
 									</div>
-								<?php $video++ ?>
-								@endforeach
+									<div class="lessonMainPartTitle">
+										{{$item->part_name}}
+									</div>
+									<div class="lessonMainPartTime">
+										{{ gmdate("i:s", $item->part_video_duration) }}
+									</div>
+								</div>
+								<div class="lessonMainVideo">
+									@foreach($item->lesson as $itemTiny)	
+										<div class="lessonMainVideoItem">
+											<div class="lessonMainVideoIcon">
+												<i class="fas fa-video"></i>
+											</div>
+											<div class="lessonMainVideoTitle">
+												{{$itemTiny->les_name}}
+											</div>
+											<div class="lessonMainVideoTime">
+												{{ gmdate("i:s", $itemTiny->les_video_duration) }}
+											</div>
+										</div>
+									<?php $video++ ?>
+									@endforeach
+								</div>
 							</div>
+								
 								
 						@endforeach
 					</div>
@@ -138,7 +137,11 @@
 					</div>
 					<div class="descriptionContent">
 						{!! $course->cou_content !!}
+
 					</div>
+					<div class="btnShowMoreDescription">Xem thêm >>> </div>
+					<div class="btnShowLessDescription">Thu gọn <<< </div>
+
 				</div>
 				@if($course_relate->count() > 0)
 				<div class="courseRelate">
@@ -161,7 +164,7 @@
 								<div class="courseRelateItemRate">
 									<div class="courseRateStar">
 										@for($i=0;$i<5;$i++)
-											@if($course->cou_star > $i)
+											@if($item->cou_star > $i)
 												<i class="fa fa-star starActive" aria-hidden="true"></i>
 											@else
 												<i class="fa fa-star" aria-hidden="true"></i>
@@ -169,7 +172,7 @@
 										@endfor
 									</div>
 									<div class="courseRateContent">
-										{{ $course->cou_star }} ( {{ $course->rating->count() }} người bình chọn)
+										{{ number_format($item->cou_star, 1, '.' ,'.') }} ( {{ $item->rating->count() }} người bình chọn)
 									</div>
 								</div>
 								<div class="courseRelateItemPrice_Cart">

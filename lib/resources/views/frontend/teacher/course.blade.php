@@ -35,7 +35,7 @@
 						<p>Chúng tôi cung cấp cho các bạn những khoá học đa dạng và chất lượng nhất</p>
 					</div>
 				</div>
-				<div class="col-md-4 col-md-4 col-12">
+				<div class="col-md-4 col-sm-4 col-12">
 					<a href="{{asset('teacher/addcourse')}}" class="add-course">
 						<p>Thêm khóa học mới</p>
 					</a>
@@ -57,11 +57,9 @@
 						<p class="tieu-de">{{$item->cou_name}}</p>
 						<div class="chi-tiet">
 							<div class="star">
-								<i class="fas fa-star" style="color: #FCC72E;"></i>
-								<i class="fas fa-star" style="color: #FCC72E;"></i>
-								<i class="fas fa-star" style="color: #FCC72E;"></i>
-								<i class="fas fa-star" style="color: #FCC72E;"></i>
-								<i class="fas fa-star" style="color: #C4C4C4;"></i>
+								@for($i=0;$i<5;$i++)
+									<i class="fa fa-star {{ $item->cou_star > $i ? 'starActive' : '' }} " aria-hidden="true"></i>
+								@endfor
 							</div>
 							<p>{{$item->cou_video}} bài 
 								<i class="fas fa-circle"></i> 124 giờ 

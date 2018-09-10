@@ -1,9 +1,9 @@
 $( document ).ready(function(){
 	getRateChart();
 	tagScroll();
-
 	postRate();
-
+	showDetailCourse();
+	showMore();
 });
 
 function getRateChart (){
@@ -76,5 +76,28 @@ function postRate(){
 	      }
 	    });
     });
+}
 
+function showDetailCourse(){
+	$(document).on('click', '.lessonMainPart' , function(){
+		if ($(this).next().is(":hidden")) {
+			$(this).find('.lessonMainPartIcon i:first-child').css('transform', 'translateY(-50%) rotate(180deg)');
+		}
+		else{
+			$(this).find('.lessonMainPartIcon i:first-child').css('transform', 'translateY(-50%) rotate(90deg)');
+		}
+		$(this).next().slideToggle();
+	});
+}
+function showMore(){
+	$(document).on('click', '.btnShowMoreDescription' , function(){
+		$(this).prev().css('height', '100%');
+		$(this).next().css('display', 'block');
+		$(this).css('display', 'none');
+	});
+	$(document).on('click', '.btnShowLessDescription' , function(){
+		$(this).prev().prev().css('height', '0');
+		$(this).prev().css('display', 'block');
+		$(this).css('display', 'none');
+	});
 }

@@ -95,7 +95,7 @@
 							<div class="item">
 								<a href="{{ asset('courses/detail/'.$item->cou_slug.'.html') }}" class="courseMainItem">
 									<div class="courseMainItemImg" style="background: url('{{ asset('lib/storage/app/course/'.$item->cou_img) }}') no-repeat center /cover;">
-										@if ($item->cou_sale != 0)
+										@if ($item->cou_price_old != null && $item->cou_sale != 0)
 											<div class="courseMainItemSale">
 												{{$item->cou_sale}}%
 											</div>
@@ -105,7 +105,7 @@
 											{{number_format($item->cou_price,0,',','.')}}
 											<span class="courseMainItemTime">
 												<i class="fa fa-circle" aria-hidden="true"></i>
-												@if ($item->cou_price_old != null)
+												@if ($item->cou_price_old != null && $item->cou_sale != 0)
 													<del>{{number_format($item->cou_price_old,0,',','.')}} đ</del>
 												@endif
 												{{-- {{time_format($item->updated_at)}} --}}
@@ -159,7 +159,7 @@
 							<div class="item">
 								<a href="{{ asset('courses/detail/'.$item->cou_slug.'.html') }}" class="courseMainItem">
 									<div class="courseMainItemImg" style="background: url('{{ asset('lib/storage/app/course/'.$item->cou_img) }}') no-repeat center /cover;">
-										@if ($item->cou_sale != 0)
+										@if ($item->cou_price_old != null && $item->cou_sale != 0)
 											<div class="courseMainItemSale">
 												{{$item->cou_sale}}%
 											</div>
@@ -168,8 +168,9 @@
 										<div class="courseMainItemPrice">
 											{{number_format($item->cou_price,0,',','.')}}
 											<span class="courseMainItemTime">
-												<i class="fa fa-circle" aria-hidden="true"></i>
-												@if ($item->cou_price_old != null)
+												
+												@if ($item->cou_price_old != null && $item->cou_sale != 0)
+													<i class="fa fa-circle" aria-hidden="true"></i>
 													<del>{{number_format($item->cou_price_old,0,',','.')}} đ</del>
 												@endif
 												{{-- {{time_format($item->updated_at)}} --}}
@@ -223,7 +224,7 @@
 							<div class="item">
 								<a href="{{ asset('courses/detail/'.$item->cou_slug.'.html') }}" class="courseMainItem">
 									<div class="courseMainItemImg" style="background: url('{{ asset('lib/storage/app/course/'.$item->cou_img) }}') no-repeat center /cover;">
-										@if ($item->cou_sale != 0)
+										@if ($item->cou_price_old != null && $item->cou_sale != 0)
 											<div class="courseMainItemSale">
 												{{$item->cou_sale}}%
 											</div>
@@ -233,7 +234,7 @@
 											{{number_format($item->cou_price,0,',','.')}}
 											<span class="courseMainItemTime">
 												<i class="fa fa-circle" aria-hidden="true"></i>
-												@if ($item->cou_price_old != null)
+												@if ($item->cou_price_old != null && $item->cou_sale != 0)
 													<del>{{number_format($item->cou_price_old,0,',','.')}} đ</del>
 												@endif
 												{{-- {{time_format($item->updated_at)}} --}}

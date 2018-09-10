@@ -12,6 +12,10 @@ use App\Models\Teacher;
 use App\Models\Teacher_Rating;
 use App\Models\Lesson;
 use App\Models\Part;
+use App\Models\Doc;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\View;
+
 use Auth;
 use DateTime;
 use File;
@@ -173,9 +177,35 @@ return back()->with('success', 'Cập nhật thành công');
 
 public function getDetailCourse($slug){
     $acc= Account::find(Auth::user()->id);
-    $data['user'] = $acc;
-    $data['course'] = Course::where('cou_slug',$slug)->first();
-    $data['group'] = Group::where('gr_parent_id',0)->get();
+    
+    $cou = Course::where('cou_slug',$slug)->first();
+    if ($cou == null) {
+        return redirect('teacher/courses');
+    }
+    // dd($cou);
+    $gr_child = [];
+    if ($cou->group->gr_parent_id == 0) {
+        $cou->cou_gr_child_id = null;
+        $cou->cou_gr_name = $cou->group->gr_name;
+    }
+    else{
+        $cou->cou_gr_child_id = $cou->cou_gr_id;
+        $cou->cou_gr_child_name = Group::find($cou->cou_gr_child_id)->gr_name;
+
+        $cou->cou_gr_id = $cou->group->gr_parent_id;
+        $cou->cou_gr_name = Group::find($cou->cou_gr_id)->gr_name;
+        $gr_child = Group::where('gr_parent_id', $cou->group->gr_parent_id)->get();
+    }
+    // dd($cou);
+    $gr = Group::where('gr_parent_id',0)->get();
+    $docs = Doc::where('doc_cou_id', $cou->cou_id)->get();
+    $data = [
+        'user' => $acc,
+        'course' => $cou,
+        'group' => $gr,
+        'group_child' => $gr_child,
+        'docs' => $docs
+    ];
     return view('frontend.teacher.detail', $data);
 }
 public function postDetailCourse(Request $request, $slug){
@@ -183,6 +213,13 @@ public function postDetailCourse(Request $request, $slug){
     $course = $request->cou;
     $course['cou_slug'] = str_slug($course['cou_name']);
     $course['cou_tea_id'] = Auth::user()->id;
+    if (!isset($course['cou_gr_child_id']) ) {
+        unset($course['cou_gr_child_id']);
+    }
+    else{
+        $course['cou_gr_id'] = $course['cou_gr_child_id'];
+        unset($course['cou_gr_child_id']);
+    }
     $image = $request->file('img');
     if ($request->hasFile('img')) {
         $course['cou_img']  = saveImage([$image], 360, 'course');
@@ -192,11 +229,31 @@ public function postDetailCourse(Request $request, $slug){
         return back()->with('error', 'Lỗi sửa khóa học')->withInput($request->all());
     }
 
-    return redirect('teacher/courses')->with('success','Sửa khóa học thành công');
+    return redirect('teacher/courses/'.$cou->cou_slug)->with('success','Sửa khóa học thành công');
 }
 
 public function getAddCourse(){
+    // dd(gmdate("i:s", '654651'));
+    // $les = Lesson::all();
 
+    // foreach ($les as $item) {
+    //     $duration = explode(":",$item->les_video_duration);
+    //     if (isset($duration[1])) {
+    //         $item->les_video_duration = $duration[0]*60+$duration[1];
+    //         $item->save();
+    //     }
+    // }
+
+
+    // $parts = Part::all();
+    // foreach ($parts as $part) {
+    //     $part->part_video_duration = 0;
+    //     foreach ($part->lesson as $lesson) {
+    //         $part->part_video_duration += (double)$lesson->les_video_duration;
+
+    //     }
+    //     $part->save();
+    // }
     $acc= Account::find(Auth::user()->id);
     $data['user'] = $acc;
     $data['course'] = (object)[
@@ -244,13 +301,13 @@ public function getAddCourse(){
 
     //POST VIDEO COURSE
     public function postVideo(Request $request,$id){
-
+        // gmdate("i:s", $request->duration)
         $lesson = new Lesson;
         $lesson->les_name = $request->les_name;
         $lesson->les_slug = str_slug($request->les_name);
         $lesson->les_part_id = $id;
 
-        $lesson->les_video_duration = gmdate("i:s", $request->duration);
+        $lesson->les_video_duration = $request->duration;
         $video = $request->file('file');
 
         if ($request->hasFile('file')) {
@@ -258,9 +315,19 @@ public function getAddCourse(){
             $lesson->les_link = $filename;
             $path = public_path().'/uploads/';
             $video->move($path, $filename);
+        }else{
+            return back()->with('error', 'Không có file upload');
         }
         $lesson->save();
+        // Lưu thời lượng video vào bài giảng
+        $part = Part::find($id);
+        $part->part_video_duration = (int)$part->part_video_duration + (int)$lesson->les_video_duration;
+        $part->save();
 
+        // Lưu thời lượng video vào khóa
+        $cou = Course::find($part->part_cou_id);
+        $cou->cou_video += (int)$lesson->les_video_duration;
+        $cou->save();
         return back()->with('success','Thêm bài học thành công');
 
     }
@@ -291,7 +358,7 @@ public function getAddCourse(){
         $lesson->les_name = $request->les_name;
         $lesson->les_slug = str_slug($request->les_name);
 
-        $lesson->les_video_duration = gmdate("i:s", $request->duration);
+        $lesson->les_video_duration = $request->duration;
         $video = $request->file('file');
 
         if ($request->hasFile('file')) {
@@ -303,6 +370,17 @@ public function getAddCourse(){
            
         }
         $lesson->save();
+
+        // Lưu thời lượng video vào bài giảng
+        $part = Part::find($id);
+        $part->part_video_duration = (int)$part->part_video_duration + (int)$lesson->les_video_duration;
+        $part->save();
+
+        // Lưu thời lượng video vào khóa
+        $cou = Course::find($part->part_cou_id);
+        $cou->cou_video += (int)$lesson->les_video_duration;
+        $cou->save();
+
         return back();
     }
 
@@ -315,4 +393,58 @@ public function getAddCourse(){
         return back();
     }
 
+
+    public function postDoc(Request $request, $cou_id){
+        $cou = Course::find($cou_id);
+        $doc= new Doc;
+        $doc->doc_name = $request->doc_name;
+        $doc->doc_cou_id = $cou_id;
+        $cou->group->gr_parent_id == 0 ? $doc->doc_gr_id = $cou->cou_gr_id : $doc->doc_gr_id = $cou->group->gr_parent_id;
+        $doc->doc_acc_id = Auth::user()->id;
+        $doc->doc_img = null;
+        $filedoc = $request->file('file');
+        if ($request->hasFile('file')) {
+            $filename = time() . '.' . $filedoc->getClientOriginalExtension();
+            $doc->doc_link = $filename;
+            $request->file->storeAs('doc',$filename);
+        }
+        else{
+            return back()->with('error','File bị lỗi');
+        }
+        $doc->save();
+        return back()->with('success','Thêm tài liệu thành công');
+    }
+
+    public function editDoc(Request $request, $id){
+        $doc= Doc::find($id);
+        $doc->doc_name = $request->doc_name;
+        $filedoc = $request->file('file');
+        if ($request->hasFile('file')) {
+            $filename = time() . '.' . $filedoc->getClientOriginalExtension();
+            $doc->doc_link = $filename;
+            $request->file->storeAs('doc',$filename);
+        }
+        $doc->save();
+        return back()->with('success','Sửa tài liệu thành công');
+    }
+
+    public function destroyDoc($id){
+        $doc = Doc::find($id);
+        File::delete('lib/storage/app/doc'.$doc->doc_link);
+        Doc::destroy($id);
+        return back();
+    }
+
+    public function  get_group_child_form(){
+
+        $parentid = Input::get('groupid');
+        
+        // $list_group = Group::where('status', 1)->get();
+        // dd($parentid);
+        $data['list_group_child'] = Group::where('gr_parent_id', $parentid)->get();
+        
+        $view = View::make('frontend.teacher.group_form',$data)->render();
+        return response($view, 200);
+       
+    }
 }

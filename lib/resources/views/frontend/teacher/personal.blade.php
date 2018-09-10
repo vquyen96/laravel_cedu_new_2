@@ -220,11 +220,12 @@
 								</div>
 							</div>
 							<div class="inputButon">
-								<button type="button" class="btnReset">
-									Hủy thay đổi
-								</button>
+								
 								<button type="submit" class="btnSubmit">
 									Lưu thay đổi
+								</button>
+								<button type="button" class="btnReset">
+									Hủy thay đổi
 								</button>
 							</div>
 						</form>

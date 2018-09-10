@@ -35,7 +35,7 @@
 				</a>
 			</div>
 			<div class="headerLeftItem {{ Request::segment(1) != '' ? 'd-none' : '' }}">
-				<a href="{{ asset('courses') }}">
+				<a href="{{ asset('partner') }}">
 					Trở thành đối tác
 				</a>
 			</div>
@@ -43,6 +43,9 @@
 				<form method="get" action="{{ asset('search') }}">
 
 					<input type="text" name="search" class="inputSearchHead" placeholder="Search">
+					<div class="iconSearchHead">
+						<i class="fas fa-search"></i>
+					</div>
 				</form>
 			</div>
 		@endif

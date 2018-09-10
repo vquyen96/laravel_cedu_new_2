@@ -32,6 +32,7 @@
 
 </div>
 <div class="main_body">
+
 	<div class="container">
 		<div class="row">
 			<div class="col-md-8">
@@ -158,15 +159,14 @@
 									<label>Loại khóa học</label>
 									@if(isset($course))
 									<div class="inputText">
-										{{ isset($course->group) ? $course->group->gr_name : '' }}
+										{{ $course->cou_gr_name }}
 									</div>
 									@endif
 									<div class="form_item">
 										<div class="inputMain">
-											<select class="inputProfile" name="cou[cou_gr_id]">
+											<select class="inputProfile" name="cou[cou_gr_id]" id="group">
 												@foreach($group as $item)
-												<option value="{{$item->gr_id}}">{{$item->gr_name}}</option>
-												
+													<option value="{{$item->gr_id}}" {{ $course->cou_gr_id == $item->gr_id ? 'selected' : ''}}>{{$item->gr_name}}</option>
 												@endforeach
 											</select>
 										</div>
@@ -178,13 +178,15 @@
 									<label>Lĩnh vực</label>
 									@if(isset($course))
 									<div class="inputText">
-										{{ $course->cou_gr_child }}
+										{{ $course->cou_gr_child_name }}
 									</div>
 									@endif
 									<div class="form_item">
 										<div class="inputMain">
-											<select class="inputProfile" name="cou[cou_gr_child_id]">
-												
+											<select class="inputProfile" name="cou[cou_gr_child_id]" id="group_child">
+												@foreach($group_child as $item)
+													<option value="{{$item->gr_id}}" {{ $course->cou_gr_child_id == $item->gr_id ? 'selected' : ''}}>{{$item->gr_name}}</option>
+												@endforeach
 											</select>
 										</div>
 									</div>
@@ -253,11 +255,11 @@
 										<div class="action_form_tile">{{asset('teacher/editpart/'.$item->part_id)}}</div>
 									</i>
 
-									<a href="{{asset('teacher/destroypart/'.$item->part_id)}}">
+									<a href="{{asset('teacher/destroypart/'.$item->part_id)}}"  onclick="return confirm('Bạn có chắc chắn muốn xóa ?')">
 										<i class="fas fa-trash-alt" data-toggle="modal" data-target="#myModal3"></i>
 									</a>
 
-									4:30		
+									{{ gmdate("i:s",$item->part_video_duration	) }}		
 								</div>
 								
 								<ul class="unit">
@@ -269,11 +271,12 @@
 											<i class="fas fa-edit" data-toggle="modal">
 												<div class="value_form_video">{{$itemTiny->les_name}}</div>
 												<div class="action_form_video">{{asset('teacher/editvideo/'.$itemTiny->les_id)}}</div>
+												<div class="link_form_video">{{$itemTiny->les_link}}</div>
 											</i>
-											<a href="{{asset('teacher/destroylesson/'.$itemTiny->les_id)}}">
+											<a href="{{asset('teacher/destroylesson/'.$itemTiny->les_id)}}"  onclick="return confirm('Bạn có chắc chắn muốn xóa ?')">
 												<i class="fas fa-trash-alt"></i>
 											</a>
-											{{$itemTiny->les_video_duration}}		
+											{{ gmdate("i:s", $itemTiny->les_video_duration) }}		
 										</div>
 									</li>
 									<?php $video++ ?>
@@ -306,35 +309,30 @@
 					</div>
 					<div class="editDocument {{ Request::segment(2) == 'add' ? 'd-none' : '' }}">
 						<ul>
-							<li class="document">
-								<a href="">
-									<i class="fas fa-trash-alt"></i>
-								</a>
-								Tài liệu các khóa học photoshop
-								<i class="fas fa-edit" data-toggle="modal" data-target="#myModal2"></i>
-							</li>
+							@foreach ($docs as $doc)
+								<li class="document">
+									<a href="{{ asset('teacher/destroy_doc/'.$doc->doc_id) }}"  onclick="return confirm('Bạn có chắc chắn muốn xóa ?')">
+										<i class="fas fa-trash-alt"></i>
+									</a>
+									<div class="doc_name">
+										{{ $doc->doc_name}}
+									</div>
+									<i class="fas fa-edit edit_document" >
+										<div class="d-none action_form">
+											{{asset('teacher/editdoc/'.$doc->doc_id)}}
+										</div>
+									</i>
 
-							<li class="document">
-								<a href="">
-									<i class="fas fa-trash-alt"></i>
-								</a>
-								Tài liệu các khóa học photoshop
-								<i class="fas fa-edit" data-toggle="modal" data-target="#myModal2"></i>
-							</li>
-
-							<li class="document">
-								<a href="">
-									<i class="fas fa-trash-alt"></i>
-								</a>
-								Tài liệu các khóa học photoshop
-								<i class="fas fa-edit" data-toggle="modal" data-target="#myModal2"></i>
-							</li>
-
-
+								</li>
+							@endforeach
+								
 						</ul>
 						<div class="addDocument" >
 							<i class="fas fa-plus" data-toggle="modal" data-target="#myModal2"></i>
 							Thêm tài liệu
+							<div class="d-none action_form">
+								{{asset('teacher/doc/'.$course->cou_id)}}
+							</div>
 						</div>
 					</div>
 					{{--END EDIT DOCUMENT --}}		
@@ -370,12 +368,12 @@
 					<div class="form_item">
 						<div class="inputFile">
 							Chọn file
-							<input id="fileItem-2" type="file" name="file" class="cssInput" onchange="onChange()">
-							<video width="100%" controls autoplay src="" id="video-2"></video>
-							<input type="hidden" name="duration" id="duration-2">
+							<input id="fileItem" type="file" name="file" class="cssInput" onchange="onChange()">
+							<input type="hidden" name="duration" id="duration">
 						</div>
 					</div>
 				</div>
+				<video width="100%" controls autoplay src="" id="video"></video>
 
 				<div class="modal-footer">
 					<button type="button" class="btn-miss" data-dismiss="modal">Không</button>
@@ -393,7 +391,7 @@
 		<div class="modal-content">
 
 			<div class="modal-title">
-				Up video
+				Sửa video
 			</div>
 			<form method="post" enctype="multipart/form-data" class="form_update_video">
 				{{csrf_field()}}
@@ -410,13 +408,13 @@
 					<div class="form_item">
 						<div class="inputFile">
 							Chọn file
-							<input id="fileItem" type="file" name="file" class="cssInput" onchange="onChange()">
-							<video width="100%" controls autoplay src="" id="video"></video>
-							<input type="hidden" name="duration" id="duration">
+							<input id="fileItem_edit" type="file" name="file" class="cssInput" onchange="onChangeEdit()">
+							
+							<input type="hidden" name="duration" id="duration_edit">
 						</div>
 					</div>
 				</div>
-
+				<video width="100%" controls autoplay src="" id="video_edit"></video>
 				<div class="modal-footer">
 					<button type="button" class="btn-miss" data-dismiss="modal">Không</button>
 					<input type="submit" class="btn-create" value="Lưu" />
@@ -485,33 +483,37 @@
 
 
 {{--MODAL TẠO TÀI LIỆU--}}
-<div class="modal fade"	 id="myModal2">
+<div class="modal fade"	 id="modal_add_doc">
 	<div class="modal-dialog">
 		<div class="modal-content">
 
 			<div class="modal-title">
 				Tài liệu
 			</div>
-			<div class="form_group">
-				<label>Tên tài liệu</label>
-				<div class="form_item">
-					<div class="input">
-						<input type="text"  value="Tên bài giảng">
+			<form method="post" enctype="multipart/form-data" class="form_add_doc" >
+				{{ csrf_field() }}
+				<div class="form_group">
+					<label>Tên tài liệu</label>
+					<div class="form_item">
+						<div class="input">
+							<input type="text" name="doc_name"  placeholder="Tên tài liệu">
+						</div>
 					</div>
 				</div>
-			</div>
-			<div class="form_group">
-				<label>File tài liệu</label>
-				<div class="form_item">
-					<div class="inputFile">
-						Chọn file
+				<div class="form_group">
+					<label>File tài liệu</label>
+					<div class="form_item">
+						<div class="inputFile">
+							Chọn file
+							<input id="fileItem" type="file" name="file" class="cssInput">
+						</div>
 					</div>
 				</div>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn-miss" data-dismiss="modal">Không</button>
-				<button type="button" class="btn-create" data-dismiss="modal">Lưu</button>
-			</div>
+				<div class="modal-footer">
+					<button type="button" class="btn-miss" data-dismiss="modal">Không</button>
+					<button type="submit" class="btn-create">Lưu</button>
+				</div>
+			</form>
 		</div>
 	</div>
 </div>
@@ -534,10 +536,8 @@
 @section('script')
 
 <script type="text/javascript" src="js/user/profile.js"></script>
+<script type="text/javascript" src="js/teacher/detail.js"></script>
 <script type="text/javascript">
-
-	
-
 	$('.add-video').click(function(){
 		var action = $(this).find('.action_form').text();
 		console.log(action);
@@ -557,11 +557,13 @@
 
 	$('.tool-2 .fa-edit').click(function(){
 		var value = $(this).find('.value_form_video').text();
-		 var action = $(this).find('.action_form_video').text();
+		var action = $(this).find('.action_form_video').text();
+		var link = $(this).find('.link_form_video').text();
+
 
 		$('.video_update_value').attr('value',value);
 		$('.form_update_video').attr('action',action);
-
+		$('#video_edit').attr('src','{{ asset('lib/public/uploads/') }}/'+link);
 		$('#modal_edit_video').modal();
 	});
 
@@ -591,66 +593,9 @@ $(document).ready(function() {
 
 
 $(document).ready(function(){
-	$('.toggle').click(function(){
-
-		if($(this).hasClass('fa-plus')){
-			$(this).removeClass('fa-plus');
-			$(this).addClass('fa-minus');
-		}
-		else{
-			$(this).removeClass('fa-minus');
-			$(this).addClass('fa-plus');
-		}
-		$(this).siblings('ul').slideToggle(400);
-	})
+	
 });
 
 </script>
-<script type="text/javascript">
 
-	var myVideoPlayer = document.getElementById('fileItem');
-
-	var URL = window.URL || window.webkitURL;
-	var video = document.getElementsByTagName('video')[0];
-	var vid = document.getElementsByTagName('textarea');
-	$('#video').attr('style','display: none');
-	function onChange() {
-			var fileItem = document.getElementById('fileItem');
-			var files = fileItem.files;
-			var file = files[0];
-			$('#video').show();
-			var url = URL.createObjectURL(file);
-			video.src = url;
-			video.load();
-			video.onloadeddata = function() {
-				URL.revokeObjectURL(this.src); 
-				video.play();
-				$('#duration').val(video.duration);
-				console.log(video.duration);
-			}
-		}
-
-
-	var myVideoPlayer2 = document.getElementById('fileItem-2');
-
-	var URL2 = window.URL || window.webkitURL;
-	var video2 = document.getElementsByTagName('video-2')[0];
-	var vid2 = document.getElementsByTagName('textarea');
-	$('#video-2').attr('style','display: none');
-	function onChange() {
-			var fileItem = document.getElementById('fileItem-2');
-			var files2 = fileItem.files2;
-			var file2 = files2[0];
-			$('#video-2').show();
-			var url2 = URL2.createObjectURL(file2);
-			video2.src = url2;
-			video2.load();
-			video2.onloadeddata = function() {
-				URL2.revokeObjectURL(this.src); 
-				video2.play();
-				$('#duration-2').val(video2.duration);
-				console.log(video2.duration);
-			}
-		}
-	</script>
-	@stop
+@stop

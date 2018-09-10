@@ -46,13 +46,6 @@
 			</div>
 		</div>
 	</div>
-	<section id="teacher">
-		<div class="container">
-			<div class="row">
-				
-			</div>
-		</div>
-	</section>
 
 	<section id="khoa-hoc">
 		<div class="container">
@@ -69,21 +62,19 @@
 						<a href="{{asset('courses/detail/'.$item->cou_slug.'.html')}}" class="img" style="background: url('{{ asset('lib/storage/app/course/'.$item->cou_img)}}') no-repeat center/cover; ">
 							<div class="tieu-de">
 								<p>{{$item->group->gr_name}}</p>
-								<span>Update {{$item->updated_at}}</span>
+								<span>Update {{date_format($item->updated_at,"m/Y")}}</span>
 							</div>
 						</a>
 						<div class="text">
-							<p>{{$item->cou_name}}</p>		
+							{{$item->cou_name}}
 						</div>
 						<div class="name">
 							<img src="{{asset('lib/storage/app/avatar/'.$teacher->img)}}">
 							<p>{{$teacher->name}}</p>
 							<div class="star">
-								<i class="fas fa-star" style="color: #FCC72E;"></i>
-								<i class="fas fa-star" style="color: #FCC72E;"></i>
-								<i class="fas fa-star" style="color: #FCC72E;"></i>
-								<i class="fas fa-star" style="color: #FCC72E;"></i>
-								<i class="fas fa-star" style="color: #C4C4C4;"></i>
+								@for($i=0;$i<5;$i++)
+									<i class="fa fa-star {{ $item->cou_star > $i ? 'starActive' : '' }} " aria-hidden="true"></i>
+								@endfor
 							</div>
 						</div>
 					</div> 
@@ -94,7 +85,7 @@
 		</div>
 		<div class="container">
 			<div id="page-number">
-				{{-- {!! $course->links('layout.paginate') !!}	 --}}
+				{!! $course->links('layout.paginate') !!}	
 			</div>
 		</div>
 	</section>

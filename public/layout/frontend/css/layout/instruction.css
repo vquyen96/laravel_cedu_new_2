@@ -1,0 +1,19 @@
+.instruction{
+    background: #F8F8FB;
+    height: 50px;
+}
+.instruction_body{
+    padding:  0 133px;
+    display: flex;
+}
+a.instruction_item{
+    height: 50px;
+    line-height: 50px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    display: block;
+    margin-right: 15px;
+    color: #999;
+    text-decoration: none;
+}

@@ -1,0 +1,30 @@
+[2018-08-30 10:29:58.067] [000174] [vnhndb] [MYSQL]
+SHOW VARIABLES LIKE 'lower_case_%'
+
+[2018-08-30 10:29:58.145] [000174] [vnhndb] [MYSQL]
+SHOW VARIABLES LIKE 'profiling'
+
+[2018-08-30 10:29:58.146] [000174] [vnhndb] [MYSQL]
+SHOW DATABASES
+
+[2018-08-30 10:30:02.113] [000175] [vnhndb] [MYSQL]
+SELECT @@character_set_database, @@collation_database
+
+[2018-08-30 10:30:02.116] [000175] [vnhndb] [MYSQL]
+SHOW FULL TABLES WHERE Table_type != 'VIEW'
+
+[2018-08-30 10:30:21.018] [000176] [vnhndb] [MYSQL]
+SHOW TABLE STATUS LIKE 'accounts'
+
+[2018-08-30 10:30:21.067] [000176] [vnhndb] [MYSQL]
+SHOW ENGINES
+
+[2018-08-30 10:30:21.068] [000175] [vnhndb] [MYSQL]
+SHOW CREATE TABLE `accounts`
+
+[2018-08-30 10:30:21.113] [000176] [vnhndb] [MYSQL]
+SELECT * FROM `accounts` LIMIT 0, 1000
+
+[2018-08-30 10:30:21.114] [000176] [vnhndb] [MYSQL]
+SHOW COLUMNS FROM `vnhn_db`.`accounts`
+

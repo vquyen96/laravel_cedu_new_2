@@ -134,8 +134,9 @@
 										<div class="courseMainItemPrice">
 											{{number_format($item->cou_price,0,',','.')}}
 											<span class="courseMainItemTime">
-												<i class="fa fa-circle" aria-hidden="true"></i>
-												@if ($item->cou_price_old != null)
+												
+												@if ($item->cou_price_old != null && $item->cou_sale != 0)
+													<i class="fa fa-circle" aria-hidden="true"></i>
 													<del>{{number_format($item->cou_price_old,0,',','.')}} đ</del>
 												@endif
 												{{-- {{time_format($item->updated_at)}} --}}

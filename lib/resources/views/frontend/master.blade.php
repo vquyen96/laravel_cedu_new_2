@@ -47,6 +47,7 @@
 	<link rel="stylesheet" type="text/css" href="css/master.css">
 	<link rel="stylesheet" type="text/css" href="css/layout/header.css">
 	<link rel="stylesheet" type="text/css" href="css/layout/footer.css">
+	<link rel="stylesheet" type="text/css" href="css/layout/instruction.css">
 
 </head>
 

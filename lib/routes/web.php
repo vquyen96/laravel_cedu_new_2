@@ -14,11 +14,11 @@
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-Route::group(['prefix'=>'login','middleware'=>'CheckLogedIn'],function(){
+Route::group(['prefix'=>'login','middleware'=>'CheckLogedOut'],function(){
 	Route::get('/','Admin\LoginController@getLogin');
 	Route::post('/','Admin\LoginController@postLogin');
 });
-Route::group(['prefix' => 'register', 'middleware'=>'CheckLogedIn'], function(){
+Route::group(['prefix' => 'register', 'middleware'=>'CheckLogedOut'], function(){
 	Route::get('/','Frontend\HomeController@getRegister');
 	Route::post('/','Frontend\HomeController@postRegister');
 });
@@ -215,7 +215,7 @@ Route::group(['namespace'=>'Admin', 'middleware'=>'CheckAdmin'],function(){
 		});
 	});
 });
-Route::group(['namespace'=>'Frontend', 'middleware'=>'CORS'],function(){
+Route::group(['namespace'=>'Frontend'],function(){
 	Route::get('code','CodeController@getActiveCode');
 	Route::post('code','CodeController@postActiveCode');
 
@@ -228,7 +228,7 @@ Route::group(['namespace'=>'Frontend', 'middleware'=>'CORS'],function(){
 	Route::get('share/{slug}','UserController@getShare');
 	Route::post('acc_req','UserController@postAccReq');
 	
-	Route::group(['prefix'=>'user'], function(){
+	Route::group(['prefix'=>'user', 'middleware' => 'CheckLogedIn'], function(){
 		Route::get('/','UserController@getUser');
 		Route::post('/','UserController@postUser');
 
@@ -286,6 +286,12 @@ Route::group(['namespace'=>'Frontend', 'middleware'=>'CORS'],function(){
 		Route::get('destroylesson/{id}','TeacherController@destroyLesson');
 		Route::post('video/{id}','TeacherController@postVideo');
 		Route::post('editvideo/{id}','TeacherController@editVideo');
+
+		Route::get('destroy_doc/{id}','TeacherController@destroyDoc');
+		Route::post('doc/{cou_id}','TeacherController@postDoc');
+		Route::post('editdoc/{id}','TeacherController@editDoc');
+
+		Route::post('group_child_from', 'TeacherController@get_group_child_form');
 		
 
 	});
