@@ -278,9 +278,14 @@ Route::group(['namespace'=>'Frontend', 'middleware'=>'CORS'],function(){
 
 		Route::get('add','TeacherController@getAddCourse');
 		Route::post('add','TeacherController@postAddCourse');
-		
+
 		Route::post('part/{id}','TeacherController@postPart');
+		Route::get('destroypart/{id}','TeacherController@destroyPart');
+		Route::post('editpart/{id}','TeacherController@editPart');
+
+		Route::get('destroylesson/{id}','TeacherController@destroyLesson');
 		Route::post('video/{id}','TeacherController@postVideo');
+		Route::post('editvideo/{id}','TeacherController@editVideo');
 		
 
 	});

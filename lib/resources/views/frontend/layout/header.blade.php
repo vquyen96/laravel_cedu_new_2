@@ -212,7 +212,7 @@
 							<div class="headerItemDropdownItemIcon">
 								<i class="fas fa-book"></i>
 							</div>
-							<a href="{{ asset('teacher/course') }}" class="headerItemDropdownItemContent">
+							<a href="{{ asset('teacher/courses') }}" class="headerItemDropdownItemContent">
 								Khóa học
 							</a>
 						</div>
