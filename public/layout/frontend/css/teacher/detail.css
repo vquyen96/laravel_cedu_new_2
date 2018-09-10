@@ -459,9 +459,15 @@ a.instruction_item{
 .inputFile:hover{
 	cursor: pointer;
 }
-#fileItem{
+#fileItem,#fileItem-2{
 	position: absolute;
 	top: 0;
 	left: 0;
 	opacity: 0;
+}
+.action_form_tile,.action_form_video{
+	display: none;
+}
+.value_form_tile,.value_form_video{
+	display: none;
 }
