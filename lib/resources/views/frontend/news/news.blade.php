@@ -1,5 +1,8 @@
 @extends('frontend.master')
-@section('title','Tin tức')
+@section('title',$news->news_title)
+@section('fb_title', cut_string($news->news_title, 70))
+{{-- @section('fb_description', $articel_detail->summary) --}}
+@section('fb_image', asset('lib/storage/app/news/'.$news->news_img))
 @section('main')
 <link rel="stylesheet" type="text/css" href="css/news/news.css">
 	<div class="instruction">
@@ -32,16 +35,29 @@
 						<h1>{{$news->news_title}}</h1>
 						<div class="thong-ke">
 							<div class="date"><i class="far fa-clock"></i>{{$news->created_at}}<i class="far fa-eye"></i>{{$news->news_view}} view</div>
-							<div class="like-share">
+							<div class="btn-fb" style="float: right">
+	                            <div class="fb-like" data-href=" {{ asset('news/detail/'.$news->news_slug) }}"
+	                                 data-action="like" data-size="small" data-layout="button_count"></div>
+
+	                            <div class="fb-share-button"
+	                                 data-href="{{ asset('news/detail/'.$news->news_slug) }}" data-size="small"
+	                                 data-layout="button_count">
+	                            </div>
+	                            {{-- <a href="{{$web_info->facebook}}" class="fb-fanpage" target="blank">
+	                                <i class="fab fa-facebook-f"></i>
+	                                Fanpage
+	                            </a> --}}
+	                        </div>
+							{{-- <div class="like-share">
 								<a href="" class="like"><i class="fas fa-thumbs-up"></i> Like</a>
 								<a href="" class="like">Share</a>
-							</div>
+							</div> --}}
 						</div>
 						<div class="content">
 							{!!$news->news_content!!}
 						</div>
-
-						<div class="comment">
+						<div class="fb-comments" data-href="https://developers.facebook.com/docs/plugins/comments#configurator" data-width="100%" data-numposts="5"></div>
+						{{-- <div class="comment">
 							<h5>Comment</h5>
 							<div class="list-cmt">
 								<div class="cmt">
@@ -68,7 +84,7 @@
 								</div>
 								<textarea></textarea>
 							</div>
-						</div>
+						</div> --}}
 					</div>
 				</div>
 				<div class="col-md-4 col-sm-4 col-12">

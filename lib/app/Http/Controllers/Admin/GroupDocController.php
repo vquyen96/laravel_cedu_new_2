@@ -13,7 +13,7 @@ use File;
 class GroupDocController extends Controller
 {
     public function getGroup(){
-    	$data['group'] = Group::all();
+    	$data['group'] = Group::where('gr_parent_id', 0)->get();
 
     	return view('backend.doc_group',$data);
     }

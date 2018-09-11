@@ -13,6 +13,8 @@ body{
 	color: #2D317F;
 	font-size: 48px;
 	font-weight:bold;
+	margin: 0;
+	margin-bottom: 20px;
 }
 .title p{
 	color: #999999;
@@ -37,8 +39,15 @@ body{
 .img{
 	display: block;
 	width: 100%;
-	height: 250px;
+	/*height: 250px;*/
 	border-radius: 10px;
+	overflow: hidden;
+}
+.img:after{
+	content: '';
+	display: block;
+	padding-top: 72%;
+	background: #0001;
 }
 .document{
 	margin-top: 20px;
@@ -60,6 +69,7 @@ body{
 }
 a.download{
 	text-decoration: none;
+	color: #fff;
 }
 .download{
 	display: block;

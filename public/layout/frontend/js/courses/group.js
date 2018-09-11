@@ -51,6 +51,8 @@ $(document).ready(function(){
 
 	$('input[type=checkbox]').click(function(){
 		$('#form_search').submit();
-
+	});
+	$('#select_course').change(function(){
+		$('#form_search').submit();
 	});
 });

@@ -33,13 +33,13 @@
 				</div>
 				<div class="col-md-4 col-sm-4 col-12">
 					<div class="selectGr">
-						<select>
+						<form method="get" class="formSearch">
+							<select class="select_group" name="group">
 							@foreach ($groups as $item)
-								<option value="{{ $item->gr_id }}">{{ $item->gr_name }}</option>
-								
+								<option value="{{ $item->gr_id }}" {{ $group_id == $item->gr_id ? 'selected' : '' }}>{{ $item->gr_name }}</option>
 							@endforeach
-								
-						</select>
+							</select>
+						</form>
 					</div>
 						
 				</div>
@@ -57,10 +57,10 @@
 					@foreach($document as $item)
 					<div class="col-md-4 col-sm-4 col-12">
 						<div class="document">
-							<a href="#" class="img" style="background: url('{{ asset('lib/storage/app/doc/'.$item->doc_img)}}') no-repeat center/cover; "></a>
+							<a href="{{ asset('lib/storage/app/doc/'.$item->doc_link) }}" class="img" style="background: url('{{ $item->doc_img != null ? asset('lib/storage/app/doc/'.$item->doc_img) : 'img/doc.png' }}') no-repeat center/cover; "></a>
 							<div class="text">
 								<p>{{$item->doc_name}}</p>
-								<a href="#" class="download">Download</a>
+								<a href="{{ asset('lib/storage/app/doc/'.$item->doc_link) }}" class="download" target="blank">Download</a>
 							</div>
 						</div>
 					</div>
@@ -84,4 +84,7 @@
 		</div>
 	</section>
 
+@stop
+@section('script')
+	<script type="text/javascript" src="js/document/doc.js"></script>
 @stop

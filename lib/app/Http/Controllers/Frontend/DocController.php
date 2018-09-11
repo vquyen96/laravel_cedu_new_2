@@ -13,15 +13,21 @@ use Auth;
 
 class DocController extends Controller
 {
-    public function getList(){
-        $data['document'] = Doc::orderBy('doc_id','asc')->paginate(15);
-        // $gr_slug = Group::first()->gr_slug;
-        // return redirect('doc/'.$gr_slug);
-        return view('frontend.document.document',$data);
-    	// $data['group'] = Group::all();
-     //    $data['bannerHead'] = Banner::where('ban_name','like','Banner Tài Liệu_Phía Trên')->get();
+    public function getList(Request $request){
+        $group_id = $request->group;
+        if ($group_id != null) {
+            $data['document'] = Doc::orderByDesc('doc_id')->where('doc_gr_id',$group_id)->paginate(15);
+            $data['group_id'] = $group_id;
+        }
+        else{
+            $data['document'] = Doc::orderByDesc('doc_id')->paginate(15);
+        }
 
-    	// return view('frontend.doc',$data);
+       
+        
+
+        return view('frontend.document.document',$data);
+    	
     }
     // public function getGroup($gr_slug){
     //     $group = Group::where('gr_slug',$gr_slug)->first();

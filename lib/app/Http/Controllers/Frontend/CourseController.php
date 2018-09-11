@@ -164,7 +164,7 @@ class CourseController extends Controller
         $price = isset($request->price) ? $request->price : [];
         $level = isset($request->level) ? $request->level : [];
         $type = isset($request->type) ? $request->type : [];
-        
+        // dd($request->all());
         
 
         if (count($gr_child)) {
@@ -181,6 +181,22 @@ class CourseController extends Controller
         }
         if (count($level)) {
             $course = $course->whereIn('cou_level', $level);
+        }
+
+        switch ($request->course) {
+            case '1':
+                $course = $course->orderByDesc('updated_at');
+                break;
+            case '2':
+                $course = $course->orderByDesc('cou_student');
+                break;
+            case '3':
+                $course = $course->orderByDesc('cou_star');
+                break;
+            
+            default:
+                # code...
+                break;
         }
 
         if (!$paramater) {

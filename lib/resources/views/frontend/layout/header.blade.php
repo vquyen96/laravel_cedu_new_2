@@ -132,10 +132,43 @@
 			@endif
 		</div>
 		@endif
-		<div class="headerRightItem noti">
-			<a href="">
+		<div class="headerRightItem headerDropdown noti">
+			<a >
 				<i class="fa fa-bell" aria-hidden="true"></i>
 			</a>
+			<div class="headerItemDropdown noti">
+				@foreach ($noti as $item)
+					<a href="{{ $item->noti_link }}" class="noti_item">
+						<div class="noti_ava" style="background: url('{{ asset('lib/storage/app/noti/'.$item->noti_img) }}') no-repeat center /cover;">
+							{{-- <i class="fas fa-file-alt"></i> --}}
+						</div>
+						<div class="noti_name">
+							{{ $item->noti_name }}
+						</div>
+						<div class="noti_content">
+							{{ $item->noti_content }}
+						</div>
+					</a>
+				@endforeach
+				{{-- 
+				<div class="headerItemDropdownItem">
+					<div class="headerItemDropdownItemIcon">
+						<i class="far fa-newspaper"></i>
+					</div>
+					<a href="{{ asset('news') }}" class="headerItemDropdownItemContent">
+						Tin tức
+					</a>
+				</div>
+				<div class="headerItemDropdownItem">
+					<div class="headerItemDropdownItemIcon">
+						<i class="fas fa-handshake"></i>
+					</div>
+					<a href="{{ asset('partner') }}" class="headerItemDropdownItemContent">
+						Trở thành đối tác
+					</a>
+				</div> --}}
+
+			</div>
 		</div>
 		@if (Auth::guest() || Auth::user()->level == 9)	
 		<div class="headerRightItem codeActive">

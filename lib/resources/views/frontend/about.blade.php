@@ -6,7 +6,7 @@
 	<div class="row">
 		<div class="col-md-12 col-sm-12">
 			<div class="about">
-				<h1 style="text-align: center;"> {{$about->about_name}}</h1>
+				<h1> {{$about->about_name}}</h1>
 				{!!$about->about_text!!}
 			</div>
 			
