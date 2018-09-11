@@ -29,7 +29,7 @@ Route::get('logout','Admin\LoginController@getLogout');
 Route::group(['namespace'=>'Admin', 'middleware'=>'CheckAdmin'],function(){
 	
 	
-	Route::group(['prefix'=>'admin','middleware'=>'CheckLogedOut'],function(){
+	Route::group(['prefix'=>'admin','middleware'=>'CheckLogedIn'],function(){
 		Route::get('/','HomeController@getHome');
 		Route::get('home_teacher','HomeController@getHomeTeacher');
 

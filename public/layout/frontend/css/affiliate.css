@@ -1,4 +1,6 @@
-
+body{
+	font-family: 'Montserrat', sans-serif;
+}
 .masterError{
 	position: fixed;
 	z-index: 9;
@@ -111,6 +113,7 @@
 }
 .txt30{
 	font-size: 30px;
+	font-weight: bold;
 }
 .yell{
 	color: #fbaf43;

@@ -16,7 +16,10 @@
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
 	<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Serif:500|Roboto:400,500" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,600,700,800" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/font/all.css">
 	<link rel="stylesheet" type="text/css" href="css/affiliate.css">
+	<link rel="stylesheet" type="text/css" href="css/layout/footer.css">
 </head>
 <body>
 	<div class="masterError">
@@ -248,118 +251,7 @@
 		<i class="fa fa-angle-double-up" aria-hidden="true"></i>
 	</div>
 	
-	<footer>
-
-		<div class="container footerMain">
-			<div class="row">
-				<div class="col-md-4 col-sm-4 ">
-					<div class="footerItem footerMainItemPlace">
-						<h4>TRỤ SỞ CÔNG TY</h4>
-						<div class="footerHoverBorder"></div>
-						<div class="footerMainItemContent">
-							<p>
-								<img src="img/ic_placeholder.png">
-								Tầng 4, 5, 6 CPHONE Tower, Số 456 Xô Viết Nghệ Tĩnh, P25, Q Bình Thạnh, HCM
-							</p>
-							<p>
-								<img src="img/ic_placeholder.png">
-								Tầng 5, Tòa Nhà Diamond Flower, Sớ 1 Hoàng Đạo Thúy, Thanh Xuân, Hà Nội
-							</p>
-							<p>
-								MST: 0314813082 do Sở kế hoạch và đầu tư TP.HCM cấp
-
-							</p>
-							<p>
-								Đại diện :Ông Đoàn Công Chung
-							</p>
-						</div>
-						<div class="footerItemFootPlace">
-							<a href="">
-								<img src="img/dadangky.png">
-							</a>
-						</div>
-					</div>
-						
-					
-				</div>
-				<div class="col-md-4 col-sm-4 ">
-					<div class=" footerItem footerContact">
-						<h4>THÔNG TIN LIÊN HỆ</h4>
-						<div class="footerHoverBorder"></div>
-						<div class="footerMainItemContent">
-							<p>
-								<img src="img/ic_placeholder.png">
-								08.887.790.111<br>
-								02.473.016.366
-							</p>
-							<p>
-								<img src="img/ic_mail.png">
-								info@ceduvn.com
-							</p>
-							
-						</div>
-						<div class="footerItemFoot">
-							<a href="">
-								<img src="img/ic_facebook.png">
-							</a>
-							<a href="">
-								<img src="img/ic_g+.png">
-							</a>
-							<a href="">
-								<img src="img/ic_ins.png">
-							</a>
-							<a href="">
-								<img src="img/ic_youtube.png">
-							</a>
-						</div>
-					</div>
-					
-				</div>
-				<div class="col-md-4 col-sm-4">
-					<div class=" footerItem footerInfo">
-						<h4>THÔNG TIN VỀ CEDU</h4>
-						<div class="footerHoverBorder"></div>
-						<div class="footerMainItemContent">
-							<ul>
-								@foreach($about_list as $item)
-								<li><a href="{{ asset('about/'.$item->about_slug.'.html') }}">{{$item->about_name}}</a></li>
-								@endforeach
-								{{-- <li><a href=""> Điều khoản</a></li>
-								<li><a href=""> Chính sách bảo mật</a></li>
-								<li><a href=""> Liên hệ hợp tác</a></li>
-								<li><a href=""> Câu hỏi thường gặp</a></li> --}}
-							</ul>
-						</div>
-						<div class="footerItemFootInfo">
-							<a href="">
-								<img src="img/appios.png">
-							</a>
-						</div>
-					</div>
-					
-				</div>
-
-			</div>
-		</div>
-		<div class="footerFoot">
-			<div class="footerCopyright">
-				<p>@ 2018 by CEDU All rights reserved</p>
-			</div>
-			<div class="foooterCart">
-				<ul>
-					<li><img src="img/ic_mastercard.png"></li>
-					<li><img src="img/ic_paypal.png"></li>
-					<li><img src="img/ic_visa.png"></li>
-					<li><img src="img/ic_discover.png"></li>
-					<li><img src="img/ic_baokim.png"></li>
-					<li><img src="img/ic_nganluong.png"></li>
-				</ul>
-			</div>
-		</div>
-		<div class="footerFly">
-			<img src="img/ic_plane_dichuyen.png">
-		</div>
-	</footer>
+	@include('frontend/layout/footer')
 	<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
 
 	<script type="text/javascript" src="js/bootstrap.min.js"></script>

@@ -40,7 +40,7 @@ class ForgotPass extends Controller
                 $code_value = mt_rand(100000, 999999);
                 $data['code'] = $code_value;
                 Mail::send('frontend.email_reset_pass', $data, function($message) use ($email, $code_value){
-                    $message->from('vquyenaaa@gmail.com', 'Ceduvn');
+                    $message->from('info@ceduvn.com', 'Ceduvn');
                     $message->to($email, $email)->subject($code_value.' là mã xác nhận của bạn');
                     
                 });
