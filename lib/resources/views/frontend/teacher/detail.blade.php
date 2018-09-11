@@ -248,7 +248,7 @@
 							<li class="listUnit">
 								<i class="fas fa-plus toggle" ></i>
 								{{-- Giới thiệu khóa học --}}
-								{{$item->part_name}}
+								<span>{{$item->part_name}}</span>
 								<div class="tool">
 									<i class="fas fa-edit edit-title" data-toggle="modal">
 										<div class="value_form_tile">{{$item->part_name}}</div>
@@ -266,7 +266,7 @@
 									@foreach($item->lesson as $itemTiny)
 									<li>
 										<i class="fas fa-video"></i>
-										{{$itemTiny->les_name}}
+										<span>{{$itemTiny->les_name}}</span>
 										<div class="tool-2">
 											<i class="fas fa-edit" data-toggle="modal">
 												<div class="value_form_video">{{$itemTiny->les_name}}</div>
@@ -283,7 +283,7 @@
 									@endforeach
 									<li class="add-video">
 										<i class="fas fa-plus" data-toggle="modal"></i>
-										Thêm video
+										<span>Thêm video</span>
 										<div class="d-none action_form">
 											{{asset('teacher/video/'.$item->part_id)}}
 

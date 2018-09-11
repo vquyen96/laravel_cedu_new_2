@@ -106,3 +106,8 @@
 	background: #f5b222;
 	margin: 50px auto;
 }
+@media screen and (max-width: 768px){
+	.btnBuyMore a{
+		width: unset;
+	}
+}

@@ -17,3 +17,9 @@ a.instruction_item{
     color: #999;
     text-decoration: none;
 }
+@media screen and (max-width: 768px){
+    .instruction_body{
+        padding: unset;
+        padding-left: 15px;
+    }
+}

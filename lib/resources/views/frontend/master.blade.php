@@ -26,6 +26,7 @@
 	<meta property="og:image:type" 	content="image/png">
 	<meta property="og:image:width" content="300">
 	<meta property="og:image:height" content="300">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
     {{-- <meta property="og:url" content="https://developers.zalo.me/" />
 	<meta property="og:title" content="Zalo For Developers" />

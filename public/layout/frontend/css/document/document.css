@@ -91,3 +91,11 @@ a.number{
 #body{
 	margin-bottom: 80px;
 }
+@media screen and (max-width: 768px){
+	.main_body {
+   	 	padding-top: 20px !important;
+	}
+	.selectGr select{
+		height: 40px;
+	}
+}

@@ -78,4 +78,9 @@ a.number{
 #body{
 	margin-bottom: 80px;
 }
-
+@media screen and(max-width: 768px){
+	.instruction_body{
+		padding: unset;
+		padding-left: 15px;
+	}
+}

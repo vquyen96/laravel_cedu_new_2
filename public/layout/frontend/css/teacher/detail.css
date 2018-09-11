@@ -77,8 +77,8 @@ a.button-add{
 }
 .form_group{
 	display: flex;
-    line-height: 42px;
-    margin-bottom: 20px;
+	line-height: 42px;
+	margin-bottom: 20px;
 }
 .form_group label{
 	width: 150px;
@@ -233,7 +233,7 @@ a.button-add{
 	overflow: auto;
 }
 .inputTextarea::-webkit-scrollbar {
-    width: 5px;
+	width: 5px;
 }
 .inputProfileTextarea{
 	width: 100%;
@@ -377,9 +377,9 @@ a.button-add{
 }
 .modal-dialog{
 	height: 100vh;
-    display: flex;
-    align-items: center;
-    margin: 0 auto;
+	display: flex;
+	align-items: center;
+	margin: 0 auto;
 }
 .modal-title{
 	font-size: 24px;
@@ -451,4 +451,78 @@ a.button-add{
 }
 .value_form_tile,.value_form_video{
 	display: none;
+}
+@media screen and (max-width: 768px){
+	.instruction_body{
+		padding: 0;
+		padding-left: 15px;
+
+	}
+	a.instruction_item{
+		line-height: unset;
+		padding-top: 10px;
+	}
+	a.button-add{
+		height: 50px;
+		width: 90%;
+		margin: auto;
+		margin-bottom: 20px;
+		border-radius: 5px;
+		line-height: 50px;
+	}
+	.profileRight{
+		margin-top: 30px;
+		padding-left: 0;
+	}
+	.inputEdit{
+		right: 15px;
+	}
+	.listUnit span{
+		display: inline-block;
+		width: 60%;
+		margin-left: 35px;
+		margin-bottom: 10px;
+	}
+	.listUnit{
+		line-height: unset;
+		padding-top: 10px;
+	}
+	.listUnit .fas{
+		top: 12px;
+		margin-left: 10px;
+		margin-right: 10px;
+		position: absolute;
+	}
+	.tool .fas {
+		position: unset;
+		margin-left: 0px;
+		margin-right: 5px;
+	}
+	.tool {
+
+		top: 11px;
+		right: 2px;
+
+	}
+	.unit li{
+		padding-top: 10px;
+	}
+	.tool-2{
+		right: 1px;
+		top: 10px;
+	}
+	.tool-2 .fas{
+		position: unset;
+		margin-right: 5px;
+		margin-left: 0;
+	}
+	.add-video span{
+		margin-left: 60px;
+	}
+	.add-video .fas{
+		position: absolute;
+		padding: 5px;
+		top: 7px;
+	}
+
 }

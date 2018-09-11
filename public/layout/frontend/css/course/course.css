@@ -23,12 +23,12 @@ a.header_main_item{
 }
 .header_main_item.active:after{
 	content: '';
-    display: block;
-    border-bottom: 4px solid #Fcc72e;
-    position: absolute;
-    width: 100%;
-    bottom: -1px;
-    left: 0;
+	display: block;
+	border-bottom: 4px solid #Fcc72e;
+	position: absolute;
+	width: 100%;
+	bottom: -1px;
+	left: 0;
 }
 .main_body{
 	padding-top: 32px;
@@ -160,17 +160,17 @@ a.courseMainItem{
 }
 .courseMainItemSale{
 	font-family: 'Montserrat', sans-serif;
-    font-weight: 600;
-    font-size: 14px;
-    color: #fff;
-    position: absolute;
-    top: 15px;
-    left: 0;
-    width: 80px;
-    height: 30px;
-    line-height: 30px;
-    text-align: center;
-    z-index: 1;
+	font-weight: 600;
+	font-size: 14px;
+	color: #fff;
+	position: absolute;
+	top: 15px;
+	left: 0;
+	width: 80px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	z-index: 1;
 }
 .courseMainItemSale:after{
 	content: '';
@@ -184,17 +184,17 @@ a.courseMainItem{
 }
 .courseMainItemPrice{
 	font-family: 'Montserrat', sans-serif;
-    font-weight: 500;
-    font-size: 24px;
-    color: #fff;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    height: 96px;
-    width: 100%;
+	font-weight: 500;
+	font-size: 24px;
+	color: #fff;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	height: 96px;
+	width: 100%;
 
-    background: linear-gradient(#fff0, #000d);
-    padding: 45px 25px 25px;
+	background: linear-gradient(#fff0, #000d);
+	padding: 45px 25px 25px;
 }
 .courseMainItemTime i{
 	font-size: 8px;
@@ -208,12 +208,12 @@ a.courseMainItem{
 .courseMainItemName{
 	height: 80px;
 	font-family: 'Montserrat', sans-serif;
-    font-weight: 600;
-    font-size: 16px;
-    color: #666;
-    line-height: 130%;
-    padding: 20px 0;
-    overflow: hidden;
+	font-weight: 600;
+	font-size: 16px;
+	color: #666;
+	line-height: 130%;
+	padding: 20px 0;
+	overflow: hidden;
 }
 .courseMainItemTeacher{
 	height: 35px;
@@ -258,21 +258,21 @@ a.courseMainItem{
 .teacherTitleLeft{
 	font-family: 'Montserrat', sans-serif;
 	font-weight: 700;
-    font-size: 48px;
-    color: #2D317F;
-    display: inline-block;
+	font-size: 48px;
+	color: #2D317F;
+	display: inline-block;
 }
 .teacherTitleRight{
 	font-family: 'Montserrat', sans-serif;
 	font-weight: 500;
-    font-size: 16px;
-    color: #999;
-    float: right;
-    width: 450px;
-    border-right: 3px solid #FCC72E;
-    padding-right: 20px;
-    line-height: 2.2;
-    text-align: right;
+	font-size: 16px;
+	color: #999;
+	float: right;
+	width: 450px;
+	border-right: 3px solid #FCC72E;
+	padding-right: 20px;
+	line-height: 2.2;
+	text-align: right;
 }
 
 
@@ -353,34 +353,34 @@ a.courseMainItem{
 	content: '';
 	display: block;
 	padding-top: 72%;
-}*/
-.courseItemSale{
-    font-weight: 600;
-    font-size: 14px;
-    color: #fff;
-    position: absolute;
-    top: 15px;
-    left: 0;
-    width: 80px;
-    height: 30px;
-    line-height: 30px;
-    text-align: center;
-    z-index: 1;
-}
-.courseItemSale:after{
-	content: '';
-	display: block;
-	position: absolute;
-	width: 100%;
-	top: 0;
-	border-bottom: 31px solid #FCC72E;
-	border-right: 20px solid #fff0;
-	z-index: -1;
-}
+	}*/
+	.courseItemSale{
+		font-weight: 600;
+		font-size: 14px;
+		color: #fff;
+		position: absolute;
+		top: 15px;
+		left: 0;
+		width: 80px;
+		height: 30px;
+		line-height: 30px;
+		text-align: center;
+		z-index: 1;
+	}
+	.courseItemSale:after{
+		content: '';
+		display: block;
+		position: absolute;
+		width: 100%;
+		top: 0;
+		border-bottom: 31px solid #FCC72E;
+		border-right: 20px solid #fff0;
+		z-index: -1;
+	}
 
-.courseItemRight{
-	position: relative;
-	height: 100%;
+	.courseItemRight{
+		position: relative;
+		height: 100%;
 	/*font-size: 14px;
 	line-height: 22px;
 	font-weight: 500;
@@ -413,7 +413,7 @@ a.courseItemRightTitle{
 	font-weight: 500;
 	color: #999 ;
 	height: 65px;
-    overflow: hidden;
+	overflow: hidden;
 }
 .courseItemRightPrice{
 	/*position: absolute;
@@ -440,7 +440,7 @@ a.courseItemRightTitle{
 .courseItemStar{
 	position: absolute;
 	bottom: 5px;
-    right: 15px;
+	right: 15px;
 	color: #C4C4C4;
 	font-size: 16px;
 }
@@ -510,7 +510,7 @@ a.courseItemRightTitle{
 input[type='checkbox']:after{
 	position: absolute;
 	width: 25px;
-    height: 25px;
+	height: 25px;
 	background: #fff;
 	content: '';
 	color: #999;
@@ -535,7 +535,7 @@ input[type='checkbox']:hover:after, input[type='checkbox']:checked:hover:after {
 input[type='checkbox']:checked:after {
 	position: absolute;
 	width: 25px;
-    height: 25px;
+	height: 25px;
 	background: #fff;
 	content: '\2714';
 	font-weight: bold;
@@ -558,5 +558,21 @@ input[type='checkbox']:checked:after {
 
 
 .searchByPrice{
+
+}
+@media screen and (max-width: 768px){
+	.header_main_body{
+		padding: unset;
+		padding-left: 15px;
+	}
+	.header_main{
+		height: 40px;
+
+	}
+	a.header_main_item{
+		height: 30px;
+		margin-top: 10px;
+	}
+	
 
 }

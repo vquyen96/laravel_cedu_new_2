@@ -146,3 +146,18 @@ a.number{
 #list-course{
 	margin-bottom: 80px;
 }
+@media screen and (max-width: 768px){
+	.main_body{
+		padding-top:30px;
+	}
+	a.add-course{
+		margin-left: 0;
+		margin: auto;
+		width: 90%;
+		line-height: 50px;
+	}
+	a.add-course p{
+		line-height: 50px;
+
+	}
+}
