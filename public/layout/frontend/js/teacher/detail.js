@@ -88,6 +88,25 @@ $(document).ready(function() {
     });
   });
 
+  // Dừng video khi modal tắt
+  $('#modal_edit_video').on('hidden.bs.modal', function () {
+    var vid = document.getElementById("video_edit");
+    vid.pause();  
+  })
+  $('#modal_edit_video').on('show.bs.modal', function () {
+    var vid = document.getElementById("video_edit");
+    vid.play();  
+  })
+  $('#modal_add_video').on('hidden.bs.modal', function () {
+    var vid = document.getElementById("video");
+    vid.pause();  
+  })
+  $('#modal_add_video').on('show.bs.modal', function () {
+    var vid = document.getElementById("video");
+    vid.play();  
+  })
+
+
 });
 
 var myVideoPlayer_edit = document.getElementById('fileItem_edit');

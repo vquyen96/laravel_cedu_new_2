@@ -33,7 +33,7 @@ class AccountController extends Controller
             
             $acc->email = $request->email;
             $acc->password = bcrypt($request->password);
-            
+            $acc->summary = $request->summary;
             if($acc->content != null){
                 $acc->content = $request->content;
             }
@@ -41,7 +41,6 @@ class AccountController extends Controller
                 $acc->content = "";
             }
             $acc->level = $request->level;
-            
             $acc->save();
 
             return redirect('admin/account')->with('success','Thêm tài khoản thành công');
@@ -73,6 +72,7 @@ class AccountController extends Controller
         }
         
         $acc->content = $request->content;
+        $acc->summary = $request->summary;
         $acc->level = $request->level;
         $acc->save();
 

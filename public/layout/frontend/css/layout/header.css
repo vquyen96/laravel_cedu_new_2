@@ -213,7 +213,7 @@ a.headerItemDropdownItemContent{
 
 }
 .headerItemDropdown.noti{
-	left: 0;
+	right: 0;
 	padding: 10px;
 	width: 280px;
 }

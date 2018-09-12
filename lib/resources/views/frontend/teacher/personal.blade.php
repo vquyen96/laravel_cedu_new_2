@@ -187,6 +187,17 @@
 									</div>
 								</div>
 								<div class="form_group">
+									<label>Google plus</label>
+									<div class="form_item">
+										<div class="inputText">
+											{{ $user->teacher->tea_gg}}
+										</div>
+										<div class="inputMain">
+											<input type="text" name="teacher[tea_gg]" class="inputProfile" value="{{ $user->teacher->tea_gg}}">
+										</div>
+									</div>
+								</div>
+								<div class="form_group">
 									<label>Youtube</label>
 									<div class="form_item">
 										<div class="inputText">
@@ -198,7 +209,17 @@
 									</div>
 								</div>
 							</div>
-							
+							<div class="profileRightItem">
+								<div class="profileRightTitle">
+									Tóm tắt nhanh
+								</div>
+								<div class="inputText inputContent">
+									{!! $user->summary !!}
+								</div>
+								<div class="inputMain">
+									<textarea class="form-control" rows="5" name="acc[summary]">{!! $user->summary !!}</textarea>
+								</div>
+							</div>
 							<div class="profileRightItem">
 								<div class="profileRightTitle">
 									Đôi lời giới thiệu về bản thân

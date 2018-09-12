@@ -73,7 +73,7 @@
 							@endif
 							<p>{{number_format($item->cou_price,0,',','.')}}<sup>đ</sup></p>
 						</div>
-						<p class="summary">{!!cut_string($item->cou_content, 200)!!}</p>
+						<p class="summary">{!!cut_string($item->cou_summary, 300)!!}</p>
 					</div>
 					<a href="{{asset('teacher/courses/'.$item->cou_slug)}}" class="button">
 						Chi tiết

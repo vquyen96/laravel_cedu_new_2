@@ -348,7 +348,6 @@ Route::group(['namespace'=>'Frontend'],function(){
 	});
 
 	Route::group(['prefix'=>'search'],function(){
-		
 		Route::get('/','SearchController@getList');
 	});
 	// Route::group(['prefix'=>'cart'],function(){

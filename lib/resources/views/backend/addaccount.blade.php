@@ -44,19 +44,23 @@
 				    	</select>
 				  	</div>
 				  	<div class="form-group">
-					<label>Chi tiết</label>
-					<textarea class="form-control" rows="5" name="content"></textarea>
-					{{-- <script type="text/javascript">
-						var editor = CKEDITOR.replace('content',{
-							language:'vi',
-							filebrowserImageBrowseUrl: '../../ckfinder/ckfinder.html?Type=Images',
-							filebrowserFlashBrowseUrl: '../../ckfinder/ckfinder.html?Type=Flash',
-							filebrowserImageUploadUrl: '../../ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
-							filebrowserFlashUploadUrl: '../../public/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash',
-						});
-					</script> --}}
+						<label>Tóm tắt</label>
+						<textarea class="form-control" rows="5" name="summary"></textarea>
+					</div>
+				  	<div class="form-group">
+						<label>Chi tiết</label>
+						<textarea class="form-control" rows="5" name="content"></textarea>
+						<script type="text/javascript">
+							var editor = CKEDITOR.replace('content',{
+								language:'vi',
+								filebrowserImageBrowseUrl: '../../ckfinder/ckfinder.html?Type=Images',
+								filebrowserFlashBrowseUrl: '../../ckfinder/ckfinder.html?Type=Flash',
+								filebrowserImageUploadUrl: '../../ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
+								filebrowserFlashUploadUrl: '../../public/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash',
+							});
+						</script>
 
-				</div>
+					</div>
 				</div>
 
 				<div class="form-group col-md-6">
