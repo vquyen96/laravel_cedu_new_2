@@ -20,7 +20,7 @@
 
 	@else
 	<div class="row">
-		<div class="col-md-12 col-sm-12">Giỏ hàng({{Cart::count()}} khóa học)</div>
+		<div class="col-md-12 col-sm-12 cart-number">Giỏ hàng({{Cart::count()}} khóa học)</div>
 	</div>
 	<div class="row cartBody">
 		<div class="col-md-8">

@@ -4,6 +4,7 @@
 	<title>C_edu || Login</title>
 	<base href="{{asset('public/layout/backend')}}/">
 	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="shortcut icon" href="{{ asset('public/layout/frontend/img/BUT.png') }}">
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,600,700,800" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
@@ -100,6 +101,7 @@
 	<script type="text/javascript" src="js/login2.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function(){
+			
 			@if (Request::segment(1) == 'register')
 				$('.btnRegister').click();
 			@endif
