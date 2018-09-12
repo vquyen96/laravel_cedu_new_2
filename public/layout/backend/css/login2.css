@@ -5,7 +5,7 @@
 }
 body{
 
-	background: url('../img/Mask Group.png') no-repeat;
+	background: url('../img/Mask Group.png') no-repeat center/cover;
 	background-size: 100% 100%;
 }
 .login{
@@ -155,9 +155,62 @@ form{
 	font-size: 12px;
 	font-style: italic;
 }
-@media screen and (max-width: 800px) {
-  	
+@media screen and (max-width: 769px) {
+	.login{
+		height: 90vh;
+		width: 95%;
+		display: flex;
+		flex-direction: column;
+	}
+	.loginBody{
+		width: 100%;
+		left: 0;
+		padding: 15px 15px;
+		top: 30px;
+		transform: unset;
+		height: auto;
+
+	}
+	.loginTitleSmall{
+		margin-bottom: 15px;
+	}
+	.loginTitleSmall{
+		font-size: 16px;
+	}
+	.loginTitle{
+		font-size: 18px;
+	}
+	.loginMain{
+		position: unset;
+		width: 100%;
+		top: 0;
+		left: 0;
+		transform: translate(0,0);
+	}
+	.loginMainTitle{
+		height: unset;
+		line-height: 35px;
+	}
+	.inputSbm{
+		width: 120px;
+		height: 40px;
+		line-height: 40px;
+	}
+	.loginItemMain{
+		top: 43%;
+		width: 100%;
+	}
+	.loginMainTitleLeft{
+		font-size: 20px;
+	}
+	.inputItem{
+		margin-top: 15px;
+	}
+	.formBot{
+		margin-top: 15px;
+	}
+
 }
 @media screen and (max-width: 500px) {
-  	
+
 }

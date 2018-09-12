@@ -524,5 +524,8 @@ a.button-add{
 		padding: 5px;
 		top: 7px;
 	}
+	.modal-content{
+		padding: 15px;
+	}
 
 }

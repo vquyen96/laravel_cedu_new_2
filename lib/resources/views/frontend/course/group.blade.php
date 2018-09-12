@@ -46,7 +46,7 @@
 <div class="main_body">
 	<div class="container">
 		<div class="row">
-			<div class="col-12">
+			<div class="col-xs-12">
 				<div class="carouselHeader">
 					<div class="owl-carousel owl-theme groupChild">
 						@foreach($group_child as $item)
@@ -66,7 +66,7 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-12">
+			<div class="col-xs-12">
 				<div class="main_title">
 					<h1>{{ $group->gr_name }}</h1>
 					<div class="main_title_content">
@@ -78,7 +78,7 @@
 		</div>
 
 		<div class="row">
-			<div class="col-12">
+			<div class="col-xs-12">
 				<div class="carouselCourseTitle">
 					<h2>Khoá học được mua nhiều nhất</h2>
 					<div class="carouselCourseTitleContent">
@@ -88,7 +88,7 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-12">
+			<div class="col-xs-12">
 				<div class="carouselCourseMain">
 					<div class="owl-carousel owl-theme carouselCourse1">
 						@foreach($courseByMost as $item)
@@ -142,7 +142,7 @@
 		</div>
 
 		<div class="row">
-			<div class="col-12">
+			<div class="col-xs-12">
 				<div class="carouselCourseTitle">
 					<h2>Khoá học mới ra mắt</h2>
 					<div class="carouselCourseTitleContent">
@@ -152,7 +152,7 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-12">
+			<div class="col-xs-12">
 				<div class="carouselCourseMain">
 					<div class="owl-carousel owl-theme carouselCourse1">
 						@foreach($courseNewMost as $item)
@@ -207,7 +207,7 @@
 		</div>
 
 		<div class="row">
-			<div class="col-12">
+			<div class="col-xs-12">
 				<div class="carouselCourseTitle">
 					<h2>Khoá học được đánh giá cao nhất</h2>
 					<div class="carouselCourseTitleContent">
@@ -217,7 +217,7 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-12">
+			<div class="col-xs-12">
 				<div class="carouselCourseMain">
 					<div class="owl-carousel owl-theme carouselCourse1">
 						@foreach($courseVoteMost as $item)
@@ -271,7 +271,7 @@
 		</div>	
 
 		<div class="row">
-			<div class="col-12">
+			<div class="col-xs-12">
 				<div class="teacherTitle">
 					<h2>Top giảng viên</h2>
 					<div class="teacherTitleContent">
@@ -281,7 +281,7 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-12">
+			<div class="col-xs-12">
 				<div class="teacherCarousel">
 					<div class="owl-carousel owl-theme teacherCarouselMain">
 						@foreach($teacher as $item)

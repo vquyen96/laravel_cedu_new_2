@@ -52,7 +52,7 @@
 		<div class="row">
 			<div class="col-md-8 col-sm-8 col-xs-12">
 				<div class="row">
-					<div class="col-12">
+					<div class="col-md-12">
 						<div class="main_title">
 							<h1>{{ Request::segment(1) == 'search' ? ($searchValue == '' ? 'Tất cả' : $searchValue) : $group->gr_name }}</h1>
 							<div class="main_title_content">
@@ -63,7 +63,7 @@
 				</div>
 				@foreach($courses as $item)
 				<div class="row ">
-					<div class="col-12">
+					<div class="col-xs-12">
 						<div class="courseItem">
 							<a href="{{ asset('courses/detail/'.$item->cou_slug.'.html') }}" class="courseItemImg" style="background: url('{{ asset('lib/storage/app/course/'.$item->cou_img) }}') no-repeat center /cover ;">
 								@if ($item->cou_sale != 0)
@@ -117,7 +117,7 @@
 				</div>
 				@endforeach	
 				<div class="row">
-					<div class="col-12">
+					<div class="col-xs-12">
 						{!! $courses->links('layout.paginate') !!}	
 					</div>
 				</div>

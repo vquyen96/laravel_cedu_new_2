@@ -155,9 +155,22 @@ a.number{
 		margin: auto;
 		width: 90%;
 		line-height: 50px;
+		margin-bottom: 50px;
 	}
 	a.add-course p{
 		line-height: 50px;
 
+	}
+	.chi-tiet p{
+		display: none;
+	}
+	.heading{
+		margin-bottom: 20px;
+	}
+	.info{
+		margin-top: 15px;
+	}
+	.price p{
+		font-size: 28px;
 	}
 }

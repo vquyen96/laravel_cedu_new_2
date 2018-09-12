@@ -252,6 +252,7 @@ button.owl-next{
 @media screen and (max-width: 768px){
 	.heading h1{
 		font-size: 48px;
+		text-align: center;
 	}
 	a.ctv,a.gv{
 		margin-bottom: 15px;
@@ -268,5 +269,15 @@ button.owl-next{
 	}
 	footer{
 		background:#fff;
+	}
+	#content{
+		margin-top: 50px;
+	}
+	.heading-1 h2{
+		text-align: center;
+	}
+	#content-2{
+		margin-top: 50px;
+		padding-top: 40px;
 	}
 }

@@ -564,6 +564,7 @@ input[type='checkbox']:checked:after {
 	.header_main_body{
 		padding: unset;
 		padding-left: 15px;
+
 	}
 	.header_main{
 		height: 40px;
@@ -573,6 +574,53 @@ input[type='checkbox']:checked:after {
 		height: 30px;
 		margin-top: 10px;
 	}
-	
-
+	.main_title{
+		margin-bottom: 40px;
+	}
+	.carouselCourseMain{
+		margin-bottom: 80px;
+	}
+	.teacherTitle{
+		margin-bottom: 50px;
+	}
+	a.courseItemRightTitle{
+		text-align: justify;
+		height: unset;
+		margin-top: 15px;
+	}
+	.courseItemRightInfo{
+		display: none;
+	}
+	.courseItemStar{
+		position: unset;
+	}
+	.courseItemRightSummary{
+		height: 75px;
+		text-align: justify;
+	}
+	.courseItemImg{
+		margin-right: 15px;
+		height: 240px;
+		width: 100%;
+	}
+	.selectCourse select{
+		height: 50px;
+	}
+	.searchCourseBodyItem{
+		margin-bottom: 20px;
+	}
+	.courseItem{
+		flex-direction: column;
+	}
+	.carouselHeader{
+		margin-bottom: 30px;
+	}
+	.main_title h1,.teacherTitle h2{
+		font-size: 36px;
+		line-height: 30px;
+	}
+	a.groupChildItemImg{
+		height: 40px;
+		line-height: 40px;
+	}
 }

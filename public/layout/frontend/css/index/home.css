@@ -417,6 +417,19 @@ button.owl-next{
 	footer{
 		background:#fff;
 	}
+	.listGroupItemImg img{
+		width: 50px;
+
+	}
+	.listGroup{
+		padding: 0;
+	}
+	.courseTitleBig{
+		font-size: 36px;
+	}
+	.courseHead{
+		margin-top: 40px;
+	}
 }
 
 
