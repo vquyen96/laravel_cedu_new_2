@@ -158,13 +158,14 @@
 .lessonMainVideo{
 	display: none;
 }
-.lessonMainVideoItem{
+a.lessonMainVideoItem{
 	display: flex;
 	padding: 0 25px 0 50px;
 	border: 1px solid #E5E5E5;
 	border-top: 0;
 	height: 55px;
 	line-height: 55px;
+	text-decoration: none;
 }
 .lessonMainVideoIcon{
 	width: 25px;
@@ -754,9 +755,15 @@ a.courseRelateItemCart{
 .courseTagDocBody{
 
 }
-.courseTagDocBodyItem{
+a.courseTagDocBodyItem{
 	display: flex;
-	margin-bottom: 30px;
+    margin-bottom: 30px;
+    color: #999;
+    font-weight: bold;
+    text-decoration: none;
+}
+a.courseTagDocBodyItem:hover{
+	color: #2D317F;
 }
 .courseTagDocBodyItemIcon{
 	margin-right: 20px;
@@ -765,10 +772,10 @@ a.courseRelateItemCart{
 	font-size: 18px;
 
 }
-a.courseTagDocBodyItemContent{
+.courseTagDocBodyItemContent{
 	font-size: 14px;
-	font-weight: 500;
-	color: #999;
+	/*font-weight: 500;
+	color: #999;*/
 	text-decoration: none;
 }
 .courseHead{

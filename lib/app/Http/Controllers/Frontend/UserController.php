@@ -21,10 +21,10 @@ class UserController extends Controller
         $acc = Account::find(Auth::user()->id);
         foreach ($acc->order as $order) {
             foreach ($order->orderDe as $orderDe) {
-                $list_ids[] = $orderDe->orderDe_cou_id;
-                // if (isset($orderDe->code) && $orderDe->code->code_status == 1) {
-                    
-                // }
+                if ($orderDe->order->ord_status == 0) {
+                    $list_ids[] = $orderDe->orderDe_cou_id;
+                }
+                
             }
         }
         $course = Course::whereIn('cou_id', $list_ids)->get();

@@ -21,7 +21,7 @@ class LessonController extends Controller
     	$lesson->les_slug = str_slug($request->name);
     	$lesson->les_part_id = $part_id;
         
-        $lesson->les_video_duration = gmdate("i:s", $request->duration);
+        $lesson->les_video_duration = $request->duration;
         $video = $request->file('file');
         
         if ($request->hasFile('file')) {
@@ -31,6 +31,10 @@ class LessonController extends Controller
             $video->move($path, $filename);
         }
         $lesson->save();
+
+        $part = Part::find($part_id);
+        $part->part_video_duration = (int)$part->part_video_duration + (int)$lesson->les_video_duration;
+        $part->save();
 
         $course = Course::find($cou_id);
         $course->cou_video += $request->duration;
@@ -50,7 +54,7 @@ class LessonController extends Controller
     	$lesson->les_name = $request->name;
         $lesson->les_slug = str_slug($request->name);
         $lesson->les_part_id = $part_id;
-        $lesson->les_video_duration = gmdate("i:s", $request->duration);
+        $lesson->les_video_duration = $request->duration;
         $video = $request->file('file');
 
         if ($request->hasFile('file')) {
@@ -60,6 +64,10 @@ class LessonController extends Controller
             $video->move($path, $filename);
         }
         $lesson->save();
+
+        $part = Part::find($part_id);
+        $part->part_video_duration = (int)$part->part_video_duration + (int)$lesson->les_video_duration;
+        $part->save();
 
         $course = Course::find($cou_id);
         $course->cou_video += $request->duration;

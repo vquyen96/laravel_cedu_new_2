@@ -1,8 +1,8 @@
 @extends('frontend.master')
-@section('title','Danh sách khóa học')
-@section('fb_title','Top khóa học hàng đầu')
+@section('title', $video->les_name)
+@section('fb_title', $video->les_name)
 @section('fb_description','Nơi cung cấp cho bạn những khóa học tốt nhất, rẻ nhất. Tạo lên một môi trường học tập trên cuộc cách mạng công nghệ 4.0')
-@section('fb_image',asset('public/layout/frontend/img/dayne-topkin-60559-unsplash.png'))
+@section('fb_image',asset('lib/storage/app/course/'.$course->cou_name))
 @section('main')
 <link rel="stylesheet" href="css/owlcarousel/owl.carousel.min.css">
 <link rel="stylesheet" href="css/owlcarousel/owl.theme.default.min.css">
@@ -31,7 +31,7 @@
 			>
 		</a>
 		<a href="{{ Request::url() }}" class="instruction_item">
-			Bài {{ Request::segment(5) }}
+			Bài {{ Request::segment(5)+1 }}
 		</a>
 		
 	</div>
@@ -66,7 +66,7 @@
 					<script src="http://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
 					<video id="my-video" class="video-js" controls preload="auto"
 				  poster="img/poster.png" data-setup="{}"  src="">
-					    <source src="{{ asset('lib/public/uploads/1528794961.mp4') }}" type='video/webm'>
+					    <source src="{{ asset('lib/public/uploads/'.$video->les_link) }}" type='video/webm'>
 					    <p class="vjs-no-js">
 					      	<a href="{{ asset('') }}" target="_blank"></a>
 					    </p>
@@ -99,12 +99,12 @@
 									{{$item->part_name}}
 								</div>
 								<div class="lessonMainPartTime">
-									4:30
+									{{ gmdate("i:s", $item->part_video_duration) }}
 								</div>
 							</div>
 							<div class="lessonMainVideo">
 								@foreach($item->lesson as $itemTiny)	
-									<div class="lessonMainVideoItem">
+									<a href="{{asset('courses/detail/'.$course->cou_slug.'.html/video/'.$video)}}" class="lessonMainVideoItem">
 										<div class="lessonMainVideoIcon">
 											<i class="fas fa-video"></i>
 										</div>
@@ -112,9 +112,9 @@
 											{{$itemTiny->les_name}}
 										</div>
 										<div class="lessonMainVideoTime">
-											{{$itemTiny->les_video_duration}}
+											{{ gmdate("i:s", $itemTiny->les_video_duration) }}
 										</div>
-									</div>
+									</a>
 								<?php $video++ ?>
 								@endforeach
 							</div>
@@ -255,15 +255,15 @@
 							Tài liệu
 						</div>
 						<div class="courseTagDocBody">
-							@foreach($course->rating as $item)
-							<div class="courseTagDocBodyItem">
+							@foreach($doc as $item)
+							<a href="{{ asset('lib/storage/app/doc/'.$item->doc_link) }}" class="courseTagDocBodyItem" target="_blank">
 								<div class="courseTagDocBodyItemIcon">
 									<i class="fas fa-download"></i>
 								</div>
-								<a href="{{ asset('') }}" class="courseTagDocBodyItemContent">
-									Các bài văn mẫu của giảng viên đại học ha - vớt
-								</a>
-							</div>
+								<div class="courseTagDocBodyItemContent">
+									{{ $item->doc_name}}
+								</div>
+							</a>
 							@endforeach
 						</div>
 					</div>

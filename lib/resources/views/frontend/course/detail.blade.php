@@ -111,7 +111,7 @@
 								</div>
 								<div class="lessonMainVideo">
 									@foreach($item->lesson as $itemTiny)	
-										<div class="lessonMainVideoItem">
+										<a {{ isset($active) ? 'href='.asset('courses/detail/'.$course->cou_slug.'.html/video/'.$video) : '' }} class="lessonMainVideoItem">
 											<div class="lessonMainVideoIcon">
 												<i class="fas fa-video"></i>
 											</div>
@@ -121,7 +121,7 @@
 											<div class="lessonMainVideoTime">
 												{{ gmdate("i:s", $itemTiny->les_video_duration) }}
 											</div>
-										</div>
+										</a>
 									<?php $video++ ?>
 									@endforeach
 								</div>

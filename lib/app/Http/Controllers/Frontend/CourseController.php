@@ -10,6 +10,8 @@ use App\Models\Account;
 use App\Models\Code;
 use App\Models\Rating;
 use App\Models\Teacher;
+use App\Models\Doc;
+
 use Auth;
 use Illuminate\Support\Facades\Input;
 
@@ -236,17 +238,17 @@ class CourseController extends Controller
             $code = Code::where('code_orderDe_id',$orderDe_id)->first();
             if($code != null){
                 if($code->code_status == 1){
-                    $data['course'] = Course::where('cou_slug',$slug)->first();
+                    // $data['course'] = Course::where('cou_slug',$slug)->first();
                     $data['part'] = $data['course']->part;
                     $i = 0;
                     foreach ($data['part'] as $part) {
                         foreach ($part->lesson as $lesson) {
-                           $data['listVideo'][$i] = $lesson->les_link;
+                           $data['listVideo'][$i] = $lesson;
                            $i++;
                         }
                     }
                     $data['video'] = $data['listVideo'][$id];
-                   
+                    $data['doc'] = Doc::where('doc_cou_id', $data['course']->id)->get();
                     return view('frontend.course.video',$data);
                 }
                 else{
