@@ -14,7 +14,7 @@
 				<div class="row">
 					<div class="form-group">
 					    <label>Tên lĩnh vực</label>
-					    <input type="text" class="form-control" name="name" placeholder="Tên của bạn" required>
+					    <input type="text" class="form-control" name="name" placeholder="Tên lĩnh vực" required>
 					</div>
 					<div class="form-group">
 						<label>Ảnh</label>

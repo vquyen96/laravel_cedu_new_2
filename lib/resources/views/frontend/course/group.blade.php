@@ -293,11 +293,11 @@
 									{{ $item->acc->name }}
 								</div>
 								<div class="teacherCarouselItemGroup">
-									Giao tiếp, Ielts
+									{{ cut_string($item->acc->summary, 100) }}
 								</div>
-								<div class="teacherCarouselItemNumCourse">
+								<a href="{{ asset('teacher/'.$item->acc->email) }}" class="teacherCarouselItemNumCourse">
 									{{ $item->acc->course->count() }} bài giảng
-								</div>
+								</a>
 							</div>
 						</div>
 						@endforeach

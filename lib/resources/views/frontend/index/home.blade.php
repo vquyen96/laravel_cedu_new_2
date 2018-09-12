@@ -131,7 +131,7 @@
 									{{ $item->acc->name }}
 								</a>
 								<div class="owlItemContent">
-									{!! cut_string($item->acc->content, 200) !!}
+									{!! cut_string($item->acc->summary, 200) !!}
 								</div>
 							</div>
 						@endforeach

@@ -28,9 +28,9 @@
 					<div class="avatar">
 						<div class="img" style="background:url('{{ asset('lib/storage/app/avatar/'.$teacher->img)}}') no-repeat center/cover;"></div>
 						<div class="contact">
-							<a href="" class="icon"><i class="fab fa-facebook-f"></i></a>
-							<a href="" class="icon"><i class="fab fa-google-plus-g"></i></a>
-							<a href="" class="icon"><i class="fab fa-youtube"></i></a>
+							<a href="{{ $teacher->teacher->tea_fb }}" class="icon" target="blank"><i class="fab fa-facebook-f"></i></a>
+							<a href="{{ $teacher->teacher->tea_gg }}" class="icon" target="blank"><i class="fab fa-google-plus-g"></i></a>
+							<a href="{{ $teacher->teacher->tea_yt }}" class="icon" target="blank"><i class="fab fa-youtube"></i></a>
 						</div>
 					</div>
 				</div>

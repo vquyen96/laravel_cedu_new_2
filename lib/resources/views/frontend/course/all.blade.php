@@ -88,7 +88,7 @@
 									{{level_format($item->cou_level)}}
 								</div>
 								<div class="courseItemRightSummary">
-									{{ cut_string('Chúng tôi cung cấp cho các bạn những khoá học đa dạng và chất lượng nhất. Chúng tôi cung cấp cho các bạn những khoá học đa dạng và chất lượng nhất', 120) }}
+									{{ cut_string($item->cou_summary, 120) }}
 								</div>
 								<div class="courseItemRightPrice">
 									<span class="courseItemRightOldPrice">

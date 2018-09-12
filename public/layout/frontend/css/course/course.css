@@ -320,8 +320,10 @@ a.courseMainItem{
 	color: #999;
 	text-align: center;
 	margin-bottom: 20px;
+	height: 88px;
 }
-.teacherCarouselItemNumCourse{
+a.teacherCarouselItemNumCourse{
+	display: block;
 	width: 70%;
 	height: 38px;
 	margin: auto;
@@ -332,8 +334,14 @@ a.courseMainItem{
 	font-weight: bold;
 	background: #FCC72E;
 	border-radius: 10px;
+	text-decoration: none;
 }
-
+a.teacherCarouselItemNumCourse:hover{
+	background: #fff;
+	border: 1px solid #FCC72E;
+	color: #FCC72E;
+	line-height: 37px;
+}
 
 
 /*all Page*/

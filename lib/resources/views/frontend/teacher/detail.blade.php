@@ -197,6 +197,19 @@
 							<label>Nội dung</label>
 							@if(isset($course))
 							<div class="inputText inputTextarea">
+								{!! $course->cou_summary !!}
+							</div>
+							@endif
+							<div class="form_item">
+								<div class="inputMain">
+									<textarea class="inputProfileTextarea" rows="5" name="cou[cou_summary]">{!! isset($course) ? $course->cou_summary : ''!!}</textarea>
+								</div>
+							</div>
+						</div>
+						<div class="form_group">
+							<label>Nội dung</label>
+							@if(isset($course))
+							<div class="inputText inputTextarea">
 								{!! $course->cou_content !!}
 							</div>
 							@endif
@@ -416,7 +429,7 @@
 				</div>
 				<video width="100%" controls autoplay src="" id="video_edit"></video>
 				<div class="modal-footer">
-					<button type="button" class="btn-miss" data-dismiss="modal">Không</button>
+					<button type="button" class="btn-miss" data-dismiss="modal" >Không</button>
 					<input type="submit" class="btn-create" value="Lưu" />
 				</div>
 			</form>
@@ -563,7 +576,10 @@
 
 		$('.video_update_value').attr('value',value);
 		$('.form_update_video').attr('action',action);
-		$('#video_edit').attr('src','{{ asset('lib/public/uploads/') }}/'+link);
+		if($('#video_edit').attr('src') != '{{ asset('lib/public/uploads/') }}/'+link){
+			$('#video_edit').attr('src','{{ asset('lib/public/uploads/') }}/'+link);
+		}
+		
 		$('#modal_edit_video').modal();
 	});
 

@@ -59,7 +59,7 @@
 							Số dư
 						</div>
 						<div class="mainBodyItemMainAmount">
-							4.300.000 vnđ
+							{{ number_format($total_amount - $teacher->acc->withdraw, 0, ',', '.') }} vnđ
 						</div>
 					</div>
 				</div>
@@ -82,16 +82,16 @@
 				<div class="col-md-3">
 					<div class="mainBodyItemMain">
 						<div class="mainBodyItemMainTitle">
-							Tổng số khóa học đã bán
+							Tổng lượng đánh giá
 						</div>
 						<div class="mainBodyItemMainAmount">
-							4.577
+							{{ $total_rating }}
 						</div>
 						<div class="mainBodyItemMainTitle">
-							Khóa học bán trong tháng
+							Đánh giá mới trong tháng
 						</div>
 						<div class="mainBodyItemMainAmount">
-							345
+							{{ $rating_month }}
 						</div>
 					</div>
 				</div>
@@ -159,7 +159,7 @@
 							Học viên đánh giá
 						</div>
 						<div class="rateDetail">
-							@for($j = 0; $j < 5; $j++)
+							{{-- @for($j = 0; $j < 5; $j++) --}}
 							@foreach($teacher->rate as $item)
 							<div class="rateDetailItem">
 								<div class="rateDetailItemAva" style="background: url('{{  asset('lib/storage/app/avatar/resized-'.$item->acc->img)}}') no-repeat center /cover;">
@@ -178,7 +178,7 @@
 								</div>
 							</div>
 							@endforeach
-							@endfor
+							{{-- @endfor --}}
 						</div>
 							
 					</div>

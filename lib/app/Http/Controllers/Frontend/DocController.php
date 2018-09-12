@@ -21,6 +21,7 @@ class DocController extends Controller
         }
         else{
             $data['document'] = Doc::orderByDesc('doc_id')->paginate(15);
+            $data['group_id'] = '';
         }
 
        

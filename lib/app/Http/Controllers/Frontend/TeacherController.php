@@ -29,9 +29,18 @@ class TeacherController extends Controller
     	$total_amount = 0;
     	$total_student = 0;
     	$student_month = 0;
+        $total_rating = 0;
+        $rating_month = 0;
     	$date = new DateTime();
     	foreach ($acc->course as $course) {
+            $total_rating += count($course->rating);
+            foreach ($course->rating as $key => $rating) {
+                if (date_format($date,"m") == date_format($rating->created_at,"m")) {
+                    $rating_month ++;
+                }
+            }
     		$total_amount += $course->cou_price;
+
     		// $total_student += $course->cou_student;
     		foreach ($course->orderDe as $orderDe) {
     			if ($orderDe->order->ord_status == 0) {
@@ -42,11 +51,15 @@ class TeacherController extends Controller
                 }
             }
         }
+
+
         $data = [
           'teacher' => $acc->teacher,
           'total_amount' => $total_amount,
           'total_student' => $total_student,
-          'student_month' => $student_month
+          'student_month' => $student_month,
+          'total_rating' => $total_rating,
+          'rating_month' => $rating_month
       ];
       return view('frontend.teacher.dashboard', $data);
   }
@@ -79,7 +92,13 @@ public function getTeacher($email){
         //         return view('frontend.teacher1',$data);
         // }
         // dd($data['teacher']);
-    $data['course'] = Course::where('cou_tea_id',$data['teacher']->id)->paginate(6);
+    $courses = Course::where('cou_tea_id',$data['teacher']->id)->paginate(6);
+    foreach ($courses as $key => $item) {
+        if ($item->group->gr_parent_id != 0) {
+            $item->group->gr_name = Group::find($item->group->gr_parent_id)->gr_name;
+        }
+    }
+    $data['course'] = $courses;
     return view('frontend.teacher.profile',$data);
 }
 
@@ -265,8 +284,13 @@ public function getAddCourse(){
         'cou_type' => 1,
         'cou_gr_id' => '',
         'cou_gr_child' => '',
-        'cou_content' => 'Nội dung của khóa học'
+        'cou_content' => 'Nội dung của khóa học',
+        'cou_gr_name' => '',
+        'cou_gr_child_name' => ''
+
     ];
+    $data['group_child'] = [];
+    $data['docs'] = [];
     $data['group'] = Group::where('gr_parent_id',0)->get();
 
     return view('frontend.teacher.detail', $data);
@@ -281,6 +305,13 @@ public function getAddCourse(){
             $course['cou_img']  = saveImage([$image], 360, 'course');
         }else{
             return back()->with('error', 'Khóa học chưa có ảnh')->withInput($request->all());
+        }
+        if (!isset($course['cou_gr_child_id']) ) {
+            unset($course['cou_gr_child_id']);
+        }
+        else{
+            $course['cou_gr_id'] = $course['cou_gr_child_id'];
+            unset($course['cou_gr_child_id']);
         }
         if (!Course::create($course)) {
             return back()->with('error', 'Lỗi thêm khóa học');

@@ -240,14 +240,19 @@ class CourseController extends Controller
                 if($code->code_status == 1){
                     // $data['course'] = Course::where('cou_slug',$slug)->first();
                     $data['part'] = $data['course']->part;
-                    $i = 0;
+                    
                     foreach ($data['part'] as $part) {
-                        foreach ($part->lesson as $lesson) {
-                           $data['listVideo'][$i] = $lesson;
-                           $i++;
+                        foreach ($part->lesson as $index=>$lesson) {
+                           $data['listVideo'][$index] = $lesson;
                         }
                     }
-                    $data['video'] = $data['listVideo'][$id];
+                    if ($id < 0 || $id >= count($data['listVideo'])) {
+                        return redirect('/')->with('error', 'Bài học không tồn tại');
+                    }
+                    else{
+                        $data['video'] = $data['listVideo'][$id];
+                    }
+                    
                     $data['doc'] = Doc::where('doc_cou_id', $data['course']->id)->get();
                     return view('frontend.course.video',$data);
                 }
