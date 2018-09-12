@@ -285,8 +285,10 @@ public function getAddCourse(){
         'cou_gr_id' => '',
         'cou_gr_child' => '',
         'cou_content' => 'Nội dung của khóa học',
+        'cou_summary' => 'Cedu cung cấp cho các bạn những khoá học đa dạng và chất lượng nhất',
         'cou_gr_name' => '',
         'cou_gr_child_name' => ''
+
 
     ];
     $data['group_child'] = [];

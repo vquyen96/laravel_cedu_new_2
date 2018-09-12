@@ -194,10 +194,10 @@
 							</div>
 						</div>
 						<div class="form_group">
-							<label>Nội dung</label>
+							<label>Tóm tắt</label>
 							@if(isset($course))
 							<div class="inputText inputTextarea">
-								{!! $course->cou_summary !!}
+								{!! $course->cou_summary == null ? 'Cedu cung cấp cho các bạn những khoá học đa dạng và chất lượng nhất' : $course->cou_summary !!}
 							</div>
 							@endif
 							<div class="form_item">
