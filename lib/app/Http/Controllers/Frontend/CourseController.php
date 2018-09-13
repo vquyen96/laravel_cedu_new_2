@@ -11,8 +11,10 @@ use App\Models\Code;
 use App\Models\Rating;
 use App\Models\Teacher;
 use App\Models\Doc;
+use \App\Models\Leaning;
+use \Illuminate\Support\Facades\Auth;
 
-use Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 
 class CourseController extends Controller
@@ -252,7 +254,12 @@ class CourseController extends Controller
                     else{
                         $data['video'] = $data['listVideo'][$id];
                     }
-                    
+
+                    $user = Auth::user();
+                    $leaning = DB::table('leaning')->where('account_id',$user->id)->where('lesson_id',$data['listVideo'][$id]->les_id)->first();
+
+                    $data['leaning'] = $leaning;
+
                     $data['doc'] = Doc::where('doc_cou_id', $data['course']->id)->get();
                     return view('frontend.course.video',$data);
                 }
@@ -269,6 +276,38 @@ class CourseController extends Controller
         }
 
                     
+    }
+
+    function update_time_les(Request $request){
+        $req = $request->all();
+        $user = Auth::user();
+
+        $lesson = DB::table('lesson')->where('les_id',$req['les_id'])->first();
+
+        if($lesson){
+            $leaning = DB::table('leaning')->where('account_id',$user->id)->where('lesson_id',$req['les_id'])->first();
+
+            if($req['current_time'] == $lesson->les_video_duration) $status = 2;
+            else $status = 1;
+            if($leaning){
+//                dd(DB::table('leaning')->where('account_id',$user->id)->where('lesson_id',$req['les_id'])->update(['updated_at' => time(),'time_in_video' => $req['current_time'],'status' => $status]));
+                DB::table('leaning')->where('account_id',$user->id)->where('lesson_id',$req['les_id'])->update(['updated_at' => time(),'time_in_video' => $req['current_time'],'status' => $status]);
+            }else {
+                $data = [
+                    'account_id' => $user->id,
+                    'lesson_id' => $req['les_id'],
+                    'created_at' => time(),
+                    'updated_at' => time(),
+                    'time_in_video' => $req['current_time'],
+                    'status' => $status
+                ];
+                Leaning::create($data);
+            }
+        }
+
+        return json_encode([
+            'status' => 1
+        ]);
     }
 
     public function getTeacher($slug){

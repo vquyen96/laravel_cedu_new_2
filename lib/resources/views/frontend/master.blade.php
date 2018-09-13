@@ -49,10 +49,10 @@
 	<link rel="stylesheet" type="text/css" href="css/layout/header.css">
 	<link rel="stylesheet" type="text/css" href="css/layout/footer.css">
 	<link rel="stylesheet" type="text/css" href="css/layout/instruction.css">
-
 </head>
 
-<body>
+<body onunload="end()">
+
 	<div class="currentUrl" style="display: none;">{{ asset('') }}</div>
 	
 	<div id="status">
@@ -109,7 +109,7 @@
 	</main>
 
 	@include('frontend.layout.footer')
-	
+
 	<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
 
 	<script type="text/javascript" src="js/bootstrap.min.js"></script>
@@ -117,9 +117,13 @@
 	<script type="text/javascript" src="js/index/index.js"></script>
 	@yield('script')
 
-	
-</script>
 <script>
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
 	window.fbAsyncInit = function() {
 		FB.init({
 			appId      : '1577563652342523',

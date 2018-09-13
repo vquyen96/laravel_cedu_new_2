@@ -1,5 +1,5 @@
 <?php
-
+use \Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -321,8 +321,9 @@ Route::group(['namespace'=>'Frontend'],function(){
 		Route::get('detail/{slug}.html/video/{id}','CourseController@getVideo');
 		Route::get('detail/{slug}.html/teacher','CourseController@getTeacher');
 		Route::get('detail/{slug}.html/active','CourseController@getActive');
-		
+
 		Route::post('rate', 'CourseController@postRate');
+		Route::post('time_lession/update_time_les', 'CourseController@update_time_les')->name('update_time_les');
 	});
 
 

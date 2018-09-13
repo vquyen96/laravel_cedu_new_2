@@ -19,6 +19,7 @@ class UserController extends Controller
     public function getCourseDoing(){
         // dd('ok');
         $acc = Account::find(Auth::user()->id);
+        $list_ids = [];
         foreach ($acc->order as $order) {
             foreach ($order->orderDe as $orderDe) {
                 if ($orderDe->order->ord_status == 0) {
