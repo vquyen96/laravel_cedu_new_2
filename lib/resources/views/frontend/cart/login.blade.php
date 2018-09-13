@@ -62,9 +62,59 @@
                 <div class="col-md-7 col-sm-7 col-xs-12">
                     <div class="loginRight">
                         <div class="LoginRightPrice">
-                            
+                            <div class="LoginRightPriceNew">
+                                Tổng:  {{ number_format($total, 0, ',', '.') }} 
+                            </div>
+                            <div class="LoginRightPriceOld">
+                                <del>{{number_format($total_old, 0, ',', '.')}} </del>
+                            </div>
+                            <div class="LoginRightPricePercent">
+                                {{number_format($percent, 1 ,',','.')}}% off 
+                            </div>
+                        </div>
+                        <div class="loginForm">
+                            <div class="loginFormTitle">
+                                Đăng nhập
+                            </div>
+                            <div class="loginFormSocial">
+                                Đăng nhập với 
+                                <a href="{{ asset('redirect/google') }}">
+                                    <img src="img/gg.png">
+                                </a>
+                                <a href="{{ asset('redirect/facebook') }}">
+                                    <img src="img/fb.png">
+                                </a>
+                            </div>
+                            <div class="loginFormMain">
+                                <form method="post" action="{{ asset('login') }}">
+                                    {{ csrf_field() }}
+                                    <div class="inputTitle">
+                                        Mail
+                                    </div>
+                                    <div class="inputContent">
+                                        <input type="text" name="email" class="" placeholder="Nhập email của bạn"> 
+                                    </div>
+                                    <div class="inputTitle">
+                                        Mật khẩu
+                                    </div>
+                                    <div class="inputContent">
+                                        <input type="password" name="password" class="" placeholder="Nhập mật khẩu của bạn">
+                                    </div>
+                                    <div class="inputSubmit">
+                                        <input type="submit" name="" value="Đăng nhập">
+                                    </div>
+                                    <div class="formText">
+                                        Nếu bạn chưa có tài khoản xin vui lòng 
+                                        <a>đăng kí?</a>
+                                    </div>
+                                    <div class="formText">
+                                        <a href="{{ asset('forgot_pass') }}">Bạn quên mật khấu?</a>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>

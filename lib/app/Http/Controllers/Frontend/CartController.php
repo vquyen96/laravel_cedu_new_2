@@ -124,6 +124,10 @@ class CartController extends Controller
                 }
             }
         }
+        if ($total_old == 0) {
+            $total_old = 1;
+            return redirect('/')->with('error', 'Giỏ hàng của bạn không có gì');
+        }
         $percent = ($total/$total_old)*100;
 
         // $data['items'] = $items;
@@ -270,7 +274,7 @@ class CartController extends Controller
             Cart::destroy();
         }
 
-    	return view('frontend.complete');
+    	return view('frontend.cart.complete');
     }
     public function getPaymentLogin(){
         if (Cart::total() == "0.00") {
@@ -303,6 +307,10 @@ class CartController extends Controller
                     }
                 }
             }
+            if ($total_old == 0) {
+                $total_old = 1;
+                return redirect('/')->with('error', 'Giỏ hàng của bạn không có gì');
+            }
             $percent = ($total/$total_old)*100;
 
             $data['items'] = $items;
@@ -321,7 +329,44 @@ class CartController extends Controller
             return redirect('cart/show');
         }else{
             if (Auth::check()) {
-                return view('frontend.payment');
+                $cart = Cart::content();
+                $list_cart = [];
+                foreach ($cart as $item) {
+                    $list_cart[] = $item->id;
+                }
+
+                $items = Course::whereIn('cou_id', $list_cart)->get();
+                $total = 0;
+                $total_old = 0;
+                foreach ($items as $item) {
+                    $total += $item->cou_price;
+                    if ($item->cou_price_old != 0) {
+                        $total_old += $item->cou_price_old;
+                    }
+                    else{
+                        $total_old += $item->cou_price;
+                    }
+                    foreach ($cart as $cart_item) {
+                        if ($item->cou_id == $cart_item->id) {
+                            $item->cou_row_id = $cart_item->rowId;
+                        }
+                    }
+                }
+                if ($total_old == 0) {
+                    $total_old = 1;
+                    return redirect('/')->with('error', 'Giỏ hàng của bạn không có gì');
+                }
+                $percent = ($total/$total_old)*100;
+
+                $data['items'] = $items;
+                $data = [
+                    'items' => $items,
+                    'total' => $total,
+                    'total_old' => $total_old,
+                    'percent' => $percent
+                ];
+                // dd($items);
+                return view('frontend.cart.payment', $data);
             }
             else{
                 return redirect('cart/login');
@@ -545,7 +590,7 @@ class CartController extends Controller
                     $message->subject('Thanh toán thành công CEDU');
                 });
                 Cart::destroy();
-                return view('frontend.complete');
+                return view('frontend.cart.complete');
                 
             }else{
                 return redirect('errors');
@@ -562,7 +607,7 @@ class CartController extends Controller
             $message->to($email, $email)->subject('Thanh toán trực tiếp lại công ty CEDU');
             // $message->cc('thongminh.depzai@gmail.com', 'boss');
         });
-        return view('frontend.complete');
+        return view('frontend.cart.complete');
     }
     
 }
