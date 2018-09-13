@@ -1,0 +1,40 @@
+.main_body{
+	padding-top: 50px;
+	overflow: hidden;
+	margin-bottom: 100px;
+}
+.comMain{
+	max-width: 1000px;
+	padding: 70px 100px;
+	margin: auto;
+	border-radius: 10px;
+	border: 1px solid #c4c4c4;
+}
+.comMain h1{
+	font-size: 48px;
+	font-weight: bold;
+	color: #2D317F;
+	margin: 0;
+	margin-bottom: 30px;
+}
+.comMainContent{
+	font-size: 16px;
+	line-height: 25px;
+	font-weight: 500;
+	color: #999;
+	margin-bottom: 30px;
+
+}
+a.btnHome{
+	width: 225px;
+    height: 60px;
+    line-height: 60px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+    background: #FCC72E;
+    text-align: center;
+    display: block;
+    border-radius: 10px;
+    text-decoration: none;
+}

@@ -242,20 +242,28 @@ class CourseController extends Controller
                 if($code->code_status == 1){
                     // $data['course'] = Course::where('cou_slug',$slug)->first();
                     $data['part'] = $data['course']->part;
-
+                    $index_video = 0;
                     foreach ($data['part'] as $part) {
-                        foreach ($part->lesson as $index=>$lesson) {
+                        // dd($part->lesson);
+                        foreach ($part->lesson as $lesson) {
+
                             $check = DB::table('leaning')->where('account_id',$user->id)->where('lesson_id',$lesson->les_id)->first();
                             if($check) $lesson->check = $check->status;
                             else $lesson->check = 1;
-                            $data['listVideo'][$index] = $lesson;
+                            $data['listVideo'][$index_video] = $lesson;
+                            $index_video++;
+
                         }
+                        
                     }
+                    // dd($data['listVideo']);
                     if ($id < 0 || $id >= count($data['listVideo'])) {
                         return redirect('/')->with('error', 'Bài học không tồn tại');
                     }
                     else{
+
                         $data['video'] = $data['listVideo'][$id];
+                        
                     }
 
                     $leaning = DB::table('leaning')->where('account_id',$user->id)->where('lesson_id',$data['listVideo'][$id]->les_id)->first();

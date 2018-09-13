@@ -398,7 +398,7 @@ public function getAddCourse(){
         $lesson->les_name = $request->les_name;
         $lesson->les_slug = str_slug($request->les_name);
 
-        $lesson->les_video_duration = $request->duration;
+        
         $video = $request->file('file');
 
         if ($request->hasFile('file')) {
@@ -407,6 +407,7 @@ public function getAddCourse(){
             $lesson->les_link = $filename;
             $path = public_path().'/uploads/';
             $video->move($path, $filename);
+            $lesson->les_video_duration = $request->duration;
            
         }
         $lesson->save();

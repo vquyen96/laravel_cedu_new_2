@@ -66,3 +66,187 @@
 
 	flex: 1;
 }
+
+
+
+.loginRight{
+
+}
+.LoginRightPrice{
+	display: flex;
+	line-height: 36px;
+	margin-bottom: 30px;
+}
+.LoginRightPriceNew{
+	font-size: 36px;
+	font-weight: bold;
+	color: #666;
+	margin-right: 15px;
+}
+.LoginRightPriceOld{
+	font-size: 18px;
+	font-weight: 500;
+	color: #999;
+	margin-right: 15px;
+}
+.LoginRightPricePercent{
+	font-size: 18px;
+	font-weight: 500;
+	color: #999;
+	flex: 1;
+}
+
+.loginForm{
+	padding: 35px 50px;
+	border-radius: 10px;
+	border: 1px solid #c4c4c4 ;
+}
+.loginFormTitle{
+	font-size: 24px;
+	font-weight: bold;
+	color: #2D317F;
+	margin-bottom: 15px;
+}
+.loginFormSocial{
+	font-size: 16px;
+	font-weight: 500;
+	color: #999;
+	margin-bottom: 30px;
+}
+.loginFormSocial>a{
+	width: 26px;
+	height: 26px;
+	margin-left: 12px;
+	display: inline-block;
+}
+.loginFormSocial a img{
+	width: 100%;
+}
+
+.loginFormMain{
+
+}
+.inputTitle{
+	font-size: 16px;
+	font-weight: bold;
+	color: #666;
+	margin-bottom: 10px;
+}
+.inputContent{
+	margin-bottom: 40px;
+}
+.inputContent input{
+	height: 47px;
+	line-height: 47px;
+	background: #F2F2F2;
+	color: #999;
+	padding: 0 20px;
+	border-radius: 5px;
+	border: 0;
+	width: 100%;
+	outline: none;
+}
+.inputSubmit{
+
+}
+.inputSubmit input{
+	width: 225px;
+	height: 50px;
+	line-height: 50px;
+	background: #FCC72E;
+	color: #fff;
+	font-size: 18px;
+	font-weight: bold;
+	border-radius: 10px;
+	border: 0;
+	margin-bottom: 20px;
+}
+.formText{
+	margin-bottom: 12px;
+	color: #999;
+	font-size: 16px;
+}
+.formText a{
+	text-decoration: none;
+	color: #2D317F;
+	cursor: pointer;
+}
+
+.paymentRightShow{
+	height: 69px;
+	line-height: 69px;
+	background: rgba(45, 49, 127, 0.03);
+	font-size: 16px;
+	color: #666;
+	border-radius: 10px;
+	font-weight: bold;
+	margin-bottom: 20px;
+	padding: 0 30px;
+	cursor: pointer;
+}
+
+.paymentRightHide{
+	font-size: 16px;
+	margin-bottom: 40px;
+	padding: 25px 30px;
+	border-radius: 10px;
+	border: 1px solid #c4c4c4;
+	color: #999;
+	display: none;
+
+}
+.paymentRightHideTitle{
+	font-weight: bold;
+	color:  #2D317F;
+	margin-bottom: 20px;
+}
+.paymentRightHideText{
+	margin-bottom: 20px;
+	color: #999;
+}
+.paymentRightHideText em{
+	font-size: 14px;
+}
+.paymentRightHideText span{
+	color: #666;
+	font-weight: bold;
+
+	
+}
+.paymentRightHideBold{
+	margin-bottom: 10px;
+	font-weight: bold;
+	color: #666;
+}
+
+
+
+.buttonSubmit{
+	width: 225px;
+    height: 50px;
+    line-height: 50px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+    background: #FCC72E;
+    text-align: center;
+    display: block;
+    border-radius: 10px;
+    cursor: pointer;
+    border: none;
+}
+a.buttonSubmit{
+	text-decoration: none;
+	color: #fff;
+}
+.paymentRightHideText input{
+	height: 47px;
+	line-height: 47px;
+	background: #F2F2F2;
+	color: #999;
+	padding: 0 20px;
+	border-radius: 5px;
+	border: 0;
+	outline: none;	
+	flex: 1;
+}
