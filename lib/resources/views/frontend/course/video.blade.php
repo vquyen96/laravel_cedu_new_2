@@ -114,6 +114,10 @@
 								@foreach($item->lesson as $itemTiny)	
 									<a href="{{asset('courses/detail/'.$course->cou_slug.'.html/video/'.$video)}}" class="lessonMainVideoItem">
 										<div class="lessonMainVideoIcon">
+											<i class="fa fa-check{{$itemTiny->check == 2 ? '-double' : ''}}"></i>
+										</div>
+
+										<div class="lessonMainVideoIcon">
 											<i class="fas fa-video"></i>
 										</div>
 										<div class="lessonMainVideoTitle">

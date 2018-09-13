@@ -227,7 +227,7 @@ class CourseController extends Controller
 
     public function getVideo($slug, $id){
         $data['course'] = Course::where('cou_slug',$slug)->first();
-        
+        $user = Auth::user();
         if(Auth::check()){
             $acc = Account::where('id',Auth::user()->id)->first();
             $orderDe_id = null;
@@ -242,10 +242,13 @@ class CourseController extends Controller
                 if($code->code_status == 1){
                     // $data['course'] = Course::where('cou_slug',$slug)->first();
                     $data['part'] = $data['course']->part;
-                    
+
                     foreach ($data['part'] as $part) {
                         foreach ($part->lesson as $index=>$lesson) {
-                           $data['listVideo'][$index] = $lesson;
+                            $check = DB::table('leaning')->where('account_id',$user->id)->where('lesson_id',$lesson->les_id)->first();
+                            if($check) $lesson->check = $check->status;
+                            else $lesson->check = 1;
+                            $data['listVideo'][$index] = $lesson;
                         }
                     }
                     if ($id < 0 || $id >= count($data['listVideo'])) {
@@ -255,7 +258,6 @@ class CourseController extends Controller
                         $data['video'] = $data['listVideo'][$id];
                     }
 
-                    $user = Auth::user();
                     $leaning = DB::table('leaning')->where('account_id',$user->id)->where('lesson_id',$data['listVideo'][$id]->les_id)->first();
 
                     $data['leaning'] = $leaning;
