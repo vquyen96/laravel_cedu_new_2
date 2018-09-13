@@ -65,13 +65,21 @@
 				<div class="courseHeadVideo">
 					<script src="http://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
 					<video id="my-video" class="video-js" controls preload="auto"
-				  poster="img/poster.png" data-setup="{}"  src="">
+				  poster="img/poster.png">
 					    <source src="{{ asset('lib/public/uploads/'.$video->les_link) }}" type='video/webm'>
 					    <p class="vjs-no-js">
 					      	<a href="{{ asset('') }}" target="_blank"></a>
 					    </p>
 				 	</video>
 				</div>
+				@if($leaning)
+					@if($leaning->status == 1)
+						<p style="font-style: italic;color: red"><b>Bạn đang xem ở {{gmdate('H:i:s',$leaning->time_in_video)}}</b></p>
+					@else
+						<p style="font-style: italic;color: red"><b>Bạn đang xem hết video</b></p>
+					@endif
+				@endif
+				<input id="lesson-id" value="{{$video->les_id}}" class="d-none">
 			</div>
 		</div>
 		<div class="row">
@@ -105,6 +113,10 @@
 							<div class="lessonMainVideo">
 								@foreach($item->lesson as $itemTiny)	
 									<a href="{{asset('courses/detail/'.$course->cou_slug.'.html/video/'.$video)}}" class="lessonMainVideoItem">
+										<div class="lessonMainVideoIcon">
+											<i class="fa fa-check{{$itemTiny->check == 2 ? '-double' : ''}}"></i>
+										</div>
+
 										<div class="lessonMainVideoIcon">
 											<i class="fas fa-video"></i>
 										</div>
@@ -202,7 +214,7 @@
 									<div class="rateMainItemContentBody">
 										{{ $item->rat_content }}
 									</div>
-										
+
 								</div>
 							</div>
 						@endforeach
@@ -274,6 +286,43 @@
 </div>
 @stop
 @section('script')
+	@if(isset($leaning->time_in_video) && $leaning->time_in_video != 0)
+		<script>
+            $(window).on('load', function () {
+                var check =  confirm("Bạn đang xem ở {{gmdate('H:i:s',$leaning->time_in_video)}}, bạn có muốn xem tiếp?");
+                if(check){
+                    var vid = document.getElementById("my-video");
+                    vid.currentTime = {{$leaning->time_in_video}};
+                }
+            });
+		</script>
+	@endif
 	<script src="js/plugins/video.js"></script>
 	<script type="text/javascript" src="js/courses/detail.js"></script>
+
+	<script >
+
+        function end() {
+            var url = $('.currentUrl').text();
+            var vid = document.getElementById("my-video");
+            var current_time = vid.currentTime;
+            var les_id = $('#lesson-id').val();
+
+            $.ajax({
+                method: 'POST',
+                async: false,
+                url: url + 'courses/time_lession/update_time_les',
+                data: {
+                    '_token': $('meta[name="csrf-token"]').attr('content'),
+                    'les_id': les_id,
+                    'current_time' : current_time
+                },
+                success: function () {},
+                error: function () {}
+            });
+            return false;
+        }
+
+        // $(document).ready(start());
+	</script>
 @stop

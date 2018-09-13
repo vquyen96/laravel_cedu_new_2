@@ -110,7 +110,7 @@
 									</div>
 								</div>
 								<div class="lessonMainVideo">
-									@foreach($item->lesson as $itemTiny)	
+									@foreach($item->lesson as $itemTiny)
 										<a {{ isset($active) ? 'href='.asset('courses/detail/'.$course->cou_slug.'.html/video/'.$video) : '' }} class="lessonMainVideoItem">
 											<div class="lessonMainVideoIcon">
 												<i class="fas fa-video"></i>
