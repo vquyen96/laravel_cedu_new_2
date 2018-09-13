@@ -286,10 +286,22 @@
 </div>
 @stop
 @section('script')
+	@if(isset($leaning->time_in_video) && $leaning->time_in_video != 0)
+		<script>
+            $(window).on('load', function () {
+                var check =  confirm("Bạn đang xem ở {{gmdate('H:i:s',$leaning->time_in_video)}}, bạn có muốn xem tiếp?");
+                if(check){
+                    var vid = document.getElementById("my-video");
+                    vid.currentTime = {{$leaning->time_in_video}};
+                }
+            });
+		</script>
+	@endif
 	<script src="js/plugins/video.js"></script>
 	<script type="text/javascript" src="js/courses/detail.js"></script>
 
 	<script >
+
         function end() {
             var url = $('.currentUrl').text();
             var vid = document.getElementById("my-video");
