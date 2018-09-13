@@ -36,7 +36,7 @@
 					</div>
 				</div>
 				<div class="col-md-4 col-sm-4 col-12">
-					<a href="{{asset('teacher/addcourse')}}" class="add-course">
+					<a href="{{asset('teacher/add')}}" class="add-course">
 						<p>Thêm khóa học mới</p>
 					</a>
 				</div>

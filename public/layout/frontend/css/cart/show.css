@@ -1,0 +1,154 @@
+.main_body{
+	padding-top: 50px;
+	overflow: hidden;
+	margin-bottom: 100px;
+}
+.title{
+	margin-bottom: 50px;
+}
+.title h1{
+	font-size: 48px;
+	font-weight: bold;
+	color: #2D317F;
+	margin: 0;
+	margin-bottom: 25px;
+}
+.title .title_num_cart{
+	font-size: 24px;
+	font-weight: bold;
+	color: #999;
+}
+.title .title_content{
+	font-size: 16px;
+	font-weight: 500;
+	color: #999;
+}
+
+.cart{
+
+}
+.cart_item{
+	display: flex;
+	margin-bottom: 50px;
+}
+.cart_item_left{
+	width: 150px;
+	flex-shrink: 0;
+	margin-right: 25px;
+}
+.cart_item_ava{
+	border-radius: 10px;
+	overflow: hidden;
+}
+.cart_item_ava:after{
+	content: '';
+	display: block;
+	padding-top: 72%;
+}
+
+
+.cart_item_right{
+
+}
+.cart_item_name{
+	font-size: 16px;
+	font-weight: bold;
+	color: #666;
+	margin-bottom: 20px;
+}
+.cart_item_content{
+	display: flex;
+	line-height: 38px;
+}
+.cart_item_remove{
+	margin-right: 20px;
+	padding: 0 10px;
+	color: #c4c4c4;
+	font-size: 14px;
+}
+.cart_item_oldprice{
+	font-size: 14px;
+	font-weight: 500;
+	color: #999;
+	margin-right: 10px;
+}
+.cart_item_price{
+	font-size: 24px;
+	font-weight: bold;
+	color: #2D317F;
+
+	flex: 1;
+}
+
+.cartRight{
+	margin-top: 125px;
+	border-radius: 10px;
+	border: 1px solid #999;
+	padding: 35px 25px;
+}
+.cartTotalTitle{
+	font-size: 16px;
+	font-weight: bold;
+	color: #2D317F;
+	margin-bottom: 15px;
+}
+.cartTotalPrice{
+	font-size: 48px;
+	font-weight: bold;
+	color: #666;
+	margin-bottom: 5px;
+}
+.cartTotalPriceOld{
+	font-size: 18px;
+	font-weight: 500;
+	color: #999;
+}
+.cartTotalPercent{
+	font-size: 18px;
+	font-weight: 500;
+	color: #999;
+	margin-bottom: 16px;
+}
+
+.saleCode{
+	margin-bottom: 25px;
+	display: flex;
+}
+.saleCode input{
+	border-radius: 10px;
+	height: 40px;
+	line-height: 40px;
+	outline: none;
+}
+.saleCode input[type=text]{
+	border: 1px solid #c4c4c4;
+	flex: 1;
+	padding: 0 15px;
+	margin-right: 5px;
+
+}
+.saleCode input[type=submit]{
+	background: #FCC72E;
+	color: #fff;
+	font-weight: bold;
+	border: 0;
+	width: 91px;
+	flex-shrink: 0;
+	text-align: center;
+}
+.btnPayment{
+
+}
+.btnPayment a{
+	width: 100%;
+	height: 60px;
+	line-height: 60px;
+	font-size: 18px;
+	font-weight: bold;
+	color: #fff;
+	background: #FCC72E;
+	text-align: center;
+	display: block;
+	border-radius: 10px;
+	text-decoration: none;
+}

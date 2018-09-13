@@ -248,6 +248,7 @@ Route::group(['namespace'=>'Frontend'],function(){
 		Route::get('history','AffController@getHistory');
 		Route::get('dashboard', 'AffController@getDashboard');
 		Route::get('share/{slug}','AffController@getShare');
+		Route::post('acc_req','AffController@postReq');
 	});
 
 
@@ -292,7 +293,7 @@ Route::group(['namespace'=>'Frontend'],function(){
 		Route::post('editdoc/{id}','TeacherController@editDoc');
 
 		Route::post('group_child_from', 'TeacherController@get_group_child_form');
-		
+		Route::post('acc_req','TeacherController@postReq');
 
 	});
 	Route::group(['prefix' => 'teacher'], function(){
@@ -364,6 +365,7 @@ Route::group(['namespace'=>'Frontend'],function(){
 
 	// });
 	Route::get('noti_seen/{id}', 'NotiControlle@getSeen');
+
 	Route::group(['prefix'=>'cart'],function(){
 		Route::get('/','CartController@getPayment');
 		Route::post('/','CartController@postPayment');
@@ -372,9 +374,6 @@ Route::group(['namespace'=>'Frontend'],function(){
 
 		Route::get('add/{slug}','CartController@getAddCart');
 		Route::get('buy/{slug}','CartController@getBuyNow');
-
-		Route::get('show', 'CartController@getShowCart');
-		Route::post('show', 'CartController@postComplete');
 
 		Route::get('show', 'CartController@getShowCart');
 		Route::post('show', 'CartController@postComplete');

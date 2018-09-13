@@ -51,13 +51,21 @@
                             Tổng thu nhập
                         </div>
                         <div class="mainBodyItemMainAmount">
-                            {{ number_format($total_amount, 0, ',', '.') }} vnđ
+                            {{ number_format(aff_profit($total_amount), 0, ',', '.') }} vnđ
                         </div>
                         <div class="mainBodyItemMainTitle">
                             Số dư
                         </div>
                         <div class="mainBodyItemMainAmount">
-                            4.300.000 vnđ
+                            {{ number_format(aff_profit($total_amount)-Auth::user()->withdrawn, 0, ',', '.') }} vnđ
+                            <div class="mainBodyItemMainReq">
+                                <form method="post" action="{{ asset('aff/acc_req') }}" id="acc_req">
+                                    {{ csrf_field() }}
+                                    <input type="text" name="acc_id" class="d-none" value="{{ Auth::user()->id }}">
+                                    <input type="text" name="amount" class="d-none" value="{{ aff_profit($total_amount)-Auth::user()->withdrawn }}">
+                                    <input type="submit" name="sbm" value="Rút tiền" class="btnSubmitAccReq">
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>

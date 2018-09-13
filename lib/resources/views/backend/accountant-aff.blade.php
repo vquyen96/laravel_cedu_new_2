@@ -65,7 +65,8 @@
 					<b style="color: #e33;">{{number_format($total,0,',','.')}} VND<b>
 				</td>
 				<td>
-					{{time_format($item->aff->created_at)}}
+
+					{{ $item->aff != null ? time_format($item->aff->created_at) : ''}}
 				</td>
 				<td>
 					<a href="{{asset('admin/affiliate/detail/'.$item->id)}}" class="btn btn-primary">Chi tiết</a>

@@ -61,6 +61,21 @@ a.titleBtn{
 	color: #666;
 	white-space: nowrap;
 	margin-bottom: 40px;
+	position: relative;
+}
+.mainBodyItemMainReq{
+	position: absolute;
+    bottom: 0;
+    right: 0;
+}
+.btnSubmitAccReq{
+	font-size: 18px;
+    line-height: 29px;
+    padding: 10px 26px;
+    background: #FCC72E;
+    border: 0;
+    border-radius: 10px;
+    color: #fff;
 }
 
 

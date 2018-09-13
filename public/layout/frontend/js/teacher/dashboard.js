@@ -62,6 +62,14 @@ $(document).ready(function(){
     $('.btndropdown').click(function(){
     	$('.dropdownHide').slideToggle(100);
     });
+
+
+
+    $("form#acc_req").one("submit", function(){
+    	$('.btnSubmitAccReq').prop('disabled', true);
+    });
+
+	
 });
 
 

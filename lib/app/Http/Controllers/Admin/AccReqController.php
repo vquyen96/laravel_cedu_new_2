@@ -45,8 +45,6 @@ class AccReqController extends Controller
 
 			return back()->with('error', 'Bạn đã gửi yêu cầu rút tiền rồi');
 		}
-
-			
 	}
 
 	public function getAccept($id_acc_req){

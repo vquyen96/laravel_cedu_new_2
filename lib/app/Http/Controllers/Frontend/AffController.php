@@ -8,6 +8,8 @@ use App\Models\Account;
 use App\Models\Aff;
 use App\Models\OrderDetail;
 use App\Models\Course;
+use App\Models\Account_Request;
+use Mail;
 use Auth;
 use DateTime;
 use Hash;
@@ -92,6 +94,40 @@ class AffController extends Controller
         else{
             return redirect('');
             
+        }
+    }
+
+    public function postReq(Request $request){
+        $acc_req = Account_Request::where('req_acc_id', $request->acc_id)->orderBy('created_at','desc')->first();
+        $date = new DateTime();
+        $date = strtotime(date_format($date,"Y-m-d h:m:s"));
+        $time = 0;
+        if ($acc_req != null) {
+            $time = strtotime(date_format($acc_req->created_at,"Y-m-d h:m:s"));
+        }
+
+        if ($request->amount > 0 || $acc_req == null) {
+            $acc_req = new Account_Request;
+            $acc_req->req_status = 1;
+            $acc_req->req_acc_id = $request->acc_id;
+            $acc_req->req_amount = $request->amount;
+            $acc_req->save();
+            sleep(1);
+            $acc = Account::find(Auth::user()->id);
+            $acc->withdrawn +=  $request->amount;
+            $acc->save();
+            $email = Auth::user()->email;
+            $data['acc_req'] = $acc_req;
+            Mail::send('frontend.emailAccountRequest', $data, function($message) use ($email){
+                $message->from('info@ceduvn.com', 'Ceduvn');
+                $message->to($email, $email);
+                $message->subject('Thư thông báo rút tiền CEDU');
+            });
+            return back()->with('success', 'Gửi yêu cầu rút tiền thành công');
+        }
+        else{
+
+            return back()->with('error', 'Số tiền của bạn không đủ');
         }
     }
 }

@@ -533,15 +533,15 @@ window.onload = function () {
 			dataPoints: [
 				
 				<?php $total = $chartOrderDe->count();?>
-			 	@for ($i = 0; $i < $group->count(); $i++)
+			 	@for ($i = 0; $i < $groups->count(); $i++)
 			 		<?php $count = 0;?>
 		 			@foreach ($chartOrderDe as $item)
-		 				@if ($item->course->group->gr_id == $group[$i]->gr_id )
+		 				@if ($item->course->group->gr_id == $groups[$i]->gr_id )
 		 					<?php $count++ ?>
 		 				@endif
 		 			@endforeach
 		 			@if ($count != 0)
-		 				{ y: {{($count/$total)*100}}, label: "{{$group[$i]->gr_name}}"},
+		 				{ y: {{($count/$total)*100}}, label: "{{$groups[$i]->gr_name}}"},
 		 			@endif
 		 		@endfor	
 			]
@@ -667,7 +667,7 @@ window.onload = function () {
 			type: "bar",
 			toolTipContent: "<img src='{{ asset('lib/storage/app/group') }}'/{url}' style='width:40px; height:20px;'> <b>{label}</b><br>Có {y} khóa<br>Chiếm {gdp}%",
 			dataPoints: [
-				@foreach ($group as $gr)
+				@foreach ($groups as $gr)
 					<?php $count = 0;?>
 		 			@foreach ($course as $item)
 		 				@if ($item->group->gr_id == $gr->gr_id )

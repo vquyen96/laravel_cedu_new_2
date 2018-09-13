@@ -1,8 +1,8 @@
 @extends('frontend.master')
-@section('title','Thông tin cá nhân')
-@section('fb_title','Top khóa học hàng đầu')
+@section('title','Thống kê')
+@section('fb_title', Auth::user()->fullname)
 @section('fb_description','Nơi cung cấp cho bạn những khóa học tốt nhất, rẻ nhất. Tạo lên một môi trường học tập trên cuộc cách mạng công nghệ 4.0')
-@section('fb_image',asset('public/layout/frontend/img/dayne-topkin-60559-unsplash.png'))
+@section('fb_image',asset('lib/storage/app/avatar/'.Auth::user()->img))
 @section('main')
 	<link rel="stylesheet" type="text/css" href="css/teacher/dashboard.css">
 
@@ -59,9 +59,18 @@
 							Số dư
 						</div>
 						<div class="mainBodyItemMainAmount">
-							{{ number_format($total_amount - $teacher->acc->withdraw, 0, ',', '.') }} vnđ
+							{{ number_format($total_amount - $teacher->acc->withdrawn, 0, ',', '.') }} vnđ
+							<div class="mainBodyItemMainReq">
+								<form method="post" action="{{ asset('teacher/acc_req') }}" id="acc_req">
+									{{ csrf_field() }}
+									<input type="text" name="acc_id" class="d-none" value="{{ Auth::user()->id }}">
+									<input type="text" name="amount" class="d-none" value="{{ $total_amount - $teacher->acc->withdrawn }}">
+									<input type="submit" name="sbm" value="Rút tiền" class="btnSubmitAccReq">
+								</form>
+							</div>
 						</div>
-					</div>
+						
+					</div> 
 				</div>
 				<div class="col-md-3">
 					<div class="mainBodyItemMain">

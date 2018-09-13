@@ -34,4 +34,15 @@ class Controller extends BaseController
         }
 
     }
+
+    public static function recusiveGroup($data,$parent_id = 0,$text = "",&$result){
+        foreach ($data as $key => $item){
+            if($item->gr_parent_id == $parent_id){
+                $item->gr_name = $text.$item->gr_name;
+                $result [] = $item;
+                unset($data[$key]);
+                self::recusiveGroup($data,$item->gr_id,$text."--",$result);
+            }
+        }
+    }
 }

@@ -112,4 +112,9 @@ class HomeController extends Controller
         // dd($view);
         return response($view, 200);
     }
+
+
+
+
+    
 }

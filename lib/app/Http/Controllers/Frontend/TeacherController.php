@@ -13,12 +13,15 @@ use App\Models\Teacher_Rating;
 use App\Models\Lesson;
 use App\Models\Part;
 use App\Models\Doc;
+use App\Models\Account_Request;
+
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\View;
 
 use Auth;
 use DateTime;
 use File;
+use Mail;
 use Illuminate\Support\Facades\Storage;
 
 class TeacherController extends Controller
@@ -274,6 +277,10 @@ public function getAddCourse(){
     //     $part->save();
     // }
     $acc= Account::find(Auth::user()->id);
+    $list_group = Group::get()->toArray();
+    // if (count($list_group)) $this->recusiveGroup($list_group,0,"",$result);
+    // else $result = [];
+    // $data['list_gr'] = $result;
     $data['user'] = $acc;
     $data['course'] = (object)[
         'cou_id' => '',
@@ -479,5 +486,39 @@ public function getAddCourse(){
         $view = View::make('frontend.teacher.group_form',$data)->render();
         return response($view, 200);
        
+    }
+
+    public function postReq(Request $request){
+        $acc_req = Account_Request::where('req_acc_id', $request->acc_id)->orderBy('created_at','desc')->first();
+        $date = new DateTime();
+        $date = strtotime(date_format($date,"Y-m-d h:m:s"));
+        $time = 0;
+        if ($acc_req != null) {
+            $time = strtotime(date_format($acc_req->created_at,"Y-m-d h:m:s"));
+        }
+
+        if ($request->amount > 0 || $acc_req == null) {
+            $acc_req = new Account_Request;
+            $acc_req->req_status = 1;
+            $acc_req->req_acc_id = $request->acc_id;
+            $acc_req->req_amount = $request->amount;
+            $acc_req->save();
+            sleep(1);
+            $acc = Account::find(Auth::user()->id);
+            $acc->withdrawn +=  $request->amount;
+            $acc->save();
+            $email = Auth::user()->email;
+            $data['acc_req'] = $acc_req;
+            Mail::send('frontend.emailAccountRequest', $data, function($message) use ($email){
+                $message->from('info@ceduvn.com', 'Ceduvn');
+                $message->to($email, $email);
+                $message->subject('Thư thông báo rút tiền CEDU');
+            });
+            return back()->with('success', 'Gửi yêu cầu rút tiền thành công');
+        }
+        else{
+
+            return back()->with('error', 'Số tiền của bạn không đủ');
+        }
     }
 }
