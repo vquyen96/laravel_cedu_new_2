@@ -62,9 +62,9 @@
 								@endfor
 							</div>
 							<p>{{$item->cou_video}} bài 
-								<i class="fas fa-circle"></i> 124 giờ 
+								<i class="fas fa-circle"></i> {{ gmdate("H:m", $item->cou_video_duration)}} giờ 
 								<i class="fas fa-circle"></i> {{time_format($item->updated_at)}} 
-								<i class="fas fa-circle"></i> Tất cả các trình độ
+								<i class="fas fa-circle"></i> {{ level_format($item->cou_level) }}
 							</p>
 						</div>
 						<div class="price">

@@ -32,6 +32,7 @@
 							<thead>
 								<tr>
 									<th><p class="tieu-de">#</p></th>
+									<th><p class="tieu-de">Học sinh</p></th>
 									<th><p class="tieu-de">Avatar</p></th>
 									<th><p class="tieu-de">Tên khóa học</p></th>
 									<th><p class="tieu-de">Giá</p></th>
@@ -46,6 +47,7 @@
 									<td>
 										<p>{{$key+1}}</p>
 									</td>
+									<td>{{ $item->order->acc->name }}</td>
 									<td>
 										<div class="image" style="background: url('{{asset('lib/storage/app/course/resized-'.$item->course->cou_img)}}') no-repeat center /cover;">
 											
@@ -61,7 +63,7 @@
 										<p>@if($item->order->ord_status == 0) Xong @else Chưa @endif</p>
 									</td>
 									<td>
-										<p>{{$item->created_at->format('d-m-Y')}}</p>
+										<p class="nowrap">{{$item->created_at->format('d-m-Y')}}</p>
 									</td>
 								</tr>
 								@endforeach

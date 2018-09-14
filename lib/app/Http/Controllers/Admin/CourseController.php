@@ -53,6 +53,7 @@ class CourseController extends Controller
         if (Auth::user()->level == 7) {
             $cou->cou_sale = 0;
             $cou->cou_student = 0;
+            $cou->cou_student_fake = 0;
         	$cou->cou_tea_id = Auth::user()->id;
             $cou->cou_status = 0;
         }
@@ -135,7 +136,7 @@ class CourseController extends Controller
                 $cou->cou_sale = $request->cou_sale;
                 $cou->cou_price_old = $request->cou_price_old;
             }
-            $cou->cou_student = $request->cou_student;
+            $cou->cou_student_fake = $request->cou_student;
             $cou->cou_tea_id = $request->cou_tea_id;
         }
         $cou->save();

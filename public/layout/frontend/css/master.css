@@ -11,14 +11,18 @@
 
 .masterError{
 	position: fixed;
-	z-index: 9;
-	width: 100%;
-	top: 10px;
-	left: 0;
+    z-index: 9;
+    width: 30%;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
 }
 .masterErrorContent{
-	width: 30%;
-	margin: auto;
+	width: 100%;
+    margin: auto;
+    font-weight: 600;
+    color: #c4c4c4;
+    text-align: center;
 	
 }
 .loadingPage{
