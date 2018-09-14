@@ -32,6 +32,21 @@
 							<a href="{{ $teacher->teacher->tea_gg != null ? $teacher->teacher->tea_gg : asset('') }}" class="icon" target="blank"><i class="fab fa-google-plus-g"></i></a>
 							<a href="{{ $teacher->teacher->tea_yt != null ? $teacher->teacher->tea_yt : asset('') }}" class="icon" target="blank"><i class="fab fa-youtube"></i></a>
 						</div>
+						<div class="rate">
+							@if($rate != null)
+								@for($i=0;$i<5;$i++)
+									<a href="{{ asset('teacher/'.$teacher->email.'/'.($i+1)) }}">
+										<i class="fa fa-star {{ $rate->tr_rate > $i ? 'starActive' : ''}}" aria-hidden="true"></i>
+									</a>
+								@endfor
+							@else
+								@for($i=0;$i<5;$i++)
+									<a href="{{ asset('teacher/'.$teacher->email.'/'.($i+1)) }}">
+										<i class="fa fa-star {{ $teacher->teacher->tea_rating > $i ? 'starActive' : ''}}" aria-hidden="true"></i>
+									</a>
+								@endfor
+							@endif
+						</div>
 					</div>
 				</div>
 				<div class="col-md-8 col-sm-8 col-12">
@@ -91,5 +106,5 @@
 	</section>
 @stop
 @section('script')
-
+	<script type="text/javascript" src="js/teacher/profile.js"></script>
 @stop

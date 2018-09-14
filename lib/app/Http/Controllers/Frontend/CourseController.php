@@ -69,26 +69,49 @@ class CourseController extends Controller
         if (Auth::check() && Auth::user()->level == 8) {
             return redirect('aff/share/'.$slug);
         }
-    	$data['course'] = Course::where('cou_slug',$slug)->first();
-        $course_relate = $data['course']->group->course;
-
-        $list_cou_ids = [];
-        foreach ($course_relate as $item) {
-            if ($data['course']->cou_id != $item->cou_id) {
-                $list_cou_ids[] = $item->cou_id;
-            }
-            
+    	$cou = Course::where('cou_slug',$slug)->first();
+        if ($cou == null) {
+            return redirect('teacher/courses');
         }
+        // dd($cou);
+        $gr_child = [];
+        if ($cou->group->gr_parent_id == 0) {
+            $cou->cou_gr_child_id = null;
+            $cou->cou_gr_name = $cou->group->gr_name;
+        }
+        else{
+            $cou->cou_gr_child_id = $cou->cou_gr_id;
+            $cou->cou_gr_child_name = Group::find($cou->cou_gr_child_id)->gr_name;
 
-        $data['course_relate'] = Course::whereIn('cou_id', $list_cou_ids)->inRandomOrder()->take(3)->get();
+            $cou->cou_gr_id = $cou->group->gr_parent_id;
+            $cou->cou_gr_name = Group::find($cou->cou_gr_id)->gr_name;
+            $gr_child = Group::where('gr_parent_id', $cou->group->gr_parent_id)->get();
+        }
+        $list_gr_child = Group::where('gr_parent_id', $cou->cou_gr_id )->get(['gr_id'])->toArray();
+        $list_gr_child = array_column(json_decode(json_encode($list_gr_child),true),'gr_id');
+        $list_gr_child = array_merge($list_gr_child,[$cou->cou_gr_id]);
+        
+        // $group = Group::find($cou->cou_gr_id);
+        
+        // $course_relate = $group->course;
+        
+        // $list_cou_ids = [];
+        // foreach ($course_relate as $item) {
+        //     if ($cou->cou_id != $item->cou_id) {
+        //         $list_cou_ids[] = $item->cou_id;
+        //     }
+        // }
+
+        $data['course_relate'] = Course::whereIn('cou_gr_id', $list_gr_child)->inRandomOrder()->take(3)->get();
 
         // dd($data['course_relate']);
-        if ($data['course']->cou_status == 1) {
+        $data['course'] = $cou;
+        if ($cou->cou_status == 1) {
             if(Auth::check()){
                 $data['acc'] = Account::where('id', Auth::user()->id)->where('level', 8)->first();
                 $orderDe_id = 0;
                 $code = 0;
-                foreach ($data['course']->orderDe as $item) {
+                foreach ($cou->orderDe as $item) {
                     if ($item->order != null && $item->order->ord_acc_id == Auth::user()->id) {
                         $orderDe_id = $item->orderDe_id;
                     }

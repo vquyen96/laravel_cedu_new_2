@@ -42,7 +42,12 @@
 							<img id="avatarImg" class="cssInput" src="{{asset('lib/storage/app/avatar/'.Auth::user()->img)}}">
 						</div>
 						<div class="profileLeftButton">
-							Chọn ảnh đại diện
+							<div class="buttonChangeAva">
+								Chọn ảnh đại diện
+							</div>
+							<div class="buttonSaveAva">
+								Lưu
+							</div>
 						</div>
 					</div> 
 				</div>
@@ -59,6 +64,20 @@
 								<i class="fas fa-ban"></i>
 							</div>
 						</div>
+						@if (Auth::user()->level == 8)
+							<div class="form_group">
+								<label>Mã giới thiệu</label>
+								<div class="form_item">
+									<div class="inputText">
+										{{ $user->aff->aff_code }}
+									</div>
+									<div class="inputMain">
+										<input type="text" name="" class="inputProfile" value="{{ $user->aff->aff_code }}" disabled>
+									</div>
+								</div>
+							</div>
+						@endif
+							
 						<form method="post" enctype="multipart/form-data">
 							{{ csrf_field() }}
 							<div class="form_group">
@@ -159,15 +178,19 @@
 	            reader.onload = function(e){
 	                //Thay đổi đường dẫn ảnh
 	                $('#avatarImg').attr('src',e.target.result);
+	                $('.buttonSaveAva').show();
 	            }
 	            reader.readAsDataURL(input.files[0]);
 	        }
 	    }
 	    $(document).ready(function() {
-	        $('.profileLeftButton').click(function(){
+	        $('.buttonChangeAva').click(function(){
 	            $('#img').click();
 	        });
-	        
+	        $('.buttonSaveAva').click(function(){
+	        	// $('.btnSubmit').prop('disabled', true);
+	        	$('.btnSubmit').click();
+	        });
 	    });
 	</script>
 @stop

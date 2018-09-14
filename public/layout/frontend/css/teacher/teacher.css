@@ -7,9 +7,9 @@
 	margin-top: 85px;
 }
 .img{
-	
 	width: 100%;
 	border-radius: 10px;
+	margin-bottom: 30px;
 }
 .img:after{
 	content: '';
@@ -18,7 +18,7 @@
 }
 .contact{
 	text-align: center;
-	margin-top: 30px;
+	margin-bottom: 30px;
 }
 a.icon{
 	text-decoration: none;
@@ -38,6 +38,21 @@ a.icon{
 .contact .fab{
 	color: #fff;
 	line-height: 42px;
+}
+.rate{
+	display: flex;
+
+}
+.rate a{
+	flex: 1;
+	text-align: center;
+	font-size: 50px;
+	color: #c4c4c4;
+	text-decoration: none;
+
+}
+.rate a:hover{
+	color: #FCC72E;
 }	
 #profile h1{
 	font-size: 48px;

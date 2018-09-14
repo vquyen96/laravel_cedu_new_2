@@ -638,6 +638,9 @@ a.courseRelateItemCart{
 	display: flex;
 	margin-bottom: 20px;
 }
+.courseTagContentCode:first-child{
+	margin-bottom: 10px;
+}
 .courseTagContentCode input{
 	height: 40px;
 	line-height: 40px;
@@ -649,7 +652,6 @@ a.courseRelateItemCart{
 	border-radius: 10px;
 	outline: none;
 	font-weight: bold;
-
 }
 
 .courseTagContentCode input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
@@ -663,11 +665,15 @@ a.courseRelateItemCart{
 .courseTagContentCode input::-ms-input-placeholder { /* Microsoft Edge */
     color: #999999;
 }
+.courseTagContentCode:first-child button{
+	margin-bottom: 10px;
+	background: #FCC72E;
+}
 .courseTagContentCode button{
 	height: 40px;
 	line-height: 40px;
 	/*padding: 0 15px;*/
-	background: #FCC72E;
+	background: #2D317F;
 	color: #fff;
 	font-size: 14px;
 	font-weight: bold;
@@ -675,6 +681,9 @@ a.courseRelateItemCart{
 	border: 0;
 	margin-left: 5px;
 	outline: none;
+}
+.courseTagContentCode:last-child button{
+	
 }
 
 .courseTagContentMain{

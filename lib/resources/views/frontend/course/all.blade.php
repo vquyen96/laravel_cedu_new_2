@@ -102,11 +102,7 @@
 									
 									<div class="courseItemStar">
 										@for($i=0;$i<5;$i++)
-											@if($item->cou_star > $i)
-												<i class="fa fa-star starActive" aria-hidden="true"></i>
-											@else
-												<i class="fa fa-star" aria-hidden="true"></i>
-											@endif
+											<i class="fa fa-star {{ $item->cou_star > $i ? 'starActive' : ''}}" aria-hidden="true"></i>
 										@endfor
 									</div>
 								</div>

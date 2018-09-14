@@ -26,7 +26,7 @@ $(document).ready(function () {
 
     setTimeout(function(){
         $('.masterError').fadeOut();
-    },2000);
+    },4000);
 
 
 

@@ -102,6 +102,7 @@ public function getTeacher($email){
         }
     }
     $data['course'] = $courses;
+    // dd($data['teacher']->rate);
     return view('frontend.teacher.profile',$data);
 }
 
@@ -130,7 +131,7 @@ public function getTeacherRating($email ,$rate){
                 //Check xem người dùng đã đánh giá hay chưa ??
             if ($teacher_rating == null) {
                     //Tài khoản chưa đánh giá
-                $teacher_rating = new Teacher_Rating;
+                 $teacher_rating = new Teacher_Rating;
                 $teacher_rating->tr_rate = $rate;
                 $teacher_rating->tr_tea_id = $teacher->tea_id;
                 $teacher_rating->tr_acc_id = $account->id;
@@ -157,7 +158,7 @@ public function getTeacherRating($email ,$rate){
                 }
                 $teacher->tea_rating = $total_rate/count($teacher->rate);
                 $teacher->save();
-                return back();
+                return back()->with("success","Đánh giá thành công");;
             }
         }
         else{
