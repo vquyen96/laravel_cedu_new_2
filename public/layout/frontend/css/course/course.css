@@ -603,7 +603,7 @@ input[type='checkbox']:checked:after {
 		position: unset;
 	}
 	.courseItemRightSummary{
-		height: 75px;
+		height: unset;
 		text-align: justify;
 	}
 	.courseItemImg{
@@ -630,5 +630,12 @@ input[type='checkbox']:checked:after {
 	a.groupChildItemImg{
 		height: 40px;
 		line-height: 40px;
+	}
+	.flex-mobile{
+		display: flex;
+		flex-direction: column-reverse;
+	}
+	.main_body{
+		margin-bottom: 0;
 	}
 }

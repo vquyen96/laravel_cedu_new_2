@@ -108,4 +108,10 @@ a.number{
 	.selectGr select{
 		height: 40px;
 	}
+	#body{
+		margin-bottom: 0;
+	}
+	.main_body{
+		margin-bottom: 0;
+	}
 }
