@@ -121,9 +121,19 @@
 		@endif
 
 		@if (Auth::guest() || Auth::user()->level == 9)
-		<div class="headerRightItem cart" >
+		<div class="headerRightItem cart cart-hide" >
 			<a href="{{ asset('cart/show') }}">
 				<i class="fa fa-shopping-cart" aria-hidden="true"></i>
+			</a>
+			@if(Cart::count() > 0)
+			<div class="headerRightItemNum">
+				{{ Cart::count() }}
+			</div>
+			@endif
+		</div>
+		<div class="headerRightItem cart cart-mobile" >
+			<a href="{{ asset('cart/show') }}" >
+				Giỏ hàng
 			</a>
 			@if(Cart::count() > 0)
 			<div class="headerRightItemNum">

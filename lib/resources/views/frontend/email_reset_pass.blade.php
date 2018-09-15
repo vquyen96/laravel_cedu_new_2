@@ -5,8 +5,11 @@
 			<img src="{{asset('lib/storage/app/banner/logo.png')}}" style="width: 100%">
 		</div>
 		
-		<h3 style="text-align: center">Mã xác nhận của bạn</h3>
-		<h1 style="color: #f44; font-weight: bold; text-align: center;">{{$code}}</h1>
+		<h3 style="text-align: center">Link xác nhận của bạn</h3>
+
+		<a href="{{asset('forgot_pass/email/'.$email.'/'.$code)}}" style="display: block;width: 100px;line-height: 40px; color: #FCC72E;background: red;font-size: 16px;font-weight: bold;text-align: center;margin: auto;text-decoration: none;border-radius: 10px;">
+			Xác nhận
+		</a>
 		<div id="xac-nhan">
 			<br>
 			<p align="justify">

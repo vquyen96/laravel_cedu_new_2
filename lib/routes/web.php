@@ -308,8 +308,8 @@ Route::group(['namespace'=>'Frontend'],function(){
 	Route::group(['prefix'=>'forgot_pass'], function(){
 		Route::get('/','ForgotPass@getPage');
 		Route::post('/','ForgotPass@postPage');
-		Route::get('email/{email}','ForgotPass@sendEmail');
-		Route::post('email/{email}','ForgotPass@resetPass');
+		Route::get('email/{email}/{code}','ForgotPass@sendEmail');
+		Route::post('email/{email}/{code}','ForgotPass@resetPass');
 		
 	});
 	Route::group(['prefix'=>'rating'],function(){

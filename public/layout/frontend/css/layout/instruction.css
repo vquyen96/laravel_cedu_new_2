@@ -21,5 +21,9 @@ a.instruction_item{
     .instruction_body{
         padding: unset;
         padding-left: 15px;
+        overflow: auto;
+    }
+    a.instruction_item{
+        white-space: nowrap;
     }
 }

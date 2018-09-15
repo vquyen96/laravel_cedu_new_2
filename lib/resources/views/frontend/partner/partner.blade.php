@@ -4,7 +4,7 @@
 <link rel="stylesheet" type="text/css" href="css/partner/partner.css">
 <link rel="stylesheet" href="css/owlcarousel/owl.carousel.min.css">
 <link rel="stylesheet" href="css/owlcarousel/owl.theme.default.min.css">
-<section id="banner">
+<section id="banner" style="background: url('@if(isset($banner)) {{asset('lib/storage/app/banner/'.$banner->ban_img) }}@endif') no-repeat center/cover;">
 	<div class="container">
 		<div class="main-top">
 			<div class="heading">

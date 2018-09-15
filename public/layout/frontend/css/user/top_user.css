@@ -73,3 +73,30 @@ tbody p{
 #list{
 	margin-bottom: 40px;
 }
+@media screen and (max-width: 769px){
+	.main_body{
+		padding-top: 25px;
+	}
+	.heading h1 {
+		font-size: 36px;
+		line-height: 45px;
+		margin-bottom: 15px;
+	}
+	.main_body{
+		margin-bottom: 0;
+	}
+	#list{
+		padding: 15px;
+		padding-bottom: 0;
+		overflow: auto;
+	}
+	tbody p{
+		line-height: unset;
+	}
+	.table{
+		width: 500px;
+	}
+	#body{
+		margin: 15px 0;
+	}
+}

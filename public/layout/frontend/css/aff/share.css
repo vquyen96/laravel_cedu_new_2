@@ -176,3 +176,36 @@ a.courseItemRightTitle{
 	color: #C4C4C4;
 	font-size: 16px;
 }
+@media screen and (max-width: 768px){
+	.main_body{
+
+		padding-top: 25px;
+		margin-bottom: 25px;
+	}
+	.courseItemImg{
+		width: 100%;
+		height: 250px;
+	}
+	.courseItem{
+		display: unset;
+
+	}
+	.courseItemRightSummary,a.courseItemRightTitle{
+		height: unset;
+	}
+	.courseItemRightInfo{
+		margin-bottom: 10px;
+	}
+	.courseItemRight{
+		margin-top: 15px;
+	}
+	.courseItemRightPrice{
+		margin: 15px 0;
+	}
+	.courseItemStar{
+		bottom: 20px;
+	}
+	.getLink{
+		margin-top: 25px;
+	}
+}

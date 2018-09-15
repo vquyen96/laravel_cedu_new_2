@@ -34,7 +34,7 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-12">
+				<div class="col-xs-12">
 					<div class="courseItem">
 						<a href="{{ asset('courses/detail/'.$course->cou_slug.'.html') }}" class="courseItemImg" style="background: url('{{ asset('lib/storage/app/course/'.$course->cou_img) }}') no-repeat center /cover ;">
 							@if ($course->cou_sale != 0)

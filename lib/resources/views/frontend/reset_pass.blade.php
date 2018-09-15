@@ -4,7 +4,7 @@
 <link rel="stylesheet" type="text/css" href="css/code.css">
 <div class="container">
 	<form method="post" enctype="multipart/form-data">
-	<div class="row formCode" >
+	{{-- <div class="row formCode" >
 		<div class="col-md-12 col-sm-12">
 			<div class="code">
 				<h3>Mã Xác Nhận</h3>
@@ -16,7 +16,7 @@
 				<p><strong>Hotline: 1800 6886</strong></p>
 			</div>
 		</div>
-	</div>
+	</div> --}}
 	<div class="row formPass" >
 		<div class="col-md-12 col-sm-12">
 			<div class="code">
@@ -40,10 +40,7 @@
 @stop
 @section('script')
 <script type="text/javascript">
-	$(document).ready(function(){
-		localStorage.setItem('key', {{$code}});
-
-	});
+	
 	
 </script>
 <script type="text/javascript" src="js/code.js"></script>

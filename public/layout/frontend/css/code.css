@@ -99,9 +99,12 @@ h3{
     border: none;
     font-size: 22px;
 }
-.formPass{
-	display: none;
-}
+
 .formCode{
 	
+}
+@media screen and (max-width: 768px){
+    .code input[type=text]{
+        width: unset;
+    }
 }

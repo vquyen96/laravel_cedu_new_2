@@ -27,11 +27,9 @@ class HomeController extends Controller
 		$data['teacher'] = Teacher::orderBy('tea_featured','desc')->take(10)->get();
         // dd($data['teacher']);
 		// $data['courseFeatured'] = Course::orderBy('cou_featured','desc')->where('cou_status', '1')->paginate(21);
-        $data['bannerHead'] = Banner::where('ban_name', 'like', 'Banner Trang Chủ_Phía Trên')->get();
-        $data['bannerRight'] = Banner::where('ban_name', 'like', 'Banner Thân Trang Chủ Bên Phải')->get();
-        $data['bannerLeftTop'] = Banner::where('ban_name', 'like', 'Banner Thân Trang Chủ Bên Trái Phía Trên')->get();
-        $data['bannerLeftBot'] = Banner::where('ban_name', 'like',  'Banner Thân Trang Chủ Bên Trái Phía Dưới')->get();
+        $data['banner'] = Banner::where('ban_link', 'Banner trang chủ')->first();
         
+         
     	return view('frontend.index.home',$data);
     }
     public function getToHome(){

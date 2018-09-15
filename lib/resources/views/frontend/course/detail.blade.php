@@ -34,7 +34,7 @@
 </div>
 <div class="main_body">
 	<div class="container">
-		<div class="row">
+		<div class="row flex-mobile">
 			<div class="col-md-7 col-sm-7">
 				<div class="courseTitle">
 					<h1>{{ $course->cou_name }}</h1>

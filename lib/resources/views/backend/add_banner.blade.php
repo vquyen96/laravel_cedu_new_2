@@ -17,8 +17,11 @@
 					    <input type="text" class="form-control" name="ban_name" placeholder="Tiêu đề" required>
 					</div>
 					<div class="form-group ">
-					    <label>Link ({{asset('/')}})</label>
-					    <input type="text" class="form-control" name="ban_link" placeholder="VD: courses/detail/dot-pha-thu-nhap-qua-6-kenh-maketing-online.html" required>
+					    <label>Vị trí</label>
+					    <select name="ban_link" class="form-control">
+					    	<option>Banner trang chủ</option>
+					    	<option>Banner đối tác</option>
+					    </select>
 					</div>
 					<div class="form-group">
 						<label>Ảnh</label>
