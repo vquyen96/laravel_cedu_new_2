@@ -38,8 +38,7 @@
 			<div class="row profile">
 				<div class="col-md-4">
 					<div class="profileLeft">
-						<div class="profileLeftAva">
-							<img id="avatarImg" class="cssInput" src="{{asset('lib/storage/app/avatar/'.Auth::user()->img)}}">
+						<div class="profileLeftAva" style="background: url('{{ Auth::user()->provider == null ? asset('lib/storage/app/avatar/resized-'.Auth::user()->img) : Auth::user()->img }}') no-repeat center /cover">
 						</div>
 						<div class="profileLeftButton">
 							<div class="buttonChangeAva">

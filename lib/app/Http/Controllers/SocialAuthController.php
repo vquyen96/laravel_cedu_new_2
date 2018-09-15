@@ -57,13 +57,12 @@ class SocialAuthController extends Controller
 
         try {
             $user = Socialite::driver($provider)->user();
-
             $authUser = $this->findOrCreateUser($user, $provider);
             $arr = ['email' => $authUser->email, 'password' => $authUser->provider_id];
             
             if(Auth::attempt($arr, true)){
-                return Redirect::to(Session::get('pre_url'));
-                if (Auth::user()->level == 4 || Auth::user()->level == 5) {
+                // return Redirect::to(Session::get('pre_url'));
+                if (Auth::user()->level > 6) {
                     return redirect('')->with('success','Đăng nhập thành công');
                 }
                 else{
@@ -97,6 +96,9 @@ class SocialAuthController extends Controller
                 $authUser->img = $user->avatar;
                 $authUser->save();
                 return $authUser;
+            }
+            if ($user->email == null) {
+                $user->email = $user->id;
             }
             return Account::create([
                 'name'     => $user->name,
