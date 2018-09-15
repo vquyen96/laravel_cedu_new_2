@@ -1,8 +1,8 @@
 @extends('frontend.master')
-@section('title','Danh sách khóa học')
-@section('fb_title','Top khóa học hàng đầu')
-@section('fb_description','Nơi cung cấp cho bạn những khóa học tốt nhất, rẻ nhất. Tạo lên một môi trường học tập trên cuộc cách mạng công nghệ 4.0')
-@section('fb_image',asset('public/layout/frontend/img/dayne-topkin-60559-unsplash.png'))
+@section('title', $course->cou_name)
+@section('fb_title', $course->cou_name)
+@section('fb_description', cut_string($course->cou_summary, 200))
+@section('fb_image', asset('lib/storage/app/course/'.$course->cou_img))
 @section('main')
 <link rel="stylesheet" href="css/owlcarousel/owl.carousel.min.css">
 <link rel="stylesheet" href="css/owlcarousel/owl.theme.default.min.css">
@@ -17,7 +17,7 @@
 		<a class="instruction_item">
 			>
 		</a>
-		<a href="{{ asset('courses/'.Request::segment(2)) }}" class="instruction_item">
+		<a href="{{ asset('courses') }}" class="instruction_item">
 			Ngoại ngữ
 		</a>
 		<a class="instruction_item">
@@ -53,9 +53,9 @@
 					</div>
 				</div>
 				<div class="courseInfo">
-					20 bài
+					{{ $course->cou_video }} bài
 					<i class="fa fa-circle" aria-hidden="true"></i> 
-					{{gmdate("H:i", $course->cou_video)}}p 
+					{{ gmdate("H:i", $course->cou_video_duration)}}p 
 					<i class="fa fa-circle" aria-hidden="true"></i>
 					{{time_format($course->updated_at)}}
 					<i class="fa fa-circle" aria-hidden="true"></i>
@@ -90,7 +90,7 @@
 							356 bài giảng
 						</div>
 						<div class="timeOfLesson">
-							{{gmdate("H:i:s", $course->cou_video)}}
+							{{gmdate("H:i:s", $course->cou_video_duration)}}
 						</div>
 					</div>
 					<div class="lessonMain">
@@ -407,6 +407,11 @@
 								<input type="text" name="code" class="formCode" placeholder="Mã giảm giá">
 								<button class="formCode">Xác nhận</button>
 							</div>
+
+							<div class="courseTagContentCode">
+								<input type="text" name="code_aff" class="formCode" placeholder="Mã nhân viên tư vấn">
+								<button class="formCodeAff">Xác nhận</button>
+							</div>
 						@endif
 							
 						<div class="courseTagContentMain">
@@ -415,7 +420,7 @@
 									<i class="fas fa-file-video"></i>
 								</div>
 								<div class="courseTagContentMainItemBody">
-									Video có 34.5 tiếng
+									Video có {{gmdate("H", $course->cou_video_duration)}} tiếng
 								</div>
 							</div>
 							<div class="courseTagContentMainItem">
@@ -423,7 +428,7 @@
 									<i class="fas fa-file"></i>
 								</div>
 								<div class="courseTagContentMainItemBody">
-									120 bài viết
+									{{$course->cou_video}} bài học
 								</div>
 							</div>
 							<div class="courseTagContentMainItem">

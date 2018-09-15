@@ -40,6 +40,7 @@ class UserController extends Controller
     public function getCourseDone(){
         // dd('ok');
         $acc = Account::find(Auth::user()->id);
+        $list_ids = [];
         foreach ($acc->order as $order) {
             foreach ($order->orderDe as $orderDe) {
                 $list_ids[] = $orderDe->orderDe_cou_id;
@@ -142,8 +143,14 @@ class UserController extends Controller
         
         $image = $request->file('img');
         if ($request->hasFile('img')) {
-            $data['img'] = saveImage([$image], 200, 'avatar');
-            // dd($data);
+            if (filesize($image) < 2000000) {
+                $data['img'] = saveImage([$image], 200, 'avatar');
+            }
+            else{
+                return back()->with('error','Dung lượng ảnh của bạn quá lớn');
+            }
+            
+
         }
         $acc->update($data);
         return back()->with('success','Sửa tài khoản thành công');

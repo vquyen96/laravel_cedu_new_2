@@ -34,7 +34,11 @@ Route::group(['namespace'=>'Admin', 'middleware'=>'CheckAdmin'],function(){
 		Route::get('home_teacher','HomeController@getHomeTeacher');
 
 
-
+		Route::group(['prefix' => 'update'], function(){
+			Route::get('course_student', 'UpdateController@course_student');
+			Route::get('course_star', 'UpdateController@course_star');
+			Route::get('course_video', 'UpdateController@course_video');
+		});
 		Route::get('user','HomeController@getUser');
 		Route::post('user','HomeController@postUser');
 		Route::group(['prefix'=>'account'],function(){

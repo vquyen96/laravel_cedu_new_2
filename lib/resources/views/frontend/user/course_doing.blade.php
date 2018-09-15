@@ -44,121 +44,124 @@
 </div>
 <div class="main_body">
 	<div class="container">
-		<div class="row">
-			<div class="col-md-12 ">
-				<div class="courseTitle">
-					<h1>Khóa học mới tương tác</h1>
-					<div class="courseTitleContent">
-						Chúng tôi cung cấp cho các bạn những khoá học đa dạng và chất lượng nhất
-					</div>
-				</div>
-				
-			</div>
-		</div>
-		<div class="row courseHead">
-			<div class="col-md-6">
-				<div class="courseHeadVideo">
-					<script src="http://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
-					<video id="my-video" class="video-js" controls preload="auto"
-				  poster="img/poster72.png" data-setup="{}"  src="">
-					    <source src="{{ asset('lib/public/uploads/1528794961.mp4') }}" type='video/webm'>
-					    <p class="vjs-no-js">
-					      	<a href="{{ asset('') }}" target="_blank"></a>
-					    </p>
-				 	</video>
-				</div>
-			</div>
-			<div class="col-md-6">
-				<div class="courseHeadMain">
-					<div class="courseHeadMainTitle">
-						Học photoshop một cách bài bản để trở thành nhà thiết kế chuyên nghiệp
-					</div>
-					<div class="courseHeadMainBody">
-						<div class="courseHeadMainBodyTime">
-							<div class="courseHeadMainBodyTimeIcon">
-								<i class="fas fa-clock"></i>
-							</div>
-							<div class="courseHeadMainBodyTimeVideo">
-								4:30
-							</div>
-							<div class="courseHeadMainBodyTimeLast">
-								2 ngày trước
-							</div>
-						</div>
-						<div class="courseHeadMainBodyContent">
-							Bạn đang học dở bài
-						</div>
-						<div class="courseHeadMainBodyName">
-							Applications of Machine Learning
+		@if (count($course) != 0)
+			<div class="row">
+				<div class="col-md-12 ">
+					<div class="courseTitle">
+						<h1>Khóa học mới tương tác</h1>
+						<div class="courseTitleContent">
+							Chúng tôi cung cấp cho các bạn những khoá học đa dạng và chất lượng nhất
 						</div>
 					</div>
-					<div class="courseHeadMainBtn">
-						Tiếp tục học
-					</div>
+					
 				</div>
 			</div>
-		</div>
-		<div class="row courseBody">
-			<div class="col-md-12">
-				<div class="courseBodyTitle">
-					<h2>Khóa học của bạn</h2>
-					<div class="courseBodyTitleContent">
-						Chúng tôi cung cấp cho các bạn những khoá học đa dạng và chất lượng nhất
+			<div class="row courseHead">
+				<div class="col-md-6">
+					<div class="courseHeadVideo">
+						<script src="http://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
+						<video id="my-video" class="video-js" controls preload="auto"
+					  poster="img/poster72.png" data-setup="{}"  src="">
+						    <source src="{{ asset('lib/public/uploads/1528794961.mp4') }}" type='video/webm'>
+						    <p class="vjs-no-js">
+						      	<a href="{{ asset('') }}" target="_blank"></a>
+						    </p>
+					 	</video>
 					</div>
 				</div>
-				<div class="courseBodyMain">
-					<div class="owl-carousel owl-theme carouselCourse">
-						@foreach($acc->order as $order)
-						@foreach($order->orderDe as $orderDe)
-							<?php $item = $orderDe->course?>
-							<div class="item">
-								<a href="{{ isset($orderDe->code) && $orderDe->code->code_status == 0 ? asset('code') : asset('courses/detail/'.$item->cou_slug.'.html') }}" class="courseMainItem">
-									<div class="courseMainItemImg" style="background: url('{{ asset('lib/storage/app/course/'.$item->cou_img) }}') no-repeat center /cover;">
-										@if(isset($orderDe->code) && $orderDe->code->code_status == 0)
-										<div class="courseMainItemImgOpa">
-											<div class="courseMainItemImgOpaBtn">
-												Kích hoạt khóa học
-											</div>
-												
-										</div>
-										@endif
-										<div class="courseMainItemGroup_Time">
-											<div class="courseMainItemGroup">
-												{{ $item->group->gr_name }}
-											</div>
-											<div class="courseMainItemTime">
-												Update {{date_format($item->updated_at,"m/Y")}}
-											</div>
-										</div>
-										
-									</div>
-									<div class="courseMainItemName">
-										{{cut_string($item->cou_name , 100)}}
-									</div>
-									<div class="courseMainItemTeacher">
-										<div class="courseMainItemTeacherAva" style="background: url('{{ asset('lib/storage/app/avatar/resized-'.$item->tea->img) }}') no-repeat center /cover;">
-										</div>
-										<div class="courseMainItemTeacherName">
-											{{ $item->tea->name }}
-										</div>
-										<div class="courseMainItemStar">
-											@for($i=0;$i<5;$i++)
-												@if($item->cou_star > $i)
-													<i class="fa fa-star starActive" aria-hidden="true"></i>
-												@else
-													<i class="fa fa-star" aria-hidden="true"></i>
-												@endif
-											@endfor
-										</div>
-									</div>
-								</a>
+				<div class="col-md-6">
+					<div class="courseHeadMain">
+						<div class="courseHeadMainTitle">
+							Học photoshop một cách bài bản để trở thành nhà thiết kế chuyên nghiệp
+						</div>
+						<div class="courseHeadMainBody">
+							<div class="courseHeadMainBodyTime">
+								<div class="courseHeadMainBodyTimeIcon">
+									<i class="fas fa-clock"></i>
+								</div>
+								<div class="courseHeadMainBodyTimeVideo">
+									4:30
+								</div>
+								<div class="courseHeadMainBodyTimeLast">
+									2 ngày trước
+								</div>
 							</div>
-						@endforeach
-						@endforeach
+							<div class="courseHeadMainBodyContent">
+								Bạn đang học dở bài
+							</div>
+							<div class="courseHeadMainBodyName">
+								Applications of Machine Learning
+							</div>
+						</div>
+						<div class="courseHeadMainBtn">
+							Tiếp tục học
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
+			<div class="row courseBody">
+				<div class="col-md-12">
+					<div class="courseBodyTitle">
+						<h2>Khóa học của bạn</h2>
+						<div class="courseBodyTitleContent">
+							Chúng tôi cung cấp cho các bạn những khoá học đa dạng và chất lượng nhất
+						</div>
+					</div>
+					<div class="courseBodyMain">
+						<div class="owl-carousel owl-theme carouselCourse">
+							@foreach($acc->order as $order)
+							@foreach($order->orderDe as $orderDe)
+								<?php $item = $orderDe->course?>
+								<div class="item">
+									<a href="{{ isset($orderDe->code) && $orderDe->code->code_status == 0 ? asset('code') : asset('courses/detail/'.$item->cou_slug.'.html') }}" class="courseMainItem">
+										<div class="courseMainItemImg" style="background: url('{{ asset('lib/storage/app/course/'.$item->cou_img) }}') no-repeat center /cover;">
+											@if(isset($orderDe->code) && $orderDe->code->code_status == 0)
+											<div class="courseMainItemImgOpa">
+												<div class="courseMainItemImgOpaBtn">
+													Kích hoạt khóa học
+												</div>
+													
+											</div>
+											@endif
+											<div class="courseMainItemGroup_Time">
+												<div class="courseMainItemGroup">
+													{{ $item->group->gr_name }}
+												</div>
+												<div class="courseMainItemTime">
+													Update {{date_format($item->updated_at,"m/Y")}}
+												</div>
+											</div>
+											
+										</div>
+										<div class="courseMainItemName">
+											{{cut_string($item->cou_name , 100)}}
+										</div>
+										<div class="courseMainItemTeacher">
+											<div class="courseMainItemTeacherAva" style="background: url('{{ asset('lib/storage/app/avatar/resized-'.$item->tea->img) }}') no-repeat center /cover;">
+											</div>
+											<div class="courseMainItemTeacherName">
+												{{ $item->tea->name }}
+											</div>
+											<div class="courseMainItemStar">
+												@for($i=0;$i<5;$i++)
+													@if($item->cou_star > $i)
+														<i class="fa fa-star starActive" aria-hidden="true"></i>
+													@else
+														<i class="fa fa-star" aria-hidden="true"></i>
+													@endif
+												@endfor
+											</div>
+										</div>
+									</a>
+								</div>
+							@endforeach
+							@endforeach
+						</div>
+					</div>
+				</div>
+			</div>
+		@endif
+			
 		
 		<div class="row courseCare">
 			<div class="col-md-12">

@@ -26,11 +26,26 @@
 			<div class="row">
 				<div class="col-md-4 col-sm-4 col-12">
 					<div class="avatar">
-						<div class="img" style="background:url('{{ asset('lib/storage/app/avatar/'.$teacher->img)}}') no-repeat center/cover;"></div>
+						<div class="img" style="background: url('{{ Auth::user()->provider == null ? asset('lib/storage/app/avatar/resized-'.Auth::user()->img) : Auth::user()->img }}') no-repeat center /cover"></div>
 						<div class="contact">
 							<a href="{{ $teacher->teacher->tea_fb != null ? $teacher->teacher->tea_fb : asset('') }}" class="icon" target="blank"><i class="fab fa-facebook-f"></i></a>
 							<a href="{{ $teacher->teacher->tea_gg != null ? $teacher->teacher->tea_gg : asset('') }}" class="icon" target="blank"><i class="fab fa-google-plus-g"></i></a>
 							<a href="{{ $teacher->teacher->tea_yt != null ? $teacher->teacher->tea_yt : asset('') }}" class="icon" target="blank"><i class="fab fa-youtube"></i></a>
+						</div>
+						<div class="rate">
+							@if($rate != null)
+								@for($i=0;$i<5;$i++)
+									<a href="{{ asset('teacher/'.$teacher->email.'/'.($i+1)) }}">
+										<i class="fa fa-star {{ $rate->tr_rate > $i ? 'starActive' : ''}}" aria-hidden="true"></i>
+									</a>
+								@endfor
+							@else
+								@for($i=0;$i<5;$i++)
+									<a href="{{ asset('teacher/'.$teacher->email.'/'.($i+1)) }}">
+										<i class="fa fa-star {{ $teacher->teacher->tea_rating > $i ? 'starActive' : ''}}" aria-hidden="true"></i>
+									</a>
+								@endfor
+							@endif
 						</div>
 					</div>
 				</div>
@@ -91,5 +106,5 @@
 	</section>
 @stop
 @section('script')
-
+	<script type="text/javascript" src="js/teacher/profile.js"></script>
 @stop

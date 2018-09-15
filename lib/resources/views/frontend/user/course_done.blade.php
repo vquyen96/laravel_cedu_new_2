@@ -44,71 +44,72 @@
 </div>
 <div class="main_body">
 	<div class="container">
-		
-		<div class="row">
-			<div class="col-md-12">
-				<div class="courseBodyTitle">
-					<h2>Khóa học hoàn thành</h2>
-					<div class="courseBodyTitleContent">
-						Chúng tôi cung cấp cho các bạn những khoá học đa dạng và chất lượng nhất
+		@if (count($course) != 0)
+			<div class="row">
+				<div class="col-md-12">
+					<div class="courseBodyTitle">
+						<h2>Khóa học hoàn thành</h2>
+						<div class="courseBodyTitleContent">
+							Chúng tôi cung cấp cho các bạn những khoá học đa dạng và chất lượng nhất
+						</div>
+					</div>
+					<div class="courseBodyMain">
+						
 					</div>
 				</div>
-				<div class="courseBodyMain">
-					
-				</div>
 			</div>
-		</div>
-		<div class="row courseDone">
-			@foreach($course as $item)
-				<div class="col-md-4">
-					<a href="{{ asset('courses/detail/'.$item->cou_slug.'.html') }}" class="courseMainItem">
-						<div class="courseMainItemImg" style="background: url('{{ asset('lib/storage/app/course/'.$item->cou_img) }}') no-repeat center /cover;">
-							
-							<div class="courseMainItemGroup_Time">
-								<div class="courseMainItemGroup">
-									{{ $item->group->gr_name }}
-								</div>
-								<div class="courseMainItemTime">
-									Update {{date_format($item->updated_at,"m/Y")}}
-								</div>
-								{{-- <span class="courseMainItemTime">
-									<i class="fa fa-circle" aria-hidden="true"></i>
-									@if ($item->cou_price_old != null)
-										<del>{{number_format($item->cou_price_old,0,',','.')}} đ</del>
-									@endif
+			<div class="row courseDone">
+				@foreach($course as $item)
+					<div class="col-md-4">
+						<a href="{{ asset('courses/detail/'.$item->cou_slug.'.html') }}" class="courseMainItem">
+							<div class="courseMainItemImg" style="background: url('{{ asset('lib/storage/app/course/'.$item->cou_img) }}') no-repeat center /cover;">
+								
+								<div class="courseMainItemGroup_Time">
+									<div class="courseMainItemGroup">
+										{{ $item->group->gr_name }}
+									</div>
+									<div class="courseMainItemTime">
+										Update {{date_format($item->updated_at,"m/Y")}}
+									</div>
+									{{-- <span class="courseMainItemTime">
+										<i class="fa fa-circle" aria-hidden="true"></i>
+										@if ($item->cou_price_old != null)
+											<del>{{number_format($item->cou_price_old,0,',','.')}} đ</del>
+										@endif
+										
+									</span> --}}
 									
-								</span> --}}
+								</div>
 								
 							</div>
-							
-						</div>
-						<div class="courseMainItemName">
-							{{cut_string($item->cou_name , 100)}}
-						</div>
-						<div class="courseMainItemTeacher">
-							<div class="courseMainItemTeacherAva" style="background: url('{{ asset('lib/storage/app/avatar/resized-'.$item->tea->img) }}') no-repeat center /cover;">
+							<div class="courseMainItemName">
+								{{cut_string($item->cou_name , 100)}}
 							</div>
-							<div class="courseMainItemTeacherName">
-								{{ $item->tea->name }}
+							<div class="courseMainItemTeacher">
+								<div class="courseMainItemTeacherAva" style="background: url('{{ asset('lib/storage/app/avatar/resized-'.$item->tea->img) }}') no-repeat center /cover;">
+								</div>
+								<div class="courseMainItemTeacherName">
+									{{ $item->tea->name }}
+								</div>
+								<div class="courseMainItemStar">
+									@for($i=0;$i<5;$i++)
+										@if($item->cou_star > $i)
+											<i class="fa fa-star starActive" aria-hidden="true"></i>
+										@else
+											<i class="fa fa-star" aria-hidden="true"></i>
+										@endif
+									@endfor
+								</div>
 							</div>
-							<div class="courseMainItemStar">
-								@for($i=0;$i<5;$i++)
-									@if($item->cou_star > $i)
-										<i class="fa fa-star starActive" aria-hidden="true"></i>
-									@else
-										<i class="fa fa-star" aria-hidden="true"></i>
-									@endif
-								@endfor
-							</div>
-						</div>
-					</a>
+						</a>
+					</div>
+				
+				@endforeach
+				<div class="col-md-12">
+					{!! $course->links('layout.paginate') !!}	
 				</div>
-			
-			@endforeach
-			<div class="col-md-12">
-				{!! $course->links('layout.paginate') !!}	
 			</div>
-		</div>
+		@endif
 		
 		<div class="row courseCare">
 			<div class="col-md-12">
