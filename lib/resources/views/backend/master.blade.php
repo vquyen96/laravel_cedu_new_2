@@ -4,6 +4,7 @@
 	<title>@yield('title')|| Admin</title>
 	<base href="{{asset('public/layout/backend')}}/">
 	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
@@ -11,6 +12,11 @@
 
 </head>
 <body>
+	<div class="bt-mobile">
+		<span></span>
+		<span></span>
+		<span></span>
+	</div>
 	<div class="masterError">
 		<div class="masterErrorContent">
 			@include('errors.note')
@@ -24,9 +30,12 @@
 				<div class="headerLogo">
 					<a href="{{asset('admin')}}">
 						<img src="img/logo cedu.png">
+						
 					</a>
-					
+
+
 				</div>
+
 			</div>
 			<div class="col-md-8 col-sm-6 col-xs-12">
 				<div class="headerAccount">
@@ -39,6 +48,7 @@
 						Đăng xuất
 					</a>
 				</div>
+				
 			</div>
 			
 		</div>
@@ -176,6 +186,11 @@
 				</a>
 			</li>
 			@endif
+			<li>
+				<a href="{{asset('logout')}}" class="navAccount @if (Request::segment(2) == 'about')  active @endif">
+					Đăng xuất
+				</a>
+			</li>
 
 			
 			
@@ -192,7 +207,7 @@
 		function changeImg(input){
 	        //Nếu như tồn thuộc tính file, đồng nghĩa người dùng đã chọn file mới
 	        if(input.files && input.files[0]){
-	            var reader = new FileReader();
+	        	var reader = new FileReader();
 	            //Sự kiện file đã được load vào website
 	            reader.onload = function(e){
 	                //Thay đổi đường dẫn ảnh
@@ -202,12 +217,17 @@
 	        }
 	    }
 	    $(document).ready(function() {
-	        $('#avatar').click(function(){
-	            $('#img').click();
-	        });
-	        $('#acc_req').click(function(){
-	            $('#sbm').click();
-	        });
+	    	$('#avatar').click(function(){
+	    		$('#img').click();
+	    	});
+	    	$('#acc_req').click(function(){
+	    		$('#sbm').click();
+	    	});
+	    	$('.bt-mobile').click(function(){
+
+	    		$('nav').slideToggle(300);
+
+	    	});
 	    });
 	</script>
 	@yield('script')

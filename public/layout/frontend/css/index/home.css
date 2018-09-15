@@ -61,24 +61,24 @@ body{
 	outline: none;
 }
 .formSearchBanner input[type=text]::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-  color: #0003;
+	color: #0003;
 }
 .formSearchBanner input[type=text]::-moz-placeholder { /* Firefox 19+ */
-  color: #0003;
+	color: #0003;
 }
 .formSearchBanner input[type=text]:-ms-input-placeholder { /* IE 10+ */
-  color: #0003;
+	color: #0003;
 }
 .formSearchBanner input[type=text]:-moz-placeholder { /* Firefox 18- */
-  color: #0003;
+	color: #0003;
 }
 
 .listGroup{
 	display: flex;
-    width: 800px;
-    margin: auto;
-    flex-wrap: wrap;
-    padding: 40px 0;
+	width: 800px;
+	margin: auto;
+	flex-wrap: wrap;
+	padding: 40px 0;
 }
 .listGroupItem{
 	width: 200px;
@@ -180,17 +180,17 @@ a.courseMainItem{
 }
 .courseMainItemSale{
 	font-family: 'Montserrat', sans-serif;
-    font-weight: 600;
-    font-size: 14px;
-    color: #fff;
-    position: absolute;
-    top: 15px;
-    left: 0;
-    width: 80px;
-    height: 30px;
-    line-height: 30px;
-    text-align: center;
-    z-index: 1;
+	font-weight: 600;
+	font-size: 14px;
+	color: #fff;
+	position: absolute;
+	top: 15px;
+	left: 0;
+	width: 80px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	z-index: 1;
 }
 .courseMainItemSale:after{
 	content: '';
@@ -204,17 +204,17 @@ a.courseMainItem{
 }
 .courseMainItemPrice{
 	font-family: 'Montserrat', sans-serif;
-    font-weight: 500;
-    font-size: 24px;
-    color: #fff;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    height: 96px;
-    width: 100%;
+	font-weight: 500;
+	font-size: 24px;
+	color: #fff;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	height: 96px;
+	width: 100%;
 
-    background: linear-gradient(#fff0, #000d);
-    padding: 45px 25px 25px;
+	background: linear-gradient(#fff0, #000d);
+	padding: 45px 25px 25px;
 }
 .courseMainItemTime i{
 	font-size: 8px;
@@ -228,12 +228,12 @@ a.courseMainItem{
 .courseMainItemName{
 	height: 80px;
 	font-family: 'Montserrat', sans-serif;
-    font-weight: 600;
-    font-size: 16px;
-    color: #666;
-    line-height: 130%;
-    padding: 20px 0;
-    overflow: hidden;
+	font-weight: 600;
+	font-size: 16px;
+	color: #666;
+	line-height: 130%;
+	padding: 20px 0;
+	overflow: hidden;
 }
 .courseMainItemTeacher{
 	height: 35px;
@@ -279,21 +279,21 @@ a.courseMainItem{
 .teacherTitleLeft{
 	font-family: 'Montserrat', sans-serif;
 	font-weight: 700;
-    font-size: 48px;
-    color: #2D317F;
-    display: inline-block;
+	font-size: 48px;
+	color: #2D317F;
+	display: inline-block;
 }
 .teacherTitleRight{
 	font-family: 'Montserrat', sans-serif;
 	font-weight: 500;
-    font-size: 16px;
-    color: #999;
-    float: right;
-    width: 450px;
-    border-right: 3px solid #FCC72E;
-    padding-right: 20px;
-    line-height: 2.2;
-    text-align: right;
+	font-size: 16px;
+	color: #999;
+	float: right;
+	width: 450px;
+	border-right: 3px solid #FCC72E;
+	padding-right: 20px;
+	line-height: 2.2;
+	text-align: right;
 }
 
 .owl-carousel{
@@ -317,19 +317,19 @@ a.owlItemName{
 	text-align: center;
 	font-family: 'Montserrat', sans-serif;
 	font-weight: 700;
-    font-size: 18px;
-    color: #666;
-    margin-bottom: 15px;
-    display: block;
+	font-size: 18px;
+	color: #666;
+	margin-bottom: 15px;
+	display: block;
 }
 .owlItemContent{
 	text-align: center;
 	font-family: 'Montserrat', sans-serif;
 	font-weight: 500;
-    font-size: 14px;
-    color: #999;
-    display: none;
-    transition: 1s;
+	font-size: 14px;
+	color: #999;
+	display: none;
+	transition: 1s;
 }
 .owl-nav{
 	position: absolute;
@@ -365,9 +365,9 @@ a.owlItemName{
 }
 .loadingCourse img{
 	position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 }
 
 button.owl-next{
@@ -420,6 +420,7 @@ button.owl-next{
 	.listGroupItemImg img{
 		width: 50px;
 
+
 	}
 	.listGroup{
 		padding: 0;
@@ -429,6 +430,11 @@ button.owl-next{
 	}
 	.courseHead{
 		margin-top: 40px;
+	}
+	.listGroupItem {
+		width: 131px;
+		padding: 20px 5px;
+		flex-shrink: 0;
 	}
 }
 

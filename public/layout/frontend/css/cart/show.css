@@ -152,3 +152,34 @@
 	border-radius: 10px;
 	text-decoration: none;
 }
+@media screen and (max-width: 769px){
+	.cart_item_left {
+		width: 200px;
+		flex-shrink: unset; 
+		margin-right: 10px;
+	}
+	.title h1{
+		font-size: 36px;
+	}
+	.cartRight{
+		margin-top: 0;
+		padding: 15px;
+	}
+	.cartTotalPrice{
+		font-size: 36px;
+	}
+	.btnPayment a{
+		height: 50px;
+		line-height: 50px;
+	}
+	.saleCode{
+		display: unset;
+	}
+	.saleCode input[type=text]{
+		width: 100%;
+	}
+	.saleCode input[type=submit]{
+		margin: 15px 0;
+	}
+
+}

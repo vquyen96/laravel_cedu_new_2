@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Account;
 use App\Models\Aff;
 use App\Models\Teacher;
+use App\Models\Banner;
 
 use App\Http\Requests\AddAccountRequest;
 use Auth;
@@ -16,6 +17,8 @@ class PartnerController extends Controller
     	// $data['teacher'] = Account::where('level',3)->paginate(3);
         // $data['teacher'] = Teacher::orderBy('tea_featured','desc')->paginate(3);
             $data['teacher'] = Teacher::orderBy('tea_featured','desc')->take(10)->get();
+            $data['banner'] = Banner::where('ban_link', 'Banner đối tác')->first();
+            
     	return view('frontend.partner.partner',$data);
     }
     public function getAffiliate(){
@@ -23,14 +26,14 @@ class PartnerController extends Controller
     }
     public function postAffiliate(AddAccountRequest $request){
         if (Auth::check()) {
-            if (Auth::user()->level == 5) {
+            if (Auth::user()->level == 8) {
                 return back()->with('error', 'Bạn đã đăng ký trở thành CTV');
             }
-            if (Auth::user()->level < 4) {
+            if (Auth::user()->level < 8) {
                 return back()->with('error', 'Bạn ấn nhầm rồi');
             }
             $acc = Account::find(Auth::user()->id);
-            $acc->level = 5;
+            $acc->level = 8;
             $acc->save();
             
             $aff = Aff::where('aff_acc_id', $acc->id)->first();
@@ -54,7 +57,7 @@ class PartnerController extends Controller
             $acc->name = $request->name;
             $acc->email = $request->email;
             $acc->password = bcrypt($request->password);
-            $acc->level = 5;
+            $acc->level = 8;
             $acc->content = " ";
             $acc->save();
             sleep(1);
@@ -90,7 +93,7 @@ class PartnerController extends Controller
     }
     public function postGiaovien(Request $request){
         if (Auth::check()) {
-            if (Auth::user()->level < 4) {
+            if (Auth::user()->level < 7) {
                 return back()->with('error', 'Bạn bấm nhầm rồi ^^ !!');
             }
             $acc = Account::find(Auth::user()->id);
@@ -105,7 +108,7 @@ class PartnerController extends Controller
             $acc->email = $request->email;
             $acc->password = bcrypt("Cedu2018@");
             $acc->phone = $request->phone;
-            $acc->level = 4;
+            $acc->level = 7;
             $acc->teacher_wait = 1;
             $acc->content = "fb: ".$request->facebook.' | Chủ đề giảng dạy: '.$request->chude.' | Kinh Nghiệm: '.$request->exp;
             $acc->save();

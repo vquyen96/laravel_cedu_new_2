@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="css/owlcarousel/owl.carousel.min.css">
 <link rel="stylesheet" href="css/owlcarousel/owl.theme.default.min.css">
 <div>
-	<div class="bannerHead" style="background: url('img/banner_head.png') no-repeat center /cover;">
+	<div class="bannerHead" style="background: url('{{ asset('lib/storage/app/banner/'.$banner->ban_img) }}') no-repeat center /cover;">
 		<div class="bannerHeadMain">
 			<h1 class="bannerHeadMainTitle">Cedu</h1>
 			<div class="bannerHeadMainContent">Thắp sáng tri thức, Chắp cánh ước mơ</div>
