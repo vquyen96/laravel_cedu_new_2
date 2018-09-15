@@ -17,6 +17,7 @@ class AuthController extends Controller
 	{
 	    try {
 	        $user = Socialite::driver('facebook')->user();
+	        dd($user);
 	        $create['name'] = $user->name;
 	        $create['email'] = $user->email;
 	        $create['facebook_id'] = $user->id;
