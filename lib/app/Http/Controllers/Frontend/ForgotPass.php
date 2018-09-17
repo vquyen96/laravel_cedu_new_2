@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Account;
+use Illuminate\Support\Facades\Cache;
 use Session;
 use Hash;
 use Auth;
@@ -32,9 +33,19 @@ class ForgotPass extends Controller
     	else{
             $code_value = mt_rand(100000, 999999);
             // $data['code'] = $code_value;
-            Session::put('key',  $code_value);
-            $data['code'] = Hash::make( $code_value);
-
+            // Session::put('key',  $code_value);
+            
+            // $acc->update(['password'=> $code_value]);
+            // $hash = 'hahaha/hahah/hahaha';
+            // dd(count(explode('/', trim($hash))));
+            
+            // while (count(explode('/', trim($hash))) != 1) {
+            //     $hash = Hash::make($code_value);
+            // }
+            $hash = md5($code_value);
+            Cache::store('redis')->push($email, $hash);
+            
+            $data['code'] = $hash;
             $data['email'] = $email;
             // dd($data['code']);
             Mail::send('frontend.email_reset_pass', $data, function($message) use ($email){
@@ -63,7 +74,9 @@ class ForgotPass extends Controller
 
     }
     public function resetPass(Request $request, $email,$code){
-        $code_ss = Session::get('key');
+        // $acc = Account::where('email', $email)->first();
+
+        $code_ss = Cache::store('redis')->get($email);
         if(Hash::check($code_ss, $code)){
 
             if ($request->password == $request->re_password) {

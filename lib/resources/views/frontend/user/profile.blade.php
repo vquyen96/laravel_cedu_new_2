@@ -38,7 +38,8 @@
 			<div class="row profile">
 				<div class="col-md-4">
 					<div class="profileLeft">
-						<div class="profileLeftAva" style="background: url('{{ Auth::user()->provider == null ? asset('lib/storage/app/avatar/resized-'.Auth::user()->img) : Auth::user()->img }}') no-repeat center /cover">
+						<div class="profileLeftAva">
+							<img id="avatarImg" class="cssInput" src="{{ file_exists(storage_path('app/avatar/'.Auth::user()->img)) ? asset('lib/storage/app/avatar/'.Auth::user()->img) : str_replace("type=normal","width=1920",Auth::user()->img) }}">
 						</div>
 						<div class="profileLeftButton">
 							<div class="buttonChangeAva">
@@ -129,17 +130,20 @@
 									</div>
 								</div>
 							</div>
-							<div class="form_group">
-								<label>Email</label>
-								<div class="form_item">
-									<div class="inputText">
-										{{ $user->email }}
-									</div>
-									<div class="inputMain">
-										<input type="email" name="acc[email]" class="inputProfile" value="{{ $user->email }}">
+							@if (!isset($user->provider) || $user->provider != 'facebook')
+								<div class="form_group">
+									<label>Email</label>
+									<div class="form_item">
+										<div class="inputText">
+											{{ $user->email }}
+										</div>
+										<div class="inputMain">
+											<input type="{{ isset($user->provider) && $user->provider == 'facebook' ? 'text' : 'email' }}" name="acc[email]" class="inputProfile" value="{{ $user->email }}">
+										</div>
 									</div>
 								</div>
-							</div>
+							@endif
+								
 							<div class="form_group">
 								<label>Số điện thoại</label>
 								<div class="form_item">

@@ -404,10 +404,10 @@ Route::group(['namespace'=>'Frontend'],function(){
 
 
 });
-Route::group(['namespace'=>'Auth'],function(){
-	Route::get('auth/facebook', 'AuthController@redirectToFacebook')->name('auth.facebook');
-	Route::get('auth/facebook/callback', 'AuthController@handleFacebookCallback');
-});
+// Route::group(['namespace'=>'Auth'],function(){
+// 	Route::get('auth/facebook', 'AuthController@redirectToFacebook')->name('auth.facebook');
+// 	Route::get('auth/facebook/callback', 'AuthController@handleFacebookCallback');
+// });
 Route::get('/redirect/{social}', 'SocialAuthController@redirect');
 Route::get('/callback/{social}', 'SocialAuthController@callback');
 

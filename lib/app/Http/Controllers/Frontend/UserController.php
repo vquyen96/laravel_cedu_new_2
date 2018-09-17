@@ -143,15 +143,18 @@ class UserController extends Controller
         
         $image = $request->file('img');
         if ($request->hasFile('img')) {
-            if (filesize($image) < 2000000) {
-                $data['img'] = saveImage([$image], 200, 'avatar');
+            if (filesize($image) < 1500000) {
+                $data['img'] = saveImage([$image], [50,250,360], 'avatar');
+                if ($data['img'] == false) {
+                    return back()->with('error','Ảnh của bạn bị lỗi !!! vui lòng thay ảnh khác');
+                }
+                // dd($data);
             }
             else{
                 return back()->with('error','Dung lượng ảnh của bạn quá lớn');
             }
-            
-
         }
+        // dd('ok');
         $acc->update($data);
         return back()->with('success','Sửa tài khoản thành công');
     }

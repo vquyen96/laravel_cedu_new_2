@@ -40,10 +40,15 @@
 				<div class="col-md-4">
 					<div class="profileLeft">
 						<div class="profileLeftAva">
-							<img id="avatarImg" class="cssInput" src="{{asset('lib/storage/app/avatar/'.Auth::user()->img)}}">
+							<img id="avatarImg" class="cssInput" src="{{ file_exists(storage_path('app/avatar/'.Auth::user()->img)) ? asset('lib/storage/app/avatar/'.Auth::user()->img) : str_replace("type=normal","width=1920",Auth::user()->img) }}">
 						</div>
 						<div class="profileLeftButton">
-							Chọn ảnh đại diện
+							<div class="buttonChangeAva">
+								Chọn ảnh đại diện
+							</div>
+							<div class="buttonSaveAva">
+								Lưu
+							</div>
 						</div>
 					</div> 
 				</div>
@@ -268,15 +273,19 @@
 	            reader.onload = function(e){
 	                //Thay đổi đường dẫn ảnh
 	                $('#avatarImg').attr('src',e.target.result);
+	                $('.buttonSaveAva').show();
 	            }
 	            reader.readAsDataURL(input.files[0]);
 	        }
 	    }
 	    $(document).ready(function() {
-	        $('.profileLeftButton').click(function(){
+	        $('.buttonChangeAva').click(function(){
 	            $('#img').click();
 	        });
-	        
+	        $('.buttonSaveAva').click(function(){
+	        	// $('.btnSubmit').prop('disabled', true);
+	        	$('.btnSubmit').click();
+	        });
 	    });
 	</script>
 @stop
