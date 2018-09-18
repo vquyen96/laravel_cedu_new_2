@@ -29,7 +29,7 @@
 			<div class=" col-md-4 col-sm-6 col-xs-12">
 				<div class="headerLogo">
 					<a href="{{asset('admin')}}">
-						<img src="img/logo cedu.png">
+						<img src="img/LOGO_CEDU1.png">
 						
 					</a>
 
@@ -57,7 +57,7 @@
 		<ul>
 			<li>
 				<a href="{{asset('admin/user')}}" class="navUser navAccount @if (Request::segment(2) == 'user')  active @endif">
-					<img src="{{asset('lib/storage/app/avatar/resized-'.Auth::user()->img)}}">
+					<img src="{{asset('lib/storage/app/avatar/resized50-'.Auth::user()->img)}}">
 					{{Auth::user()->name}}
 				</a>
 			</li>

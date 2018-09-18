@@ -28,7 +28,7 @@ class AccountController extends Controller
 
             $image = $request->file('img');
             if ($request->hasFile('img')) {
-                $acc->img = saveImage([$image], 200, 'avatar');
+                $acc->img = saveImage([$image], [50,250,360], 'avatar');
             }
             
             $acc->email = $request->email;
@@ -61,7 +61,7 @@ class AccountController extends Controller
 
         $image = $request->file('img');
         if ($request->hasFile('img')) {
-            $acc->img = saveImage([$image], 200, 'avatar');
+            $acc->img = saveImage([$image], [50,250,360], 'avatar');
             // $filename = time() . '.' . $image->getClientOriginalExtension();
             // $acc->img = $filename;
             // $request->img->storeAs('avatar',$filename);

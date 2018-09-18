@@ -39,11 +39,13 @@ class ForgotPass extends Controller
             // $hash = 'hahaha/hahah/hahaha';
             // dd(count(explode('/', trim($hash))));
             
+            Cache::store('redis')->put('code',$code_value,120);
+
             // while (count(explode('/', trim($hash))) != 1) {
             //     $hash = Hash::make($code_value);
             // }
             $hash = md5($code_value);
-            Cache::store('redis')->push($email, $hash);
+            
             
             $data['code'] = $hash;
             $data['email'] = $email;
@@ -61,7 +63,7 @@ class ForgotPass extends Controller
             return redirect('/')->with('error','Bạn đã đăng nhập rồi !');
         }
         else{
-            $code_ss = Session::get('key');
+            $code_ss = Cache::store('redis')->get('code');
             if(Hash::check($code_ss, $code)){
 
                 return view('frontend.reset_pass');

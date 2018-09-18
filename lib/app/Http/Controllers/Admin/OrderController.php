@@ -87,10 +87,18 @@ class OrderController extends Controller
     public function getDeny($id){
     	$order = Order::find($id);
     	if($order->ord_status == 2 || $order->ord_status == 1){
+            $email = $order->acc->email;
     		$order->ord_status = -1;
+            $data['order'] = $order;
+            Mail::send('frontend.emailDeny', $data, function($message) use ($email){
+                $message->from('info@ceduvn.com', 'Ceduvn');
+                $message->to($email, $email)->subject('Thank You!');
+                // $message->cc('thongminh.depzai@gmail.com', 'boss');
+                $message->subject('Hủy đơn hàng');
+            });
     	}
     	else{
-    		dd('error');
+    		return back()->with('error', 'Đã có lỗi xảy ra');
     	}
     	
     	$order->save();

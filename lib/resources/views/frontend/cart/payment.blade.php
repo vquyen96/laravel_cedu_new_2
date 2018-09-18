@@ -95,9 +95,9 @@
                         <div class="paymentRightHideText">
                             Nhân viên Cedu sẽ tận tình hướng dẫn và tư vấn cho bạn về khóa học, cách thanh toán và bạn sẽ nhận được code để kích hoạt khóa học của mình.
                         </div>
-                        <div class="buttonSubmit">
+                        <a href="{{ asset('cart/complete_company') }}" class="buttonSubmit">
                             Xác nhận
-                        </div>
+                        </a>
                     </div>
                     <div class="paymentRightShow">
                         <i class="far fa-circle"></i>

@@ -1,12 +1,11 @@
 <div style="background:#ddd; padding: 20px;">
 	<div style="width: 500px; margin: 20px auto; background: #fff; padding: 30px;">
-		<div style="width: 170px; height: 75px; margin: auto;">
-			<img src="{{asset('public/layout/frontend/img/LOGO_CEDU1.png')}}" style="width: 100%">
+		<div style="width: 108px; height: 75px; margin: auto;">
+			<img src="{{asset('public/layout/frontend/img/LOGO_CEDU1.png')}}" style="height: 100%;width: auto;">
 		</div>
 		
-		
 		<h2 style="text-align: center;">Đăng kí khóa học trực tiếp tại công ty</h2>
-		
+		<h3> Cám ơn bạn {{ $user->name }} đã sử dụng dịch vụ của chúng tôi</h3>
 		<div id="xac-nhan">
 			<br>
 			<p align="justify">

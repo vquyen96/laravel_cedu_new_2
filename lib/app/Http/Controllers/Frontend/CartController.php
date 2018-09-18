@@ -427,13 +427,13 @@ class CartController extends Controller
     public function getNganLuong(){
 
         $total = str_replace(",","",Cart::total());
-        $total = (int)$total;
-        $cancel_url= 'http://localhost/laravel_c_edu/';
+        $total = 2000;
+        $cancel_url= 'https://ceduvn.com/';
         $order_code='CEDU_'.time();
         // if ($affiliate_code == "") $affiliate_code = $this->affiliate_code;
         $arr_param = array(
             'merchant_site_code'=>  strval('36680'),
-            'return_url'        =>  strval(strtolower('http://localhost/laravel_c_edu/cart/complete_nganluong')),
+            'return_url'        =>  strval(strtolower('https://ceduvn.com/cart/complete_nganluong')),
             'receiver'          =>  strval('info@ceduvn.com'),
             'transaction_info'  =>  strval("Thong tin giao dich"),
             'order_code'        =>  strval($order_code),
@@ -521,6 +521,7 @@ class CartController extends Controller
                 //Khi thanh toán xác nhận là chính xác
                 $order = new Order;
                 $order->ord_payment = 2;// ngan luong
+
                 $order->ord_acc_id = Auth::user()->id;
                 
                 $total = str_replace(",","",Cart::total());
@@ -600,13 +601,77 @@ class CartController extends Controller
     }
 
     public function getEmailCompany(){
-        $data = "";
+        $order = new Order;
+        $order->ord_payment = 2;// ngan luong
+
+        $order->ord_acc_id = Auth::user()->id;
+        
+        $total = str_replace(",","",Cart::total());
+        $total = (int)$total;
+        $order->ord_total_price = $total;
+        $order->ord_code = 'CEDU_1537237834';
+        $order->ord_status = 1 ;
+        // dd($order);
+        $order->save();
+        $data['cart'] = Cart::content();
+        sleep(1);
+
+        foreach ($data['cart'] as $item) {
+            $orderdetail = new OrderDetail;
+            $orderdetail->orderDe_name = $item->name;
+            $orderdetail->orderDe_price = $item->price;
+            $orderdetail->orderDe_qty = $item->qty;
+            $orderdetail->orderDe_ord_id = $order->ord_id;
+            $orderdetail->orderDe_cou_id = $item->id;
+            $aff = Aff::where('aff_code', $item->options->aff)->first();
+            if($aff != null){
+                $orderdetail->orderDe_aff_id = $aff->aff_acc_id;
+            }
+            $orderdetail->save();
+        }
+
+        foreach ($order->orderDe as $orderDe) {
+            while (true) {
+                $code_value   = mt_rand(100000, 999999);
+                $codeExit = Code::where('code_value',$code_value)->first();
+                if($codeExit == null){
+                    $code = new Code;
+                    $code->code_value = $code_value;
+                    $code->code_orderDe_id = $orderDe->orderDe_id;
+                    $code->code_status = 0;
+                    $code->save();
+                    // $email = $order->acc->email;
+                    // $data['code'] = $code;
+                    // Mail::send('frontend.emailCode', $data, function($message) use ($email){
+                    //     $message->from('info@ceduvn.com', 'Ceduvn');
+                    //     $message->to($email, $email);
+                    //     $message->subject('Mã code khóa học');
+                    // });
+                    break;
+                }
+            }
+        }
+
+
+        $email = Auth::user()->email;
+                $data['order'] = $order;
+                Mail::send('frontend.emailNganLuong', $data, function($message) use ($email){
+                    $message->from('info@ceduvn.com', 'Ceduvn');
+                    $message->to($email, $email);
+                    $message->subject('Thanh toán thành công CEDU');
+                });
+                Cart::destroy();
+                return view('frontend.cart.complete');
+
+
+        $data['user'] = Account::find(Auth::user()->id);
         $email = Auth::user()->email;
         Mail::send('frontend.emailPaymentCompany', $data, function($message) use ($email){
             $message->from('info@ceduvn.com', 'Ceduvn');
             $message->to($email, $email)->subject('Thanh toán trực tiếp lại công ty CEDU');
             // $message->cc('thongminh.depzai@gmail.com', 'boss');
         });
+        Cart::destroy();
         return view('frontend.cart.complete');
     }
     
