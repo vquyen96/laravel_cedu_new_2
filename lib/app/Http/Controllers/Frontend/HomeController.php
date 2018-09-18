@@ -13,11 +13,17 @@ use App\Models\Teacher;
 use App\Http\Requests\AddAccountRequest;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Cache;
 
 use Auth;
 class HomeController extends Controller
 {
     public function getHome(){
+        // Cache::store('redis')->put('abc','chào mày',120);
+
+        // $abc = Cache::store('redis')->get('abc');
+
+        // dd($abc);
 		// $data['groups'] = Group::where('gr_parent_id', 0)->get();
         
 		// $data['coursefollow'] = Course::orderBy('cou_price','desc')->where('cou_status', '1')->paginate(4);

@@ -177,23 +177,30 @@ public function getProfile(){
    return view('frontend.teacher.personal', $data);
 }
 public function postProfile(Request $request){
-   $acc = Account::find(Auth::user()->id);
-   $data = $request->acc;
+    $acc = Account::find(Auth::user()->id);
+    $data = $request->acc;
 
-   $image = $request->file('img');
-   if ($request->hasFile('img')) {
-    $data['img'] = saveImage([$image], 200, 'avatar');
-            // dd($data);
-}
-$acc->update($data);
+    $image = $request->file('img');
+    // dd($image);
+    if ($request->hasFile('img')) {
+        if (filesize($image) < 2000000) {
+            $data['img'] = saveImage([$image], [50,250,360], 'avatar');
+        }
+        else{
+            return back()->with('error','Dung lượng ảnh của bạn quá lớn');
+        }
+        
 
-unset($data);
-$teacher = Teacher::find($acc->teacher->tea_id);
-$data = $request->teacher;
+    }
+    $acc->update($data);
 
-$teacher->update($data);
+    unset($data);
+    $teacher = Teacher::find($acc->teacher->tea_id);
+    $data = $request->teacher;
 
-return back()->with('success', 'Cập nhật thành công');
+    $teacher->update($data);
+
+    return back()->with('success', 'Cập nhật thành công');
 
 }
 

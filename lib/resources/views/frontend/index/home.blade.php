@@ -60,7 +60,7 @@
 				@foreach($courses as $item)
 					<div class="col-md-4 col-sm-6 col-xs-12">
 						<a href="{{ asset('courses/detail/'.$item->cou_slug.'.html') }}" class="courseMainItem">
-							<div class="courseMainItemImg" style="background: url('{{ asset('lib/storage/app/course/'.$item->cou_img) }}') no-repeat center /cover;">
+							<div class="courseMainItemImg" style="background: url('{{ asset('lib/storage/app/course/resized-'.$item->cou_img) }}') no-repeat center /cover;">
 								@if ($item->cou_sale != 0)
 									<div class="courseMainItemSale">
 										{{$item->cou_sale}}%

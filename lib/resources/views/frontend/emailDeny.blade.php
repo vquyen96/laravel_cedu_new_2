@@ -1,14 +1,16 @@
 
 <div style="background:#ddd; padding: 20px;">
 	<div style="width: 500px; margin: 20px auto; background: #fff; padding: 30px;">
-		<div style="width: 170px; height: 75px; margin: auto;">
-			<img src="{{asset('lib/storage/app/banner/logo.png')}}" style="width: 100%">
+		<div style="width: 108px; height: 75px; margin: auto;">
+			<img src="{{asset('public/layout/frontend/img/LOGO_CEDU1.png')}}" style="height: 100%">
 		</div>
 		
+		@foreach ($order->orderDe as $orderDe)
+			<h2>Khóa học: {{$orderDe->course->cou_name}}</h2>
+			<img style="width: 80%; margin: auto; display: block;" src="{{ asset('lib/storage/app/course/'.$orderDe->course->cou_img)}}" >
+			<h3 style="text-align: center">Khóa học của bạn đã bị hủy</h3>
+		@endforeach
 		
-		<h2>Khóa học: {{$code->orderDe->course->cou_name}}</h2>
-		<img style="width: 80%; margin: auto;" src="{{ asset('lib/storage/app/course/'.$code->orderDe->course->cou_img)}}">
-		<h3 style="text-align: center">Khóa học của bạn đã bị hủy</h3>
 		<div id="xac-nhan">
 			<br>
 			<p align="justify">

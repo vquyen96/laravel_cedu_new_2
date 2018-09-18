@@ -57,6 +57,7 @@ class SocialAuthController extends Controller
 
         try {
             $user = Socialite::driver($provider)->user();
+            // dd($user);
             $authUser = $this->findOrCreateUser($user, $provider);
             $arr = ['email' => $authUser->email, 'password' => $authUser->provider_id];
             
@@ -97,7 +98,8 @@ class SocialAuthController extends Controller
                 $authUser->save();
                 return $authUser;
             }
-            if ($user->email == null) {
+
+            if ($provider == 'facebook') {
                 $user->email = $user->id;
             }
             return Account::create([

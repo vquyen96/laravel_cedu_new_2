@@ -4,10 +4,14 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Account;
 use Auth;
 class LoginController extends Controller
 {
     public function getLogin(){
+        // $acc = Account::find(1);
+        // $acc->password = bcrypt('admin');
+        // $acc->save();
     	return view('backend.login2');
     }
     public function postLogin(Request $request){

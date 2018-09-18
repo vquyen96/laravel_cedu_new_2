@@ -196,7 +196,7 @@
 			</a>
 		</div>
 		<div class="headerRightItem ava headerDropdown">
-			<a style="background: url('{{ Auth::user()->provider == null ? asset('lib/storage/app/avatar/resized-'.Auth::user()->img) : Auth::user()->img }}') no-repeat center /cover">
+			<a style="background: url('{{ file_exists(storage_path('app/avatar/resized50-'.Auth::user()->img)) ? asset('lib/storage/app/avatar/resized50-'.Auth::user()->img) : Auth::user()->img }}') no-repeat center /cover">
 			</a>
 			<div class="headerItemDropdown ava">
 				@if(Auth::user()->level == 9)
@@ -286,15 +286,17 @@
 					</a>
 				</div>
 				@endif
-
-				<div class="headerItemDropdownItem">
-					<div class="headerItemDropdownItemIcon">
-						<i class="fas fa-unlock-alt"></i>
+				@if (Auth::user()->provider == null)
+					<div class="headerItemDropdownItem">
+						<div class="headerItemDropdownItemIcon">
+							<i class="fas fa-unlock-alt"></i>
+						</div>
+						<a href="{{ asset('user/change_pass') }}" class="headerItemDropdownItemContent">
+							Đổi mật khẩu
+						</a>
 					</div>
-					<a href="{{ asset('user/change_pass') }}" class="headerItemDropdownItemContent">
-						Đổi mật khẩu
-					</a>
-				</div>
+				@endif
+					
 				<div class="headerItemDropdownItem">
 					<div class="headerItemDropdownItemIcon">
 						<i class="fas fa-sign-out-alt"></i>

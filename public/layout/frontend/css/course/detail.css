@@ -500,7 +500,7 @@ a.courseRelateItemCart{
 .rateMainItemContentStarContent.last{
 	cursor: pointer;
 }
-/*.rateMainItemContentStarContent.last i:hover{
+.rateMainItemContentStarContent.last i:hover{
 	color: #FCC72E;
 
 }

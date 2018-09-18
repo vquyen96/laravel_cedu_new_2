@@ -1,7 +1,7 @@
 <div style="background:#ddd; padding: 20px;">
 	<div style="width: 500px; margin: 20px auto; background: #fff; padding: 30px;">
 		<div style="width: 170px; height: 75px; margin: auto;">
-			<img src="{{asset('lib/storage/app/banner/logo.png')}}" style="width: 100%">
+			<img src="{{asset('public/layout/frontend/img/LOGO_CEDU1.png')}}" style="width: 100%">
 		</div>
 		
 		
@@ -15,7 +15,7 @@
 				<p>Nếu có bất kì vấn đề gì, bạn vui lòng liên hệ trực tiếp với Cedu qua địa chỉ:</p>
 				<p><b>Địa chỉ trụ sở chính:</b> Tầng 6 Tòa nhà CPHONE số 456 Xô Viết Nghệ Tĩnh, phường 25, Quận Bình Thạch, thành phố Hồ Chí Minh, Việt Nam.</p>
 				<p><b>Văn phòng đại diện:</b> Tầng 5 tòa nhà Daimond Flower số 1 Hoàng Đạo Thúy, Phường Nhân Chính, Quận Thanh Xuân, Hà Nội, Việt Nam.</p>
-				<p><b>Địa chỉ website:</b> <a href="http://ceduvn.com/">ceduvn.com</a></p>
+				<p><b>Địa chỉ website:</b> <a href="https://ceduvn.com/">ceduvn.com</a></p>
 				<p><b>Địa chỉ Mail:</b> info@ceduvn.com</p>
 				<p><b>Điện thoại:</b> 1900.633.972</p>
 
