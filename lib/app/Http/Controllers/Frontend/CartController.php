@@ -427,7 +427,7 @@ class CartController extends Controller
     public function getNganLuong(){
 
         $total = str_replace(",","",Cart::total());
-        $total = 2000;
+        $total = (int)$total;
         $cancel_url= 'https://ceduvn.com/';
         $order_code='CEDU_'.time();
         // if ($affiliate_code == "") $affiliate_code = $this->affiliate_code;
@@ -591,7 +591,8 @@ class CartController extends Controller
                     $message->subject('Thanh toán thành công CEDU');
                 });
                 Cart::destroy();
-                return view('frontend.cart.complete');
+                return redirect('user/course_doing');
+                // return view('frontend.cart.complete');
                 
             }else{
                 return redirect('errors');

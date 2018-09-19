@@ -48,6 +48,7 @@ class AffController extends Controller
         $acc = Account::find(Auth::user()->id);
         $courses = Course::orderByDesc('cou_star')->take(8)->get();
         $total_amount = 0;
+        $amount_month = 0;
         $total_student = 0;
         $student_month = 0;
         $date = new DateTime();
@@ -57,6 +58,8 @@ class AffController extends Controller
                 $total_amount += $orderDe->course->cou_price;
                 if (date_format($date,"m") == date_format($orderDe->created_at,"m")) {
                     $student_month ++;
+                    $amount_month += $orderDe->course->cou_price;
+
                 }
             }
             // $total_amount += $course->cou_price;
@@ -75,6 +78,7 @@ class AffController extends Controller
         $data = [
             'teacher' => $acc->teacher,
             'total_amount' => $total_amount,
+            'amount_month' => $amount_month,
             'total_student' => $total_student,
             'student_month' => $student_month,
             'courses' =>$courses,
