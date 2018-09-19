@@ -27,7 +27,7 @@
 			<tr>	
 				<td>{{$item->news_id}}</td>
 				<td class="tableNewsImg">
-					<img class="" src="{{ file_exists(storage_path('/app/news/resized360-'.$item->news_img)) ? asset('lib/storage/app/news/resized360-'.$item->news_img) : asset('lib/storage/app/news/'.$item->news_img) }}">
+					<img class="" src="{{ file_exists(storage_path('/app/news/resized360-'.$item->news_img)) ? asset('lib/storage/app/news/resized360-'.$item->news_img) : file_exists(storage_path('/app/news/'.$item->news_img)) ? asset('lib/storage/app/news/'.$item->news_img) : $item->news_img }}">
 				</td>
 				<td>{{cut_string($item->news_title, 50)}}</td>
 				<td>{{number_format($item->news_view)}}</td>

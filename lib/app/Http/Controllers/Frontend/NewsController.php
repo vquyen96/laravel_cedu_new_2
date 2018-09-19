@@ -17,7 +17,16 @@ class NewsController extends Controller
 
     	// $data['newMostFollowL'] = News::orderBy('news_id','desc')->paginate(4);
     	// $data['newMostFollowR'] = News::orderBy('news_id','asc')->paginate(6);
-        $data['news'] = News::orderBy('news_id','desc')->paginate(6);
+        $list_news = News::orderBy('news_id','desc')->paginate(24);
+        // dd($list_news);
+        foreach ($list_news as $news) {
+            $news->news_tag = explode(',', $news->news_tag);
+            $news->news_tag_slug = explode(',', $news->news_tag_slug);
+            // dd(count($news->news_tag_slug));
+        }
+        $data['news'] = $list_news;
+
+        // dd($list_news);
     	return view('frontend/news.list-news',$data);
     }
     public function getDetail($slug){
@@ -25,7 +34,11 @@ class NewsController extends Controller
         $data['news'] = News::where('news_slug',$slug)->first();
         $data['newsList'] = News::paginate(4);
         $data['news']->news_view += 1;
+
         $data['news']->save();
     	return view('frontend.news.news',$data);
+    }
+    public function getTag($tag){
+
     }
 }

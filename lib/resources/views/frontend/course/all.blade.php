@@ -65,40 +65,46 @@
 				<div class="row ">
 					<div class="col-xs-12">
 						<div class="courseItem">
-							<a href="{{ asset('courses/detail/'.$item->cou_slug.'.html') }}" class="courseItemImg" style="background: url('{{ file_exists(storage_path('app/course/resized360-'.$item->cou_img)) ? asset('lib/storage/app/course/resized360-'.$item->cou_img) : asset('lib/storage/app/course/'.$item->cou_img)}}') no-repeat center /cover ;">
-								@if ($item->cou_sale != 0)
-									<div class="courseItemSale">
-										{{$item->cou_sale}}%
-									</div>
-									
-								@endif
-							</a>
-						
-							<div class="courseItemRight">
-								<a href="{{ asset('courses/detail/'.$item->cou_slug.'.html') }}" class="courseItemRightTitle">
-									{{ $item->cou_name }}
+							<div class="courseItemLeft">
+								<a href="{{ asset('courses/detail/'.$item->cou_slug.'.html') }}" class="courseItemImg" style="background: url('{{ file_exists(storage_path('app/course/resized360-'.$item->cou_img)) ? asset('lib/storage/app/course/resized360-'.$item->cou_img) : asset('lib/storage/app/course/'.$item->cou_img)}}') no-repeat center /cover ;">
+									@if ($item->cou_sale != 0)
+										<div class="courseItemSale">
+											{{$item->cou_sale}}%
+										</div>
+										
+									@endif
 								</a>
-								<div class="courseItemRightInfo">
-									20 bài
-									<i class="fa fa-circle" aria-hidden="true"></i> 
-									{{gmdate("H:i", $item->cou_video)}}p 
-									<i class="fa fa-circle" aria-hidden="true"></i>
-									{{time_format($item->updated_at)}}
-									<i class="fa fa-circle" aria-hidden="true"></i>
-									{{level_format($item->cou_level)}}
+							</div>
+							<div class="courseItemRight">
+								<div class="courseItemRightTop">
+									<div class="courseItemRightTitle">
+										<a href="{{ asset('courses/detail/'.$item->cou_slug.'.html') }}" class="">
+											{{ $item->cou_name }}
+										</a>
+									</div>
+									<div class="courseItemRightInfo">
+										<span>20 bài</span>
+										<span>{{gmdate("H:i", $item->cou_video)}}p</span> 
+										<span>{{time_format($item->updated_at)}}</span>
+										<span>{{level_format($item->cou_level)}}</span>
+										
+									</div>
+									<div class="courseItemRightSummary">
+										{{ cut_string($item->cou_summary, 120) }}
+									</div>	
 								</div>
-								<div class="courseItemRightSummary">
-									{{ cut_string($item->cou_summary, 120) }}
-								</div>
-								<div class="courseItemRightPrice">
-									<span class="courseItemRightOldPrice">
-										@if ($item->cou_price_old != null)
-											<del>{{number_format($item->cou_price_old,0,',','.')}} đ</del>
-										@endif
-									</span>
-									<span class="courseItemRightNewPrice">
-										{{number_format($item->cou_price,0,',','.')}}
-									</span>
+								<div class="courseItemRightBot">
+									<div class="courseItemRightPrice">
+										<span class="courseItemRightOldPrice">
+											@if ($item->cou_price_old != null)
+												<del>{{number_format($item->cou_price_old,0,',','.')}} đ</del>
+											@endif
+										</span>
+										<span class="courseItemRightNewPrice">
+											{{number_format($item->cou_price,0,',','.')}}
+										</span>
+									</div>
+										
 									
 									<div class="courseItemStar">
 										@for($i=0;$i<5;$i++)

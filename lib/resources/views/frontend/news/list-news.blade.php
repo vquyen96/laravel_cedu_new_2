@@ -38,12 +38,19 @@
 				@foreach($news as $item)
 					<div class="col-md-4 col-sm-4 col-12">
 						<div class="newsItem">
-							<a href="{{asset('news/detail/'.$item->news_slug)}}" class="newsItemImg" style="background: url('{{ file_exists(storage_path('/app/news/resized360-'.$item->news_img)) ? asset('lib/storage/app/news/resized360-'.$item->news_img) : asset('lib/storage/app/news/'.$item->news_img)}}') no-repeat center/cover; "></a>
+							<a href="{{asset('news/detail/'.$item->news_slug)}}" class="newsItemImg" style="background: url('{{ file_exists(storage_path('/app/news/resized360-'.$item->news_img)) ? asset('lib/storage/app/news/resized360-'.$item->news_img) : file_exists(storage_path('/app/news/'.$item->news_img)) ? asset('lib/storage/app/news/'.$item->news_img) : $item->news_img }}') no-repeat center/cover; "></a>
 							<div class="newsItemContent">
 								<a href="{{asset('news/detail/'.$item->news_slug)}}" class="newsItemTitle">{{cut_string($item->news_title,70)}}</a>
-								<a href="{{ asset('') }}" class="button">Mẹo học tập</a>
+								
+								@for ($i = 0; $i < count($item->news_tag) ; $i++)
+									@if ($i < 3 && $item->news_tag_slug[$i] != '')
+										<a href="{{ asset('news/tag/'.$item->news_tag_slug[$i]) }}" class="button">{{ $item->news_tag[$i] }}</a>
+									@endif
+									
+								@endfor
+								{{-- 
 								<a href="{{ asset('') }}" class="button">Thiết kế</a>
-								<a href="{{ asset('') }}" class="button">Color</a>			
+								<a href="{{ asset('') }}" class="button">Color</a>		 --}}	
 							</div>
 						</div>
 					</div>
