@@ -252,7 +252,12 @@ public function postDetailCourse(Request $request, $slug){
     }
     $image = $request->file('img');
     if ($request->hasFile('img')) {
-        $course['cou_img']  = saveImage([$image], 360, 'course');
+        $size = [360, 200, 100];
+        File::delete('lib/storage/app/course/'.$cou->cou_img);
+        foreach ($size as $sz) {
+            File::delete('lib/storage/app/course/resized'.$sz.'-'.$cou->cou_img);
+        }
+        $course['cou_img']  = saveImage([$image], $size, 'course');
     }
 
     if (!$cou->update($course)) {
@@ -319,7 +324,8 @@ public function getAddCourse(){
         $course['cou_tea_id'] = Auth::user()->id;
         $image = $request->file('img');
         if ($request->hasFile('img')) {
-            $course['cou_img']  = saveImage([$image], 360, 'course');
+            $size = [360, 200, 100];
+            $course['cou_img']  = saveImage([$image], $size, 'course');
         }else{
             return back()->with('error', 'Khóa học chưa có ảnh')->withInput($request->all());
         }

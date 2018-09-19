@@ -108,11 +108,12 @@ class CourseController extends Controller
         $cou->cou_slug = str_slug($request->cou_name);
         $image = $request->file('img');
         if ($request->hasFile('img')) {
+            $size = [360, 200, 100];
             File::delete('lib/storage/app/course/'.$cou->cou_img);
-            File::delete('lib/storage/app/course/resized360-'.$cou->cou_img);
-            File::delete('lib/storage/app/course/resized200-'.$cou->cou_img);
-            File::delete('lib/storage/app/course/resized100-'.$cou->cou_img);
-            $cou->cou_img = saveImage([$image], [360, 200, 100], 'course');
+            foreach ($size as $sz) {
+                File::delete('lib/storage/app/course/resized'.$sz.'-'.$cou->cou_img);
+            }
+            $cou->cou_img = saveImage([$image], $size, 'course');
         }
         $cou->cou_price = $request->cou_price;
         $cou->cou_level = $request->cou_level;
@@ -141,7 +142,7 @@ class CourseController extends Controller
                 $cou->cou_sale = $request->cou_sale;
                 $cou->cou_price_old = $request->cou_price_old;
             }
-            $cou->cou_student_fake = $request->cou_student;
+            $cou->cou_student_fake = $request->cou_student_fake;
             $cou->cou_tea_id = $request->cou_tea_id;
         }
         $cou->save();

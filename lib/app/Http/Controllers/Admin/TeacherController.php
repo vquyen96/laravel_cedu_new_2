@@ -8,6 +8,7 @@ use App\Models\Account;
 use App\Models\Teacher;
 use App\Models\Story;
 use Auth;
+use File;
 class TeacherController extends Controller
 {
     public function getList(){
@@ -19,7 +20,7 @@ class TeacherController extends Controller
             $data['wait'] = Account::where('teacher_wait', 1)->orderBy('id','desc')->get();
             $data['items'] = Account::where('teacher_wait', 0)->where('level',7)->orderBy('id','desc')->paginate(7);
 
-            return view('backend.teacher',$data);
+            return view('backend.teacher.list',$data);
         }
             
     }
@@ -127,11 +128,11 @@ class TeacherController extends Controller
         }
         $data['teacher'] = Teacher::where('tea_acc_id',$id)->first();
 
-        return view('backend.teacher_detail', $data);
+        return view('backend.teacher.detail', $data);
     }
     public function postDetail(Request $request, $id){
         $teacher = Teacher::where('tea_acc_id',$id)->first();
-        
+        $acc = $request->acc;
 
         $imageHead = $request->file('tea_img_head');
         if ($request->hasFile('tea_img_head')) {
@@ -148,19 +149,27 @@ class TeacherController extends Controller
             $request->file('tea_img_foot')->storeAs('teacher',$filename);
 
         }
-        
+        $image = $request->file('img');
+        if ($request->hasFile('img')) {
+            $size_img = [50,250,360];
+            foreach ($size_img as $size) {
+
+                File::delete('lib/storage/app/avatar/resized'.$size.'-'.$teacher->acc->img);
+                // dd($size);
+            }
+            $acc['img'] = saveImage([$image], $size_img, 'avatar');
+        }
+        $teacher->acc->update($acc);
 
         $teacher->tea_gender = $request->tea_gender;
-        $teacher->tea_specialize = $request->tea_specialize;
+        // $teacher->tea_specialize = $request->tea_specialize;
         $teacher->tea_degree = $request->tea_degree;
         if(Auth::user()->level != 7){
-            $teacher->tea_templace = $request->tea_templace;
-            $teacher->tea_follow = $request->tea_follow;
-            $teacher->tea_lesson = $request->tea_lesson;
-            $teacher->tea_exp = $request->tea_exp;
             $teacher->tea_featured = $request->tea_featured;
         }
         $teacher->tea_fb = $request->tea_fb;
+        $teacher->tea_gg = $request->tea_gg;
+        $teacher->tea_yt = $request->tea_yt;
        
         $teacher->tea_work_place = $request->tea_work_place;
         $teacher->tea_acc_id = $id;

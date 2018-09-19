@@ -104,17 +104,21 @@
 				  	</div>
 				  	@if(Auth::user()->level < 7)
 				  	<div class="form-group">
+				    	<label>Số học viên thêm</label>
+				    	<input type="number" class="form-control" name="cou_student_fake" value="{{$item->cou_student_fake}}">
+				  	</div>
+				  	{{-- <div class="form-group">
 				    	<label>Số học viên</label>
 				    	<input type="number" class="form-control" name="cou_student" value="{{$item->cou_student}}">
-				  	</div>
+				  	</div> --}}
 				  	@else
 				  	<b>Sỗ học viên : {{$item->cou_student}}</b>
 				  	@endif
-				  	<div class="form-group">
+				  	{{-- <div class="form-group">
 				    	<label>Tag</label>
 				    	<input type="text" class="form-control" name="cou_tag" required placeholder="VD: #Ngoại ngữ #Giao tiếp-+
 				    	" value="{{$item->cou_tag}}">
-				  	</div>
+				  	</div> --}}
 				  	<div class="form-group">
 				    	<label>Lĩnh vực</label>
 				    	<select class="form-control" name="cou_gr_id">

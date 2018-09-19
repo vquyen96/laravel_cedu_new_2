@@ -57,8 +57,9 @@
 		<ul>
 			<li>
 				<a href="{{asset('admin/user')}}" class="navUser navAccount @if (Request::segment(2) == 'user')  active @endif">
-					<img src="{{asset('lib/storage/app/avatar/resized50-'.Auth::user()->img)}}">
-					{{Auth::user()->name}}
+					<img src="{{ file_exists(storage_path('app/avatar/resized50-'.
+					Auth::user()->img)) ? asset('lib/storage/app/avatar/resized50-'.Auth::user()->img) : asset('lib/storage/app/avatar/resized-'.Auth::user()->img) }}">
+					{{ Auth::user()->name }}
 				</a>
 			</li>
 			@if(Auth::user()->level == 3 || Auth::user()->level == 1 ||  Auth::user()->level == 7)

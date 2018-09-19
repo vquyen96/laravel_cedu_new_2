@@ -131,7 +131,7 @@
                               <td>{{ $item->cou_name }}</td>
                               <td class="nowrap">{{ date_format($item->updated_at, "d - m - Y") }}</td>
                               <td class="nowrap">{{ number_format($item->cou_star, 1, '.', '.') }}</td>
-                              <td class="nowrap">{{ number_format($item->cou_student, 0 ,',','.') }}</td>
+                              <td class="nowrap">{{ number_format($item->cou_student + $item->cou_student_fake, 0 ,',','.') }}</td>
                               <td class="nowrap">{{ number_format($item->cou_price, 0, ',', '.') }} VND</td>
                               <td  class="nowrap">
                                 <a href="{{ asset('aff/share/'.$item->cou_slug) }}" class="linkCopy">

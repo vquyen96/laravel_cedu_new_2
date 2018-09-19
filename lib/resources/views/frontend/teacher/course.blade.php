@@ -44,7 +44,7 @@
 			@foreach($course as $item)	
 			<div class="row course">
 				<div class="col-md-4 col-sm-4 col-12">
-					<div class="img" style="background: url('{{ asset('lib/storage/app/course/'.$item->cou_img)}}') no-repeat center/cover;">
+					<div class="img" style="background: url('{{ file_exists(storage_path('app/course/resized360-'.$item->cou_img)) ? asset('lib/storage/app/course/resized360-'.$item->cou_img) : asset('lib/storage/app/course/'.$item->cou_img)}}') no-repeat center/cover;">
 						@if(isset($item->cou_price_old))
 						<div class="sticker" style="background:url('img/rectangle3.png') no-repeat;">
 							<p>Sale off</p>

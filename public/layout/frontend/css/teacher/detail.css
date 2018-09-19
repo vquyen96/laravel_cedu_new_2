@@ -47,7 +47,12 @@ a.button-add{
 	border-radius: 10px;
 
 }
+
+
 .profileLeftButton{
+	display: flex;
+}
+.buttonChangeAva{
 	height: 50px;
 	line-height: 50px;
 	width: 76%;
@@ -59,11 +64,35 @@ a.button-add{
 	border-radius: 10px;
 	text-align: center;
 	cursor: pointer;
+
 }
-.profileLeftButton:hover{
+.buttonChangeAva:hover{
 	background: #fcc72e;
 	color: #fff;
 	border: 1px solid #fcc72e;
+}
+
+.buttonSaveAva{
+	height: 50px;
+	line-height: 50px;
+	width: 76%;
+	margin: auto;
+	font-weight: bold;
+	font-size: 18px;
+	color: #999999;
+	border: 1px solid #C4C4C4;
+	border-radius: 10px;
+	text-align: center;
+	cursor: pointer;
+	margin-left: 10px;
+	flex: 1;
+	display: none;
+
+}
+.buttonSaveAva:hover{
+	background: #2D317F;
+	color: #fff;
+	border: 1px solid #2D317F;
 }
 .profileRight{
 	padding-left: 30px;

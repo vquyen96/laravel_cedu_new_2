@@ -61,10 +61,12 @@ class AccountController extends Controller
 
         $image = $request->file('img');
         if ($request->hasFile('img')) {
-            $acc->img = saveImage([$image], [50,250,360], 'avatar');
-            // $filename = time() . '.' . $image->getClientOriginalExtension();
-            // $acc->img = $filename;
-            // $request->img->storeAs('avatar',$filename);
+            $size_img = [50,250,360];
+            foreach ($size_img as $size) {
+                File::delete('lib/storage/app/avatar/resized'.$size.'-'.$acc->img);
+            }
+            $acc->img = saveImage([$image], $size_img, 'avatar');
+            
         }
         $acc->email = $request->email;
         if ($acc->password != null) {
@@ -81,9 +83,10 @@ class AccountController extends Controller
 
     public function getDelete($id){
         $acc = Account::find($id);
-        $namefile = $acc->img;
-        File::delete('libs/storage/app/avatar/'.$namefile);
-        File::delete('libs/storage/app/avatar/resized-'.$namefile);
+        $size_img = [50,250,360];
+        foreach ($size_img as $size) {
+            File::delete('lib/storage/app/avatar/resized'.$size.'-'.$acc->img);
+        }
         $acc->delete();
         Account::destroy($id);
         return back();

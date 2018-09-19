@@ -54,7 +54,7 @@
 		        // dd($resized_size);
 		        // dd($resized_size);
 		        foreach ($resized_size as $max_size) {
-		        	$width=$max_size;
+		        	$width=$max_size*1.5;
 		            $height=$width/$ratio;
 
 		            $destination_image = imagecreatetruecolor($width, $height);

@@ -60,8 +60,16 @@
 						<img id="avatarImg" class="cssInput" src="{{ file_exists(storage_path('app/course/'.$course->cou_img)) ? asset('lib/storage/app/course/'.$course->cou_img) : 'img/iamgesadd.jpg' }}">
 
 					</div>
-					<div class="profileLeftButton">	
+					{{-- <div class="profileLeftButton">	
 						{{!isset($course) ? 'Update'  : 'Thay đổi cover' }}
+					</div> --}}
+					<div class="profileLeftButton">
+						<div class="buttonChangeAva">
+							Chọn ảnh đại diện
+						</div>
+						<div class="buttonSaveAva">
+							Lưu
+						</div>
 					</div>
 				</div> 
 			</div>
@@ -591,14 +599,19 @@
         reader.onload = function(e){
             //Thay đổi đường dẫn ảnh
             $('#avatarImg').attr('src',e.target.result);
+            $('.buttonSaveAva').show();
         }
         reader.readAsDataURL(input.files[0]);
     }
 }
 $(document).ready(function() {
-	$('.profileLeftButton').click(function(){
-		$('#img').click();
-	});
+	$('.buttonChangeAva').click(function(){
+        $('#img').click();
+    });
+    $('.buttonSaveAva').click(function(){
+    	// $('.btnSubmit').prop('disabled', true);
+    	$('.btnSubmit').click();
+    });
 	@if (Request::segment(2) == 'add')
 	$('.inputEdit').click();	
 	@endif

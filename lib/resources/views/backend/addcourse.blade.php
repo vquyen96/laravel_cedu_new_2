@@ -40,8 +40,8 @@
 					    <input type="text" class="form-control" name="cou_sale" placeholder="VD: 15%" >
 					</div>
 					<div class="form-group">
-				    	<label>Số học viên</label>
-				    	<input type="number" class="form-control" name="cou_student">
+				    	<label>Số học viên thêm</label>
+				    	<input type="number" class="form-control" name="cou_student_fake">
 				  	</div>
 					@endif
 				  	<div class="form-group">
@@ -55,11 +55,11 @@
 				  	</div>
 				  	
 				  	
-				  	<div class="form-group">
+				  	{{-- <div class="form-group">
 				    	<label>Tag</label>
 				    	<input type="text" class="form-control" name="cou_tag" required placeholder="VD: #Ngoại ngữ #Giao tiếp-+
 				    	">
-				  	</div>
+				  	</div> --}}
 				  	<div class="form-group">
 				    	<label>Lĩnh vực</label>
 				    	<select class="form-control" name="cou_gr_id">

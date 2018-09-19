@@ -7,22 +7,25 @@ use App\Models\Course;
 use App\Models\Code;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Simple_html_dom\simple_html_dom;
 
 class UpdateController extends Controller
 {
     public function course_student(){
-    	$courses = Course::all();
-    	foreach ($courses as $course) {
-    		$cou_student = 0;
-    		foreach ($course->orderDe as $orderDe) {
-    			if ($orderDe->order->ord_status == 0) {
-					$cou_student++;
-				}
-    		}
-    		$course->cou_student = $cou_student;
-    		$course->save();
-    	}
-    	return redirect('admin')->with('success', 'Cập nhật xong');
+        $html = file_get_html('https://edumall.vn/');
+        echo $html;
+    // 	$courses = Course::all();
+    // 	foreach ($courses as $course) {
+    // 		$cou_student = 0;
+    // 		foreach ($course->orderDe as $orderDe) {
+    // 			if ($orderDe->order->ord_status == 0) {
+				// 	$cou_student++;
+				// }
+    // 		}
+    // 		$course->cou_student = $cou_student;
+    // 		$course->save();
+    // 	}
+    // 	return redirect('admin')->with('success', 'Cập nhật xong');
     }
     public function course_star(){
     	$courses = Course::all();
