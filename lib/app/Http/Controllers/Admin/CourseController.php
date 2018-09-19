@@ -8,6 +8,7 @@ use App\Models\Course;
 use App\Models\Group;
 use App\Models\Account;
 use Auth;
+use File;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 class CourseController extends Controller
 {
@@ -36,7 +37,7 @@ class CourseController extends Controller
 		$cou->cou_slug = str_slug($request->cou_name);
         $image = $request->file('img');
         if ($request->hasFile('img')) {
-            $cou->cou_img = saveImage([$image], 260, 'course');
+            $cou->cou_img = saveImage([$image], [360, 200, 100], 'course');
         }else{
             return back()->with('error', 'Khóa học chưa có ảnh')->withInput($request->all());
         }
@@ -107,7 +108,11 @@ class CourseController extends Controller
         $cou->cou_slug = str_slug($request->cou_name);
         $image = $request->file('img');
         if ($request->hasFile('img')) {
-            $cou->cou_img = saveImage([$image], 260, 'course');
+            File::delete('lib/storage/app/course/'.$cou->cou_img);
+            File::delete('lib/storage/app/course/resized360-'.$cou->cou_img);
+            File::delete('lib/storage/app/course/resized200-'.$cou->cou_img);
+            File::delete('lib/storage/app/course/resized100-'.$cou->cou_img);
+            $cou->cou_img = saveImage([$image], [360, 200, 100], 'course');
         }
         $cou->cou_price = $request->cou_price;
         $cou->cou_level = $request->cou_level;
@@ -152,6 +157,11 @@ class CourseController extends Controller
         return view('backend.student',$data);
     }
     public function getDelete($id){
+        $course = Course::find($id);
+        File::delete('lib/storage/app/course/'.$course->cou_img);
+        File::delete('lib/storage/app/course/resized360-'.$course->cou_img);
+        File::delete('lib/storage/app/course/resized200-'.$course->cou_img);
+        File::delete('lib/storage/app/course/resized100-'.$course->cou_img);
         Course::destroy($id);
         return redirect('admin/course');
     }

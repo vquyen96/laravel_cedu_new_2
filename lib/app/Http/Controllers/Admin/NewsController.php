@@ -24,7 +24,7 @@ class NewsController extends Controller
         $news->news_view = $request->view;
         $image = $request->file('img');
         if ($request->hasFile('img')) {
-            $news->news_img = saveImage([$image], 200, 'news');
+            $news->news_img = saveImage([$image], [360], 'news');
         }
         $news->news_content = $request->content;
         $news->news_type = 1;
@@ -43,7 +43,9 @@ class NewsController extends Controller
         $news->news_view = $request->view;
         $image = $request->file('img');
         if ($request->hasFile('img')) {
-            $news->news_img = saveImage([$image], 200, 'news');
+            File::delete('lib/storage/app/news/'.$news->img);
+            File::delete('lib/storage/app/news/resized360-'.$news->img);
+            $news->news_img = saveImage([$image], [360], 'news');
         }
         $news->news_content = $request->content;
         $news->news_type = 1;
@@ -53,8 +55,8 @@ class NewsController extends Controller
     public function getDelete($id){
         $news = News::find($id);
         $namefile = $news->img;
-        File::delete('libs/storage/app/news/'.$namefile);
-        File::delete('libs/storage/app/news/resized-'.$namefile);
+        File::delete('lib/storage/app/news/'.$namefile);
+        File::delete('lib/storage/app/news/resized360-'.$namefile);
         $news->delete();
         return back();
     }

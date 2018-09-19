@@ -251,7 +251,9 @@ a.noti_item{
 	font-weight: 500;
 	text-align: left;
 }
-
+.cart-mobile{
+	display: none;
+}
 @media screen and (max-width: 768px){
 	.header-mobile{
 		position: fixed;
@@ -358,6 +360,9 @@ a.noti_item{
 	}
 	a.headerItemDropdownItemContent{
 		margin-left: 10px;
+	}
+	.cart-mobile{
+		display: block;
 	}
 	.cart-mobile a{
 		font-size: 14px !important;

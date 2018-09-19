@@ -43,7 +43,7 @@
                         @foreach ( $items as $item)
                         <div class="cart_item">
                             <div class="cart_item_left">
-                                <div class="cart_item_ava" style="background: url('{{asset('lib/storage/app/course/'.$item->cou_img)}}') no-repeat center /cover;"></div>
+                                <div class="cart_item_ava" style="background: url('{{asset('lib/storage/app/course/resized200-'.$item->cou_img)}}') no-repeat center /cover;"></div>
                             </div>
                             <div class="cart_item_right">
                                 <div class="cart_item_name">

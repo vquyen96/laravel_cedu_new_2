@@ -151,7 +151,7 @@
 					<div class="courseRelateMain">
 						@foreach($course_relate as $item)
 						<div class="courseRelateItem">
-							<a href="{{ asset('courses/detail/'.$item->cou_slug.'.html') }}" class="courseRelateItemImg" style="background: url('{{ asset('lib/storage/app/course/'.$item->cou_img) }}') no-repeat center /cover;">
+							<a href="{{ asset('courses/detail/'.$item->cou_slug.'.html') }}" class="courseRelateItemImg" style="background: url('{{ asset('lib/storage/app/course/resized200-'.$item->cou_img) }}') no-repeat center /cover;">
 								
 							</a>
 							<div class="courseRelateItemContent">
@@ -205,7 +205,7 @@
 					</div>
 					<div class="teacherMain">
 						<div class="teacherMainLeft">
-							<div class="teacherMainLeftImg" style="background: url('{{ asset('lib/storage/app/avatar/'.$course->tea->img) }}') no-repeat center /cover;">
+							<div class="teacherMainLeftImg" style="background: url('{{ asset('lib/storage/app/avatar/resized-'.$course->tea->img) }}') no-repeat center /cover;">
 							</div>
 							<div class="teacherMainLeftName">
 								{{ $course->tea->name }}
@@ -361,7 +361,7 @@
 			<div class="col-md-1 col-sm-1"></div>
 			<div class="col-md-4 col-sm-4">
 				<div class="courseTag">
-					<div class="courseTagImg" style="background: url('{{ asset('lib/storage/app/course/'.$course->cou_img) }}') no-repeat center /cover;">
+					<div class="courseTagImg" style="background: url('{{ asset('lib/storage/app/course/resized360-'.$course->cou_img) }}') no-repeat center /cover;">
 						@if(isset($active))
 							<div class="courseMainItemGroup_Time">
 								<div class="courseMainItemGroup">

@@ -36,7 +36,8 @@
 		try {
 			$imgArr = [];
 		    // $max_size = $resized_size;
-		    if (count($resized_size) == 1) {
+		    if (!isset($resized_size[0])) {
+
 		    	$resized_size = [$resized_size];
 		    }
 		    foreach ($input as $image) {

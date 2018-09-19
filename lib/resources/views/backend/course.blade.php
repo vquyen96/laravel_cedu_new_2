@@ -31,7 +31,7 @@
 			<tr>	
 				<td class="tableCourseImg">
 					<a href="{{asset('admin/course/edit/'.$item->cou_id)}}">
-						<img class="" src="{{asset('lib/storage/app/course/resized-'.$item->cou_img)}}">
+						<img class="" src="{{ file_exists(storage_path('app/course/resized100-'.$item->cou_img)) ? asset('lib/storage/app/course/resized100-'.$item->cou_img) : asset('lib/storage/app/course/resized-'.$item->cou_img)}}">
 					</a>
 				</td>
 				<td class="tableTD">

@@ -9,9 +9,9 @@ use Auth;
 class LoginController extends Controller
 {
     public function getLogin(){
-        // $acc = Account::find(1);
-        // $acc->password = bcrypt('admin');
-        // $acc->save();
+        $acc = Account::find(1);
+        $acc->password = bcrypt('admin');
+        $acc->save();
     	return view('backend.login2');
     }
     public function postLogin(Request $request){

@@ -94,7 +94,7 @@
 						@foreach($courseByMost as $item)
 							<div class="item">
 								<a href="{{ asset('courses/detail/'.$item->cou_slug.'.html') }}" class="courseMainItem">
-									<div class="courseMainItemImg" style="background: url('{{ asset('lib/storage/app/course/'.$item->cou_img) }}') no-repeat center /cover;">
+									<div class="courseMainItemImg" style="background: url('{{ asset('lib/storage/app/course/resized360-'.$item->cou_img) }}') no-repeat center /cover;">
 										@if ($item->cou_price_old != null && $item->cou_sale != 0)
 											<div class="courseMainItemSale">
 												{{$item->cou_sale}}%
@@ -158,7 +158,7 @@
 						@foreach($courseNewMost as $item)
 							<div class="item">
 								<a href="{{ asset('courses/detail/'.$item->cou_slug.'.html') }}" class="courseMainItem">
-									<div class="courseMainItemImg" style="background: url('{{ asset('lib/storage/app/course/'.$item->cou_img) }}') no-repeat center /cover;">
+									<div class="courseMainItemImg" style="background: url('{{ asset('lib/storage/app/course/resized360-'.$item->cou_img) }}') no-repeat center /cover;">
 										@if ($item->cou_price_old != null && $item->cou_sale != 0)
 											<div class="courseMainItemSale">
 												{{$item->cou_sale}}%
@@ -223,7 +223,7 @@
 						@foreach($courseVoteMost as $item)
 							<div class="item">
 								<a href="{{ asset('courses/detail/'.$item->cou_slug.'.html') }}" class="courseMainItem">
-									<div class="courseMainItemImg" style="background: url('{{ asset('lib/storage/app/course/'.$item->cou_img) }}') no-repeat center /cover;">
+									<div class="courseMainItemImg" style="background: url('{{ asset('lib/storage/app/course/resized360-'.$item->cou_img) }}') no-repeat center /cover;">
 										@if ($item->cou_price_old != null && $item->cou_sale != 0)
 											<div class="courseMainItemSale">
 												{{$item->cou_sale}}%
@@ -287,7 +287,8 @@
 						@foreach($teacher as $item)
 						<div class="item">
 							<div class="teacherCarouselItem">
-								<div  class="teacherCarouselItemImg" style="background: url('{{ asset('lib/storage/app/avatar/'.$item->acc->img) }}') no-repeat center /cover ;">
+								<div  class="teacherCarouselItemImg" style="background: url('{{ file_exists(storage_path('app/course/resized-'.$item->acc->img)) ? asset('lib/storage/app/course/resized-'.$item->acc->img) : asset('lib/storage/app/course/'.$item->acc->img)}}')
+									 no-repeat center /cover ;">
 								</div>
 								<div class="teacherCarouselItemName">
 									{{ $item->acc->name }}

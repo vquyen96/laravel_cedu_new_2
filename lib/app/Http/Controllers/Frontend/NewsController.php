@@ -17,7 +17,7 @@ class NewsController extends Controller
 
     	// $data['newMostFollowL'] = News::orderBy('news_id','desc')->paginate(4);
     	// $data['newMostFollowR'] = News::orderBy('news_id','asc')->paginate(6);
-        $data['news'] = News::orderBy('news_id','asc')->paginate(6);
+        $data['news'] = News::orderBy('news_id','desc')->paginate(6);
     	return view('frontend/news.list-news',$data);
     }
     public function getDetail($slug){

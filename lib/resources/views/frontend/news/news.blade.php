@@ -92,7 +92,7 @@
 						<h2>Bài viết liên quan</h2>
 						@foreach($newsList as $item)
 						<a href="{{asset('news/detail/'.$item->news_slug)}}"" class="news">
-							<div class="img" style="background:url('{{ asset('lib/storage/app/news/'.$item->news_img)}}') no-repeat center /cover;"></div>
+							<div class="img" style="background:url('{{ asset('lib/storage/app/news/resized360-'.$item->news_img)}}') no-repeat center /cover;"></div>
 							<p>{{$item->news_title}}</p>
 						</a>
 						@endforeach

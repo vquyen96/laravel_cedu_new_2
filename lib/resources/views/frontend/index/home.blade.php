@@ -60,7 +60,7 @@
 				@foreach($courses as $item)
 					<div class="col-md-4 col-sm-6 col-xs-12">
 						<a href="{{ asset('courses/detail/'.$item->cou_slug.'.html') }}" class="courseMainItem">
-							<div class="courseMainItemImg" style="background: url('{{ asset('lib/storage/app/course/resized-'.$item->cou_img) }}') no-repeat center /cover;">
+							<div class="courseMainItemImg" style="background: url('{{ file_exists(storage_path('app/course/resized360-'.$item->cou_img)) ? asset('lib/storage/app/course/resized360-'.$item->cou_img) : asset('lib/storage/app/course/'.$item->cou_img)}}') no-repeat center /cover;">
 								@if ($item->cou_sale != 0)
 									<div class="courseMainItemSale">
 										{{$item->cou_sale}}%
@@ -125,7 +125,7 @@
 					<div class="owl-carousel">
 						@foreach($teacher as $item)
 							<div class="owlItem">
-								<a href="{{ asset('teacher/'.$item->acc->email) }}" class="owlItemImg" style="background: url('{{ asset('lib/storage/app/avatar/'.$item->acc->img) }}') no-repeat center /cover ;">
+								<a href="{{ asset('teacher/'.$item->acc->email) }}" class="owlItemImg" style="background: url('{{ asset('lib/storage/app/avatar/resized-'.$item->acc->img) }}') no-repeat center /cover ;">
 								</a>
 								<a href="{{ asset('teacher/'.$item->acc->email) }}" class="owlItemName">
 									{{ $item->acc->name }}
