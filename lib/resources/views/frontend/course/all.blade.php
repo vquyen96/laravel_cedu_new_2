@@ -65,7 +65,7 @@
 				<div class="row ">
 					<div class="col-xs-12">
 						<div class="courseItem">
-							<a href="{{ asset('courses/detail/'.$item->cou_slug.'.html') }}" class="courseItemImg" style="background: url('{{ asset('lib/storage/app/course/'.$item->cou_img) }}') no-repeat center /cover ;">
+							<a href="{{ asset('courses/detail/'.$item->cou_slug.'.html') }}" class="courseItemImg" style="background: url('{{ file_exists(storage_path('app/course/resized360-'.$item->cou_img)) ? asset('lib/storage/app/course/resized360-'.$item->cou_img) : asset('lib/storage/app/course/'.$item->cou_img)}}') no-repeat center /cover ;">
 								@if ($item->cou_sale != 0)
 									<div class="courseItemSale">
 										{{$item->cou_sale}}%

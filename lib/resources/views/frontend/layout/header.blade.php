@@ -149,7 +149,7 @@
 			<div class="headerItemDropdown noti">
 				@foreach ($noti as $item)
 					<a href="{{ $item->noti_link }}" class="noti_item">
-						<div class="noti_ava" style="background: url('{{ asset('lib/storage/app/noti/'.$item->noti_img) }}') no-repeat center /cover;">
+						<div class="noti_ava" style="background: url('{{ asset('lib/storage/app/noti/resized-'.$item->noti_img) }}') no-repeat center /cover;">
 							{{-- <i class="fas fa-file-alt"></i> --}}
 						</div>
 						<div class="noti_name">
