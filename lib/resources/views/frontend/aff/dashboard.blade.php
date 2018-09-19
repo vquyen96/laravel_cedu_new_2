@@ -45,7 +45,7 @@
                 </div>
             </div>
             <div class="row main_bodyItem bodyItem1">
-                <div class="col-md-8">
+                <div class="col-md-6">
                     <div class="mainBodyItemMain">
                         <div class="mainBodyItemMainTitle">
                             Tổng thu nhập
@@ -69,23 +69,23 @@
                         </div>
                     </div>
                 </div>
-                {{-- <div class="col-md-3">
+                <div class="col-md-3">
                     <div class="mainBodyItemMain">
                         <div class="mainBodyItemMainTitle">
-                            Tổng số học sinh
+                            Tổng doanh số
                         </div>
                         <div class="mainBodyItemMainAmount">
-                            {{ number_format($total_student, 0, ',', '.') }}
+                            {{ number_format($total_amount, 0, ',', '.') }}
                         </div>
                         <div class="mainBodyItemMainTitle">
-                            Học sinh mới trong tháng
+                            Doanh số tháng này
                         </div>
                         <div class="mainBodyItemMainAmount">
-                            {{ number_format($student_month, 0, ',', '.') }}
+                            {{ number_format($amount_month, 0, ',', '.') }}
                         </div>
                     </div>
-                </div> --}}
-                <div class="col-md-4">
+                </div>
+                <div class="col-md-3">
                     <div class="mainBodyItemMain">
                         <div class="mainBodyItemMainTitle">
                             Tổng số khóa học đã bán

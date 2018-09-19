@@ -36,15 +36,16 @@ class ForgotPass extends Controller
             // Session::put('key',  $code_value);
             
             // $acc->update(['password'=> $code_value]);
-            // $hash = 'hahaha/hahah/hahaha';
+            $hash = 'hahaha/hahah/hahaha';
             // dd(count(explode('/', trim($hash))));
             
-            Cache::store('redis')->put('code',$code_value,120);
+            Cache::store('redis')->put($email, $code_value, 120);
 
-            // while (count(explode('/', trim($hash))) != 1) {
-            //     $hash = Hash::make($code_value);
-            // }
-            $hash = md5($code_value);
+            while (count(explode('/', trim($hash))) != 1) {
+                $hash = Hash::make($code_value);
+            }
+            
+            // $hash = Hash::make($code_value);
             
             
             $data['code'] = $hash;
@@ -63,7 +64,7 @@ class ForgotPass extends Controller
             return redirect('/')->with('error','Bạn đã đăng nhập rồi !');
         }
         else{
-            $code_ss = Cache::store('redis')->get('code');
+            $code_ss = Cache::store('redis')->get($email);
             if(Hash::check($code_ss, $code)){
 
                 return view('frontend.reset_pass');
@@ -82,10 +83,10 @@ class ForgotPass extends Controller
         if(Hash::check($code_ss, $code)){
 
             if ($request->password == $request->re_password) {
-              $acc = Account::where('email', $email)->first();
-              $acc->password = bcrypt($request->password);
-              $acc->save();
-              $arr = ['email' => $request->email, 'password' => $request->password];
+                  $acc = Account::where('email', $email)->first();
+                  $acc->password = bcrypt($request->password);
+                  $acc->save();
+                  $arr = ['email' => $request->email, 'password' => $request->password];
 
 	        //  dd($arr);
                 if(Auth::attempt($arr, true)){
@@ -105,7 +106,7 @@ class ForgotPass extends Controller
             }
         }
         else{
-             return ridirect('/')->with('error','Đường dẫn không chính xác!');
+             return redirect('/')->with('error','Đường dẫn không chính xác!');
         }
     }
 }
