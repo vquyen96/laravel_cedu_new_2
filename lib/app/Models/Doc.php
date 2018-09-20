@@ -16,5 +16,9 @@ class Doc extends Model
     public function grdoc(){
     	return $this->belongsTo('App\Models\GroupDoc','doc_grdoc_id');
     }
+    public function group(){
+    	return $this->belongsTo('App\Models\Group','doc_gr_id');
+    }
+
     
 }

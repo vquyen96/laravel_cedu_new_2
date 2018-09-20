@@ -14,8 +14,12 @@ class GroupDocController extends Controller
 {
     public function getGroup(){
     	$data['group'] = Group::where('gr_parent_id', 0)->get();
-
-    	return view('backend.doc_group',$data);
+      $data['doc'] = Doc::orderBy('doc_id','desc')->get();
+    	return view('backend.doc.show',$data);
+    }
+    public function getAddDoc(){
+      $data['group'] = Group::where('gr_parent_id',0)->get();
+      return view('backend.doc.add-doc',$data);
     }
   //   public function getGroupDoc($group){
   //   	$group = Group::find($group);
@@ -59,10 +63,10 @@ class GroupDocController extends Controller
         $data['doc'] = Doc::where('doc_gr_id', $group)->paginate(8);
         return view('backend.doc',$data);
     }
-    public function postDoc(Request $request, $group){
+    public function postAddDoc(Request $request){
         $doc = new Doc;
         $doc->doc_name = $request->name;
-        $doc->doc_gr_id = $group;
+        $doc->doc_gr_id = $request->group;
         $doc->doc_acc_id = Auth::user()->id;
         $filedoc = $request->file('file');
 
@@ -81,17 +85,17 @@ class GroupDocController extends Controller
             return back()->with('error','File bị lỗi');
         }
     }
-    public function getEditDoc($group, $doc){
-        $data['doc'] = Doc::where('doc_gr_id', $group)->paginate(8);
+    public function getEditDoc($doc){
         $data['edit_doc'] = Doc::find($doc);
-        return view('backend.editdoc',$data);
+        $data['group'] = Group::where('gr_parent_id',0)->get();
+        return view('backend.doc.editdoc',$data);
     }
 
-    public function postEditDoc(Request $request, $group, $doc){
-        $data['doc'] = Doc::where('doc_gr_id', $group)->paginate(8);
+    public function postEditDoc(Request $request, $doc){
+       
         $doc = Doc::find($doc);
         $doc->doc_name = $request->name;
-        $doc->doc_gr_id = $group;
+        $doc->doc_gr_id = $request->group;
         $doc->doc_acc_id = Auth::user()->id;
 
         $image = $request->file('img');

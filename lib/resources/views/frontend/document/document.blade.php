@@ -57,7 +57,7 @@
 					@foreach($document as $item)
 					<div class="col-md-4 col-sm-4 col-12">
 						<div class="document">
-							<a href="{{ asset('lib/storage/app/doc/'.$item->doc_link) }}" class="img" style="background: url('{{ $item->doc_img != null ? asset('lib/storage/app/doc/resized-'.$item->doc_img) : 'img/doc.png' }}') no-repeat center/cover; " target="blank"></a>
+							<a href="{{ asset('lib/storage/app/doc/'.$item->doc_link) }}" class="img" style="background: url('{{ $item->doc_img != null ? asset('lib/storage/app/doc/resized360-'.$item->doc_img) : 'img/doc.png' }}') no-repeat center/cover; " target="blank"></a>
 							<div class="text">
 								<p>{{$item->doc_name}}</p>
 								<a href="{{ asset('lib/storage/app/doc/'.$item->doc_link) }}" class="download" target="blank" >Download</a>
