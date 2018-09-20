@@ -174,10 +174,12 @@ Route::group(['namespace'=>'Admin', 'middleware'=>'CheckAdmin'],function(){
 			// Route::post('edit_group/{group}/{groupdoc}','GroupDocController@postEditGroupDoc');
 			// Route::get('delete_group/{group}/{groupdoc}','GroupDocController@getDeleteGroupDoc');
 
+			Route::get('add','GroupDocController@getAddDoc');
+			Route::post('postadd','GroupDocController@postAddDoc');
 			Route::get('show/{group}','GroupDocController@getDoc');
 			Route::post('show/{group}','GroupDocController@postDoc');
-			Route::get('edit/{group}/{doc}','GroupDocController@getEditDoc');
-			Route::post('edit/{group}/{doc}','GroupDocController@postEditDoc');
+			Route::get('edit/{id}','GroupDocController@getEditDoc');
+			Route::post('postedit/{id}','GroupDocController@postEditDoc');
 			Route::get('delete/{doc}','GroupDocController@getDeleteDoc');
 		});
 		Route::group(['prefix' => 'banner'],function(){
