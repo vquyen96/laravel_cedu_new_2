@@ -343,6 +343,7 @@ Route::group(['namespace'=>'Frontend'],function(){
 	Route::group(['prefix'=>'news'],function(){
 		Route::get('/','NewsController@getList');
 		Route::get('detail/{slug}','NewsController@getDetail');
+		Route::get('tag/{slug}', 'NewsController@getTag');
 	});
 	Route::group(['prefix'=>'doc'],function(){
 		Route::get('/','DocController@getList');

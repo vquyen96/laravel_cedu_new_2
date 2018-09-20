@@ -461,9 +461,9 @@
 								<a href="{{asset('courses/detail/'.$course->cou_slug.'.html/video/0')}}">Bắt đầu học</a>
 
 							</div>
-							<div class="courseTagContentBuy">
-								<a href="{{asset('')}}">Xem khóa học khác</a>
-							</div>
+							{{--<div class="courseTagContentBuy">--}}
+								{{--<a href="{{asset('')}}">Xem khóa học khác</a>--}}
+							{{--</div>--}}
 						@else
 
 							<div class="courseTagContentAddCart">

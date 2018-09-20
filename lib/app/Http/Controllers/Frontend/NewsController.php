@@ -39,6 +39,19 @@ class NewsController extends Controller
     	return view('frontend.news.news',$data);
     }
     public function getTag($tag){
+        $list_news = News::where('news_tag_slug', 'like', '%'.$tag.'%')->orderBy('news_id','desc')->paginate(24);
+        // dd($list_news);
+        foreach ($list_news as $news) {
+            $news->news_tag = explode(',', $news->news_tag);
+            $news->news_tag_slug = explode(',', $news->news_tag_slug);
+            // dd(count($news->news_tag_slug));
+        }
+        foreach ($list_news[0]->news_tag_slug as $index => $news_tag_slug){
+            if ($news_tag_slug == $tag) $data['tag'] = $list_news[0]->news_tag[$index];
+        }
+        $data['news'] = $list_news;
 
+        // dd($list_news);
+        return view('frontend/news.list-news',$data);
     }
 }

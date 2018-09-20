@@ -394,8 +394,21 @@
 						</div>
 					</div>
 				</div>
-				<video width="100%" controls autoplay src="" id="video"></video>
-
+				<div class="show_video">
+					<video width="100%" controls autoplay src="" id="video"></video>
+				</div>
+				<div class="form_group">
+					<label>Tải tài liệu lên</label>
+					<div class="form_item">
+						<div class="inputFile">
+							Chọn file
+							<input id="upload_add" type="file" name="file" class="cssInput" onchange="Prevew_doc()">
+						</div>
+					</div>
+				</div>
+				<div class="show_doc">
+					<iframe id="viewer_add" frameborder="0" scrolling="no" width="100%" height="600"></iframe>
+				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn-miss" data-dismiss="modal">Không</button>
 					<input type="submit" class="btn-create" value="Lưu" />
@@ -435,7 +448,21 @@
 						</div>
 					</div>
 				</div>
-				<video width="100%" controls autoplay src="" id="video_edit"></video>
+				<div class="show_video">
+					<video width="100%" controls autoplay src="" id="video_edit"></video>
+				</div>
+				<div class="form_group">
+					<label>Tải tài liệu lên</label>
+					<div class="form_item">
+						<div class="inputFile">
+							Chọn file
+							<input id="upload_edit" type="file" name="file" class="cssInput" onchange="Prevew_doc()">
+						</div>
+					</div>
+				</div>
+				<div class="show_doc">
+					<iframe id="viewer_edit" frameborder="0" scrolling="no" width="100%" height="600"></iframe>
+				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn-miss" data-dismiss="modal" >Không</button>
 					<input type="submit" class="btn-create" value="Lưu" />
@@ -587,6 +614,9 @@
 		if($('#video_edit').attr('src') != '{{ asset('lib/public/uploads/') }}/'+link){
 			$('#video_edit').attr('src','{{ asset('lib/public/uploads/') }}/'+link);
 		}
+        if($('#video_edit').attr('src') != '{{ asset('lib/public/uploads/') }}/'+link){
+            $('#video_edit').attr('src','{{ asset('lib/public/uploads/') }}/'+link);
+        }
 		
 		$('#modal_edit_video').modal();
 	});

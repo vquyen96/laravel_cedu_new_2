@@ -42,7 +42,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div class="courseTitle">
-					<h1>{{ $course->cou_name }}</h1>
+					<h1>{{ $video->les_name }}</h1>
 					<div class="courseTitleContent">
 						The only course you need to learn web development - HTML, CSS, JS, Node, and More and More!!!
 					</div>
@@ -58,7 +58,7 @@
 						@endfor
 					</div>
 					<div class="courseRateContent">
-						{{ $course->cou_star }} ( {{ $course->rating->count() }} người bình chọn)
+						{{ number_format($course->cou_star, 1, '.','.') }} ( {{ $course->rating->count() }} người bình chọn)
 					</div>
 				</div>
 

@@ -15,6 +15,14 @@
 			<a href="{{ asset('news') }}" class="instruction_item">
 				Tin tức
 			</a>
+			@if(Request::segment(2) == 'tag')
+				<a class="instruction_item">
+					>
+				</a>
+				<a href="{{ asset('news/tag/'.Request::segment(2)) }}" class="instruction_item">
+					{{ isset($tag) ? $tag : 'Tag' }}
+				</a>
+			@endif
 			
 			
 			
@@ -26,7 +34,10 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="title">
-						<h1>Tin Tức</h1>
+						<h1>
+							<span>Tin Tức</span>
+							<span class="{{ isset($tag) ? '' : 'd-none' }}">{{ isset($tag) ? $tag : '' }}</span>
+						</h1>
 						<div class="titleContent">
 							Chúng tôi cung cấp cho các bạn những khoá học đa dạng và chất lượng nhất
 						</div>

@@ -154,4 +154,15 @@ function onChange() {
       console.log(video.duration);
   }
 }
-  
+
+
+function Prevew_doc() {
+    pdffile=document.getElementById("upload_add").files[0];
+    pdffile_url=URL.createObjectURL(pdffile);
+    $('#viewer_add').attr('src',pdffile_url);
+}
+function Prevew_doc_edit() {
+    pdffile=document.getElementById("upload_edit").files[0];
+    pdffile_url=URL.createObjectURL(pdffile);
+    $('#viewer_edit').attr('src',pdffile_url);
+}

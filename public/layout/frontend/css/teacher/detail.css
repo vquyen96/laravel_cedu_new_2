@@ -469,12 +469,19 @@ a.button-add{
 .inputFile:hover{
 	cursor: pointer;
 }
-#fileItem,#fileItem_edit{
+.inputFile input[type=file]{
 	position: absolute;
 	top: 0;
 	left: 0;
 	opacity: 0;
 }
+#fileItem,#fileItem_edit{
+
+}
+.show_doc iframe::-webkit-scrollbar {
+	width: 4px;
+}
+
 .action_form_tile,.action_form_video,.link_form_video{
 	display: none;
 }

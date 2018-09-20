@@ -64,10 +64,10 @@ h3{
 	width: 600px;
 	margin: 20px auto;
 	height: 70px;
-	border-radius: 50px;
+	border-radius: 10px;
 	text-align: center;
 	font-size: 30px;
-	background: #ccc;
+	background: #F8F8FB;
 	border:none;
 	outline: none;
 }

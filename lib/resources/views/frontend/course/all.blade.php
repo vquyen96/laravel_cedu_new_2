@@ -96,7 +96,7 @@
 								<div class="courseItemRightBot">
 									<div class="courseItemRightPrice">
 										<span class="courseItemRightOldPrice">
-											@if ($item->cou_price_old != null)
+											@if ($item->cou_sale != 0)
 												<del>{{number_format($item->cou_price_old,0,',','.')}} đ</del>
 											@endif
 										</span>

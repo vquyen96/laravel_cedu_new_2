@@ -1,5 +1,5 @@
 @extends('frontend.master')
-@section('title','Thành công')
+@section('title','Quên mật khẩu')
 @section('main')
     <link rel="stylesheet" type="text/css" href="css/code.css">
     <div class="instruction">
@@ -14,9 +14,7 @@
             <a href="{{ asset('forgot_pass') }}" class="instruction_item">
                 Quên mật khẩu
             </a>
-
         </div>
-
     </div>
     <div class="main_body">
         <div class="container">

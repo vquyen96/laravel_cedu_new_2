@@ -21,7 +21,7 @@ class ForgotPass extends Controller
     		return redirect('/');
     	}
     	else{
-    		return view('frontend.forgot_pass');
+    		return view('frontend.forgot.email');
     	}
     }
     public function postPage(Request $request){
@@ -66,8 +66,7 @@ class ForgotPass extends Controller
         else{
             $code_ss = Cache::store('redis')->get($email);
             if(Hash::check($code_ss, $code)){
-
-                return view('frontend.reset_pass');
+                return view('frontend.forgot.reset');
             }
             else{
                 return redirect('/')->with('error','Đường dẫn không chính xác!');

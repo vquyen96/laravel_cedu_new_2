@@ -436,6 +436,11 @@ a.teacherCarouselItemNumCourse:hover{
 	color: #aaa ;
 	overflow: hidden;
 }
+
+.courseItemRightBot{
+	display: flex;
+	justify-content: space-between;
+}
 .courseItemRightPrice{
 	/*position: absolute;
 	width: 100%;
@@ -459,9 +464,7 @@ a.teacherCarouselItemNumCourse:hover{
 
 }
 .courseItemStar{
-	position: absolute;
-	bottom: 5px;
-	right: 15px;
+
 	color: #C4C4C4;
 	font-size: 16px;
 }

@@ -74,7 +74,7 @@ class UpdateController extends Controller
 
 
     function clone(Request $request){
-        $link = "https://edumall.vn/goc-chia-se/chu-de/thiet-ke";
+        $link = "https://edumall.vn/goc-chia-se/chu-de/kinh-doanh-khoi-nghiep";
 
         $this->create_data_news($link);
         dd('chào đại ca');
@@ -87,7 +87,7 @@ class UpdateController extends Controller
 
         $html_home = $html_home->load($html_home->__toString());
 
-        $articles = $html_home->find(".media");
+        $articles = $html_home->find(".thumbnail");
 
         // dd($link_articles);
         $list_link = [];

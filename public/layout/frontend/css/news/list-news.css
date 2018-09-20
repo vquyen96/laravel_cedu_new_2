@@ -20,6 +20,14 @@ body{
     margin-bottom: 20px;
 
 }
+.title h1 span:last-child{
+	font-size: 16px;
+	color: #fff;
+	font-weight: 600;
+	background: #999;
+	padding: 3px 5px;
+	border-radius: 5px;
+}
 .title .titleContent{
 	color: #999999;
 	font-size: 16px;
@@ -38,13 +46,14 @@ body{
 }
 .newsItemContent{
 	padding: 20px 0;
+	height: 140px;
 }
 .newsItemContent a.newsItemTitle{
 	display: block;
 	text-decoration: none;
 	color: #666666;
 	font-size: 16px;
-	font-weight: 1000;
+	font-weight: bold;
 	line-height: 20px;
 	margin-bottom: 20px;
 	height: 60px;
