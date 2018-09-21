@@ -158,24 +158,41 @@
 .lessonMainVideo{
 	display: none;
 }
-a.lessonMainVideoItem{
+.lessonMainVideoItem{
 	display: flex;
 	padding: 0 25px 0 50px;
 	border: 1px solid #E5E5E5;
 	border-top: 0;
 	height: 55px;
 	line-height: 55px;
+}
+.lessonMainVideoDoc a{
 	text-decoration: none;
+    color: #999;
+    padding: 0 15px;
+    font-size: 18px;
 }
 .lessonMainVideoIcon{
 	width: 25px;
 	color: #E5E5E5;
 }
+.lessonMainVideoIcon.done{
+	color: #090;
+}
+.lessonMainVideoIcon.pause{
+	color: #fcc72e;
+}
+
 .lessonMainVideoTitle{
 	font-weight: 500;
 	font-size: 14px;
 	color: #999;
 	flex: 1;
+}
+.lessonMainVideoTitle a{
+	text-decoration: none;
+    color: #999;
+    font-weight: 600;
 }
 .lessonMainVideoTime{
 	font-weight: 500;
@@ -677,6 +694,41 @@ a.courseRelateItemCart{
   margin-left: 5px;
   outline: none;
 }
+.get_aff{
+	display: flex;
+    margin-top: -15px;
+    background: #eee;
+    /*padding: 5px 10px;*/
+    border-radius: 5px;
+    margin-bottom: 30px;
+    height: 0;
+    overflow: hidden;
+}
+.aff_ava{
+	width: 30px;
+	flex-shrink: 0;
+	margin-right: 10px;
+	overflow: hidden;
+	border-radius: 50%;
+}
+.aff_ava:after{
+	content: '';
+	display: block;
+	padding-top: 100%
+}
+.aff_name{
+	line-height: 30px;
+	color: #999;
+	font-weight: 600;
+	flex: 1;
+}
+.aff_check{
+	color: #484;
+	line-height: 30px;
+}
+
+
+
 
 .courseTagContentMain{
   padding: 0 5px;

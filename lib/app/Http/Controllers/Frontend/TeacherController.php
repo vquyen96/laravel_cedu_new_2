@@ -209,6 +209,7 @@ public function getDetailCourse($slug){
     $acc= Account::find(Auth::user()->id);
     
     $cou = Course::where('cou_slug',$slug)->first();
+    // dd($cou->cou_id);
     if ($cou == null) {
         return redirect('teacher/courses');
     }
@@ -229,6 +230,19 @@ public function getDetailCourse($slug){
     // dd($cou);
     $gr = Group::where('gr_parent_id',0)->get();
     $docs = Doc::where('doc_cou_id', $cou->cou_id)->get();
+
+    foreach ($cou->part as $part) {
+        foreach ($part->lesson as $lesson) {
+            foreach ($docs as $doc) {
+                // dd($lesson);
+                if ($doc->doc_les_id == $lesson->les_id) {
+                    // dd($doc);
+                    $lesson->les_doc_link = $doc->doc_link;
+                }
+            }
+        }
+    }
+    // dd($cou->part->get(0)->lesson);
     $data = [
         'user' => $acc,
         'course' => $cou,
@@ -356,6 +370,7 @@ public function getAddCourse(){
     //POST VIDEO COURSE
     public function postVideo(Request $request,$id){
         // gmdate("i:s", $request->duration)
+        // dd($request->all());
         $lesson = new Lesson;
         $lesson->les_name = $request->les_name;
         $lesson->les_slug = str_slug($request->les_name);
@@ -372,12 +387,27 @@ public function getAddCourse(){
         }else{
             return back()->with('error', 'Không có file upload');
         }
+
         $lesson->save();
         // Lưu thời lượng video vào bài giảng
         $part = Part::find($id);
         $part->part_video_duration = (int)$part->part_video_duration + (int)$lesson->les_video_duration;
         $part->save();
 
+        $doc_file = $request->file('file_doc');
+        if ($request->hasFile('file_doc')) {
+            $doc = new Doc;
+            $filename = time() . '.' . $doc_file->getClientOriginalExtension();
+            $doc->doc_link = $filename;
+            $doc_file->storeAs('doc',$filename);
+            $doc->doc_name = $request->les_name;
+            $part->cou->group->gr_parent_id == 0 ? $doc->doc_gr_id = $part->cou->cou_gr_id : $doc->doc_gr_id = $part->cou->group->gr_parent_id;
+            $doc->doc_acc_id = Auth::user()->id;
+            $doc->doc_cou_id = $part->cou->cou_id;
+            $doc->doc_les_id = $lesson->les_id;
+            $doc->save();
+
+        }
         // Lưu thời lượng video vào khóa
         $cou = Course::find($part->part_cou_id);
         $cou->cou_video += (int)$lesson->les_video_duration;
@@ -427,14 +457,35 @@ public function getAddCourse(){
         $lesson->save();
 
         // Lưu thời lượng video vào bài giảng
-        $part = Part::find($id);
-        $part->part_video_duration = (int)$part->part_video_duration + (int)$lesson->les_video_duration;
-        $part->save();
+        $part = Part::find($lesson->les_part_id);
+        if ($request->hasFile('file')) {
+            
+            $part->part_video_duration = (int)$part->part_video_duration + (int)$lesson->les_video_duration;
+            $part->save();
+        }
+        
 
         // Lưu thời lượng video vào khóa
         $cou = Course::find($part->part_cou_id);
         $cou->cou_video += (int)$lesson->les_video_duration;
         $cou->save();
+
+        $doc_file = $request->file('file_doc');
+        if ($request->hasFile('file_doc')) {
+            $doc = Doc::where('doc_les_id',$lesson->les_id)->first();
+            $doc == null ? $doc = New Doc : '';
+            $filename = time() . '.' . $doc_file->getClientOriginalExtension();
+            $doc->doc_link = $filename;
+            $doc_file->storeAs('doc',$filename);
+            $doc->doc_name = $request->les_name;
+            $cou->group->gr_parent_id == 0 ? $doc->doc_gr_id = $cou->cou_gr_id : $doc->doc_gr_id = $cou->group->gr_parent_id;
+            $doc->doc_acc_id = Auth::user()->id;
+            // dd($cou);
+            $doc->doc_cou_id = $cou->cou_id;
+            $doc->doc_les_id = $lesson->les_id;
+            $doc->save();
+
+        }
 
         return back();
     }

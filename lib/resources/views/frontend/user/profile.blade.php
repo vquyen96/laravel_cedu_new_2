@@ -39,7 +39,7 @@
 				<div class="col-md-4">
 					<div class="profileLeft">
 						<div class="profileLeftAva">
-							<img id="avatarImg" class="cssInput" src="{{ file_exists(storage_path('app/avatar/'.Auth::user()->img)) ? asset('lib/storage/app/avatar/'.Auth::user()->img) : str_replace("type=normal","width=1920",Auth::user()->img) }}">
+							<img id="avatarImg" class="cssInput" src="{{ file_exists(storage_path('app/avatar/resized360-'.Auth::user()->img)) ? asset('lib/storage/app/avatar/resized360-'.Auth::user()->img) : 'img/no-avatar.jpg' }}">
 						</div>
 						<div class="profileLeftButton">
 							<div class="buttonChangeAva">

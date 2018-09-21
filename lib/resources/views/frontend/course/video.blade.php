@@ -112,21 +112,44 @@
 							</div>
 							<div class="lessonMainVideo">
 								@foreach($item->lesson as $itemTiny)	
-									<a href="{{asset('courses/detail/'.$course->cou_slug.'.html/video/'.$video)}}" class="lessonMainVideoItem">
-										<div class="lessonMainVideoIcon">
-											<i class="fa fa-check{{$itemTiny->check == 2 ? '-double' : ''}}"></i>
-										</div>
+									<div href="" class="lessonMainVideoItem">
+										@if ($itemTiny->check == 2)
+											<div class="lessonMainVideoIcon done">
+												<i class="fa fa-check-double"></i>
+											</div>
+										@else
+											@if ($itemTiny->check == 1)
+												<div class="lessonMainVideoIcon pause">
+													<i class="far fa-pause-circle"></i>
+												</div>
+											@else
+												<div class="lessonMainVideoIcon none">
+													<i class="far fa-play-circle"></i>
+												</div>
+											@endif
+										@endif
+										
 
 										<div class="lessonMainVideoIcon">
 											<i class="fas fa-video"></i>
 										</div>
 										<div class="lessonMainVideoTitle">
-											{{$itemTiny->les_name}}
+											<a href="{{asset('courses/detail/'.$course->cou_slug.'.html/video/'.$video)}}">
+												{{$itemTiny->les_name}}
+											</a>
 										</div>
+										@if (isset($itemTiny->les_doc_link))
+											<div class="lessonMainVideoDoc">
+												<a href="{{ isset($itemTiny->les_doc_link) ? asset('lib/storage/app/doc/'.$itemTiny->les_doc_link) : '' }}" target="blank">
+													<i class="fas fa-download"></i>
+												</a>
+											</div>
+										@endif
+											
 										<div class="lessonMainVideoTime">
 											{{ gmdate("i:s", $itemTiny->les_video_duration) }}
 										</div>
-									</a>
+									</div>
 								<?php $video++ ?>
 								@endforeach
 							</div>
@@ -268,14 +291,16 @@
 						</div>
 						<div class="courseTagDocBody">
 							@foreach($doc as $item)
-							<a href="{{ asset('lib/storage/app/doc/'.$item->doc_link) }}" class="courseTagDocBodyItem" target="_blank">
-								<div class="courseTagDocBodyItemIcon">
-									<i class="fas fa-download"></i>
-								</div>
-								<div class="courseTagDocBodyItemContent">
-									{{ $item->doc_name}}
-								</div>
-							</a>
+								@if (!isset($item->doc_les_id) || $item->doc_les_id == null)
+									<a href="{{ asset('lib/storage/app/doc/'.$item->doc_link) }}" class="courseTagDocBodyItem" target="_blank">
+										<div class="courseTagDocBodyItemIcon">
+											<i class="fas fa-download"></i>
+										</div>
+										<div class="courseTagDocBodyItemContent">
+											{{ $item->doc_name}}
+										</div>
+									</a>
+								@endif
 							@endforeach
 						</div>
 					</div>

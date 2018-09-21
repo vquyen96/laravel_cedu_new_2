@@ -330,6 +330,7 @@ Route::group(['namespace'=>'Frontend'],function(){
 
 		Route::post('rate', 'CourseController@postRate');
 		Route::post('time_lession/update_time_les', 'CourseController@update_time_les')->name('update_time_les');
+		Route::post('get_aff', 'CourseController@get_aff');
 	});
 
 
@@ -379,8 +380,8 @@ Route::group(['namespace'=>'Frontend'],function(){
 
 		Route::get('get_ngan_luong','CartController@getNganLuong');
 
-		Route::get('add/{slug}','CartController@getAddCart');
-		Route::get('buy/{slug}','CartController@getBuyNow');
+		Route::get('add/{slug}.html','CartController@getAddCart');
+		Route::get('buy/{slug}.html','CartController@getBuyNow');
 
 		Route::get('show', 'CartController@getShowCart');
 		Route::post('show', 'CartController@postComplete');

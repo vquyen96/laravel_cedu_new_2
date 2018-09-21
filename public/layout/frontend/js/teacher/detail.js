@@ -36,13 +36,14 @@ $(document).ready(function() {
     $('.form_update_tile').attr('value',title);
 
     $('#myModaledit').modal();
+
   });
 
-  $('.addDocument').click(function(){
-    var action = $(this).find('.action_form').text();
-    $('.form_add_doc').attr('action', action);
-    $('#modal_add_doc').modal();
-  });
+  // $('.addDocument').click(function(){
+  //   var action = $(this).find('.action_form').text();
+  //   $('.form_add_doc').attr('action', action);
+  //   $('#modal_add_doc').modal();
+  // });
 
   $('.addDocument').click(function(){
     var action = $(this).find('.action_form').text();
@@ -53,11 +54,16 @@ $(document).ready(function() {
   $('.edit_document').click(function(){
     var action = $(this).find('.action_form').text();
     var doc_name = $(this).prev().text();
+    var doc_link = $(this).find('.doc_form').text();
+
     doc_name = doc_name.trim();
     console.log(doc_name);
     $('input[name="doc_name"]').val(doc_name);
     $('.form_add_doc').attr('action', action);
     $('#modal_add_doc').modal();
+
+    $('#viewer_doc').attr('src', url+'/lib/storage/app/doc/' + doc_link );
+    $('#viewer_doc').show();
   });
 
 
@@ -158,11 +164,20 @@ function onChange() {
 
 function Prevew_doc() {
     pdffile=document.getElementById("upload_add").files[0];
-    pdffile_url=URL.createObjectURL(pdffile);
-    $('#viewer_add').attr('src',pdffile_url);
+    var extension = pdffile.name.split('.').pop();
+    if (extension == 'pdf') {
+       pdffile_url=URL.createObjectURL(pdffile);
+      $('#viewer_add').attr('src',pdffile_url);
+      $('#viewer_add').show();
+    }
+     
 }
 function Prevew_doc_edit() {
     pdffile=document.getElementById("upload_edit").files[0];
-    pdffile_url=URL.createObjectURL(pdffile);
-    $('#viewer_edit').attr('src',pdffile_url);
+    var extension = pdffile.name.split('.').pop();
+    if (extension == 'pdf') {
+      pdffile_url=URL.createObjectURL(pdffile);
+      $('#viewer_edit').attr('src',pdffile_url);
+      $('#viewer_edit').show();
+    }
 }

@@ -4,6 +4,7 @@ $( document ).ready(function(){
 	postRate();
 	showDetailCourse();
 	showMore();
+	getAff();
 });
 
 function getRateChart (){
@@ -99,5 +100,34 @@ function showMore(){
 		$(this).prev().prev().css('height', '0');
 		$(this).prev().css('display', 'block');
 		$(this).css('display', 'none');
+	});
+}
+
+function getAff(){
+	$(document).on('click', '.formCodeAff' , function(){
+		var cou_slug = $('.cou_slug').text();
+		var url = $('.currentUrl').text();
+		var code = $(this).prev().val();
+		console.log(code);
+		$.ajax({
+	      method: 'POST',
+	      url: url+'courses/get_aff',
+	      data: {
+	          '_token': $('meta[name="csrf-token"]').attr('content'),
+	          'code': code,
+	      },
+	      success: function (resp) {
+	      	$('.get_aff').html(resp);
+	      	$('.get_aff').css({'height':'auto' , 'padding': '5px 15px'});
+	      	history.pushState(null, '', url+'/courses/detail/'+cou_slug+'?aff='+code);
+	      	$('.courseTagContentAddCart a').attr('href', url+'cart/add/'+cou_slug+'?aff='+code);
+
+	      	console.log(resp);
+	      },
+	      error: function () {
+	      	console.log('Lỗi Server')
+	        return false;
+	      }
+	    });
 	});
 }

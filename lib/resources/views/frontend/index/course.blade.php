@@ -1,7 +1,7 @@
 @foreach($courses as $item)
 	<div class="col-md-4 col-sm-6 col-xs-12">
 		<a href="{{ asset('courses/detail/'.$item->cou_slug.'.html') }}" class="courseMainItem">
-			<div class="courseMainItemImg" style="background: url('{{ asset('lib/storage/app/course/'.$item->cou_img) }}') no-repeat center /cover;">
+			<div class="courseMainItemImg" style="background: url('{{ file_exists(storage_path('app/course/resized360-'.$item->cou_img)) ? asset('lib/storage/app/course/resized360-'.$item->cou_img) : 'img/no_image.jpg' }}') no-repeat center /cover;">
 				@if ($item->cou_sale != 0)
 					<div class="courseMainItemSale">
 						{{$item->cou_sale}}%
@@ -22,7 +22,7 @@
 				{{cut_string($item->cou_name , 100)}}
 			</div>
 			<div class="courseMainItemTeacher">
-				<div class="courseMainItemTeacherAva" style="background: url('{{ asset('lib/storage/app/avatar/resized-'.$item->tea->img) }}') no-repeat center /cover;">
+				<div class="courseMainItemTeacherAva" style="background: url('{{ file_exists(storage_path('app/avatar/resized50-'.$item->tea->img)) ? asset('lib/storage/app/avatar/resized50-'.$item->tea->img) : 'img/no-avatar.jpg' }}') no-repeat center /cover;">
 				</div>
 				<div class="courseMainItemTeacherName">
 					{{ $item->tea->name }}

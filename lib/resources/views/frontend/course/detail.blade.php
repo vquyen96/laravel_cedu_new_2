@@ -32,6 +32,7 @@
 	</div>
 	
 </div>
+<div class="cou_slug d-none">{{ Request::segment(3) }}</div>
 <div class="main_body">
 	<div class="container">
 		<div class="row flex-mobile">
@@ -151,7 +152,7 @@
 					<div class="courseRelateMain">
 						@foreach($course_relate as $item)
 						<div class="courseRelateItem">
-							<a href="{{ asset('courses/detail/'.$item->cou_slug.'.html') }}" class="courseRelateItemImg" style="background: url('{{ asset('lib/storage/app/course/resized200-'.$item->cou_img) }}') no-repeat center /cover;">
+							<a href="{{ asset('courses/detail/'.$item->cou_slug.'.html') }}" class="courseRelateItemImg" style="background: url('{{ file_exists(storage_path('app/course/resized200-'.$item->cou_img)) ? asset('lib/storage/app/course/resized200-'.$item->cou_img) : 'img/no_image.jpg'}}') no-repeat center /cover;">
 								
 							</a>
 							<div class="courseRelateItemContent">
@@ -205,7 +206,7 @@
 					</div>
 					<div class="teacherMain">
 						<div class="teacherMainLeft">
-							<div class="teacherMainLeftImg" style="background: url('{{ asset('lib/storage/app/avatar/resized-'.$course->tea->img) }}') no-repeat center /cover;">
+							<div class="teacherMainLeftImg" style="background: url('{{ file_exists(storage_path('app/avatar/resized250-'.$course->tea->img)) ? asset('lib/storage/app/avatar/resized250-'.$course->tea->img) : 'img/no-avatar.jpg' }}') no-repeat center /cover;">
 							</div>
 							<div class="teacherMainLeftName">
 								{{ $course->tea->name }}
@@ -283,7 +284,7 @@
 						@foreach($course->rating as $item)
 							<div class="rateMainItem">
 								<div class="rateMainItemAva">
-									<div class="rateMainItemAvaImg" style="background: url('{{ asset('lib/storage/app/avatar/'.$item->acc->img) }}') no-repeat center /cover" >
+									<div class="rateMainItemAvaImg" style="background: url('{{ file_exists(storage_path('app/avatar/resized250-'.$item->acc->img)) ? asset('lib/storage/app/avatar/resized250-'.$item->acc->img) : 'img/no-avatar.jpg' }}') no-repeat center /cover;" >
 										
 									</div>
 									<div class="rateMainItemAvaName">
@@ -317,7 +318,7 @@
 						@if (Auth::check() && isset($active))
 							<div class="rateMainItem">
 								<div class="rateMainItemAva">
-									<div class="rateMainItemAvaImg" style="background: url('{{ asset('lib/storage/app/avatar/'.Auth::user()->img) }}') no-repeat center /cover" >
+									<div class="rateMainItemAvaImg" style="background: url('{{ file_exists(storage_path('app/avatar/resized250-'.Auth::user()->img)) ? asset('lib/storage/app/avatar/resized250-'.Auth::user()->img) : 'img/no-avatar.jpg' }}') no-repeat center /cover;" >
 										
 									</div>
 									<div class="rateMainItemAvaName">
@@ -361,7 +362,7 @@
 			<div class="col-md-1 col-sm-1"></div>
 			<div class="col-md-4 col-sm-4">
 				<div class="courseTag">
-					<div class="courseTagImg" style="background: url('{{ asset('lib/storage/app/course/resized360-'.$course->cou_img) }}') no-repeat center /cover;">
+					<div class="courseTagImg" style="background: url('{{ file_exists(storage_path('app/course/resized360-'.$course->cou_img)) ? asset('lib/storage/app/course/resized360-'.$course->cou_img) : 'img/no_image.jpg'}}') no-repeat center /cover;">
 						@if(isset($active))
 							<div class="courseMainItemGroup_Time">
 								<div class="courseMainItemGroup">
@@ -411,6 +412,13 @@
 							<div class="courseTagContentCode">
 								<input type="text" name="code_aff" class="formCode" placeholder="Mã nhân viên tư vấn">
 								<button class="formCodeAff">Xác nhận</button>
+							</div>
+							<div class="get_aff">
+								<div class="aff_ava" style="background: url('{{ asset('lib/storage/app/avatar/resized50-'.Auth::user()->img) }}') no-repeat center /cover;"></div>
+								<div class="aff_name">{{ Auth::user()->name }}</div>
+								<div class="aff_check">
+									<i class="fas fa-check"></i>
+								</div>
 							</div>
 						@endif
 							
@@ -467,11 +475,11 @@
 						@else
 
 							<div class="courseTagContentAddCart">
-								<a href="{{asset('cart/add/'.$course->cou_slug.'?aff='.app('request')->input('aff'))}}">Thêm vào giỏ hàng</a>
+								<a href="{{asset('cart/add/'.$course->cou_slug.'.html?aff='.app('request')->input('aff'))}}">Thêm vào giỏ hàng</a>
 
 							</div>
 							<div class="courseTagContentBuy">
-								<a href="{{asset('cart/buy/'.$course->cou_slug.'?aff='.app('request')->input('aff'))}}">Mua khóa học</a>
+								<a href="{{asset('cart/buy/'.$course->cou_slug.'.html?aff='.app('request')->input('aff'))}}">Mua khóa học</a>
 							</div>
 						@endif
 							

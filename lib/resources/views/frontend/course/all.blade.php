@@ -66,7 +66,7 @@
 					<div class="col-xs-12">
 						<div class="courseItem">
 							<div class="courseItemLeft">
-								<a href="{{ asset('courses/detail/'.$item->cou_slug.'.html') }}" class="courseItemImg" style="background: url('{{ file_exists(storage_path('app/course/resized360-'.$item->cou_img)) ? asset('lib/storage/app/course/resized360-'.$item->cou_img) : asset('lib/storage/app/course/'.$item->cou_img)}}') no-repeat center /cover ;">
+								<a href="{{ asset('courses/detail/'.$item->cou_slug.'.html') }}" class="courseItemImg" style="background: url('{{ file_exists(storage_path('app/course/resized360-'.$item->cou_img)) ? asset('lib/storage/app/course/resized360-'.$item->cou_img) : 'img/no_image.jpg'}}') no-repeat center /cover;">
 									@if ($item->cou_sale != 0)
 										<div class="courseItemSale">
 											{{$item->cou_sale}}%
@@ -90,16 +90,16 @@
 										
 									</div>
 									<div class="courseItemRightSummary">
-										{{ cut_string($item->cou_summary, 120) }}
+										{{ $item->cou_summary }}
 									</div>	
 								</div>
 								<div class="courseItemRightBot">
 									<div class="courseItemRightPrice">
-										<span class="courseItemRightOldPrice">
-											@if ($item->cou_sale != 0)
+										@if ($item->cou_sale != 0)
+											<span class="courseItemRightOldPrice">
 												<del>{{number_format($item->cou_price_old,0,',','.')}} đ</del>
-											@endif
-										</span>
+											</span>
+										@endif
 										<span class="courseItemRightNewPrice">
 											{{number_format($item->cou_price,0,',','.')}}
 										</span>
