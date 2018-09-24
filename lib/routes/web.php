@@ -38,6 +38,9 @@ Route::group(['namespace'=>'Admin', 'middleware'=>'CheckAdmin'],function(){
 			Route::get('course_student', 'UpdateController@course_student');
 			Route::get('course_star', 'UpdateController@course_star');
 			Route::get('course_video', 'UpdateController@course_video');
+			Route::get('sale_teacher', 'UpdateController@sale_teacher');
+			Route::get('sale_aff', 'UpdateController@sale_aff');
+
 			Route::get('clone', 'UpdateController@clone');
 		});
 		Route::get('user','HomeController@getUser');
@@ -297,10 +300,12 @@ Route::group(['namespace'=>'Frontend'],function(){
 		Route::post('doc/{cou_id}','TeacherController@postDoc');
 		Route::post('editdoc/{id}','TeacherController@editDoc');
 
-		Route::post('group_child_from', 'TeacherController@get_group_child_form');
+		// Route::post('group_child_from', 'TeacherController@get_group_child_form');
 		Route::post('acc_req','TeacherController@postReq');
 
 	});
+	Route::post('teacher/group_child_from', 'TeacherController@get_group_child_form');
+
 	Route::group(['prefix' => 'teacher'], function(){
 		Route::get('/{email}','TeacherController@getTeacher');
 		Route::get('/{email}/{rate}', 'TeacherController@getTeacherRating');

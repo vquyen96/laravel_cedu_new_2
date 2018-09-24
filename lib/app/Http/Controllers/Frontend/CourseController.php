@@ -440,7 +440,7 @@ class CourseController extends Controller
         $code = (int)Input::get('code');
         $aff = Aff::where('aff_code', $code)->first();
         if ($aff == null) {
-            return response('error', 502);
+            return response('error', 202);
         }
         else{
             $data['acc'] = $aff->acc;

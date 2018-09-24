@@ -32,7 +32,7 @@ class NewsController extends Controller
     public function getDetail($slug){
         
         $data['news'] = News::where('news_slug',$slug)->first();
-        $data['newsList'] = News::paginate(4);
+        $data['newsList'] = News::inRandomOrder()->take(4)->get();
         $data['news']->news_view += 1;
 
         $data['news']->save();

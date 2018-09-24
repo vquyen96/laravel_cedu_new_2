@@ -105,6 +105,7 @@ function showMore(){
 
 function getAff(){
 	$(document).on('click', '.formCodeAff' , function(){
+		$('.get_aff').css({'height':'0' , 'padding': '0'});
 		var cou_slug = $('.cou_slug').text();
 		var url = $('.currentUrl').text();
 		var code = $(this).prev().val();
@@ -117,12 +118,17 @@ function getAff(){
 	          'code': code,
 	      },
 	      success: function (resp) {
-	      	$('.get_aff').html(resp);
-	      	$('.get_aff').css({'height':'auto' , 'padding': '5px 15px'});
-	      	history.pushState(null, '', url+'/courses/detail/'+cou_slug+'?aff='+code);
-	      	$('.courseTagContentAddCart a').attr('href', url+'cart/add/'+cou_slug+'?aff='+code);
-
-	      	console.log(resp);
+	      	if (resp == 'error') {
+	      		$('.get_aff').html('Không tìm thấy');
+	      		$('.get_aff').css({'height':'auto' , 'padding': '5px 15px'});
+	      	}else{
+	      		$('.get_aff').html(resp);
+		      	$('.get_aff').css({'height':'auto' , 'padding': '5px 15px'});
+		      	history.pushState(null, '', url+'/courses/detail/'+cou_slug+'?aff='+code);
+		      	$('.courseTagContentAddCart a').attr('href', url+'cart/add/'+cou_slug+'?aff='+code);
+	      	}
+		      	
+	      	
 	      },
 	      error: function () {
 	      	console.log('Lỗi Server')

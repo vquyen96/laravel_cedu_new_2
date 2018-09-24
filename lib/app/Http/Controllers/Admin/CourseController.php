@@ -28,7 +28,7 @@ class CourseController extends Controller
     }
     public function getAdd(){
     	$data['tea'] = Account::where('level',7)->get();
-    	$data['group'] = Group::all();
+    	$data['group'] = Group::where('gr_parent_id', 0)->get();
     	return view('backend.addcourse',$data);
     }
     public function postAdd(Request $request){
@@ -46,11 +46,16 @@ class CourseController extends Controller
         $cou->cou_content = $request->content;
         $cou->cou_video = '0';
         $cou->cou_star = 0;
-        $cou->cou_gr_id = $request->cou_gr_id;
+        // $cou->cou_gr_id = $request->cou_gr_id;
         
         $cou->cou_tag = $request->cou_tag;
         $cou->cou_featured = $request->cou_featured;
         
+        if (isset($request->cou_gr_child_id) ) {
+            $cou->cou_gr_id = $request->cou_gr_child_id;
+        }
+        
+
         if (Auth::user()->level == 7) {
             $cou->cou_sale = 0;
             $cou->cou_student = 0;
@@ -91,15 +96,27 @@ class CourseController extends Controller
     }
     public function getEdit($id){
     	$data['tea'] = Account::where('level',7)->get();
-    	$data['group'] = Group::all();
+    	$data['group'] = Group::where('gr_parent_id', 0)->get();
         $data['item'] = Course::find($id);
+        if ($data['item']->group->gr_parent_id == 0 ) {
+            $data['item']->cou_gr_child_id = '';
+            $data['group_child'] = Group::where('gr_parent_id',$data['item']->group->gr_id)->get();
+        }
+        else{
+
+            $data['item']->cou_gr_child_id = $data['item']->cou_gr_id;
+            $data['item']->cou_gr_id = $data['item']->group->gr_parent_id;
+            $data['group_child'] = Group::where('gr_parent_id',$data['item']->group->gr_parent_id)->get();
+        }
         $i=0;
+        // dd($data['item']);
         foreach ($data['item']->part as $part) {
             foreach ($part->lesson as $item) {
                 $i++;
             }
         }
         $data['lesson'] = $i;
+        // dd($data);
         return view('backend.editcourse', $data);
     }
     public function postEdit(Request $request, $id){
@@ -118,10 +135,15 @@ class CourseController extends Controller
         $cou->cou_price = $request->cou_price;
         $cou->cou_level = $request->cou_level;
         $cou->cou_content = $request->content;
-        $cou->cou_gr_id = $request->cou_gr_id;
+        // $cou->cou_gr_id = $request->cou_gr_id;
         $cou->cou_tag = $request->cou_tag;
         $cou->cou_featured = $request->cou_featured;
         
+
+        if (isset($request->cou_gr_child_id) ) {
+            $cou->cou_gr_id = $request->cou_gr_child_id;
+        }
+
         if (Auth::user()->level == 7) {
             $cou->cou_tea_id = Auth::user()->id;
         }

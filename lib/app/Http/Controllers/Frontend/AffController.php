@@ -9,6 +9,7 @@ use App\Models\Aff;
 use App\Models\OrderDetail;
 use App\Models\Course;
 use App\Models\Account_Request;
+use App\Models\Sale;
 use Mail;
 use Auth;
 use DateTime;
@@ -47,37 +48,26 @@ class AffController extends Controller
         
         $acc = Account::find(Auth::user()->id);
         $courses = Course::orderByDesc('cou_star')->take(8)->get();
-        $total_amount = 0;
+        $total_sale = $acc->sale->sum('total');
+        $total_profit = $acc->sale->sum('profit');
+        $total_student = $acc->sale->sum('cou');
+
         $amount_month = 0;
-        $total_student = 0;
         $student_month = 0;
         $date = new DateTime();
         foreach ($acc->aff_orderDe as $orderDe) {
             if ($orderDe->order->ord_status == 0) {
-                $total_student ++;
-                $total_amount += $orderDe->course->cou_price;
                 if (date_format($date,"m") == date_format($orderDe->created_at,"m")) {
                     $student_month ++;
                     $amount_month += $orderDe->course->cou_price;
-
                 }
             }
-            // $total_amount += $course->cou_price;
-            // // $total_student += $course->cou_student;
-            // foreach ($course->orderDe as $orderDe) {
-            //     if ($orderDe->order->ord_status == 0) {
-            //         $total_student ++;
-            //         if (date_format($date,"m") == date_format($orderDe->created_at,"m")) {
-            //             $student_month ++;
-            //         }
-            //     }
-            // }
         }
 
         
         $data = [
             'teacher' => $acc->teacher,
-            'total_amount' => $total_amount,
+            'total_amount' => $total_sale,
             'amount_month' => $amount_month,
             'total_student' => $total_student,
             'student_month' => $student_month,

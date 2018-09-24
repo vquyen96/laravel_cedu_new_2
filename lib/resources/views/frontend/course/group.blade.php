@@ -52,7 +52,7 @@
 						@foreach($group_child as $item)
 						<div class="item">
 							<div class="groupChildItem">
-								<a href="{{ asset('courses/'.$group->gr_slug.'/all?gr_child[]='.$item->gr_id) }}" class="groupChildItemImg" style="background: url('{{ asset('lib/storage/app/group/'.$item->gr_img) }}') no-repeat center /cover ;">
+								<a href="{{ asset('courses/'.$group->gr_slug.'/all?gr_child[]='.$item->gr_id) }}" class="groupChildItemImg" style="background: url('{{file_exists(storage_path('app/group/resized175-'.$item->gr_img)) ? asset('lib/storage/app/group/resized175-'.$item->gr_img) : 'img/no_image.jpg'}}') no-repeat center /cover ;">
 									<span class="groupChildItemContent">
 										<span class="bold">{{ $item->gr_name }}</span>
 										<span>({{ $item->course->count() }})</span>

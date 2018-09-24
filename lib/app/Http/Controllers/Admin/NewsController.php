@@ -22,6 +22,13 @@ class NewsController extends Controller
         $news->news_title = $request->title;
 		$news->news_slug = str_slug($request->title);
         $news->news_view = $request->view;
+        $news->news_tag = $request->tag;
+        $tags = explode(',', $news->news_tag);
+        $tag_slug = [];
+        foreach ($tags as $tag) {
+            $tag_slug[] = str_slug($tag);
+        }
+        $news->news_tag_slug = implode(",", $tag_slug);
         $image = $request->file('img');
         if ($request->hasFile('img')) {
             $news->news_img = saveImage([$image], [360], 'news');
@@ -34,6 +41,7 @@ class NewsController extends Controller
     }
     public function getEdit($id){
     	$data['news'] = News::find($id);
+        // dd($data);
     	return view('backend.editnews',$data);
     }
     public function postEdit(Request $request, $id){
@@ -41,6 +49,13 @@ class NewsController extends Controller
     	$news->news_title = $request->title;
 		$news->news_slug = str_slug($request->title);
         $news->news_view = $request->view;
+        $news->news_tag = $request->tag;
+        $tags = explode(',', $news->news_tag);
+        $tag_slug = [];
+        foreach ($tags as $tag) {
+            $tag_slug[] = str_slug($tag);
+        }
+        $news->news_tag_slug = implode(",", $tag_slug);
         $image = $request->file('img');
         if ($request->hasFile('img')) {
             File::delete('lib/storage/app/news/'.$news->img);

@@ -414,11 +414,11 @@
 								<button class="formCodeAff">Xác nhận</button>
 							</div>
 							<div class="get_aff">
-								<div class="aff_ava" style="background: url('{{ asset('lib/storage/app/avatar/resized50-'.Auth::user()->img) }}') no-repeat center /cover;"></div>
+								{{-- <div class="aff_ava" style="background: url('{{ asset('lib/storage/app/avatar/resized50-'.Auth::user()->img) }}') no-repeat center /cover;"></div>
 								<div class="aff_name">{{ Auth::user()->name }}</div>
 								<div class="aff_check">
 									<i class="fas fa-check"></i>
-								</div>
+								</div> --}}
 							</div>
 						@endif
 							

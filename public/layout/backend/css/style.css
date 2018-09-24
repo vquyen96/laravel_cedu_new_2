@@ -273,6 +273,17 @@ main{
 		box-shadow: 4px 8px 12px 0px #0000003b;
 		border-radius: 5px;
 	}
+	.tableCourseImg a{
+		width: 100px;
+		display: block;
+		border-radius: 5px;
+		overflow: hidden;
+	}
+	.tableCourseImg a:after{
+		content: '';
+		display: block;
+		padding-top: 56%;
+	}
 	.tableIcon {
 		font-size: 24px;
 	}

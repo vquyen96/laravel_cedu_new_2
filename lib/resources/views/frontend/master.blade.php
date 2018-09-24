@@ -14,7 +14,7 @@
 
 
 	<base href="{{asset('public/layout/frontend')}}/">
-	<link rel="shortcut icon" href="{{ asset('public/layout/frontend/img/BUT.png') }}">
+	<link rel="shortcut icon" href="img/LOGO_CEDU1.png">
 	<meta charset="utf-8">
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<meta property="og:url" 		content="{{Request::url()}}" />

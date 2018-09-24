@@ -31,6 +31,10 @@ class Account extends Model
     {
         return $this->hasOne('App\Models\Aff','aff_acc_id','id');
     }
+    public function sale()
+    {
+        return $this->hasMany('App\Models\Sale','acc_id','id');
+    }
     public function addNew($input)
     {
         $check = static::where('facebook_id',$input['facebook_id'])->first();
@@ -42,6 +46,8 @@ class Account extends Model
         return $check;
         
     }
+
+
 
     // public function code()
     // {

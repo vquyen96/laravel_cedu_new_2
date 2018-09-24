@@ -121,13 +121,20 @@
 				  	</div> --}}
 				  	<div class="form-group">
 				    	<label>Lĩnh vực</label>
-				    	<select class="form-control" name="cou_gr_id">
+				    	<select class="form-control" name="cou_gr_id" id="group">
 				    		@foreach($group as $gr)
-					    	<option value="{{$gr->gr_id}}" @if($gr->gr_id == $item->cou_gr_id) selected @endif>{{$gr->gr_name}}</option>
+					    		<option value="{{$gr->gr_id}}" @if($gr->gr_id == $item->cou_gr_id) selected @endif>{{$gr->gr_name}}</option>
 					    	@endforeach
 					    </select>
 				  	</div>
-				  	
+				  	<div class="form-group">
+				    	<label>Chuyên mục</label>
+				    	<select class="form-control" name="cou_gr_child_id" id="group_child">
+				    		@foreach($group_child as $gr)
+					    		<option value="{{$gr->gr_id}}" {{ $gr->gr_id == $item->cou_gr_child_id ? 'selected' : '' }}>{{$gr->gr_name}}</option>
+					    	@endforeach
+					    </select>
+				  	</div>
 				  	@if(Auth::user()->level < 3 || Auth::user()->level == 5)
 				  	<div class="form-group">
 				    	<label>Giáo viên</label>

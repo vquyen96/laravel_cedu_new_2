@@ -46,7 +46,7 @@
 											<p>{{$key+1}}</p>
 										</td>
 										<td>
-											<div class="img" style="background: url('{{ asset('lib/storage/app/avatar/resized-'.$item->acc->img) }}') no-repeat center /cover;">
+											<div class="img" style="background: url('{{ file_exists(storage_path('app/avatar/resized50-'.$item->acc->img)) ? asset('lib/storage/app/avatar/resized50-'.$item->acc->img) : 'img/no-avatar.jpg' }}') no-repeat center /cover;">
 												
 											</div>
 										</td>

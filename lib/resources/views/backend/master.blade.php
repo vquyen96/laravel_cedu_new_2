@@ -4,6 +4,8 @@
 	<title>@yield('title')|| Admin</title>
 	<base href="{{asset('public/layout/backend')}}/">
 	<meta charset="utf-8">
+	<meta name="csrf-token" content="{{ csrf_token() }}">
+	<link rel="shortcut icon" href="img/cedu_icon.png">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
@@ -12,6 +14,7 @@
 
 </head>
 <body>
+	<div class="currentUrl" style="display: none;">{{ asset('') }}</div>
 	<div class="bt-mobile">
 		<span></span>
 		<span></span>
@@ -20,7 +23,6 @@
 	<div class="masterError">
 		<div class="masterErrorContent">
 			@include('errors.note')
-			
 		</div>
 		
 	</div>

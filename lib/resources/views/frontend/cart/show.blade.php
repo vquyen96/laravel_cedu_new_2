@@ -25,6 +25,7 @@
         </div>
         
     </div>
+    {{-- {{ Cart::content() }} --}}
     <div class="main_body">
         <div class="container">
             <div class="row">
