@@ -1,22 +1,21 @@
-<link href="https://fonts.googleapis.com/css?family=Montserrat:400,600,700,800" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 <div style="background:#ddd; padding: 20px;">
-	<div style="width: 500px; margin: 20px auto; background: #fff; padding: 30px;">
-		<div style="width: 170px; height: 75px; margin: auto;">
-			<img src="{{asset('public/layout/frontend/img/LOGO_CEDU1.png')}}" style="width: 100%">
-		</div>
-		
-		<h3 style="text-align: center;font-family: 'Montserrat', sans-serif;">Link xác nhận của bạn</h3>
+	<div style="width: 972px;margin: 20px auto; background:url('{{asset('public/layout/frontend/img/vectorsmartobject2.png')}}') no-repeat;background-size: cover;padding: 30px;height: 480px;display: flex;">
 
-		<a href="{{asset('forgot_pass/email/'.$email.'/'.$code)}}" style="display: block;width: 100px;line-height: 40px; color: #FCC72E;background: red;font-size: 16px;font-weight: bold;text-align: center;margin: auto;text-decoration: none;border-radius: 10px;font-family: 'Montserrat', sans-serif;">
-			Xác nhận
-		</a>
-		<div id="xac-nhan">
-			<br>
-			<p align="justify">
-				• Quý khách mau chóng kích hoạt trong thời gian sớm nhất<br />
-				• Mọi thắc mắc xin liên hệ 1900 6886<br />
-				<b><br />Cám ơn Quý khách đã sử dụng Sản phẩm của Công ty chúng Tôi!</b>
-			</p>
+		<div style="width: 50%;height: 100%;margin-left: 50%;padding-top: 100px;">
+			<div style="padding: 40px;">
+				<p style="font-family: 'Roboto', sans-serif;color: #666666;font-size: 20px;font-weight: 500;">LINK XÁC NHẬN ĐỔI MẬT KHẨU CỦA BẠN</p>
+			
+				<a href="{{asset('forgot_pass/email/'.$email.'/'.$code)}}" style="display: block;width: 130px;line-height: 40px;background: #35465c;text-align: center;color: #fff;font-size: 14px;font-weight: bold;text-decoration: none;border-radius: 20px;margin-top: 10px;margin-bottom: 20px;">XÁC NHẬN</a>
+
+				<div style="font-family: 'Roboto', sans-serif;color: #666666; font-size: 14px; font-weight: 300; border-bottom: 1px solid #000000;padding-bottom: 20px;">
+					<p><i class="fas fa-circle" style="font-size: 11px; color: #35465c"></i> Quý khách nhanh chóng kích hoạt trong thời gian sớm nhất</p>
+					<p><i class="fas fa-circle" style="font-size: 11px; color: #35465c"></i> Mọi thắc mắc xin liên hệ 1900.6886</p>
+				</div>
+
+				<p style="font-family: 'Roboto', sans-serif; color: #666666; font-size: 14px;">Cảm ơn Quý khách đã sử dụng Sản phẩm của Công ty chúng Tôi!</p>
+			</div>
 		</div>
 	</div>
 		
