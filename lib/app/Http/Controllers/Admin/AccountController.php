@@ -16,10 +16,10 @@ class AccountController extends Controller
            return redirect('');
         }
     	$data['items'] = Account::orderBy('id','desc')->paginate(7);
-    	return view('backend.account',$data);
+    	return view('backend.account.list',$data);
     }
     public function getAdd(){
-    	return view('backend.addaccount');
+    	return view('backend.account.add');
     }
     public function postAdd(AddAccountRequest $request){
         try{
@@ -53,7 +53,7 @@ class AccountController extends Controller
     }
     public function getEdit($id){
         $data['item'] = Account::find($id);
-        return view('backend.editaccount', $data);
+        return view('backend.account.edit', $data);
     }
     public function postEdit(Request $request, $id){
         $acc = Account::find($id);
@@ -98,7 +98,7 @@ class AccountController extends Controller
         $result = str_replace(' ', '%', $result);
         $data['items'] =  Account::where('name', 'like', '%'.$result.'%')->paginate(8);
         // dd($data['items']);
-        return view('backend.account',$data);
+        return view('backend.account.list',$data);
     }
 
     public function change_level(){

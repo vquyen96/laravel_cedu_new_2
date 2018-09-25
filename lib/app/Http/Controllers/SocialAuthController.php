@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Services\SocialAccountService;
 use Illuminate\Support\Facades\Log;
 use App\Models\Account;
+
 use Socialite, Auth, Redirect, Session, URL;
 class SocialAuthController extends Controller
 {
@@ -57,11 +58,11 @@ class SocialAuthController extends Controller
 
         try {
             $user = Socialite::driver($provider)->user();
-            // dd($user);
+//             dd($user);
             $authUser = $this->findOrCreateUser($user, $provider);
             $arr = ['email' => $authUser->email, 'password' => $authUser->provider_id];
-            
-            if(Auth::attempt($arr, true)){
+//            dd($authUser);
+            if(Auth::attempt($arr, true )){
                 // return Redirect::to(Session::get('pre_url'));
                 if (Auth::user()->level > 6) {
                     return redirect('')->with('success','Đăng nhập thành công');
@@ -71,7 +72,7 @@ class SocialAuthController extends Controller
                 }
             }
             else{
-                return redirect('')->withInput()->with('error','Tài khoản khặc mật khẩu của bạn không đúng');
+                return redirect('')->withInput()->with('error','Bạn đã có tài khoản rồi');
             }
             return Redirect::to(Session::get('pre_url'));
         }

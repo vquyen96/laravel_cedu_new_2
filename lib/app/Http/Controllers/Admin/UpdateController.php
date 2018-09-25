@@ -154,18 +154,11 @@ class UpdateController extends Controller
                     $sale->cou = $cou;
                     $sale->time = date_format($date,"m-Y");
                     $sale->acc_id = $tea->acc->id;
-                    // $data = [
-                    //     'total' => $total,
-                    //     'discount' => $discount,
-                    //     'profit' => ($total*$discount)/100,
-                    //     'time' => date_format($date,"m-Y"),
-                    //     'acc_id' => $tea->acc->id
-                    // ];
-                    // Sale::insert($data);
                     $sale->save();
                 }
             }
         }
+        return true;
     }
     public function sale_aff(){
         $affs = Aff::all();
@@ -190,20 +183,10 @@ class UpdateController extends Controller
                     $sale->cou = $cou;
                     $sale->time = date_format($date,"m-Y");
                     $sale->acc_id = $aff->acc->id;
-                    // $data = [
-                    //     'total' => $total,
-                    //     'discount' => $discount,
-                    //     'profit' => ($total*$discount)/100,
-                    //     'time' => date_format($date,"m-Y"),
-                    //     'acc_id' => $tea->acc->id
-                    // ];
-                    // Sale::insert($data);
                     $sale->save();
                 }
-                    
             }
-            
         }
-            
+        return true;
     }
 }

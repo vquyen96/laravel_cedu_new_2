@@ -1,35 +1,72 @@
 $(document).ready(function(){
-	$('.headerDropdown').click(function(){
-        // $('.headerItemDropdown').slideUp();
-        // $(this).find('.headerItemDropdown').slideDown();
-		$(this).find('.headerItemDropdown').slideToggle();
-	});
+    $(document).on('change', '#select_course', function (e) {
+        $('.loadingCourse').show();
+        var id = $(this).val();
+        var url = $('.currentUrl').text();
+        console.log(id);
+        e.preventDefault();
+        $.ajax({
+            method: 'POST',
+            url: url+'get_course_home',
+            data: {
+                '_token': $('meta[name="csrf-token"]').attr('content'),
+                'id': id
+            },
+            success: function (resp) {
+                console.log(resp);
+                if(resp != 'error'){
+                    setTimeout(function () {
+                        $('.courseMain').html(resp);
+                        $('.loadingCourse').hide();
+                    },200);
+                }
 
-	$('.iconSearchHead').click(function(){
-		$(this).parent().submit();
-	});
-
-	//setting seen
-    var noti = $('.headerTopMenuHideItem.noti');
-    var countNoti = 0;
-    for (var i = 0; i < noti.length ; i++) {
-        var noti_seen = localStorage.getItem('noti_'+noti.eq(i).find('.notiID').text());
-
-        if (noti_seen == null) {
-            countNoti++;
-            noti.eq(i).addClass("active");
-        }
-    }
-    if (countNoti == 0) {
-        $('.headerTopMenuNotiCount').hide();
-    }
-    else{
-        $('.headerTopMenuNotiCount').text(countNoti);
-    }
-    
-    //setting seen
-    $(document).on('click', ".headerTopMenuHideItem.noti", function(){
-       localStorage.setItem('noti_'+$(this).find('.notiID').text(), true);
-       window.location.href = $(this).find('.notiLink').text();
+            },
+            error: function () {
+                console.log('error');
+            }
+        });
     });
+
+    var num = 1;
+    setTimeout(function (){render_view()},1000);
+    // render_view();
+    function render_view() {
+        var url = $('.currentUrl').text();
+        $.ajax({
+            method: 'POST',
+            url: url+'get_templace',
+            data: {
+                '_token': $('meta[name="csrf-token"]').attr('content'),
+                'num': num
+            },
+            success: function (resp) {
+                if(resp != 'error'){
+                    switch (num) {
+                        case 1:
+                            $('.home1').html(resp);
+                            break;
+                        case 2:
+                            $('.home2').html(resp);
+                            break;
+                        case 3:
+                            $('.home3').html(resp);
+                            break;
+                        case 4:
+                            $('.home4').html(resp);
+                            break;
+                    }
+                    num++;
+                }
+                if (num<5){
+                    render_view()
+                }
+
+                // setTimeout(function(){},3000);
+            },
+            error: function () {
+                console.log('error');
+            }
+        });
+    }
 });

@@ -575,5 +575,10 @@ a.button-add{
 	.modal-content{
 		padding: 15px;
 	}
+}
 
+@media screen and (max-width: 525px){
+    .modal-dialog{
+        width: 96%;
+    }
 }

@@ -31,7 +31,7 @@
 				@endswitch
 			>	
 				<td class="tableAcountImg">
-					<img src="{{asset('lib/storage/app/avatar/resized-'.$item->acc->img)}}">
+					<img src="{{ file_exists(storage_path('app/avatar/resized50-'.$item->img)) ? asset('lib/storage/app/avatar/resized50-'.$item->img) : 'img/no-avatar.jpg'}}">
 				</td>
 				<td>{{$item->acc->name}}</td>
 				<td>{{$item->acc->email}}</td>
@@ -72,7 +72,7 @@
 				<td>
 					@if ($item->req_status == 1)
 						<a href="{{asset('admin/acc_req/accept/'.$item->req_id)}}" class="btn btn-primary">Chấp nhận</a>
-						<a href="{{asset('admin/acc_req/denied/'.$item->req_id)}}" onclick="return confirm('Bạn có chắc chắn muốn xóa ?')" class="btn btn-danger">Từ chối</a>
+						<a href="{{asset('admin/acc_req/denied/'.$item->req_id)}}" onclick="return confirm('Bạn có chắc chắn muốn từ chối ?')" class="btn btn-danger">Từ chối</a>
 					@endif
 				</td>
 			</tr>

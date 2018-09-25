@@ -232,6 +232,8 @@ Route::group(['namespace'=>'Frontend'],function(){
 	Route::get('/','HomeController@getHome');
 	
 	Route::post('get_course_home', 'HomeController@get_course_home');
+	Route::post('get_templace', 'HomeController@get_templace');
+
 
 	Route::get('share/{slug}','UserController@getShare');
 	Route::post('acc_req','UserController@postAccReq');

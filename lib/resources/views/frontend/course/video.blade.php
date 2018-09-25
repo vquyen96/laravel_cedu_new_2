@@ -18,8 +18,8 @@
 		<a class="instruction_item">
 			>
 		</a>
-		<a href="{{ asset('courses/'.Request::segment(2)) }}" class="instruction_item">
-			Ngoại ngữ
+		<a href="{{ asset('courses/'.$course->group->gr_slug) }}" class="instruction_item">
+			{{$course->group->gr_name}}
 		</a>
 		<a class="instruction_item">
 			>

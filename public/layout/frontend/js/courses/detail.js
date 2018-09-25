@@ -90,14 +90,17 @@ function showDetailCourse(){
 		$(this).next().slideToggle();
 	});
 }
+
 function showMore(){
+    $('.descriptionContent').height('242px');
+    var height_content = $('.descriptionContentItem').height();
 	$(document).on('click', '.btnShowMoreDescription' , function(){
-		$(this).prev().css('height', '100%');
+		$(this).prev().css('height', height_content+40);
 		$(this).next().css('display', 'block');
 		$(this).css('display', 'none');
 	});
 	$(document).on('click', '.btnShowLessDescription' , function(){
-		$(this).prev().prev().css('height', '0');
+		$(this).prev().prev().css('height', '242px');
 		$(this).prev().css('display', 'block');
 		$(this).css('display', 'none');
 	});

@@ -51,18 +51,18 @@
                             Tổng thu nhập
                         </div>
                         <div class="mainBodyItemMainAmount">
-                            {{ number_format(aff_profit($total_amount), 0, ',', '.') }} vnđ
+                            {{ number_format($total_profit, 0, ',', '.') }} vnđ
                         </div>
                         <div class="mainBodyItemMainTitle">
                             Số dư
                         </div>
                         <div class="mainBodyItemMainAmount">
-                            {{ number_format(aff_profit($total_amount)-Auth::user()->withdrawn, 0, ',', '.') }} vnđ
+                            {{ number_format(aff_profit($total_sale)-Auth::user()->withdrawn, 0, ',', '.') }} vnđ
                             <div class="mainBodyItemMainReq">
                                 <form method="post" action="{{ asset('aff/acc_req') }}" id="acc_req">
                                     {{ csrf_field() }}
                                     <input type="text" name="acc_id" class="d-none" value="{{ Auth::user()->id }}">
-                                    <input type="text" name="amount" class="d-none" value="{{ aff_profit($total_amount)-Auth::user()->withdrawn }}">
+                                    <input type="text" name="amount" class="d-none" value="{{ aff_profit($total_sale)-Auth::user()->withdrawn }}">
                                     <input type="submit" name="sbm" value="Rút tiền" class="btnSubmitAccReq">
                                 </form>
                             </div>
@@ -75,7 +75,7 @@
                             Tổng doanh số
                         </div>
                         <div class="mainBodyItemMainAmount">
-                            {{ number_format($total_amount, 0, ',', '.') }}
+                            {{ number_format($total_sale, 0, ',', '.') }}
                         </div>
                         <div class="mainBodyItemMainTitle">
                             Doanh số tháng này
@@ -132,7 +132,7 @@
                               <td class="nowrap">{{ date_format($item->updated_at, "d - m - Y") }}</td>
                               <td class="nowrap">{{ number_format($item->cou_star, 1, '.', '.') }}</td>
                               <td class="nowrap">{{ number_format($item->cou_student + $item->cou_student_fake, 0 ,',','.') }}</td>
-                              <td class="nowrap">{{ number_format($item->cou_price, 0, ',', '.') }} VND</td>
+                              <td class="nowrap">{{ number_format($item->cou_price , 0, ',', '.') }} VND</td>
                               <td  class="nowrap">
                                 <a href="{{ asset('aff/share/'.$item->cou_slug) }}" class="linkCopy">
                                     Link

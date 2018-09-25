@@ -237,8 +237,6 @@ class CourseController extends Controller
                 'type' => []
             ];
         }
-
-       
         $data['paramater'] = $paramater;
         $data['group'] = $group;
         $data['group_child'] = Group::where('gr_parent_id', $group->gr_id)->get();
@@ -251,6 +249,9 @@ class CourseController extends Controller
 
     public function getVideo($slug, $id){
         $data['course'] = Course::where('cou_slug',$slug)->first();
+        if ($data['course']->group->gr_parent_id != 0) {
+            $data['course']->group = Group::find($data['course']->group->gr_parent_id);
+        }
         $user = Auth::user();
         if(Auth::check()){
             $acc = Account::where('id',Auth::user()->id)->first();
@@ -269,6 +270,7 @@ class CourseController extends Controller
                     // dd($data['course']);
                     $data['part'] = $data['course']->part;
                     $index_video = 0;
+                    $data['listVideo'] = [];
                     foreach ($data['part'] as $part) {
                         // dd($part->lesson);
                         foreach ($part->lesson as $lesson) {

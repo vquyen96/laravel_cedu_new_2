@@ -59,8 +59,7 @@
 		<ul>
 			<li>
 				<a href="{{asset('admin/user')}}" class="navUser navAccount @if (Request::segment(2) == 'user')  active @endif">
-					<img src="{{ file_exists(storage_path('app/avatar/resized50-'.
-					Auth::user()->img)) ? asset('lib/storage/app/avatar/resized50-'.Auth::user()->img) : asset('lib/storage/app/avatar/resized-'.Auth::user()->img) }}">
+					<img src="{{ file_exists(storage_path('app/avatar/resized50-'.Auth::user()->img)) ? asset('lib/storage/app/avatar/resized50-'.Auth::user()->img) : (Auth::user()->provider_id != null ? Auth::user()->img : 'img/no-avatar.jpg') }}">
 					{{ Auth::user()->name }}
 				</a>
 			</li>
@@ -97,7 +96,7 @@
 			</li>
 			@endif
 
-			@if(Auth::user()->level == 3) 
+			@if(Auth::user()->level <= 3 )
 			<li>
 				<a href="{{asset('admin/acc_req')}}" class="navAccount @if (Request::segment(2) == 'request')  active @endif">
 					Yêu cầu rút tiền

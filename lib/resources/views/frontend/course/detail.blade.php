@@ -137,8 +137,9 @@
 						Mô tả
 					</div>
 					<div class="descriptionContent">
-						{!! $course->cou_content !!}
-
+						<div class="descriptionContentItem">
+							{!! $course->cou_content !!}
+						</div>
 					</div>
 					<div class="btnShowMoreDescription">Xem thêm >>> </div>
 					<div class="btnShowLessDescription">Thu gọn <<< </div>
@@ -187,7 +188,7 @@
 											{{number_format($item->cou_price,0,',','.')}}
 										</span>
 									</div>
-									<a href="{{asset('cart/add/'.$item->cou_slug.'?aff='.app('request')->input('aff'))}}" class="courseRelateItemCart">
+									<a href="{{asset('cart/add/'.$item->cou_slug.'.html?aff='.app('request')->input('aff'))}}" class="courseRelateItemCart">
 
 										<i class="fas fa-shopping-cart"></i>
 									</a>		

@@ -54,7 +54,7 @@
 <body onunload="end()">
 
 	<div class="currentUrl" style="display: none;">{{ asset('') }}</div>
-	
+
 	<div id="status">
 	</div>
 	
@@ -74,47 +74,18 @@
 		<i class="fa fa-angle-double-up" aria-hidden="true"></i>
 	</div> --}}
 	@include('frontend.layout.header')
-	
-	
 
-
-	{{-- <div class="giftShow">
-		<div class="giftShowTop">
-			<img src="img/king.png">
-			<span class="giftShowTopContent">
-				Nhận quà hấp dẫn từ Cedu
-			</span>
-			
-
-		</div>
-		<div class="giftShowBot">
-			<i class="fa fa-angle-double-up" aria-hidden="true"></i>
-		</div>
-	</div>
-	<div class="giftHide">
-		<div class="giftHideBtn">
-			<div class="giftHideBtnLine"></div>
-		</div>
-		<div class="giftHideTitle">
-			Nhận kho tài liệu khủng từ Cedu
-		</div>
-		<form method="post" action="{{ asset('gift') }}">
-			<input type="email" name="email" class="giftHideInput" placeholder="Email">
-			<input type="submit" name="sbm" class="giftHideSubmit" value="Gửi">
-			{{csrf_field()}}
-		</form>
-	</div>  --}}
 	<main>
 		@yield('main')
 	</main>
-
-	@include('frontend.layout.footer')
-
+    @if(Request::segment(1) != null)
+        @include('frontend.layout.footer')
+    @endif
 	<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
 
 	<script type="text/javascript" src="js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="js/master2.js"></script>
-	<script type="text/javascript" src="js/index/index.js"></script>
+	<script type="text/javascript" src="js/master.js"></script>
+	{{--<script type="text/javascript" src="js/index/index.js"></script>--}}
 	@yield('script')
 
 <script>

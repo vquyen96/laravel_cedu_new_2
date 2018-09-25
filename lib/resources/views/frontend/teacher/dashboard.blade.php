@@ -53,24 +53,40 @@
 							Tổng thu nhập
 						</div>
 						<div class="mainBodyItemMainAmount">
-							{{ number_format($total_amount, 0, ',', '.') }} vnđ
+							{{ number_format($total_profit, 0, ',', '.') }} vnđ
 						</div>
 						<div class="mainBodyItemMainTitle">
 							Số dư
 						</div>
 						<div class="mainBodyItemMainAmount">
-							{{ number_format($total_amount - $teacher->acc->withdrawn, 0, ',', '.') }} vnđ
+							{{ number_format($total_profit - $teacher->acc->withdrawn, 0, ',', '.') }} vnđ
 							<div class="mainBodyItemMainReq">
 								<form method="post" action="{{ asset('teacher/acc_req') }}" id="acc_req">
 									{{ csrf_field() }}
 									<input type="text" name="acc_id" class="d-none" value="{{ Auth::user()->id }}">
-									<input type="text" name="amount" class="d-none" value="{{ $total_amount - $teacher->acc->withdrawn }}">
+									<input type="text" name="amount" class="d-none" value="{{ $total_profit - $teacher->acc->withdrawn }}">
 									<input type="submit" name="sbm" value="Rút tiền" class="btnSubmitAccReq">
 								</form>
 							</div>
 						</div>
 						
 					</div> 
+				</div>
+				<div class="col-md-3">
+					<div class="mainBodyItemMain">
+						<div class="mainBodyItemMainTitle">
+							Tổng doanh số
+						</div>
+						<div class="mainBodyItemMainAmount">
+							{{ number_format($total_sale, 0, ',', '.') }}
+						</div>
+						<div class="mainBodyItemMainTitle">
+							Doanh số tháng này
+						</div>
+						<div class="mainBodyItemMainAmount">
+							{{ number_format($month_sale, 0, ',', '.') }}
+						</div>
+					</div>
 				</div>
 				<div class="col-md-3">
 					<div class="mainBodyItemMain">
@@ -84,26 +100,11 @@
 							Học sinh mới trong tháng
 						</div>
 						<div class="mainBodyItemMainAmount">
-							{{ number_format($student_month, 0, ',', '.') }}
+							{{ number_format($month_student, 0, ',', '.') }}
 						</div>
 					</div>
 				</div>
-				<div class="col-md-3">
-					<div class="mainBodyItemMain">
-						<div class="mainBodyItemMainTitle">
-							Tổng lượng đánh giá
-						</div>
-						<div class="mainBodyItemMainAmount">
-							{{ $total_rating }}
-						</div>
-						<div class="mainBodyItemMainTitle">
-							Đánh giá mới trong tháng
-						</div>
-						<div class="mainBodyItemMainAmount">
-							{{ $rating_month }}
-						</div>
-					</div>
-				</div>
+
 			</div>
 			<div class="row main_bodyItem bodyItem2">
 				<div class="col-md-8">
@@ -171,7 +172,7 @@
 							{{-- @for($j = 0; $j < 5; $j++) --}}
 							@foreach($teacher->rate as $item)
 							<div class="rateDetailItem">
-								<div class="rateDetailItemAva" style="background: url('{{  asset('lib/storage/app/avatar/resized-'.$item->acc->img)}}') no-repeat center /cover;">
+								<div class="rateDetailItemAva" style="background: url('{{  file_exists(storage_path('app/avatar/resized50-'.$item->img)) ? asset('lib/storage/app/avatar/resized50-'.$item->img) : 'img/no-avatar.jpg' }}') no-repeat center /cover;">
 									
 								</div>
 								<div class="rateDetailItemStar">

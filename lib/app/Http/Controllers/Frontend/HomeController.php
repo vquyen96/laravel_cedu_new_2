@@ -19,23 +19,7 @@ use Auth;
 class HomeController extends Controller
 {
     public function getHome(){
-        // Cache::store('redis')->put('abc','chào mày',120);
-
-        // $abc = Cache::store('redis')->get('abc');
-
-        // dd($abc);
-		// $data['groups'] = Group::where('gr_parent_id', 0)->get();
-        
-		// $data['coursefollow'] = Course::orderBy('cou_price','desc')->where('cou_status', '1')->paginate(4);
-		// $data['coursenew'] = Course::orderBy('created_at','desc')->where('cou_status', '1')->paginate(4);
-		// $data['courserate'] = Course::orderBy('cou_star','desc')->where('cou_status', '1')->paginate(4);
-        $data['courses'] =  Course::orderBy('created_at','desc')->where('cou_status', '1')->take(6)->get();
-		$data['teacher'] = Teacher::orderBy('tea_featured','desc')->take(10)->get();
-        // dd($data['teacher']);
-		// $data['courseFeatured'] = Course::orderBy('cou_featured','desc')->where('cou_status', '1')->paginate(21);
         $data['banner'] = Banner::where('ban_link', 'Banner trang chủ')->first();
-        
-         
     	return view('frontend.index.home',$data);
     }
     public function getToHome(){
@@ -116,6 +100,41 @@ class HomeController extends Controller
         // dd($view);
         return response($view, 200);
     }
+    public function get_templace(){
+        $num = Input::get('num');
+        $templaces = ['home1','home2','home3','home4'];
+        $data['courses'] =  Course::orderBy('created_at','desc')->where('cou_status', '1')->take(6)->get();
+        $data['teacher'] = Teacher::orderBy('tea_featured','desc')->take(10)->get();
+        $data['banner'] = Banner::where('ban_link', 'Banner trang chủ')->first();
+//        $data = [];
+        switch ($num) {
+            case 0:
+                $view = View::make('frontend.index.'.$templaces[0],$data)->render();
+                return response($view, 200);
+                break;
+            case 1:
+                $view = View::make('frontend.index.'.$templaces[1],$data)->render();
+                return response($view, 200);
+                break;
+            case 2:
+                $view = View::make('frontend.index.'.$templaces[2],$data)->render();
+                return response($view, 200);
+                break;
+            case 3:
+                $view = View::make('frontend.index.'.$templaces[3],$data)->render();
+                return response($view, 200);
+                break;
+            case 4:
+                $view = View::make('frontend.layout.footer',$data)->render();
+                return response($view, 200);
+                break;
+
+            default:
+                return response('error', 404);
+                break;
+        }
+    }
+
 
 
 

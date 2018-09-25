@@ -19,22 +19,15 @@ class AffController extends Controller
 {
     // TOP THÀNH VIÊN
     public function getTop(){
+//        $affs = Aff::all();
+//        foreach ($affs as $aff){
+//            $total_profit = $aff->acc->sale->sum('profit');
+//            $aff->aff_earnings = $total_profit;
+//            $aff->save();
+//        }
+
         $data['top_aff'] = Aff::orderByDesc('aff_earnings')->get();
-        // dd($data['top_aff'][0]->orderDe);
-        // foreach ($data['top_aff'] as $key => $aff) {
-        // 	$aff->aff_earnings = 0;
-        // 	$aff->aff_order_num = 0;
-        	
-        // 	foreach ($aff->acc->aff_orderDe as $orderDe) {
-        // 		// dd($orderDe);
-        // 		if ($orderDe->order->ord_status == 0) {
-        // 			$aff->aff_order_num++;
-        // 			$aff->aff_earnings += $orderDe->course->cou_price;
-        // 		}
-        // 	}
-        // 	// dd($aff);
-        // 	$aff->save();
-        // }
+
         return view('frontend.aff.top', $data);
     }
 
@@ -45,7 +38,8 @@ class AffController extends Controller
     }
 
     public function getDashboard(){
-        
+        app('App\Http\Controllers\Admin\UpdateController')->sale_aff();
+
         $acc = Account::find(Auth::user()->id);
         $courses = Course::orderByDesc('cou_star')->take(8)->get();
         $total_sale = $acc->sale->sum('total');
@@ -64,10 +58,10 @@ class AffController extends Controller
             }
         }
 
-        
         $data = [
             'teacher' => $acc->teacher,
-            'total_amount' => $total_sale,
+            'total_sale' => $total_sale,
+            'total_profit' => $total_profit,
             'amount_month' => $amount_month,
             'total_student' => $total_student,
             'student_month' => $student_month,
