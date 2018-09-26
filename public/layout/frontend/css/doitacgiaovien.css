@@ -3,6 +3,13 @@
 }*/
 body{
 	font-family: 'Montserrat', sans-serif;
+	min-width: 1160px;
+
+
+}
+.container-fluid{
+	width: 1140px;
+	margin: auto;
 }
 ::-webkit-scrollbar {
     width: 5px;
@@ -45,9 +52,8 @@ body{
 }
 
 .header{
-	background: url('../img/GroupBanner.png') no-repeat;
-	background-size: 100%;
-	
+	background: url('../img/GroupBanner.png') no-repeat center /cover;
+
 	position: relative;
 }
 .headerLogo{

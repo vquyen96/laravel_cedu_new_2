@@ -105,8 +105,13 @@ class AffController extends Controller
             $acc->withdrawn +=  $request->amount;
             $acc->save();
             $email = Auth::user()->email;
-            $data['acc_req'] = $acc_req;
-            Mail::send('frontend.emailAccountRequest', $data, function($message) use ($email){
+            $data = [
+                "acc_req" => $acc_req,
+                "title" => "Yêu cầu của bạn đã được gửi",
+                "content1" => "Yêu cầu của bạn <b>".$acc_req->acc->name."</b> rút <b>".number_format($acc_req->req_amount,0,',','.')."vnđ</b> đã được gửi đi",
+                "content2" => "Yêu cầu rút tiền của bạn đã được chuyển đến bộ phận kế toán Số tiền bạn được nhận sẽ chuyển vào tài khoảng của bạn trong vòng từ 1 đến 2 ngày ( Không kể thứ 7 và Chủ Nhật)"
+            ];
+            Mail::send('frontend.email.req_acc', $data, function($message) use ($email){
                 $message->from('info@ceduvn.com', 'Ceduvn');
                 $message->to($email, $email);
                 $message->subject('Thư thông báo rút tiền CEDU');

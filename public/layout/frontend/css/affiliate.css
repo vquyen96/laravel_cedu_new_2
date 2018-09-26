@@ -1,5 +1,6 @@
 body{
 	font-family: 'Montserrat', sans-serif;
+	min-width: 1160px;
 }
 .masterError{
 	position: fixed;
@@ -194,20 +195,30 @@ body{
 }
 
 .make{
-	background: url('../img/banner23.png') no-repeat;
-	background-size: 100%;
+	background: url('../img/banner23.png') no-repeat center /cover;
 	height: 600px;
+	padding: 50px 0;
 }
 .makeTitle{
 	text-align: center;
 	font-size: 30px;
-	margin: 50px 0;
+	margin-bottom: 50px;
 	color: #fff;
+}
+.makeMain{
+	display: flex;
+	max-width: 1170px;
+	margin: auto;
 }
 .makeItem{
 	height: 350px;
 	width: 100%;
 	border: 1px solid #fbaf43;
+	flex: 1;
+
+}
+.makeItem+.makeItem{
+	margin-left: 30px;
 }
 .makeItemLogo{
 	width: 162px;

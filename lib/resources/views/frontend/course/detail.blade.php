@@ -17,8 +17,8 @@
 		<a class="instruction_item">
 			>
 		</a>
-		<a href="{{ asset('courses') }}" class="instruction_item">
-			Ngoại ngữ
+		<a href="{{ asset('courses/'.$course->group->gr_slug) }}" class="instruction_item">
+			{{$course->group->gr_name}}
 		</a>
 		<a class="instruction_item">
 			>
@@ -217,7 +217,7 @@
 							<div class="teacherMainRightInfo">
 								{{ $course->tea->course->count() }} bài giảng
 								<i class="fa fa-circle" aria-hidden="true"></i> 
-								{{ $course->tea->order->count()}} học sinh
+								{{ $course->cou_student + $course->cou_student_fake}} học sinh
 								<i class="fa fa-circle" aria-hidden="true"></i>
 								{{ $course->rating->count()}} review
 							</div>
@@ -384,7 +384,7 @@
 								<span class="courseTagOldPrice">
 									{{-- <i class="fa fa-circle" aria-hidden="true"></i> --}}
 
-									@if ($course->cou_price_old != null)
+									@if ($course->cou_sale != 0)
 										<del>{{number_format($course->cou_price_old,0,',','.')}} </del>
 									@endif
 

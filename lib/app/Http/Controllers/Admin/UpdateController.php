@@ -76,55 +76,65 @@ class UpdateController extends Controller
     }
 
 
-    function clone(Request $request){
-        $link = "https://edumall.vn/goc-chia-se/chu-de/kinh-doanh-khoi-nghiep";
+    function clone(){
+        $links = [
+            "https://edumall.vn/goc-chia-se/",
+            "https://edumall.vn/goc-chia-se/chu-de/phat-trien-ban-than",
+            "https://edumall.vn/goc-chia-se/chu-de/marketing",
+            "https://edumall.vn/goc-chia-se/chu-de/thiet-ke",
+            "https://edumall.vn/goc-chia-se/chu-de/ung-dung-van-phong",
+            "https://edumall.vn/goc-chia-se/chu-de/kinh-doanh-khoi-nghiep",
+            "https://edumall.vn/goc-chia-se/chu-de/ngoai-ngu"
+        ];
 
-        $this->create_data_news($link);
+        $this->create_data_news($links);
         dd('chào đại ca');
     }
 
-    function create_data_news($link){
-        
+    function create_data_news($links){
+        foreach ($links as $link){
+//            dd($link);
+            $html_home = $this->getDom1($link);
 
-        $html_home = $this->getDom1($link);
+            $html_home = $html_home->load($html_home->__toString());
 
-        $html_home = $html_home->load($html_home->__toString());
+            $list_class = ['.thumbnail', '.media'];
+            foreach ($list_class as $class){
+                $articles = $html_home->find($class);
+                // dd($link_articles);
+                $list_link = [];
+                $list_article = [];
+                $count = 0;
+                foreach ($articles as $article) {
+                    $link_article = $article->find("a", 0);
+                    $arr_link = explode('/', $link_article->href);
+                    if (isset($arr_link[2]) && $arr_link[2] == 'bai-viet') {
+                        $list_link[] =  $link_article->href;
+                        $html_article = $this->getDom1('https://edumall.vn'.$link_article->href);
+                        $news_exists = News::where('news_slug', $arr_link[3])->first();
+                        if ($news_exists == null) {
+                            $list_article[$count]['news_slug'] = $arr_link[3];
+                            $list_article[$count]['news_title'] = $html_article->find("h1.title_articles",0)->innertext;
+                            $list_article[$count]['news_img'] = $html_article->find(".img_post img",0)->src;
+                            $list_article[$count]['news_content'] = $html_article->find(".content_articles",0)->innertext;
+                            $list_article[$count]['news_type'] = 2;
+                            $tags = $article->find("small .tag");
+                            $list_tags = [];
+                            $list_tags_slug = [];
+                            foreach ($tags as $tag) {
+                                $list_tags[] = $tag->innertext;
+                                $list_tags_slug[] = str_slug($tag->innertext);
+                            }
+                            $list_article[$count]['news_tag'] = implode(",", $list_tags);
+                            $list_article[$count]['news_tag_slug'] = implode(",", $list_tags_slug);
+                            News::insert($list_article[$count]);
+                            $count++;
+                        }
 
-        $articles = $html_home->find(".thumbnail");
-
-        // dd($link_articles);
-        $list_link = [];
-        $list_article = [];
-        $count = 0;
-        foreach ($articles as $article) {
-            $link_article = $article->find("a", 0);
-            $arr_link = explode('/', $link_article->href);
-            if (isset($arr_link[2]) && $arr_link[2] == 'bai-viet') {
-                $list_link[] =  $link_article->href;
-                $html_article = $this->getDom1('https://edumall.vn'.$link_article->href);
-                $news_exists = News::where('news_slug', $arr_link[3])->first();
-                if ($news_exists == null) {
-                    $list_article[$count]['news_slug'] = $arr_link[3];
-                    $list_article[$count]['news_title'] = $html_article->find("h1.title_articles",0)->innertext;
-                    $list_article[$count]['news_img'] = $html_article->find(".img_post img",0)->src;
-                    $list_article[$count]['news_content'] = $html_article->find(".content_articles",0)->innertext;
-                    $list_article[$count]['news_type'] = 2;
-                    $tags = $article->find("small .tag");
-                    $list_tags = [];
-                    $list_tags_slug = [];
-                    foreach ($tags as $tag) {
-                        $list_tags[] = $tag->innertext;
-                        $list_tags_slug[] = str_slug($tag->innertext);
                     }
-                    $list_article[$count]['news_tag'] = implode(",", $list_tags);
-                    $list_article[$count]['news_tag_slug'] = implode(",", $list_tags_slug);
-                    News::insert($list_article[$count]);
-                    $count++;
                 }
-                
             }
         }
-            
     }
 
     public function sale_teacher(){

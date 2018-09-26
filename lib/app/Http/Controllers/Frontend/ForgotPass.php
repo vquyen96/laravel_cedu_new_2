@@ -51,7 +51,7 @@ class ForgotPass extends Controller
             $data['code'] = $hash;
             $data['email'] = $email;
             // dd($data['code']);
-            Mail::send('frontend.email_reset_pass', $data, function($message) use ($email){
+            Mail::send('frontend.email.reset_pass', $data, function($message) use ($email){
                 $message->from('info@ceduvn.com', 'Ceduvn');
                 $message->to($email, $email)->subject( 'Xác nhận đặt lại mật khẩu');
                 

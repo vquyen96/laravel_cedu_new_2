@@ -589,6 +589,9 @@ input[type='checkbox']:checked:after {
 
 }
 @media screen and (max-width: 768px){
+
+}
+@media screen and (max-width: 767px){
 	.header_main_body{
 		padding: unset;
 		padding-left: 15px;
@@ -621,15 +624,24 @@ input[type='checkbox']:checked:after {
 	}
 	.courseItemStar{
 		position: unset;
+		white-space: nowrap;
 	}
 	.courseItemRightSummary{
 		height: unset;
 		text-align: justify;
+		margin-bottom: 20px;
+	}
+	.courseItemLeft {
+		width: 100%;
+		margin-bottom: 20px;
 	}
 	.courseItemImg{
 		margin-right: 15px;
 		height: 240px;
 		width: 100%;
+	}
+	.searchCourse{
+		margin-bottom: 30px;
 	}
 	.selectCourse select{
 		height: 50px;

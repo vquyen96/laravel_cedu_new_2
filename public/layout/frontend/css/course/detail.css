@@ -642,7 +642,7 @@ a.courseRelateItemCart{
 }
 
 .courseTagPrice{
-
+	white-space: nowrap;
   font-weight: bold;
   font-size: 36px;
   color: #fff;
@@ -865,6 +865,20 @@ a.courseTagDocBodyItem:hover{
 	height: auto;
 }
 @media screen and (max-width: 768px){
+	.courseTagContentCode{
+		display: block;
+		height: unset;
+	}
+	.courseTagContentCode input{
+		width: 100%;
+	}
+	.courseTagContentCode button {
+		margin: 5px auto;
+		display: block;
+		width: 100%;
+	}
+}
+@media screen and (max-width: 767px){
 	.instruction_body{
 		overflow: hidden;
 	}
@@ -885,10 +899,26 @@ a.courseTagDocBodyItem:hover{
 	.lesson {
 		margin-bottom: 15px;
 	}
+	.teacherMain {
+		flex-direction: column;
+	}
+	.rateChartLeft {
+		width: 135px;
+	}
+	.courseRateContent{
+		display: none;
+	}
+	.lessonMainPart{
+		overflow: hidden;
+	}
+	.lessonMainVideoItem{
+		overflow: hidden;
+	}
 	.teacherMainLeft {
-		width: 175px;
-		flex-shrink: unset; 
-		margin-right: 15px;
+		width: 100%;
+		flex-shrink: unset;
+		margin-right: 0;
+		margin-bottom: 20px;
 	}
 	.teacherMainRightContent{
 		height: unset;
@@ -902,16 +932,7 @@ a.courseTagDocBodyItem:hover{
 		padding: 0 10px;
 		flex-shrink: unset; 
 	}
-	.courseTagContentCode{
-		display: unset;
-		height: unset;
-	}
-	.courseTagContentCode input{
-		width: 100%;
-	}
-	.courseTagContentCode button{
-		margin: 15px 0;
-	}
+
 	.courseTagContent{
 		padding:15px;
 	}

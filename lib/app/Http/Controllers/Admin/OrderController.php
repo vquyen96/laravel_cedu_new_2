@@ -68,7 +68,7 @@ class OrderController extends Controller
             $order->ord_status = 0;
             foreach ($order->orderDe as $orderDe) {
                 $data['code'] = $orderDe->code;
-                Mail::send('frontend.emailCode', $data, function($message) use ($email){
+                Mail::send('frontend.email.code', $data, function($message) use ($email){
                     $message->from('info@ceduvn.com', 'Ceduvn');
                     $message->to($email, $email)->subject('Thank You!');
                     // $message->cc('thongminh.depzai@gmail.com', 'boss');
@@ -90,7 +90,7 @@ class OrderController extends Controller
             $email = $order->acc->email;
     		$order->ord_status = -1;
             $data['order'] = $order;
-            Mail::send('frontend.emailDeny', $data, function($message) use ($email){
+            Mail::send('frontend.email.pay_deny', $data, function($message) use ($email){
                 $message->from('info@ceduvn.com', 'Ceduvn');
                 $message->to($email, $email)->subject('Thank You!');
                 // $message->cc('thongminh.depzai@gmail.com', 'boss');

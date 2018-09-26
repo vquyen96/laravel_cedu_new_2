@@ -107,6 +107,9 @@ class CourseController extends Controller
 
         // dd($data['course_relate']);
         $data['course'] = $cou;
+        if ($data['course']->group->gr_parent_id != 0) {
+            $data['course']->group = Group::find($data['course']->group->gr_parent_id);
+        }
         if ($cou->cou_status == 1) {
             if(Auth::check()){
                 $data['acc'] = Account::where('id', Auth::user()->id)->where('level', 8)->first();
@@ -394,6 +397,9 @@ class CourseController extends Controller
 
                         $data['course_relate'] = Course::whereIn('cou_id', $list_cou_ids)->inRandomOrder()->take(3)->get();
                         $data['course'] = $cou;
+                        if ($data['course']->group->gr_parent_id != 0) {
+                            $data['course']->group = Group::find($data['course']->group->gr_parent_id);
+                        }
                         // $data['rat'] = Rating::where('rat_cou_id',$cou->cou_id)->where('rat_acc_id',Auth::user()->id)->first();
                         
                         $data['active'] = true;

@@ -250,6 +250,9 @@ button.owl-next{
 	float: right;
 }
 @media screen and (max-width: 768px){
+	#banner{
+		height: 100vh;
+	}
 	.heading h1{
 		font-size: 48px;
 		text-align: center;
@@ -262,7 +265,8 @@ button.owl-next{
 		line-height: 50px;
 		font-weight: bold;
 		font-size: 20px;
-		margin-right: 0px; 
+		margin-right: 0px;
+		overflow: hidden;
 	}
 	.teacher{
 		display: none;

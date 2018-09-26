@@ -214,17 +214,22 @@ a.headerItemDropdownItemContent{
 }
 .headerItemDropdown.noti{
 	right: 0;
-	padding: 10px;
 	width: 280px;
 }
-a.noti_item{
-	/*display: flex;*/
-	margin-bottom: 20px;
+.noti_item{
+	margin-bottom: 2px;
 	overflow: hidden;
 	display: block;
 	text-decoration: none;
 	color: #999;
+	background: #fff;
+	padding: 10px;
+	cursor: pointer;
 }
+.noti_item.active{
+	background: #eef;
+}
+
 .noti_ava{
 	width: 45px;
 	border-radius: 50%;

@@ -1,6 +1,10 @@
 $( document ).ready(function(){
 	getRateChart();
-	tagScroll();
+
+	if ($(window).width() >= 768){
+        tagScroll();
+	}
+
 	postRate();
 	showDetailCourse();
 	showMore();
@@ -24,10 +28,17 @@ function tagScroll(){
 	$( document ).scroll(function(){
 		var top = $(document).scrollTop();
 		// console.log(top);
-
-		if (top > courseTag-10 && top < footer - $(window).height() + 200) {
-			$('.courseTag').css('margin-top', top-courseTag+10);
+		if ($(window).width() == 768){
+            if (top > courseTag-100 && top < footer - $(window).height() + 200) {
+                $('.courseTag').css('margin-top', top-courseTag+100);
+            }
 		}
+		else{
+            if (top > courseTag-10 && top < footer - $(window).height() + 200) {
+                $('.courseTag').css('margin-top', top-courseTag+10);
+            }
+		}
+
 		
 	    // console.log($(document).scrollTop());
 	});

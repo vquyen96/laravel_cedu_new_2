@@ -153,7 +153,7 @@
                                         {{-- <select class="form-control" name="phuong">
                                             <option disabled="" selected="" value="">Quận/Huyện</option>
                                         </select> --}}
-                                        <input type="text" name="city" class="form-control" placeholder="Quận/Huyện">
+                                        <input type="text" name="quan" class="form-control" placeholder="Quận/Huyện">
                                     </div>
                                 </div>
                             </div>

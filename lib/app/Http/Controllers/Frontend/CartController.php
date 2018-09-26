@@ -14,6 +14,7 @@ use App\Models\Account;
 use Cart;
 use Auth;
 use Mail;
+use DB;
 // use App\Http\Controllers\Frontend\nganluong.class;
 class CartController extends Controller
 {
@@ -155,6 +156,8 @@ class CartController extends Controller
     	Cart::update($request->rowId, $request->qty);
     }
     public function postComplete(Request $request, $type){
+
+        DB::beginTransaction();
     	$order = new Order;
         $order->ord_payment = 1;
         $order->ord_acc_id = Auth::user()->id;
@@ -191,21 +194,25 @@ class CartController extends Controller
         $email = $request->email;
         $data['cart'] = Cart::content();
         $data['total'] = Cart::total();
+        $data['image'] = Course::find($data['cart'][0]->id)->cou_img;
         // return view('frontend.email', $data);
-        // dd($data);
-        Mail::send('frontend.emailShip', $data, function($message) use ($email){
-            $message->from('info@ceduvn.com', 'Ceduvn');
-            $message->to($email, $email)->subject('Thank You!');
-            // $message->cc('thongminh.depzai@gmail.com', 'boss');
-            $message->subject('Hóa đơn khóa học');
-        });
+        dd($data);
+//        Mail::send('frontend.email.pay_home', $data, function($message) use ($email){
+//            $message->from('info@ceduvn.com', 'Ceduvn');
+//            $message->to($email, $email)->subject('Thank You!');
+//            // $message->cc('thongminh.depzai@gmail.com', 'boss');
+//            $message->subject('Hóa đơn khóa học');
+//        });
 
     	Cart::destroy();
+        DB::commit();
+
     	
     	return back();
     }
     public function getComplete($type){
         if ($type == 'paypal' ) {
+            dd('ok');
             $order = new Order;
             $order->ord_payment = 1;
             $order->ord_acc_id = Auth::user()->id;
@@ -224,7 +231,7 @@ class CartController extends Controller
             $data['cart'] = Cart::content();
             $data['total'] = Cart::total();
             
-            Mail::send('frontend.emailShip', $data, function($message) use ($email){
+            Mail::send('frontend.email.pay_home', $data, function($message) use ($email){
                 $message->from('info@ceduvn.com', 'Ceduvn');
                 $message->to($email, $email)->subject('Thank You!');
                 $message->subject('Hóa đơn khóa học');
@@ -259,7 +266,7 @@ class CartController extends Controller
                         $email = $order->acc->email;
                         $data['code'] = $code;
                         
-                        Mail::send('frontend.emailCode', $data, function($message) use ($email){
+                        Mail::send('frontend.email.code', $data, function($message) use ($email){
                             $message->from('info@ceduvn.com', 'Ceduvn');
                             $message->to($email, $email);
                             $message->subject('Mã code khóa học');
@@ -374,6 +381,7 @@ class CartController extends Controller
         }
     }
     public function postPayment(Request $request){
+        DB::beginTransaction();
         $order = new Order;
         $order->ord_payment = 1;
         $order->ord_acc_id = Auth::user()->id;
@@ -407,15 +415,19 @@ class CartController extends Controller
         $data['order'] = $order;
         $email = Auth::user()->email;
         $data['cart'] = Cart::content();
-        $data['total'] = Cart::total();
+        $data['total'] = $total;
+
+        $data['image'] = $orderdetail->course->cou_img;
         // return view('frontend.email', $data);
-        // dd($data);
-        Mail::send('frontend.emailShip', $data, function($message) use ($email){
+
+        Mail::send('frontend.email.pay_home', $data, function($message) use ($email){
             $message->from('info@ceduvn.com', 'Ceduvn');
             $message->to($email, $email)->subject('Thank You!');
             // $message->cc('thongminh.depzai@gmail.com', 'boss');
             $message->subject('Hóa đơn khóa học');
         });
+        DB::commit();
+
         
         Cart::destroy();
         
@@ -519,11 +531,12 @@ class CartController extends Controller
             // Xác thực mã của chủ web với mã trả về từ nganluong.vn
             if ($verify_secure_code === $secure_code) { 
                 //Khi thanh toán xác nhận là chính xác
+                DB::beginTransaction();
                 $order = new Order;
                 $order->ord_payment = 2;// ngan luong
 
                 $order->ord_acc_id = Auth::user()->id;
-                
+
                 $total = str_replace(",","",Cart::total());
                 $total = (int)$total;
                 $order->ord_total_price = $total;
@@ -532,7 +545,7 @@ class CartController extends Controller
                 // dd($order);
                 $order->save();
                 $data['cart'] = Cart::content();
-                
+
                 sleep(1);
 
                 foreach ($data['cart'] as $item) {
@@ -553,9 +566,9 @@ class CartController extends Controller
                 // $email = Auth::user()->email;
                 // $data['cart'] = Cart::content();
                 // $data['total'] = Cart::total();
-                
+
                 //Gửi mail Hóa đơn khóa học
-                // Mail::send('frontend.emailShip', $data, function($message) use ($email){
+                // Mail::send('frontend.email.pay_home', $data, function($message) use ($email){
                 //     $message->from('info@ceduvn.com', 'Ceduvn');
                 //     $message->to($email, $email)->subject('Thank You!');
                 //     // $message->cc('thongminh.depzai@gmail.com', 'boss');
@@ -585,13 +598,17 @@ class CartController extends Controller
                 }
                 $email = Auth::user()->email;
                 $data['order'] = $order;
-                Mail::send('frontend.emailNganLuong', $data, function($message) use ($email){
+                $data['image'] = $order->orderDe[0]->course->cou_img;
+//        dd($data);
+                Mail::send('frontend.email.pay_nganluong', $data, function($message) use ($email){
                     $message->from('info@ceduvn.com', 'Ceduvn');
                     $message->to($email, $email);
                     $message->subject('Thanh toán thành công CEDU');
                 });
+                DB::commit();
                 Cart::destroy();
                 return redirect('user/course_doing');
+
                 // return view('frontend.cart.complete');
                 
             }else{
@@ -602,72 +619,9 @@ class CartController extends Controller
     }
 
     public function getEmailCompany(){
-        $order = new Order;
-        $order->ord_payment = 2;// ngan luong
-
-        $order->ord_acc_id = Auth::user()->id;
-        
-        $total = str_replace(",","",Cart::total());
-        $total = (int)$total;
-        $order->ord_total_price = $total;
-        $order->ord_code = 'CEDU_1537237834';
-        $order->ord_status = 1 ;
-        // dd($order);
-        $order->save();
-        $data['cart'] = Cart::content();
-        sleep(1);
-
-        foreach ($data['cart'] as $item) {
-            $orderdetail = new OrderDetail;
-            $orderdetail->orderDe_name = $item->name;
-            $orderdetail->orderDe_price = $item->price;
-            $orderdetail->orderDe_qty = $item->qty;
-            $orderdetail->orderDe_ord_id = $order->ord_id;
-            $orderdetail->orderDe_cou_id = $item->id;
-            $aff = Aff::where('aff_code', $item->options->aff)->first();
-            if($aff != null){
-                $orderdetail->orderDe_aff_id = $aff->aff_acc_id;
-            }
-            $orderdetail->save();
-        }
-
-        foreach ($order->orderDe as $orderDe) {
-            while (true) {
-                $code_value   = mt_rand(100000, 999999);
-                $codeExit = Code::where('code_value',$code_value)->first();
-                if($codeExit == null){
-                    $code = new Code;
-                    $code->code_value = $code_value;
-                    $code->code_orderDe_id = $orderDe->orderDe_id;
-                    $code->code_status = 0;
-                    $code->save();
-                    // $email = $order->acc->email;
-                    // $data['code'] = $code;
-                    // Mail::send('frontend.emailCode', $data, function($message) use ($email){
-                    //     $message->from('info@ceduvn.com', 'Ceduvn');
-                    //     $message->to($email, $email);
-                    //     $message->subject('Mã code khóa học');
-                    // });
-                    break;
-                }
-            }
-        }
-
-
-        $email = Auth::user()->email;
-                $data['order'] = $order;
-                Mail::send('frontend.emailNganLuong', $data, function($message) use ($email){
-                    $message->from('info@ceduvn.com', 'Ceduvn');
-                    $message->to($email, $email);
-                    $message->subject('Thanh toán thành công CEDU');
-                });
-                Cart::destroy();
-                return view('frontend.cart.complete');
-
-
         $data['user'] = Account::find(Auth::user()->id);
         $email = Auth::user()->email;
-        Mail::send('frontend.emailPaymentCompany', $data, function($message) use ($email){
+        Mail::send('frontend.email.pay_com', $data, function($message) use ($email){
             $message->from('info@ceduvn.com', 'Ceduvn');
             $message->to($email, $email)->subject('Thanh toán trực tiếp lại công ty CEDU');
             // $message->cc('thongminh.depzai@gmail.com', 'boss');

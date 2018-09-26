@@ -39,7 +39,7 @@ class CodeController extends Controller
                         
                         $email = Auth::user()->email;
                         $data['code'] = $code;
-                        Mail::send('frontend.emailDone', $data, function($message) use ($email){
+                        Mail::send('frontend.email.active', $data, function($message) use ($email){
                             $message->from('info@ceduvn.com', 'Ceduvn');
                             $message->to($email, $email)->subject('Kích hoạt khóa học thành công');
                         });

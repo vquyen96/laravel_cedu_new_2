@@ -121,61 +121,48 @@
 		</div>
 	</div>
 	<div class="make">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12 col-sm-12">
-					<div class="makeTitle">
-						Quy trình kiếm tiền cùng CEDU
-					</div>
+		<div class="makeTitle">
+			Quy trình kiếm tiền cùng CEDU
+		</div>
+		<div class="makeMain">
+			<div class="makeItem">
+				<div class="makeItemLogo">
+					<img src="{{ asset('public/layout/frontend/img/Vector Smart Object5.png')}}">
+				</div>
+				<div class="makeItemContent">
+					<h4>01. ĐĂNG KÝ</h4>
+					<p>Sau khi bạn đăng ký thành công sẽ có bộ phận nhân sự gọi điện để xác nhận</p>
 				</div>
 			</div>
-			<div class="row">
-				<div class="col-md-3">
-					<div class="makeItem">
-						<div class="makeItemLogo">
-							<img src="{{ asset('public/layout/frontend/img/Vector Smart Object5.png')}}">
-						</div>
-						<div class="makeItemContent">
-							<h4>01. ĐĂNG KÝ</h4>
-							<p>Sau khi bạn đăng ký thành công sẽ có bộ phận nhân sự gọi điện để xác nhận</p>
-						</div>
-					</div>
+			<div class="makeItem">
+				<div class="makeItemLogo">
+					<img src="{{ asset('public/layout/frontend/img/ic_link.png')}}">
 				</div>
-				<div class="col-md-3">
-					<div class="makeItem">
-						<div class="makeItemLogo">
-							<img src="{{ asset('public/layout/frontend/img/ic_link.png')}}">
-						</div>
-						<div class="makeItemContent">
-							<h4>02. LẤY LINK</h4>
-							<p>Tìm khóa học bạn yêu thích và muốn chia sẻ. Sau đó, click link AFFILIATE dành riêng cho bạn</p>
-						</div>
-					</div>
+				<div class="makeItemContent">
+					<h4>02. LẤY LINK</h4>
+					<p>Tìm khóa học bạn yêu thích và muốn chia sẻ. Sau đó, click link AFFILIATE dành riêng cho bạn</p>
 				</div>
-				<div class="col-md-3">
-					<div class="makeItem">
-						<div class="makeItemLogo">
-							<img src="{{ asset('public/layout/frontend/img/Vector Smart Object1.png') }}">
-						</div>
-						<div class="makeItemContent">
-							<h4>03. CHIA SẺ KHÓA HỌC</h4>
-							<p>Sau khi lấy link bạn chia sẻ link AFFILIATE trên website, Facebook, Blog, Email, forum, chạy quảng cáo...</p>
-						</div>
-					</div>
+			</div>
+			<div class="makeItem">
+				<div class="makeItemLogo">
+					<img src="{{ asset('public/layout/frontend/img/Vector Smart Object1.png') }}">
 				</div>
-				<div class="col-md-3">
-					<div class="makeItem">
-						<div class="makeItemLogo">
-							<img src="{{ asset('public/layout/frontend/img/Vector Smart Object2.png') }}">
-						</div>
-						<div class="makeItemContent">
-							<h4>04. NHẬN HOA HỒNG</h4>
-							<p>Nếu khách hàng vào link AFFILIATE của bạn để mua KHÓA HỌC, bạn sẽ nhận được hoa hồng >= 35%</p>
-						</div>
-					</div>
+				<div class="makeItemContent">
+					<h4>03. CHIA SẺ KHÓA HỌC</h4>
+					<p>Sau khi lấy link bạn chia sẻ link AFFILIATE trên website, Facebook, Blog, Email, forum, chạy quảng cáo...</p>
+				</div>
+			</div>
+			<div class="makeItem">
+				<div class="makeItemLogo">
+					<img src="{{ asset('public/layout/frontend/img/Vector Smart Object2.png') }}">
+				</div>
+				<div class="makeItemContent">
+					<h4>04. NHẬN HOA HỒNG</h4>
+					<p>Nếu khách hàng vào link AFFILIATE của bạn để mua KHÓA HỌC, bạn sẽ nhận được hoa hồng >= 35%</p>
 				</div>
 			</div>
 		</div>
+
 	</div>
 	<div class="why">
 		<div class="whyHeader">

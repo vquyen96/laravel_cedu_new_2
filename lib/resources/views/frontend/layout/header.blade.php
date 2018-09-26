@@ -146,19 +146,26 @@
 			<a >
 				<i class="fa fa-bell" aria-hidden="true"></i>
 			</a>
+			<div class="headerRightItemNum noti">
+
+			</div>
 			<div class="headerItemDropdown noti">
 				@foreach ($noti as $item)
-					<a href="{{ $item->noti_link }}" class="noti_item">
-						<div class="noti_ava" style="background: url('{{ asset('lib/storage/app/noti/resized-'.$item->noti_img) }}') no-repeat center /cover;">
-							{{-- <i class="fas fa-file-alt"></i> --}}
-						</div>
+					<div href="{{ $item->noti_link }}" class="noti_item">
+						<div class="noti_ava" style="background: url('{{ asset('lib/storage/app/noti/resized-'.$item->noti_img) }}') no-repeat center /cover;"></div>
 						<div class="noti_name">
 							{{ $item->noti_name }}
 						</div>
 						<div class="noti_content">
 							{{ $item->noti_content }}
 						</div>
-					</a>
+						<div class="notiID d-none">
+							{{ $item->noti_id }}
+						</div>
+						<div class="notiLink d-none">
+							{{ $item->noti_link }}
+						</div>
+					</div>
 				@endforeach
 				{{-- 
 				<div class="headerItemDropdownItem">

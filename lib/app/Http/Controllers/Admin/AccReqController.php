@@ -34,7 +34,7 @@ class AccReqController extends Controller
 			sleep(1);
 			$email = Auth::user()->email;
 			$data['acc_req'] = $acc_req;
-			Mail::send('frontend.emailAccountRequest', $data, function($message) use ($email){
+			Mail::send('frontend.email.req_acc', $data, function($message) use ($email){
                 $message->from('info@ceduvn.com', 'Ceduvn');
                 $message->to($email, $email);
                 $message->subject('Thư thông báo rút tiền CEDU');
@@ -54,7 +54,13 @@ class AccReqController extends Controller
 
         $email = $acc_req->acc->email;
         $data['acc_req'] = $acc_req;
-        Mail::send('frontend.emailAccountRequest', $data, function($message) use ($email){
+        $data = [
+            "acc_req" => $acc_req,
+            "title" => "Số tiền của bạn đã được gửi",
+            "content1" => "Yêu cầu của bạn <b>".$acc_req->acc->name."</b> rút <b>".number_format($acc_req->req_amount,0,',','.')."vnđ</b> đã được sử lý",
+            "content2" => "Yêu cầu rút tiền của bạn đã được bộ phận kế toán sử lý. Vui lòng kiểm tra tài khoản để chắc chắn bạn đã nhận được số tiền !"
+        ];
+        Mail::send('frontend.email.req_acc', $data, function($message) use ($email){
             $message->from('info@ceduvn.com', 'Ceduvn');
             $message->to($email, $email);
             $message->subject('Số tiền của bạn đã được gửi');
@@ -72,8 +78,13 @@ class AccReqController extends Controller
 		$acc->save();
 
         $email = $acc->email;
-        $data['acc_req'] = $acc_req;
-        Mail::send('frontend.emailAccountRequest', $data, function($message) use ($email){
+        $data = [
+            "acc_req" => $acc_req,
+            "title" => "Yêu cầu của bạn đã bị từ chối",
+            "content1" => "Yêu cầu của bạn <b>".$acc_req->acc->name."</b> rút <b>".number_format($acc_req->req_amount,0,',','.')."vnđ</b> đã bị từ chối",
+            "content2" => "Yêu cầu rút tiền của bạn đã bị bộ phận kế toán từ chối vì một lý do nào đó! Trong trường hợp cần thiết, bạn có thể gửi lại yêu cầu 1 lần nữa!"
+        ];
+        Mail::send('frontend.email.req_acc', $data, function($message) use ($email){
             $message->from('info@ceduvn.com', 'Ceduvn');
             $message->to($email, $email);
             $message->subject('Yêu cầu của bạn đã bị từ chối');
