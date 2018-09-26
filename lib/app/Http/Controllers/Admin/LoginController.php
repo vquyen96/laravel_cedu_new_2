@@ -17,8 +17,10 @@ class LoginController extends Controller
     public function postLogin(Request $request){
     	$arr = ['email' => $request->email, 'password' => $request->password];
 
-    	// dd($arr);
-    	if(Auth::attempt($arr, true)){
+//    	$acc = Account::where('email', $request->email)->first();
+//    	dd(Auth::login($acc, true));
+
+    	if(Auth::attempt($arr, true )){
     		if (Auth::user()->level > 6  ) {
                 if (Auth::user()->level == 7) {
                     return redirect('teacher/dashboard');
@@ -32,13 +34,14 @@ class LoginController extends Controller
     			
     		}
     		else{
+//    		    dd(Auth::user());
     			return redirect('admin');
     		}
     	}
     	else{
-    		return back()->withInput()->with('error','Tài khoản khặc mật khẩu của bạn không đúng');
+    		return back()->withInput()->with('error','Tài khoản khặc mật khẩu của bạn không đúng rồi !!!!! ');
     	}
-    	return view('backend.login');
+//    	return view('backend.login');
     }
 
     public function getLogout(){

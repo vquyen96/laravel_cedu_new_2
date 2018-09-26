@@ -9,6 +9,7 @@ use App\Models\Aff;
 use App\Models\OrderDetail;
 use App\Models\Course;
 use App\Models\Account_Request;
+use App\Models\Sale;
 use Mail;
 use Auth;
 use DateTime;
@@ -18,22 +19,15 @@ class AffController extends Controller
 {
     // TOP THÀNH VIÊN
     public function getTop(){
+//        $affs = Aff::all();
+//        foreach ($affs as $aff){
+//            $total_profit = $aff->acc->sale->sum('profit');
+//            $aff->aff_earnings = $total_profit;
+//            $aff->save();
+//        }
+
         $data['top_aff'] = Aff::orderByDesc('aff_earnings')->get();
-        // dd($data['top_aff'][0]->orderDe);
-        // foreach ($data['top_aff'] as $key => $aff) {
-        // 	$aff->aff_earnings = 0;
-        // 	$aff->aff_order_num = 0;
-        	
-        // 	foreach ($aff->acc->aff_orderDe as $orderDe) {
-        // 		// dd($orderDe);
-        // 		if ($orderDe->order->ord_status == 0) {
-        // 			$aff->aff_order_num++;
-        // 			$aff->aff_earnings += $orderDe->course->cou_price;
-        // 		}
-        // 	}
-        // 	// dd($aff);
-        // 	$aff->save();
-        // }
+
         return view('frontend.aff.top', $data);
     }
 
@@ -44,40 +38,30 @@ class AffController extends Controller
     }
 
     public function getDashboard(){
-        
+        app('App\Http\Controllers\Admin\UpdateController')->sale_aff();
+
         $acc = Account::find(Auth::user()->id);
         $courses = Course::orderByDesc('cou_star')->take(8)->get();
-        $total_amount = 0;
+        $total_sale = $acc->sale->sum('total');
+        $total_profit = $acc->sale->sum('profit');
+        $total_student = $acc->sale->sum('cou');
+
         $amount_month = 0;
-        $total_student = 0;
         $student_month = 0;
         $date = new DateTime();
         foreach ($acc->aff_orderDe as $orderDe) {
             if ($orderDe->order->ord_status == 0) {
-                $total_student ++;
-                $total_amount += $orderDe->course->cou_price;
                 if (date_format($date,"m") == date_format($orderDe->created_at,"m")) {
                     $student_month ++;
                     $amount_month += $orderDe->course->cou_price;
-
                 }
             }
-            // $total_amount += $course->cou_price;
-            // // $total_student += $course->cou_student;
-            // foreach ($course->orderDe as $orderDe) {
-            //     if ($orderDe->order->ord_status == 0) {
-            //         $total_student ++;
-            //         if (date_format($date,"m") == date_format($orderDe->created_at,"m")) {
-            //             $student_month ++;
-            //         }
-            //     }
-            // }
         }
 
-        
         $data = [
             'teacher' => $acc->teacher,
-            'total_amount' => $total_amount,
+            'total_sale' => $total_sale,
+            'total_profit' => $total_profit,
             'amount_month' => $amount_month,
             'total_student' => $total_student,
             'student_month' => $student_month,

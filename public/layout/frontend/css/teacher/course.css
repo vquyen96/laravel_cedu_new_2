@@ -167,10 +167,13 @@ a.number{
 	.heading{
 		margin-bottom: 20px;
 	}
-	.info{
-		margin-top: 15px;
-	}
+
 	.price p{
 		font-size: 28px;
+	}
+}
+@media screen and (max-width: 767px){
+	.info{
+		margin-top: 15px;
 	}
 }

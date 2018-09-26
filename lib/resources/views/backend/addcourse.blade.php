@@ -62,10 +62,19 @@
 				  	</div> --}}
 				  	<div class="form-group">
 				    	<label>Lĩnh vực</label>
-				    	<select class="form-control" name="cou_gr_id">
+				    	<select class="form-control" name="cou_gr_id" id="group">
+				    		<option value="" disabled selected>Chọn lĩnh vực</option>
 				    		@foreach($group as $item)
 					    	<option value="{{$item->gr_id}}">{{$item->gr_name}}</option>
 					    	@endforeach
+					    </select>
+				  	</div>
+				  	<div class="form-group">
+				    	<label>Chuyên mục</label>
+				    	<select class="form-control" name="cou_gr_child_id" id="group_child">
+				    		{{-- @foreach($group as $item)
+					    	<option value="{{$item->gr_id}}">{{$item->gr_name}}</option>
+					    	@endforeach --}}
 					    </select>
 				  	</div>
 				  	

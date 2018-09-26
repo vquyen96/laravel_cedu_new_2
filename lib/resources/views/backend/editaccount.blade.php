@@ -80,7 +80,7 @@
 				<div class="form-group col-md-6">
 					<label>Ảnh</label>
 					<input id="img" type="file" name="img" class="cssInput " onchange="changeImg(this)" style="display: none!important;">
-	                <img style="cursor: pointer;" id="avatar" class="cssInput thumbnail tableImgAvatar" width="s%" src="{{asset('lib/storage/app/avatar/'.$item->img)}}">
+	                <img style="cursor: pointer;" id="avatar" class="cssInput thumbnail tableImgAvatar" width="s%" src="{{ file_exists(storage_path('app/avatar/resized50-'.$item->img)) ? asset('lib/storage/app/avatar/resized50-'.$item->img) : $item->provider_id != null ? str_replace('type=normal', 'width=1920', $item->img) : 'img/no-avatar.jpg' }}">
 				</div>
 			</div>
 			

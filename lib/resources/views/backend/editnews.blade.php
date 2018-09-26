@@ -20,9 +20,13 @@
 			    <input type="text" class="form-control" value="{{$news->news_view}}" name="view" required>
 			</div>
 			<div class="form-group">
+			    <label>Tag</label>
+			    <input type="text" class="form-control" value="{{$news->news_tag}}" name="tag" placeholder="Vd: Thiết kê, Kinh doanh,...">
+			</div>
+			<div class="form-group">
 				<label>Ảnh</label>
 				<input id="img" type="file" name="img" class="cssInput " onchange="changeImg(this)" style="display: none!important;">
-                <img style="cursor: pointer;" id="avatar" class="cssInput thumbnail tableImgAvatar" width="s%" src="{{asset('lib/storage/app/news/'.$news->news_img)}}">
+                <img style="cursor: pointer;" id="avatar" class="cssInput thumbnail tableImgAvatar" width="s%" src="{{ file_exists(storage_path('app/news/'.$news->news_img)) ? asset('lib/storage/app/news/'.$news->news_img) : $news->news_img }}">
 			</div>
 			
 			

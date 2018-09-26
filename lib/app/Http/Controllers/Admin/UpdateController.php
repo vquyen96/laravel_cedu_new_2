@@ -6,10 +6,13 @@ use App\Models\Account;
 use App\Models\Course;
 use App\Models\Code;
 use App\Models\News;
+use App\Models\Sale;
+use App\Models\Teacher;
+use App\Models\Aff;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Simple_html_dom\simple_html_dom;
-
+use DateTime;
 class UpdateController extends Controller
 {
     public function course_student(){
@@ -122,5 +125,68 @@ class UpdateController extends Controller
             }
         }
             
+    }
+
+    public function sale_teacher(){
+        $teachers = Teacher::all();
+        $date = new DateTime();
+        for ($i=0; $i < 5; $i++) { 
+            date_add($date,date_interval_create_from_date_string(" -1 months"));
+            foreach ($teachers as $tea) {
+                $sale = Sale::where('acc_id',$tea->acc->id)->where('time',date_format($date,"m-Y"))->first();
+                // dd($sale);
+                if ($sale == null) {
+                    $discount = $tea->tea_discount;
+                    $total = 0;
+                    $cou = 0;
+                    foreach ($tea->acc->course as $course) {
+                        foreach ($course->orderDe as $orderDe) {
+                            if ($orderDe->order->ord_status == 0 && date_format($date,"m") == date_format($orderDe->created_at,"m")) {
+                                $total += $orderDe->orderDe_price;
+                                $cou++;
+                            }
+                        }
+                    }
+                    $sale = new Sale;
+                    $sale->total = $total;
+                    $sale->discount = $discount;
+                    $sale->profit = ($total*$discount)/100;
+                    $sale->cou = $cou;
+                    $sale->time = date_format($date,"m-Y");
+                    $sale->acc_id = $tea->acc->id;
+                    $sale->save();
+                }
+            }
+        }
+        return true;
+    }
+    public function sale_aff(){
+        $affs = Aff::all();
+        $date = new DateTime();
+        for ($i=0; $i < 5; $i++) {
+            date_add($date,date_interval_create_from_date_string(" -1 months"));
+            foreach ($affs as $aff) {
+                $sale = Sale::where('acc_id',$aff->acc->id)->where('time',date_format($date,"m-Y"))->first();
+                if ($sale == null) {
+                    $total = 0;
+                    $cou = 0;
+                    foreach ($aff->acc->aff_orderDe as $orderDe) {
+                        if ($orderDe->order->ord_status == 0 && date_format($date,"m") == date_format($orderDe->created_at,"m")) {
+                            $total += $orderDe->orderDe_price;
+                            $cou++;
+                        }
+                    }
+                    $sale = new Sale;
+                    $sale->total = $total;
+                    $sale->discount = aff_discount($total);
+                    $sale->profit = aff_profit($total);
+                    $sale->cou = $cou;
+                    $sale->time = date_format($date,"m-Y");
+                    $sale->acc_id = $aff->acc->id;
+                    $sale->save();
+                }
+            }
+        }
+        return true;
     }
 }

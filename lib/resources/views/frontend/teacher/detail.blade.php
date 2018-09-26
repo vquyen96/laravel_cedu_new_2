@@ -289,10 +289,12 @@
 										<i class="fas fa-video"></i>
 										<span>{{$itemTiny->les_name}}</span>
 										<div class="tool-2">
+											<i class="fas fa-file-alt {{ isset($itemTiny->les_doc_link) ? '' : 'd-none'  }}"></i>
 											<i class="fas fa-edit" data-toggle="modal">
 												<div class="value_form_video">{{$itemTiny->les_name}}</div>
 												<div class="action_form_video">{{asset('teacher/editvideo/'.$itemTiny->les_id)}}</div>
 												<div class="link_form_video">{{$itemTiny->les_link}}</div>
+												<div class="doc_form d-none">{{ isset($itemTiny->les_doc_link) ? $itemTiny->les_doc_link : '' }}</div>
 											</i>
 											<a href="{{asset('teacher/destroylesson/'.$itemTiny->les_id)}}"  onclick="return confirm('Bạn có chắc chắn muốn xóa ?')">
 												<i class="fas fa-trash-alt"></i>
@@ -331,20 +333,24 @@
 					<div class="editDocument {{ Request::segment(2) == 'add' ? 'd-none' : '' }}">
 						<ul>
 							@foreach ($docs as $doc)
-								<li class="document">
-									<a href="{{ asset('teacher/destroy_doc/'.$doc->doc_id) }}"  onclick="return confirm('Bạn có chắc chắn muốn xóa ?')">
-										<i class="fas fa-trash-alt"></i>
-									</a>
-									<div class="doc_name">
-										{{ $doc->doc_name}}
-									</div>
-									<i class="fas fa-edit edit_document" >
-										<div class="d-none action_form">
-											{{asset('teacher/editdoc/'.$doc->doc_id)}}
+								@if ($doc->doc_les_id == null)
+									<li class="document">
+										<a href="{{ asset('teacher/destroy_doc/'.$doc->doc_id) }}"  onclick="return confirm('Bạn có chắc chắn muốn xóa ?')">
+											<i class="fas fa-trash-alt"></i>
+										</a>
+										<div class="doc_name">
+											{{ $doc->doc_name}}
 										</div>
-									</i>
+										<i class="fas fa-edit edit_document" >
+											<div class="d-none action_form">
+												{{asset('teacher/editdoc/'.$doc->doc_id)}}
+											</div>
+											<div class="d-none doc_form">{{ $doc->doc_link }}</div>
+										</i>
 
-								</li>
+									</li>
+								@endif
+									
 							@endforeach
 								
 						</ul>
@@ -388,7 +394,7 @@
 					<label>Tải video lên</label>
 					<div class="form_item">
 						<div class="inputFile">
-							Chọn file
+							Chọn file(.mp4)
 							<input id="fileItem" type="file" name="file" class="cssInput" onchange="onChange()">
 							<input type="hidden" name="duration" id="duration">
 						</div>
@@ -401,8 +407,8 @@
 					<label>Tải tài liệu lên</label>
 					<div class="form_item">
 						<div class="inputFile">
-							Chọn file
-							<input id="upload_add" type="file" name="file" class="cssInput" onchange="Prevew_doc()">
+							Chọn file(.pdf)
+							<input id="upload_add" type="file" name="file_doc" class="cssInput" onchange="Prevew_doc()">
 						</div>
 					</div>
 				</div>
@@ -441,7 +447,7 @@
 					<label>Tải video lên</label>
 					<div class="form_item">
 						<div class="inputFile">
-							Chọn file
+							Chọn file(.mp4)
 							<input id="fileItem_edit" type="file" name="file" class="cssInput" onchange="onChangeEdit()">
 							
 							<input type="hidden" name="duration" id="duration_edit">
@@ -455,8 +461,8 @@
 					<label>Tải tài liệu lên</label>
 					<div class="form_item">
 						<div class="inputFile">
-							Chọn file
-							<input id="upload_edit" type="file" name="file" class="cssInput" onchange="Prevew_doc()">
+							Chọn file(.pdf)
+							<input id="upload_edit" type="file" name="file_doc" class="cssInput" onchange="Prevew_doc_edit()">
 						</div>
 					</div>
 				</div>
@@ -557,6 +563,9 @@
 						</div>
 					</div>
 				</div>
+				<div class="show_doc">
+					<iframe id="viewer_doc" frameborder="0" scrolling="no" width="100%" height="600"></iframe>
+				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn-miss" data-dismiss="modal">Không</button>
 					<button type="submit" class="btn-create">Lưu</button>
@@ -607,7 +616,7 @@
 		var value = $(this).find('.value_form_video').text();
 		var action = $(this).find('.action_form_video').text();
 		var link = $(this).find('.link_form_video').text();
-
+		var doc = $(this).find('.doc_form').text();
 
 		$('.video_update_value').attr('value',value);
 		$('.form_update_video').attr('action',action);
@@ -617,7 +626,15 @@
         if($('#video_edit').attr('src') != '{{ asset('lib/public/uploads/') }}/'+link){
             $('#video_edit').attr('src','{{ asset('lib/public/uploads/') }}/'+link);
         }
+		// var pdffile_url = dataURItoBlob('http://localhost/c_edu/lib/storage/app/doc/1537496117.pdf');
+		// console.log(pdffile_url);
+		if(doc !=  null && doc != ''){
+			$('#viewer_edit').attr('src', '{{ asset('/lib/storage/app/doc/') }}/' + doc );
+	    	$('#viewer_edit').show();
+		}
+	        
 		
+
 		$('#modal_edit_video').modal();
 	});
 

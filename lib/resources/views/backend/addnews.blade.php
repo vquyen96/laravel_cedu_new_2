@@ -17,8 +17,13 @@
 			</div>
 			<div class="form-group">
 			    <label>Lượt xem</label>
-			    <input type="text" class="form-control" name="view" required>
+			    <input type="text" class="form-control" name="view">
 			</div>
+			<div class="form-group">
+			    <label>Tag</label>
+			    <input type="text" class="form-control" name="tag" placeholder="Vd: Thiết kê, Kinh doanh,...">
+			</div>
+
 			<div class="form-group">
 				<label>Ảnh</label>
 				<input id="img" type="file" name="img" class="cssInput " onchange="changeImg(this)" style="display: none!important;">

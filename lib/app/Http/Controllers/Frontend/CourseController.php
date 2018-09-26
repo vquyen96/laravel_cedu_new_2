@@ -12,8 +12,9 @@ use App\Models\Rating;
 use App\Models\Teacher;
 use App\Models\Doc;
 use \App\Models\Leaning;
+use \App\Models\Aff;
 use \Illuminate\Support\Facades\Auth;
-
+use View;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 
@@ -236,8 +237,6 @@ class CourseController extends Controller
                 'type' => []
             ];
         }
-
-       
         $data['paramater'] = $paramater;
         $data['group'] = $group;
         $data['group_child'] = Group::where('gr_parent_id', $group->gr_id)->get();
@@ -250,6 +249,9 @@ class CourseController extends Controller
 
     public function getVideo($slug, $id){
         $data['course'] = Course::where('cou_slug',$slug)->first();
+        if ($data['course']->group->gr_parent_id != 0) {
+            $data['course']->group = Group::find($data['course']->group->gr_parent_id);
+        }
         $user = Auth::user();
         if(Auth::check()){
             $acc = Account::where('id',Auth::user()->id)->first();
@@ -263,20 +265,31 @@ class CourseController extends Controller
             $code = Code::where('code_orderDe_id',$orderDe_id)->first();
             if($code != null){
                 if($code->code_status == 1){
+                    $docs = Doc::where('doc_cou_id', $data['course']->cou_id)->get();
                     // $data['course'] = Course::where('cou_slug',$slug)->first();
+                    // dd($data['course']);
                     $data['part'] = $data['course']->part;
                     $index_video = 0;
+                    $data['listVideo'] = [];
                     foreach ($data['part'] as $part) {
                         // dd($part->lesson);
                         foreach ($part->lesson as $lesson) {
 
+                            foreach ($docs as $doc) {
+                                // dd($lesson);
+                                if ($doc->doc_les_id == $lesson->les_id) {
+                                    // dd($doc);
+                                    $lesson->les_doc_link = $doc->doc_link;
+                                }
+                            }
                             $check = DB::table('leaning')->where('account_id',$user->id)->where('lesson_id',$lesson->les_id)->first();
                             if($check) $lesson->check = $check->status;
-                            else $lesson->check = 1;
+                            else $lesson->check = 0;
                             $data['listVideo'][$index_video] = $lesson;
                             $index_video++;
 
                         }
+                        // dd($part->lesson);
                         
                     }
                     // dd($data['listVideo']);
@@ -293,7 +306,7 @@ class CourseController extends Controller
 
                     $data['leaning'] = $leaning;
 
-                    $data['doc'] = Doc::where('doc_cou_id', $data['course']->id)->get();
+                    $data['doc'] = $docs;
                     return view('frontend.course.video',$data);
                 }
                 else{
@@ -320,12 +333,17 @@ class CourseController extends Controller
         if($lesson){
             $leaning = DB::table('leaning')->where('account_id',$user->id)->where('lesson_id',$req['les_id'])->first();
 
-            if($req['current_time'] == $lesson->les_video_duration) $status = 2;
-            else $status = 1;
+            
             if($leaning){
+                if($req['current_time'] > $lesson->les_video_duration-5 && $status == 1) $status = 2;
+                else{
+                    $status = $leaning->status;
+                }
 //                dd(DB::table('leaning')->where('account_id',$user->id)->where('lesson_id',$req['les_id'])->update(['updated_at' => time(),'time_in_video' => $req['current_time'],'status' => $status]));
                 DB::table('leaning')->where('account_id',$user->id)->where('lesson_id',$req['les_id'])->update(['updated_at' => time(),'time_in_video' => $req['current_time'],'status' => $status]);
             }else {
+                if($req['current_time'] > $lesson->les_video_duration-5) $status = 2;
+                else $status = 1;
                 $data = [
                     'account_id' => $user->id,
                     'lesson_id' => $req['les_id'],
@@ -418,6 +436,20 @@ class CourseController extends Controller
             return response('error', 501);
         }   
             
+    }
+
+    public function get_aff(){
+        $code = (int)Input::get('code');
+        $aff = Aff::where('aff_code', $code)->first();
+        if ($aff == null) {
+            return response('error', 202);
+        }
+        else{
+            $data['acc'] = $aff->acc;
+            $view = View::make('frontend.course.aff',$data)->render();
+            return response($view, 201);
+        }
+           
     }
        
 }

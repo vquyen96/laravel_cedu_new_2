@@ -4,6 +4,8 @@
 	<title>@yield('title')|| Admin</title>
 	<base href="{{asset('public/layout/backend')}}/">
 	<meta charset="utf-8">
+	<meta name="csrf-token" content="{{ csrf_token() }}">
+	<link rel="shortcut icon" href="img/cedu_icon.png">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
@@ -12,6 +14,7 @@
 
 </head>
 <body>
+	<div class="currentUrl" style="display: none;">{{ asset('') }}</div>
 	<div class="bt-mobile">
 		<span></span>
 		<span></span>
@@ -20,7 +23,6 @@
 	<div class="masterError">
 		<div class="masterErrorContent">
 			@include('errors.note')
-			
 		</div>
 		
 	</div>
@@ -57,8 +59,7 @@
 		<ul>
 			<li>
 				<a href="{{asset('admin/user')}}" class="navUser navAccount @if (Request::segment(2) == 'user')  active @endif">
-					<img src="{{ file_exists(storage_path('app/avatar/resized50-'.
-					Auth::user()->img)) ? asset('lib/storage/app/avatar/resized50-'.Auth::user()->img) : asset('lib/storage/app/avatar/resized-'.Auth::user()->img) }}">
+					<img src="{{ file_exists(storage_path('app/avatar/resized50-'.Auth::user()->img)) ? asset('lib/storage/app/avatar/resized50-'.Auth::user()->img) : (Auth::user()->provider_id != null ? Auth::user()->img : 'img/no-avatar.jpg') }}">
 					{{ Auth::user()->name }}
 				</a>
 			</li>
@@ -95,7 +96,7 @@
 			</li>
 			@endif
 
-			@if(Auth::user()->level == 3) 
+			@if(Auth::user()->level <= 3 )
 			<li>
 				<a href="{{asset('admin/acc_req')}}" class="navAccount @if (Request::segment(2) == 'request')  active @endif">
 					Yêu cầu rút tiền

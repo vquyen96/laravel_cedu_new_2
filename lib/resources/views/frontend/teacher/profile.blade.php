@@ -84,7 +84,7 @@
 							{{$item->cou_name}}
 						</div>
 						<div class="name">
-							<img src="{{asset('lib/storage/app/avatar/resized-'.$teacher->img)}}">
+							<img src="{{ file_exists(storage_path('app/avatar/resized50-'.$teacher->img)) ? asset('lib/storage/app/avatar/resized50-'.$teacher->img) : 'img/no-avatar.jpg'}}">
 							<p>{{$teacher->name}}</p>
 							<div class="star">
 								@for($i=0;$i<5;$i++)

@@ -51,12 +51,33 @@ class AccReqController extends Controller
 		$acc_req = Account_Request::find($id_acc_req);
 		$acc_req->req_status = 0;
 		$acc_req->save();
+
+        $email = $acc_req->acc->email;
+        $data['acc_req'] = $acc_req;
+        Mail::send('frontend.emailAccountRequest', $data, function($message) use ($email){
+            $message->from('info@ceduvn.com', 'Ceduvn');
+            $message->to($email, $email);
+            $message->subject('Số tiền của bạn đã được gửi');
+        });
+
 		return back();
 	}
 	public function getDenied($id_acc_req){
 		$acc_req = Account_Request::find($id_acc_req);
 		$acc_req->req_status = -1;
 		$acc_req->save();
+
+		$acc = $acc_req->acc;
+		$acc->withdrawn -= $acc_req->req_amount;
+		$acc->save();
+
+        $email = $acc->email;
+        $data['acc_req'] = $acc_req;
+        Mail::send('frontend.emailAccountRequest', $data, function($message) use ($email){
+            $message->from('info@ceduvn.com', 'Ceduvn');
+            $message->to($email, $email);
+            $message->subject('Yêu cầu của bạn đã bị từ chối');
+        });
 		return  back();
 	}
 

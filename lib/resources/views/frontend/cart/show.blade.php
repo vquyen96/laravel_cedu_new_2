@@ -25,6 +25,7 @@
         </div>
         
     </div>
+    {{-- {{ Cart::content() }} --}}
     <div class="main_body">
         <div class="container">
             <div class="row">
@@ -43,7 +44,7 @@
                         @foreach ( $items as $item)
                         <div class="cart_item">
                             <div class="cart_item_left">
-                                <div class="cart_item_ava" style="background: url('{{asset('lib/storage/app/course/resized200-'.$item->cou_img)}}') no-repeat center /cover;"></div>
+                                <div class="cart_item_ava" style="background: url('{{ file_exists(storage_path('app/course/resized200-'.$item->cou_img)) ? asset('lib/storage/app/course/resized200-'.$item->cou_img) : 'img/no_image.jpg'}}') no-repeat center /cover;"></div>
                             </div>
                             <div class="cart_item_right">
                                 <div class="cart_item_name">
@@ -85,7 +86,7 @@
                             </div>
                         </div>
                         <div class="saleCode">
-                            <input type="text" name="code" class="" placeholder="Mã xác nhận">
+                            <input type="text" name="code" class="" placeholder="Mã giảm giá">
                             <input type="submit" name="sbm" value="Xác nhận">
                         </div>
                         <div class="btnPayment">

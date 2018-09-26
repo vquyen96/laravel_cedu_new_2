@@ -196,7 +196,7 @@
 			</a>
 		</div>
 		<div class="headerRightItem ava headerDropdown">
-			<a style="background: url('{{ file_exists(storage_path('app/avatar/resized50-'.Auth::user()->img)) ? asset('lib/storage/app/avatar/resized50-'.Auth::user()->img) : Auth::user()->img }}') no-repeat center /cover">
+			<a style="background: url('{{ file_exists(storage_path('app/avatar/resized50-'.Auth::user()->img)) ? asset('lib/storage/app/avatar/resized50-'.Auth::user()->img) : (Auth::user()->provider_id != null ? Auth::user()->img : 'img/no-avatar.jpg') }}') no-repeat center /cover">
 			</a>
 			<div class="headerItemDropdown ava">
 				@if(Auth::user()->level == 9)

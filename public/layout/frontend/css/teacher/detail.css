@@ -488,6 +488,18 @@ a.button-add{
 .value_form_tile,.value_form_video{
 	display: none;
 }
+
+.modal-dialog{
+	width: 80%;
+	max-width: 800px;
+}
+.modal-content{
+	max-height: 90%;
+	overflow: auto;
+}
+#viewer_edit,#viewer_add,#viewer_doc{
+	display: none;
+}
 @media screen and (max-width: 768px){
 	.instruction_body{
 		padding: 0;
@@ -563,5 +575,10 @@ a.button-add{
 	.modal-content{
 		padding: 15px;
 	}
+}
 
+@media screen and (max-width: 525px){
+    .modal-dialog{
+        width: 96%;
+    }
 }

@@ -4,6 +4,7 @@ $( document ).ready(function(){
 	postRate();
 	showDetailCourse();
 	showMore();
+	getAff();
 });
 
 function getRateChart (){
@@ -89,15 +90,53 @@ function showDetailCourse(){
 		$(this).next().slideToggle();
 	});
 }
+
 function showMore(){
+    $('.descriptionContent').height('242px');
+    var height_content = $('.descriptionContentItem').height();
 	$(document).on('click', '.btnShowMoreDescription' , function(){
-		$(this).prev().css('height', '100%');
+		$(this).prev().css('height', height_content+40);
 		$(this).next().css('display', 'block');
 		$(this).css('display', 'none');
 	});
 	$(document).on('click', '.btnShowLessDescription' , function(){
-		$(this).prev().prev().css('height', '0');
+		$(this).prev().prev().css('height', '242px');
 		$(this).prev().css('display', 'block');
 		$(this).css('display', 'none');
+	});
+}
+
+function getAff(){
+	$(document).on('click', '.formCodeAff' , function(){
+		$('.get_aff').css({'height':'0' , 'padding': '0'});
+		var cou_slug = $('.cou_slug').text();
+		var url = $('.currentUrl').text();
+		var code = $(this).prev().val();
+		console.log(code);
+		$.ajax({
+	      method: 'POST',
+	      url: url+'courses/get_aff',
+	      data: {
+	          '_token': $('meta[name="csrf-token"]').attr('content'),
+	          'code': code,
+	      },
+	      success: function (resp) {
+	      	if (resp == 'error') {
+	      		$('.get_aff').html('Không tìm thấy');
+	      		$('.get_aff').css({'height':'auto' , 'padding': '5px 15px'});
+	      	}else{
+	      		$('.get_aff').html(resp);
+		      	$('.get_aff').css({'height':'auto' , 'padding': '5px 15px'});
+		      	history.pushState(null, '', url+'/courses/detail/'+cou_slug+'?aff='+code);
+		      	$('.courseTagContentAddCart a').attr('href', url+'cart/add/'+cou_slug+'?aff='+code);
+	      	}
+		      	
+	      	
+	      },
+	      error: function () {
+	      	console.log('Lỗi Server')
+	        return false;
+	      }
+	    });
 	});
 }

@@ -30,8 +30,9 @@
 			@foreach($items as $item)
 			<tr>	
 				<td class="tableCourseImg">
-					<a href="{{asset('admin/course/edit/'.$item->cou_id)}}">
-						<img class="" src="{{ file_exists(storage_path('app/course/resized100-'.$item->cou_img)) ? asset('lib/storage/app/course/resized100-'.$item->cou_img) : asset('lib/storage/app/course/resized-'.$item->cou_img)}}">
+					<a href="{{asset('admin/course/edit/'.$item->cou_id)}}" style="background: url('{{ file_exists(storage_path('app/course/resized100-'.$item->cou_img)) ? asset('lib/storage/app/course/resized100-'.$item->cou_img) : 'img/album-default.png'}}') no-repeat center /cover;">
+
+						{{-- <img class="" src="{{ file_exists(storage_path('app/course/resized100-'.$item->cou_img)) ? asset('lib/storage/app/course/resized100-'.$item->cou_img) : 'img/album-default.png'}}"> --}}
 					</a>
 				</td>
 				<td class="tableTD">

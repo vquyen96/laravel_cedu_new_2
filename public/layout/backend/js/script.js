@@ -1,4 +1,5 @@
 $(document).ready(function() {
+	var url = $('.currentUrl').text();
     setTimeout(function(){
 
     	$('.masterErrorContent').fadeOut(3000);
@@ -121,4 +122,28 @@ $(document).ready(function() {
 	}
 	//endRateSlide
 
+
+	$(document).on('change', '#group', function (e) {
+    var group_id = $(this).val();
+    $.ajax({
+      method: 'POST',
+      url: url+'teacher/group_child_from',
+      data: {
+          '_token': $('meta[name="csrf-token"]').attr('content'),
+          'groupid': group_id
+      },
+      success: function (resp) {
+       if(resp){
+            console.log(resp);
+            setTimeout(function () {
+                $('#group_child').html(resp);
+            },200);
+        }
+
+      },
+      error: function () {
+        console.log('error');
+      }
+    });
+  });
 });
