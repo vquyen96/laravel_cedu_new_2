@@ -1,60 +1,63 @@
-{{-- <style type="text/css">
-	table tr td{
-		border:1px solid #666;
-	}
-</style> --}}
-<div style="background:#ddd; padding: 20px;">
-	<div style="width: 500px; margin: 20px auto; background: #fff; padding: 30px;">
-		<div style="width: 170px; height: 75px; margin: auto;">
-			<img src="{{asset('public/layout/frontend/img/LOGO_CEDU1.png')}}" style="width: 100%">
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+<div style="background:#ddd; padding: 20px; font-family: 'Roboto', sans-serif;">
+	<div style="width: 900px;margin: auto;overflow: hidden;">
+		<div style="float: left;width: 50%;background: #35465c;height: 700px;">
+			<div style="font-family: 'Roboto', sans-serif;color: #cecece; font-size: 16px; font-weight: 300;margin-left: 20px;padding: 0 10px;margin-top: 20px;border-left: 3px solid #cecece;">
+				<h3 style="color: #cecece;">KHÓA HỌC:</h3>
+				@foreach($order->orderDe as $item)
+				<p>{{$item->orderDe_name}}</p>
+				@endforeach
+			</div>
+
+			{{-- THIẾU ẢNH --}}
+			<div style="width: 100%;height: 500px;background: url('{{asset('public/layout/frontend/img/layer-2.png')}}') no-repeat center/cover;">		
+			</div>
 		</div>
-		
-		<div id="wrap-inner">
-			<div id="khach-hang">
-				<h3>Thông tin khách hàng</h3>
-				<p>
-					<span class="info">Khách hàng: </span>
-					{{$order->acc->name}}
-				</p>
-				<p>
-					<span class="info">Email: </span>
-					{{$order->acc->email}}
-				</p>
-				
-			</div>						
-			<div id="hoa-don">
-				<h3>Hóa đơn mua hàng</h3>							
-				<table >
-					<tr class="bold">
-						<td width="30%">Tên sản phẩm</td>
-						<td width="25%">Giá</td>
-						<td width="20%">Mã Code</td>
-						<td width="15%">Thành tiền</td>
-					</tr>
-					@foreach($order->orderDe as $item)
-					<tr>
-						<td>{{$item->orderDe_name}}</td>
-						<td class="price">{{number_format($item->orderDe_price,0,',','.')}} VND</td>
-						<td style="color: #f44;">{{$item->code->code_value}}</td>
-						<td class="price">{{number_format($item->orderDe_price*$item->orderDe_qty,0,',','.')}} VND</td>
-					</tr>
-					@endforeach
-					<tr>
-						<td>Tổng tiền: </td>
-						<td colspan="3" align="right">{{$order->ord_total_price}}</td>
-					</tr>
+		<div style="float: left;width: 50%;background: #eeeeee;">
+			<div class="logo">
+				<img src="logo-png.png" style="width: 110px;height: 80px;margin-top: 20px;">
+			</div>
+
+			{{-- THIẾU SĐT, ĐỊA CHỈ --}}
+			<div style="margin: 0 25px;color: #666;font-size: 16px;border-bottom: 1px solid #000;padding-bottom: 20px;">
+				<h3 style="color: #666;font-size: 16px;">THÔNG TIN KHÁCH HÀNG</h3>
+				<p style="font-weight: 300;font-size: 14px;"><span>Khách hàng : </span> {{$order->acc->name}}</p>
+				<p style="font-weight: 300;font-size: 14px;"><span>Email :</span> {{$order->acc->email}}</p>
+				<p style="font-weight: 300;font-size: 14px;"><span>Điện thoại:  </span> Quyến Đỗ</p>
+				<p style="font-weight: 300;font-size: 14px;"><span>Địa chỉ : </span> Quyến Đỗ</p>
+			</div>
+			
+			<div style="padding-bottom: 30px;margin: 20px 25px;	margin-top: 30px;">
+				<h3 style="color: #666;font-size: 16px;">HÓA ĐƠN MUA HÀNG</h3>
+				<table style="font-family: 'Roboto', sans-serif;border-collapse: collapse;width: 100%;margin-bottom: 30px;">
+					<thead>
+						<th style="text-align: left;color: #666;border: 1px solid #ddd;padding: 8px;font-size: 14px;">Tên sản phẩm :</th>
+						<th style="text-align: left;color: #666;border: 1px solid #ddd;padding: 8px;font-size: 14px;">Giá: </th>
+						<th style="text-align: left;color: #666;border: 1px solid #ddd;padding: 8px;font-size: 14px;">Mã code </th>
+						<th style="text-align: left;color: #666;border: 1px solid #ddd;padding: 8px;font-size: 14px;">Thành tiền </th>
+					</thead>
+					<tbody>
+						@foreach($order->orderDe as $item)
+						<tr>
+							<td style="border: 1px solid #ddd;padding: 8px;font-size: 14px;">{{$item->orderDe_name}}</td>
+							<td style="border: 1px solid #ddd;padding: 8px;font-size: 14px;">{{number_format($item->orderDe_price,0,',','.')}} VNĐ</td>
+							<td style="border: 1px solid #ddd;padding: 8px;font-size: 14px;">{{$item->code->code_value}}</td>
+							<td style="border: 1px solid #ddd;padding: 8px;font-size: 14px;">{{number_format($item->orderDe_price*$item->orderDe_qty,0,',','.')}} VNĐ</td>
+						</tr>
+						@endforeach
+						<tr>
+							<td style="border: 1px solid #ddd;padding: 8px;font-size: 14px;">Tổng tiền</td>
+							<td style="border: 1px solid #ddd;padding: 8px;font-size: 14px;"></td>
+							<td style="border: 1px solid #ddd;padding: 8px;font-size: 14px;"></td>
+							<td style="border: 1px solid #ddd;padding: 8px;font-size: 14px;">{{$order->ord_total_price}} VNĐ</td>
+						</tr>
+					</tbody>
 				</table>
+				<p style="font-family: 'Roboto', sans-serif;color: #666666; font-size: 12px; font-weight: 300;
+				">Cảm ơn Quý khách đã sử dụng Sản phẩm của Công ty chúng Tôi!</p>
 			</div>
-			<div id="xac-nhan">
-				<br>
-				<p align="justify">
-					<b>Quý khách đã đặt hàng thành công!</b><br />
-					• Sản phẩm của Quý khách sẽ được chuyển đến Địa chỉ có trong phần Thông tin Khách hàng của chúng Tôi sau thời gian 2 đến 3 ngày, tính từ thời điểm này.<br />
-					• Nhân viên giao hàng sẽ liên hệ với Quý khách qua Số Điện thoại trước khi giao hàng 24 tiếng.<br />
-					<b><br />Cám ơn Quý khách đã sử dụng Sản phẩm của Công ty chúng Tôi!</b>
-				</p>
-			</div>
-		</div>					
-		<!-- end main -->
+
+		</div>
 	</div>
 </div>
