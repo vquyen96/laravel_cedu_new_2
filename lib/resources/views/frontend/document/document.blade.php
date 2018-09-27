@@ -35,6 +35,9 @@
 					<div class="selectGr">
 						<form method="get" class="formSearch">
 							<select class="select_group" name="group">
+								<option value="0" @if(!isset(Request::all()['group']) || Request::all()['group']==0) selected @endif>
+									Tất cả tài liệu
+								</option>
 							@foreach ($groups as $item)
 								<option value="{{ $item->gr_id }}" {{ $group_id == $item->gr_id ? 'selected' : '' }}>{{ $item->gr_name }}</option>
 							@endforeach

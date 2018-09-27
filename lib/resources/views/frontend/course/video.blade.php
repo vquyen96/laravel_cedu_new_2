@@ -72,11 +72,9 @@
 					    {{--</p>--}}
 				 	{{--</video>--}}
 					<video id="my-video" class="video-js" controls preload="auto"
-						   poster="img/poster.png"  src="" data-setup='{ "aspectRatio":"640:267", "playbackRates": [0.5, 0.75, 1, 1.5, 2, 4, 8] }'>
+						   poster="img/poster72.png" autoplay  src="" data-setup='{ "playbackRates": [0.5, 0.75, 1, 1.5, 2, 4, 8] }'>
 						<source src="{{ asset('lib/public/uploads/'.$video->les_link) }}" type='video/webm'>
-						<p class="vjs-no-js">
-							<a href="{{ asset('') }}" target="_blank"></a>
-						</p>
+
 					</video>
 				</div>
 				@if($leaning)

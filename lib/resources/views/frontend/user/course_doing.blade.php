@@ -61,10 +61,9 @@
 			<div class="row courseHead">
 				<div class="col-md-6">
 					<div class="courseHeadVideo">
-
 						<video id="my-video" class="video-js" controls preload="auto"
 					  poster="img/poster72.png"  src="" data-setup='{ "aspectRatio":"640:267", "playbackRates": [0.5, 0.75, 1, 1.5, 2, 4, 8] }'>
-						    <source src="https://ceduvn.com/lib/public/uploads/1538022577.mp4" type='video/webm'>
+						    <source src="{{ asset('lib/public/uploads/'.$video->les_link) }}" type='video/webm'>
 						    <p class="vjs-no-js">
 						      	<a href="{{ asset('') }}" target="_blank"></a>
 						    </p>
@@ -74,7 +73,7 @@
 				<div class="col-md-6">
 					<div class="courseHeadMain">
 						<div class="courseHeadMainTitle">
-							Học photoshop một cách bài bản để trở thành nhà thiết kế chuyên nghiệp
+							{{ $video->part->cou->cou_name }}
 						</div>
 						<div class="courseHeadMainBody">
 							<div class="courseHeadMainBodyTime">
@@ -82,22 +81,23 @@
 									<i class="fas fa-clock"></i>
 								</div>
 								<div class="courseHeadMainBodyTimeVideo">
-									4:30
+									{{ gmdate("i:s", $video->les_video_duration) }}
 								</div>
 								<div class="courseHeadMainBodyTimeLast">
-									2 ngày trước
+
+									{{ timestamp_format($video->time_last) }}
 								</div>
 							</div>
 							<div class="courseHeadMainBodyContent">
 								Bạn đang học dở bài
 							</div>
 							<div class="courseHeadMainBodyName">
-								Applications of Machine Learning
+								{{ $video->les_name }}
 							</div>
 						</div>
-						<div class="courseHeadMainBtn">
+						<a href="{{ asset('courses/detail/'.$video->part->cou->cou_slug.'.html/video/'.$video->num) }}" class="courseHeadMainBtn">
 							Tiếp tục học
-						</div>
+						</a>
 					</div>
 				</div>
 			</div>
@@ -111,9 +111,7 @@
 					</div>
 					<div class="courseBodyMain">
 						<div class="owl-carousel owl-theme carouselCourse">
-							@foreach($acc->order as $order)
-							@foreach($order->orderDe as $orderDe)
-								<?php $item = $orderDe->course?>
+							@foreach($course as $item)
 								<div class="item">
 									<a href="{{ isset($orderDe->code) && $orderDe->code->code_status == 0 ? asset('code') : asset('courses/detail/'.$item->cou_slug.'.html') }}" class="courseMainItem">
 										<div class="courseMainItemImg" style="background: url('{{ asset('lib/storage/app/course/'.$item->cou_img) }}') no-repeat center /cover;">
@@ -157,7 +155,6 @@
 									</a>
 								</div>
 							@endforeach
-							@endforeach
 						</div>
 					</div>
 				</div>
@@ -189,8 +186,9 @@
 										<div class="courseMainItemPrice">
 											{{number_format($item->cou_price,0,',','.')}}
 											<span class="courseMainItemTime">
-												<i class="fa fa-circle" aria-hidden="true"></i>
-												@if ($item->cou_price_old != null)
+
+												@if ($item->cou_sale != 0)
+													<i class="fa fa-circle" aria-hidden="true"></i>
 													<del>{{number_format($item->cou_price_old,0,',','.')}} đ</del>
 												@endif
 												{{-- {{time_format($item->updated_at)}} --}}
