@@ -19,6 +19,17 @@ class Account extends Model implements AuthenticatableContract, CanResetPassword
     protected $primaryKey = 'id';
     protected $guarded = [];
 
+    const ADMIN_SUPER = 1;
+    const ADMIN = 2;
+    const ACCOUNTANT = 3;
+    const EDITOR = 4;
+    const MANAGING_TEA = 5;
+    const MANAGING_AFF = 6;
+    const TEACHER = 7;
+    const AFFILIATE = 8;
+    const USER =  9;
+
+
     public function course()
     {
         return $this->hasMany('App\Models\Course','cou_tea_id','id');

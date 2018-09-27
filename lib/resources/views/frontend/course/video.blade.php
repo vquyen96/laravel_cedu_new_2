@@ -63,14 +63,21 @@
 				</div>
 
 				<div class="courseHeadVideo">
-					<script src="http://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
+
+					{{--<video id="my-video" class="video-js" controls preload="auto"--}}
+				  {{--poster="img/poster.png">--}}
+					    {{--<source src="{{ asset('lib/public/uploads/'.$video->les_link) }}" type='video/webm'>--}}
+					    {{--<p class="vjs-no-js">--}}
+					      	{{--<a href="{{ asset('') }}" target="_blank"></a>--}}
+					    {{--</p>--}}
+				 	{{--</video>--}}
 					<video id="my-video" class="video-js" controls preload="auto"
-				  poster="img/poster.png">
-					    <source src="{{ asset('lib/public/uploads/'.$video->les_link) }}" type='video/webm'>
-					    <p class="vjs-no-js">
-					      	<a href="{{ asset('') }}" target="_blank"></a>
-					    </p>
-				 	</video>
+						   poster="img/poster.png"  src="" data-setup='{ "aspectRatio":"640:267", "playbackRates": [0.5, 0.75, 1, 1.5, 2, 4, 8] }'>
+						<source src="{{ asset('lib/public/uploads/'.$video->les_link) }}" type='video/webm'>
+						<p class="vjs-no-js">
+							<a href="{{ asset('') }}" target="_blank"></a>
+						</p>
+					</video>
 				</div>
 				@if($leaning)
 					@if($leaning->status == 1)
@@ -324,7 +331,7 @@
 	@endif
 	<script src="js/plugins/video.js"></script>
 	<script type="text/javascript" src="js/courses/detail.js"></script>
-
+	<script src="https://vjs.zencdn.net/7.1.0/video.js"></script>
 	<script >
 
         function end() {

@@ -156,7 +156,9 @@ class CartController extends Controller
     	Cart::update($request->rowId, $request->qty);
     }
     public function postComplete(Request $request, $type){
-
+        if(count(Cart::content()) == 0){
+            return redirect('/')->with('error', 'Bạn không có khóa học nào !');
+        }
         DB::beginTransaction();
     	$order = new Order;
         $order->ord_payment = 1;
@@ -381,6 +383,9 @@ class CartController extends Controller
         }
     }
     public function postPayment(Request $request){
+        if(count(Cart::content()) == 0){
+            return redirect('/')->with('error', 'Bạn không có khóa học nào !');
+        }
         DB::beginTransaction();
         $order = new Order;
         $order->ord_payment = 1;
@@ -437,7 +442,9 @@ class CartController extends Controller
 
     //Thanh toán bằng ngân lượng
     public function getNganLuong(){
-
+        if(count(Cart::content()) == 0){
+            return redirect('/')->with('error', 'Bạn không có khóa học nào !');
+        }
         $total = str_replace(",","",Cart::total());
         $total = (int)$total;
         $cancel_url= 'https://ceduvn.com/';
@@ -502,6 +509,9 @@ class CartController extends Controller
     }
     //Thanh toán thành công
     public function getCompleteNganLuong(){
+        if(count(Cart::content()) == 0){
+            return redirect('/')->with('error', 'Bạn không có khóa học nào !');
+        }
         if (isset($_GET['payment_id'])) {
             // Lấy các tham số để chuyển sang Ngânlượng thanh toán:
 
@@ -541,7 +551,7 @@ class CartController extends Controller
                 $total = (int)$total;
                 $order->ord_total_price = $total;
                 $order->ord_code = $order_code;
-                $order->ord_status = 1 ;
+                $order->ord_status = 0 ;
                 // dd($order);
                 $order->save();
                 $data['cart'] = Cart::content();
@@ -619,6 +629,9 @@ class CartController extends Controller
     }
 
     public function getEmailCompany(){
+        if(count(Cart::content()) == 0){
+            return redirect('/')->with('error', 'Bạn không có khóa học nào !');
+        }
         $data['user'] = Account::find(Auth::user()->id);
         $email = Auth::user()->email;
         Mail::send('frontend.email.pay_com', $data, function($message) use ($email){

@@ -8,6 +8,8 @@
 <link rel="stylesheet" href="css/owlcarousel/owl.theme.default.min.css">
 <link rel="stylesheet" type="text/css" href="css/user/course.css">
 <link href="css/plugins/video-js.css" rel="stylesheet">
+
+{{--<script src="https://vjs.zencdn.net/ie8/ie8-version/videojs-ie8.min.js"></script>--}}
 <div class="header_main">
 	<div class="header_main_body">
 		<a href="{{ asset('user/course_doing') }}" class="header_main_item {{ Request::segment(3) != 'course_doing' ? 'active' : '' }}">
@@ -59,10 +61,10 @@
 			<div class="row courseHead">
 				<div class="col-md-6">
 					<div class="courseHeadVideo">
-						<script src="http://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
+
 						<video id="my-video" class="video-js" controls preload="auto"
-					  poster="img/poster72.png" data-setup="{}"  src="">
-						    <source src="{{ asset('lib/public/uploads/1528794961.mp4') }}" type='video/webm'>
+					  poster="img/poster72.png"  src="" data-setup='{ "aspectRatio":"640:267", "playbackRates": [0.5, 0.75, 1, 1.5, 2, 4, 8] }'>
+						    <source src="https://ceduvn.com/lib/public/uploads/1538022577.mp4" type='video/webm'>
 						    <p class="vjs-no-js">
 						      	<a href="{{ asset('') }}" target="_blank"></a>
 						    </p>
@@ -137,7 +139,7 @@
 											{{cut_string($item->cou_name , 100)}}
 										</div>
 										<div class="courseMainItemTeacher">
-											<div class="courseMainItemTeacherAva" style="background: url('{{ asset('lib/storage/app/avatar/resized-'.$item->tea->img) }}') no-repeat center /cover;">
+											<div class="courseMainItemTeacherAva" style="background: url('{{ file_exists(storage_path('app/avatar/resized50-'.$item->tea->img)) ? asset('lib/storage/app/avatar/resized50-'.$item->tea->img) : ($item->tea->provider_id != null ? $item->tea->img : 'img/no-avatar.jpg') }}') no-repeat center /cover;">
 											</div>
 											<div class="courseMainItemTeacherName">
 												{{ $item->tea->name }}
@@ -201,7 +203,7 @@
 										{{cut_string($item->cou_name , 100)}}
 									</div>
 									<div class="courseMainItemTeacher">
-										<div class="courseMainItemTeacherAva" style="background: url('{{ asset('lib/storage/app/avatar/resized-'.$item->tea->img) }}') no-repeat center /cover;">
+										<div class="courseMainItemTeacherAva" style="background: url('{{ file_exists(storage_path('app/avatar/resized50-'.$item->tea->img)) ? asset('lib/storage/app/avatar/resized50-'.$item->tea->img) : ($item->tea->provider_id != null ? $item->tea->img : 'img/no-avatar.jpg') }}') no-repeat center /cover;">
 										</div>
 										<div class="courseMainItemTeacherName">
 											{{ $item->tea->name }}
@@ -239,4 +241,5 @@
 	<script src="js/owl.carousel.min.js"></script>
 	<script type="text/javascript" src="js/user/course_doing.js"></script>
 	<script src="js/plugins/video.js"></script>
+	<script src="https://vjs.zencdn.net/7.1.0/video.js"></script>
 @stop

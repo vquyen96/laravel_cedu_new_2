@@ -28,18 +28,18 @@
                         <div class="form-group">
                             <label>Chức vụ</label>
                             <select class="form-control" name="level">
-                                <option value="9">Học viên</option>
-                                <option value="8">Cộng tác viên</option>
-                                <option value="7">Giáo viên</option>
-                                <option value="6">Quản trị CTV</option>
-                                <option value="5">Quản trị giáo viên</option>
-                                <option value="4">Biên tập viên</option>
-                                <option value="3">Kế toán</option>
+                                <option value="{{\App\Models\Account::USER}}">Học viên</option>
+                                <option value="{{\App\Models\Account::AFFILIATE}}">Cộng tác viên</option>
+                                <option value="{{\App\Models\Account::TEACHER}}">Giáo viên</option>
+                                <option value="{{\App\Models\Account::MANAGING_AFF}}">Quản trị CTV</option>
+                                <option value="{{\App\Models\Account::MANAGING_TEA}}">Quản trị giáo viên</option>
+                                <option value="{{\App\Models\Account::EDITOR}}">Biên tập viên</option>
+                                <option value="{{\App\Models\Account::ACCOUNTANT}}">Kế toán</option>
                                 @if(Auth::user()->level <3)
-                                    <option value="2">Quản trị viên</option>
+                                    <option value="{{\App\Models\Account::ADMIN}}">Quản trị viên</option>
                                 @endif
                                 @if(Auth::user()->level <2)
-                                    <option value="1">Admin</option>
+                                    <option value="{{\App\Models\Account::ADMIN_SUPER}}">Admin</option>
                                 @endif
                             </select>
                         </div>

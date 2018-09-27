@@ -189,7 +189,7 @@
 			</li>
 			@endif
 			<li>
-				<a href="{{asset('logout')}}" class="navAccount @if (Request::segment(2) == 'about')  active @endif">
+				<a href="{{asset('logout')}}" class="navAccount">
 					Đăng xuất
 				</a>
 			</li>

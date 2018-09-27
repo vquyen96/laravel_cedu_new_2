@@ -11,15 +11,22 @@ use Auth;
 class AffController extends Controller
 {
     public function getList(){
-    	if (Auth::user()->level != 3 && Auth::user()->level != 6) {
-    		$data['items'] = Account::where('level', 8)->orderBy('id','desc')->paginate(7);
+    	if (Auth::user()->level != Account::ACCOUNTANT && Auth::user()->level != Account::MANAGING_AFF) {
+    		$data['items'] = Account::where('level', Account::AFFILIATE)->orderBy('id','desc')->paginate(7);
     		return view('backend.affiliate',$data);
     	}
     	else{
-    		// $data['items'] = OrderDetail::where('orderDe_aff_id', '!=', NULL)->paginate(7);
-    		$data['items'] = Account::where('level', 8)->orderBy('id','desc')->paginate(7);
-            // dd($data['items'][1]->aff);
-    		return view('backend.accountant-aff',$data);
+
+    		$accs = Account::where('level', Account::AFFILIATE)->orderBy('id','desc')->paginate(7);
+    		foreach ($accs as $acc){
+    		    $acc->total_sale = $acc->sale->sum('total');
+    		    $acc->total_profit = $acc->sale->sum('profit');
+                $acc->total_student = $acc->sale->sum('cou');
+            }
+            $data['total_sale'] = $accs->sum('total_sale');
+            $data['total_profit'] = $accs->sum('total_profit');
+            $data['items'] = $accs;
+    		return view('backend.accountant.aff',$data);
     	}
     	
     }

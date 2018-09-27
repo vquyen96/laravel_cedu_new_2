@@ -45,7 +45,7 @@
 			>	
 				
 				<td class="tableAcountImg">
-					<img src="{{asset('lib/storage/app/avatar/resized-'.$item->img)}}">
+					<img src="{{ file_exists(storage_path('app/avatar/resized50-'.$item->img)) ? asset('lib/storage/app/avatar/resized50-'.$item->img) : ($item->provider_id != null ? $item->img : 'img/no-avatar.jpg') }}">
 				</td>
 				<td>{{$item->name}}</td>
 				<td>{{$item->email}}</td>

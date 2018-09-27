@@ -45,7 +45,8 @@ Route::group(['namespace'=>'Admin', 'middleware'=>'CheckAdmin'],function(){
 		});
 		Route::get('user','HomeController@getUser');
 		Route::post('user','HomeController@postUser');
-		Route::group(['prefix'=>'account'],function(){
+
+		Route::group(['prefix'=>'account', 'middleware'=>'CheckDetailAccount'],function(){
 			Route::get('/','AccountController@getList');
 			Route::get('search/','AccountController@getSearch');
 			Route::get('add','AccountController@getAdd');
@@ -72,22 +73,22 @@ Route::group(['namespace'=>'Admin', 'middleware'=>'CheckAdmin'],function(){
 		});
 		Route::group(['prefix'=>'teacher'],function(){
 			Route::get('/','TeacherController@getList');
-			Route::get('add','TeacherController@getAdd');
-			Route::post('add','TeacherController@postAdd');
-			Route::get('edit/{id}','TeacherController@getEdit');
-			Route::post('edit/{id}','TeacherController@postEdit');
-			Route::get('delete/{id}','TeacherController@getDelete');
+			Route::get('add','TeacherController@getAdd')->middleware('CheckDetailTeacher');
+			Route::post('add','TeacherController@postAdd')->middleware('CheckDetailTeacher');
+			Route::get('edit/{id}','TeacherController@getEdit')->middleware('CheckDetailTeacher');
+			Route::post('edit/{id}','TeacherController@postEdit')->middleware('CheckDetailTeacher');
+			Route::get('delete/{id}','TeacherController@getDelete')->middleware('CheckDetailTeacher');
 
-			Route::get('active/{id}','TeacherController@getActive');
-			Route::get('no/{id}','TeacherController@getNo');
-			Route::get('detail/{id}','TeacherController@getDetail');
-			Route::post('detail/{id}','TeacherController@postDetail');
+			Route::get('active/{id}','TeacherController@getActive')->middleware('CheckDetailTeacher');
+			Route::get('no/{id}','TeacherController@getNo')->middleware('CheckDetailTeacher');
+			Route::get('detail/{id}','TeacherController@getDetail')->middleware('CheckDetailTeacher');
+			Route::post('detail/{id}','TeacherController@postDetail')->middleware('CheckDetailTeacher');
 
-			Route::get('detail/{tea}/addstory', 'TeacherController@getAddSto');
-			Route::post('detail/{tea}/addstory', 'TeacherController@postAddSto');
-			Route::get('detail/{tea}/editstory/{sto}', 'TeacherController@getEditSto');
-			Route::post('detail/{tea}/editstory/{sto}', 'TeacherController@postEditSto');
-			Route::get('detail/{tea}/deletestory/{sto}', 'TeacherController@getDeleteSto');
+			Route::get('detail/{tea}/addstory', 'TeacherController@getAddSto')->middleware('CheckDetailTeacher');
+			Route::post('detail/{tea}/addstory', 'TeacherController@postAddSto')->middleware('CheckDetailTeacher');
+			Route::get('detail/{tea}/editstory/{sto}', 'TeacherController@getEditSto')->middleware('CheckDetailTeacher');
+			Route::post('detail/{tea}/editstory/{sto}', 'TeacherController@postEditSto')->middleware('CheckDetailTeacher');
+			Route::get('detail/{tea}/deletestory/{sto}', 'TeacherController@getDeleteSto')->middleware('CheckDetailTeacher');
 			
 		});
 		Route::group(['prefix'=>'group'],function(){
@@ -103,20 +104,20 @@ Route::group(['namespace'=>'Admin', 'middleware'=>'CheckAdmin'],function(){
 		Route::get('course_wait', 'CourseController@getListWait');
 		Route::group(['prefix'=>'course'],function(){
 			Route::get('/','CourseController@getList');
-			Route::get('add','CourseController@getAdd');
-			Route::post('add','CourseController@postAdd');
-			Route::get('edit/{id}','CourseController@getEdit');
-			Route::post('edit/{id}','CourseController@postEdit');
-			Route::get('delete/{id}','CourseController@getDelete');
-			Route::get('take_down/{id}','CourseController@getDown');
-			Route::get('take_up/{id}','CourseController@getUp');
+			Route::get('add','CourseController@getAdd')->middleware('CheckDetailCourse');
+			Route::post('add','CourseController@postAdd')->middleware('CheckDetailCourse');
+			Route::get('edit/{id}','CourseController@getEdit')->middleware('CheckDetailCourse');
+			Route::post('edit/{id}','CourseController@postEdit')->middleware('CheckDetailCourse');
+			Route::get('delete/{id}','CourseController@getDelete')->middleware('CheckDetailCourse');
+			Route::get('take_down/{id}','CourseController@getDown')->middleware('CheckDetailCourse');
+			Route::get('take_up/{id}','CourseController@getUp')->middleware('CheckDetailCourse');
 			//student
-			Route::get('student/{id}', 'CourseController@getStudent');
+			Route::get('student/{id}', 'CourseController@getStudent')->middleware('CheckDetailCourse');
 			//part
-			Route::get('detail/{id}','PartController@getPart');
-			Route::post('detail/{id}','PartController@postPart');
+			Route::get('detail/{id}','PartController@getPart')->middleware('CheckDetailCourse');
+			Route::post('detail/{id}','PartController@postPart')->middleware('CheckDetailCourse');
 
-			Route::group(['prefix'=>'part'],function(){
+			Route::group(['prefix'=>'part', 'middleware' => 'CheckDetailCourse'],function(){
 				Route::get('edit/{cou_id}/{part_id}','PartController@getEdit');
 				Route::post('edit/{cou_id}/{part_id}','PartController@postEdit');
 				Route::get('delete/{id}','PartController@getDelete');

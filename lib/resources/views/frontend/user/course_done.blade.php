@@ -86,7 +86,7 @@
 								{{cut_string($item->cou_name , 100)}}
 							</div>
 							<div class="courseMainItemTeacher">
-								<div class="courseMainItemTeacherAva" style="background: url('{{ asset('lib/storage/app/avatar/resized-'.$item->tea->img) }}') no-repeat center /cover;">
+								<div class="courseMainItemTeacherAva" style="background: url('{{ file_exists(storage_path('app/avatar/resized50-'.$item->tea->img)) ? asset('lib/storage/app/avatar/resized50-'.$item->tea->img) : ($item->tea->provider_id != null ? $item->tea->img : 'img/no-avatar.jpg') }}') no-repeat center /cover;">
 								</div>
 								<div class="courseMainItemTeacherName">
 									{{ $item->tea->name }}
@@ -150,7 +150,7 @@
 										{{cut_string($item->cou_name , 100)}}
 									</div>
 									<div class="courseMainItemTeacher">
-										<div class="courseMainItemTeacherAva" style="background: url('{{ asset('lib/storage/app/avatar/resized-'.$item->tea->img) }}') no-repeat center /cover;">
+										<div class="courseMainItemTeacherAva" style="background: url('{{ file_exists(storage_path('app/avatar/resized50-'.$item->tea->img)) ? asset('lib/storage/app/avatar/resized50-'.$item->tea->img) : ($item->tea->provider_id != null ? $item->tea->img : 'img/no-avatar.jpg') }}') no-repeat center /cover;">
 										</div>
 										<div class="courseMainItemTeacherName">
 											{{ $item->tea->name }}

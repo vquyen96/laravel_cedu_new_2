@@ -12,13 +12,22 @@ use File;
 class TeacherController extends Controller
 {
     public function getList(){
-        if (Auth::user()->level == 7) {
-            $data['items'] = Teacher::orderBy('tea_rating','desc')->get();
-            return view('backend.accountant-teacher',$data);
+        if (Auth::user()->level == Account::ACCOUNTANT) {
+            $accs = Account::where('level',Account::TEACHER)->orderBy('id','desc')->paginate(10);
+            foreach ($accs as $acc){
+                $acc->total_sale = $acc->sale->sum('total');
+                $acc->total_profit = $acc->sale->sum('profit');
+                $acc->total_student = $acc->sale->sum('cou');
+            }
+//            dd($accs);
+            $data['total_sale'] = $accs->sum('total_sale');
+            $data['total_profit'] = $accs->sum('total_profit');
+            $data['items'] = $accs;
+            return view('backend.accountant.teacher',$data);
         }
         else{
             $data['wait'] = Account::where('teacher_wait', 1)->orderBy('id','desc')->get();
-            $data['items'] = Account::where('teacher_wait', 0)->where('level',7)->orderBy('id','desc')->paginate(7);
+            $data['items'] = Account::where('teacher_wait', 0)->where('level',Account::TEACHER)->orderBy('id','desc')->paginate(10);
 
             return view('backend.teacher.list',$data);
         }
