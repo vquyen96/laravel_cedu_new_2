@@ -53,7 +53,6 @@
 						<a href="{{asset('admin/doc/delete/'.$item->doc_id)}}" onclick="return confirm('Bạn có chắc chắn muốn xóa ?')" class="btn btn-danger">Xóa</a>
 					</td>
 				</tr>
-
 			@endforeach
 		</table>
 		{{-- {{$doc->links()}} --}}
