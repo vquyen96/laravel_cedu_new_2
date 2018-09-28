@@ -113,6 +113,7 @@ body{
 	line-height: 40px;
 	margin-bottom: 20px;
 	padding: 0 10px;
+	white-space: nowrap;
 }
 .headerFromMain form textarea{
 	width: 100%;

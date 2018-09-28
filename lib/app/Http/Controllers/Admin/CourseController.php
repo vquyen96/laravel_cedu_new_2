@@ -14,7 +14,7 @@ class CourseController extends Controller
 {
     public function getListWait(){
         $data['items'] = Course::orderBy('cou_name','asc')->where('cou_status', '0')->paginate(20);
-        return view('backend.course',$data);
+        return view('backend.course.list',$data);
     }
     public function getList(){
         if(Auth::user()->level == 7){
@@ -24,12 +24,12 @@ class CourseController extends Controller
             $data['items'] = Course::orderBy('cou_name','asc')->where('cou_status', '1')->paginate(20);
         }
     	
-    	return view('backend.course',$data);
+    	return view('backend.course.list',$data);
     }
     public function getAdd(){
     	$data['tea'] = Account::where('level',7)->get();
     	$data['group'] = Group::where('gr_parent_id', 0)->get();
-    	return view('backend.addcourse',$data);
+    	return view('backend.course.add',$data);
     }
     public function postAdd(Request $request){
     	$cou = new Course;
@@ -117,7 +117,7 @@ class CourseController extends Controller
         }
         $data['lesson'] = $i;
         // dd($data);
-        return view('backend.editcourse', $data);
+        return view('backend.course.edit', $data);
     }
     public function postEdit(Request $request, $id){
         $cou  = Course::find($id);

@@ -49,6 +49,7 @@ $(document).ready(function() {
     var action = $(this).find('.action_form').text();
     $('.form_add_doc').attr('action', action);
     $('#modal_add_doc').modal();
+    $('#viewer_doc').hide();
   });
 
   $('.edit_document').click(function(){
@@ -181,3 +182,14 @@ function Prevew_doc_edit() {
       $('#viewer_edit').show();
     }
 }
+
+function Prevew_document() {
+    pdffile=document.getElementById("upload_doc").files[0];
+    var extension = pdffile.name.split('.').pop();
+    if (extension == 'pdf') {
+        pdffile_url=URL.createObjectURL(pdffile);
+        $('#viewer_doc').attr('src',pdffile_url);
+        $('#viewer_doc').show();
+    }
+}
+

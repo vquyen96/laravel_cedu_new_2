@@ -93,12 +93,7 @@ class SocialAuthController extends Controller
 
         try {
             $authUser = Account::where('provider_id', $user->id)->first();
-            if ($authUser) {
-                $authUser->name = $user->name;
-                $authUser->img = $user->avatar;
-                $authUser->save();
-                return $authUser;
-            }
+            if ($authUser) return $authUser;
 
             if ($provider == 'facebook') {
                 $user->email = $user->id;

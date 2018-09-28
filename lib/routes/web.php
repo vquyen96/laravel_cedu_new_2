@@ -341,6 +341,7 @@ Route::group(['namespace'=>'Frontend'],function(){
 		Route::post('rate', 'CourseController@postRate');
 		Route::post('time_lession/update_time_les', 'CourseController@update_time_les')->name('update_time_les');
 		Route::post('get_aff', 'CourseController@get_aff');
+        Route::post('get_leaning', 'CourseController@getLearning');
 	});
 
 

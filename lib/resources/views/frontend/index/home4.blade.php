@@ -18,7 +18,7 @@
             <div class="owl-carousel">
                 @foreach($teacher as $item)
                     <div class="owlItem">
-                        <a href="{{ asset('teacher/'.$item->acc->email) }}" class="owlItemImg" style="background: url('{{ file_exists(storage_path('app/avatar/resized250-'.$item->acc->img)) ? asset('lib/storage/app/avatar/resized250-'.$item->acc->img) : 'img/no-avatar.jpg'}}') no-repeat center /cover ;">
+                        <a href="{{ asset('teacher/'.$item->acc->email) }}" class="owlItemImg" style="background: url('{{ file_exists(storage_path('app/avatar/resized250-'.$item->acc->img)) ? asset('lib/storage/app/avatar/resized250-'.$item->acc->img) : ($item->acc->provider == 'facebook' ? str_replace('type=normal', 'width=1920', $item->acc->img) : ($item->acc->provider == 'google' ? str_replace('?sz=50', '', $item->acc->img) : 'img/no-avatar.jpg')) }}') no-repeat center /cover ;">
                         </a>
                         <a href="{{ asset('teacher/'.$item->acc->email) }}" class="owlItemName">
                             {{ $item->acc->name }}
