@@ -2,15 +2,15 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 
 <div style="background:#ddd; padding: 20px; font-family: 'Roboto', sans-serif;">
-    <div style="width: 900px;height: 700px;position: relative;margin: auto;">
-        <div style="position: absolute;width: 50%;height: 100%;top: 0;left: 0;background: #35465c;">
+    <div style="width: 900px;height: 780px;margin: auto;">
+        <div style="width: 50%;height: 780px;background: #35465c;float: left;">
             <div style="font-family: 'Roboto', sans-serif;color: #cecece; font-size: 16px; font-weight: 300;margin-left: 20px;padding: 0 10px;margin-top: 20px;border-left: 3px solid #cecece;">
                 <h3 style="color: #cecece; ">KHÓA HỌC:</h3>
                 <p>{{$code->orderDe->course->cou_name}}</p>
             </div>
             <div style="width: 100%;height: 70%;background: url('{{asset('public/layout/frontend/img/layer-2.png')}}') no-repeat center/cover;"></div>
         </div>
-        <div style="position: absolute;width: 50%;height: 100%;top: 0;right: 0;background: #eeeeee;">
+        <div style="width: 50%;height: 780px;float: left;background: #eeeeee;">
             <div class="logo">
                 <img src="{{asset('public/layout/frontend/img/logo-png.png')}}" style="width: 110px;height: 80px;margin-top: 20px;">
             </div>

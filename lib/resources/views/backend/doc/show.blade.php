@@ -41,22 +41,20 @@
 				<th class="tableOption">Tùy Chọn</th>
 			</tr>
 			@foreach($doc as $item)
+				@if(!isset(Request::all()['group']) || Request::all()['group']==0)
+					<tr>	
+						<td>{{$item->doc_id}}</td>
+						<td class="tableNewsImg">
+							<img class="" src="{{ asset('lib/storage/app/doc/resized360-'.$item->doc_img) }}">
+						</td>
+						<td>{{$item->doc_name}}</td>
+						<td>
+							<a href="{{asset('admin/doc/edit/'.$item->doc_id)}}" class="btn btn-primary">Sửa</a>
 
-			@if(!isset(Request::all()['group']) || Request::all()['group']==0)
-				<tr>	
-					<td>{{$item->doc_id}}</td>
-					<td class="tableNewsImg">
-						<img class="" src="{{ asset('lib/storage/app/doc/resized360-'.$item->doc_img) }}">
-					</td>
-					<td>{{$item->doc_name}}</td>
-					<td>
-						<a href="{{asset('admin/doc/edit/'.$item->doc_id)}}" class="btn btn-primary">Sửa</a>
-
-						<a href="{{asset('admin/doc/delete/'.$item->doc_id)}}" onclick="return confirm('Bạn có chắc chắn muốn xóa ?')" class="btn btn-danger">Xóa</a>
-					</td>
-				</tr>
-			@elseif(Request::all()['group']==$item->group->gr_id)
-			
+							<a href="{{asset('admin/doc/delete/'.$item->doc_id)}}" onclick="return confirm('Bạn có chắc chắn muốn xóa ?')" class="btn btn-danger">Xóa</a>
+						</td>
+					</tr>
+				@elseif(Request::all()['group']==$item->group->gr_id)
 					<tr>	
 						<td>{{$item->doc_id}}</td>
 						<td class="tableNewsImg">
@@ -69,7 +67,7 @@
 							<a href="{{asset('admin/doc/delete/'.$item->doc_id)}}" onclick="return confirm('Bạn có chắc chắn muốn xóa ?')" class="btn btn-danger">Xóa</a>
 						</td>
 					</tr>	
-			@endif
+				@endif
 			@endforeach
 		</table>
 		{{-- {{$doc->links()}} --}}
