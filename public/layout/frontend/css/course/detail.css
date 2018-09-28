@@ -360,7 +360,7 @@ a.courseRelateItemCart{
 	display: block;
 	padding-top: 100%;
 }
-.teacherMainLeftName{
+a.teacherMainLeftName{
 	background: #FCC72E;
 	border-radius: 10px;
 	font-weight: bold;
@@ -369,6 +369,8 @@ a.courseRelateItemCart{
 	height: 50px;
 	color: #fff;
 	text-align: center;
+	display: block;
+	text-decoration: none;
 }
 
 
@@ -533,9 +535,8 @@ a.courseRelateItemCart{
 .rateMainItemContentStarContent.last{
 	cursor: pointer;
 }
-.rateMainItemContentStarContent.last i:hover{
+.rateMainItemContentStarContent.last i:hover {
 	color: #FCC72E;
-
 }
 	.rateMainItemContentStarText{
 		flex: 1;

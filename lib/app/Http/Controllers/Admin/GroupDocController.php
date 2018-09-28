@@ -12,58 +12,69 @@ use File;
 
 class GroupDocController extends Controller
 {
-    public function getGroup(){
-    	$data['group'] = Group::where('gr_parent_id', 0)->get();
-      $data['doc'] = Doc::orderBy('doc_id','desc')->get();
-    	return view('backend.doc.show',$data);
+    public function getGroup(Request $request)
+    {
+        $data['group'] = Group::where('gr_parent_id', 0)->get();
+        if (!isset($request->group) || $request->group == 0){
+            $data['doc'] = Doc::orderBy('doc_id', 'desc')->whereNull('doc_cou_id')->get();
+        }else{
+            $data['doc'] = Doc::orderBy('doc_id', 'desc')->whereNull('doc_cou_id')->where('doc_gr_id', $request->group)->get();
+        }
+
+        return view('backend.doc.show', $data);
     }
-    public function getAddDoc(){
-      $data['group'] = Group::where('gr_parent_id',0)->get();
-      return view('backend.doc.add-doc',$data);
+
+    public function getAddDoc()
+    {
+        $data['group'] = Group::where('gr_parent_id', 0)->get();
+        return view('backend.doc.add-doc', $data);
     }
-  //   public function getGroupDoc($group){
-  //   	$group = Group::find($group);
-  //   	$data['grdoc'] = GroupDoc::where('grdoc_gr_id',$group->gr_id)->paginate(8);
+    //   public function getGroupDoc($group){
+    //   	$group = Group::find($group);
+    //   	$data['grdoc'] = GroupDoc::where('grdoc_gr_id',$group->gr_id)->paginate(8);
 
-  //   	return view('backend.doc_groupdoc',$data);
-  //   }
-  //   public function postGroupDoc(Request $request, $group){
-  //   	$grdoc = new GroupDoc;
-  //   	$grdoc->grdoc_name = $request->name;
-  //   	$grdoc->grdoc_slug = str_slug($request->name);
-  //   	$grdoc->grdoc_gr_id = $group;
-  //   	$grdoc->save();
+    //   	return view('backend.doc_groupdoc',$data);
+    //   }
+    //   public function postGroupDoc(Request $request, $group){
+    //   	$grdoc = new GroupDoc;
+    //   	$grdoc->grdoc_name = $request->name;
+    //   	$grdoc->grdoc_slug = str_slug($request->name);
+    //   	$grdoc->grdoc_gr_id = $group;
+    //   	$grdoc->save();
 
-  //   	return back()->with('success','Tạo thành công nhóm tài liệu');
-  //   }
-  //   public function getEditGroupDoc($group, $groupdoc){
-    	
-		// $group = Group::find($group);
-		// $data['edit_gr'] = GroupDoc::find($groupdoc);
-  //   	$data['grdoc'] = GroupDoc::where('grdoc_gr_id',$group->gr_id)->paginate(8);
-  //   	return view('backend.edit_groupdoc',$data);
-  //   }
-  //   public function postEditGroupDoc(Request $request, $group, $groupdoc){
-  //   	$group = Group::find($group);
-		// $grdoc = GroupDoc::find($groupdoc);
-  //   	$grdoc->grdoc_name = $request->name;
-  //   	$grdoc->grdoc_slug = str_slug($request->name);
-  //   	$grdoc->grdoc_gr_id = $group->gr_id;
-  //   	$grdoc->save();
+    //   	return back()->with('success','Tạo thành công nhóm tài liệu');
+    //   }
+    //   public function getEditGroupDoc($group, $groupdoc){
 
-  //   	return back()->with('success','Sửa thành công nhóm tài liệu');
-  //   }
-  //   public function getDeleteGroupDoc($group, $groupdoc){
-  //       GroupDoc::destroy($groupdoc);
-  //   	return back()->with('success','Xóa Thành Công !');
-  //   }
+    // $group = Group::find($group);
+    // $data['edit_gr'] = GroupDoc::find($groupdoc);
+    //   	$data['grdoc'] = GroupDoc::where('grdoc_gr_id',$group->gr_id)->paginate(8);
+    //   	return view('backend.edit_groupdoc',$data);
+    //   }
+    //   public function postEditGroupDoc(Request $request, $group, $groupdoc){
+    //   	$group = Group::find($group);
+    // $grdoc = GroupDoc::find($groupdoc);
+    //   	$grdoc->grdoc_name = $request->name;
+    //   	$grdoc->grdoc_slug = str_slug($request->name);
+    //   	$grdoc->grdoc_gr_id = $group->gr_id;
+    //   	$grdoc->save();
+
+    //   	return back()->with('success','Sửa thành công nhóm tài liệu');
+    //   }
+    //   public function getDeleteGroupDoc($group, $groupdoc){
+    //       GroupDoc::destroy($groupdoc);
+    //   	return back()->with('success','Xóa Thành Công !');
+    //   }
 
 
-    public function getDoc($group){
+    public function getDoc($group)
+    {
         $data['doc'] = Doc::where('doc_gr_id', $group)->paginate(8);
-        return view('backend.doc',$data);
+        return view('backend.doc', $data);
     }
-    public function postAddDoc(Request $request){
+
+    public function postAddDoc(Request $request)
+    {
         $doc = new Doc;
         $doc->doc_name = $request->name;
         $doc->doc_gr_id = $request->group;
@@ -77,22 +88,24 @@ class GroupDocController extends Controller
         if ($request->hasFile('file')) {
             $filename = time() . '.' . $filedoc->getClientOriginalExtension();
             $doc->doc_link = $filename;
-            $request->file->storeAs('doc',$filename);
+            $request->file->storeAs('doc', $filename);
             $doc->save();
-            return back()->with('success','Thêm tài liệu thành công');
+            return back()->with('success', 'Thêm tài liệu thành công');
+        } else {
+            return back()->with('error', 'File bị lỗi');
         }
-        else{
-            return back()->with('error','File bị lỗi');
-        }
-    }
-    public function getEditDoc($doc){
-        $data['edit_doc'] = Doc::find($doc);
-        $data['group'] = Group::where('gr_parent_id',0)->get();
-        return view('backend.doc.editdoc',$data);
     }
 
-    public function postEditDoc(Request $request, $doc){
-       
+    public function getEditDoc($doc)
+    {
+        $data['edit_doc'] = Doc::find($doc);
+        $data['group'] = Group::where('gr_parent_id', 0)->get();
+        return view('backend.doc.editdoc', $data);
+    }
+
+    public function postEditDoc(Request $request, $doc)
+    {
+
         $doc = Doc::find($doc);
         $doc->doc_name = $request->name;
         $doc->doc_gr_id = $request->group;
@@ -106,23 +119,23 @@ class GroupDocController extends Controller
         if ($request->hasFile('file')) {
             $filename = time() . '.' . $filedoc->getClientOriginalExtension();
             $doc->doc_link = $filename;
-            $request->file->storeAs('doc',$filename);
+            $request->file->storeAs('doc', $filename);
             $doc->save();
-            return back()->with('success','Sửa tài liệu thành công');
-        }
-        else{
+            return back()->with('success', 'Sửa tài liệu thành công');
+        } else {
             $doc->save();
-            return back()->with('success','Sửa tên tài liệu thành công');
+            return back()->with('success', 'Sửa tên tài liệu thành công');
         }
     }
 
-    public function getDeleteDoc($doc){
+    public function getDeleteDoc($doc)
+    {
         $doc = Doc::find($doc);
         $namefile = $doc->doc_img;
-        File::delete('libs/storage/app/doc/'.$namefile);
-        File::delete('libs/storage/app/doc/resized-'.$namefile);
+        File::delete('libs/storage/app/doc/' . $namefile);
+        File::delete('libs/storage/app/doc/resized-' . $namefile);
         $doc->delete();
-        return back()->with('success','Xóa thành công');
+        return back()->with('success', 'Xóa thành công');
     }
 
 }

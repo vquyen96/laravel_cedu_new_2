@@ -15,18 +15,14 @@ class DocController extends Controller
 {
     public function getList(Request $request){
         $group_id = $request->group;
-        if ($group_id != null) {
-            $data['document'] = Doc::orderByDesc('doc_id')->where('doc_gr_id',$group_id)->paginate(15);
+        if (isset($group_id) &&  $group_id != 0) {
+            $data['document'] = Doc::orderByDesc('doc_id')->where('doc_gr_id',$group_id)->whereNull('doc_cou_id')->paginate(15);
             $data['group_id'] = $group_id;
         }
         else{
-            $data['document'] = Doc::orderByDesc('doc_id')->paginate(15);
+            $data['document'] = Doc::orderByDesc('doc_id')->whereNull('doc_cou_id')->paginate(15);
             $data['group_id'] = '';
         }
-
-       
-        
-
         return view('frontend.document.document',$data);
     	
     }

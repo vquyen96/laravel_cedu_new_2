@@ -28,4 +28,7 @@ class Course extends Model
     {
         return $this->hasMany('App\Models\OrderDetail','orderDe_cou_id','cou_id');
     }
+    public function doc(){
+        return $this->hasMany('App\Models\Doc','doc_cou_id','cou_id');
+    }
 }

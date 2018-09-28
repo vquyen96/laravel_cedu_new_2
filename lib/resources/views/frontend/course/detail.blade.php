@@ -54,9 +54,9 @@
 					</div>
 				</div>
 				<div class="courseInfo">
-					{{ $course->cou_video }} bài
+					<span class="conutVideo"></span> bài
 					<i class="fa fa-circle" aria-hidden="true"></i> 
-					{{ gmdate("H:i", $course->cou_video_duration)}}p 
+					{{ gmdate("H:i", $course->cou_video)}} p
 					<i class="fa fa-circle" aria-hidden="true"></i>
 					{{time_format($course->updated_at)}}
 					<i class="fa fa-circle" aria-hidden="true"></i>
@@ -88,10 +88,10 @@
 					<div class="lessonTitle">
 						<h2>Cấu trúc bài giảng</h2>
 						<div class="numOfLesson">
-							356 bài giảng
+							<span class="conutVideo"></span> bài giảng
 						</div>
 						<div class="timeOfLesson">
-							{{gmdate("H:i:s", $course->cou_video_duration)}}
+							{{gmdate("H:i:s", $course->cou_video)}}
 						</div>
 					</div>
 					<div class="lessonMain">
@@ -207,11 +207,11 @@
 					</div>
 					<div class="teacherMain">
 						<div class="teacherMainLeft">
-							<div class="teacherMainLeftImg" style="background: url('{{ file_exists(storage_path('app/avatar/resized250-'.$course->tea->img)) ? asset('lib/storage/app/avatar/resized250-'.$course->tea->img) : 'img/no-avatar.jpg' }}') no-repeat center /cover;">
+							<div class="teacherMainLeftImg" style="background: url('{{ file_exists(storage_path('app/avatar/resized250-'.$course->tea->img)) ? asset('lib/storage/app/avatar/resized250-'.$course->tea->img) : ($course->tea->provider == 'facebook' ? str_replace('type=normal', 'width=1920', $course->tea->img) : ($course->tea->provider == 'google' ? str_replace('?sz=50', '', $course->tea->img) : 'img/no-avatar.jpg')) }}') no-repeat center /cover;">
 							</div>
-							<div class="teacherMainLeftName">
+							<a href="{{ asset('teacher/'.$course->tea->email) }}" class="teacherMainLeftName">
 								{{ $course->tea->name }}
-							</div>
+							</a>
 						</div>
 						<div class="teacherMainRight">
 							<div class="teacherMainRightInfo">
@@ -285,7 +285,7 @@
 						@foreach($course->rating as $item)
 							<div class="rateMainItem">
 								<div class="rateMainItemAva">
-									<div class="rateMainItemAvaImg" style="background: url('{{ file_exists(storage_path('app/avatar/resized250-'.$item->acc->img)) ? asset('lib/storage/app/avatar/resized250-'.$item->acc->img) : 'img/no-avatar.jpg' }}') no-repeat center /cover;" >
+									<div class="rateMainItemAvaImg" style="background: url('{{ file_exists(storage_path('app/avatar/resized250-'.$item->acc->img)) ? asset('lib/storage/app/avatar/resized250-'.$item->acc->img) : ($item->acc->provider == 'facebook' ? str_replace('type=normal', 'width=1920', $item->acc->img) : ($item->acc->provider == 'google' ? str_replace('?sz=50', '', $item->acc->img) : 'img/no-avatar.jpg')) }}') no-repeat center /cover;" >
 										
 									</div>
 									<div class="rateMainItemAvaName">
@@ -319,7 +319,7 @@
 						@if (Auth::check() && isset($active))
 							<div class="rateMainItem">
 								<div class="rateMainItemAva">
-									<div class="rateMainItemAvaImg" style="background: url('{{ file_exists(storage_path('app/avatar/resized250-'.Auth::user()->img)) ? asset('lib/storage/app/avatar/resized250-'.Auth::user()->img) : 'img/no-avatar.jpg' }}') no-repeat center /cover;" >
+									<div class="rateMainItemAvaImg" style="background: url('{{ file_exists(storage_path('app/avatar/resized360-'.Auth::user()->img)) ? asset('lib/storage/app/avatar/resized360-'.Auth::user()->img) : (Auth::user()->provider == 'facebook' ? str_replace('type=normal', 'width=1920', Auth::user()->img) : (Auth::user()->provider == 'google' ? str_replace('?sz=50', '', Auth::user()->img) : 'img/no-avatar.jpg')) }}') no-repeat center /cover;" >
 										
 									</div>
 									<div class="rateMainItemAvaName">
@@ -429,7 +429,7 @@
 									<i class="fas fa-file-video"></i>
 								</div>
 								<div class="courseTagContentMainItemBody">
-									Video có {{gmdate("H", $course->cou_video_duration)}} tiếng
+									Video có {{gmdate("h", $course->cou_video)}} tiếng {{gmdate("i", $course->cou_video)}} phút
 								</div>
 							</div>
 							<div class="courseTagContentMainItem">
@@ -437,7 +437,7 @@
 									<i class="fas fa-file"></i>
 								</div>
 								<div class="courseTagContentMainItemBody">
-									{{$course->cou_video}} bài học
+									<span class="conutVideo"></span> bài học
 								</div>
 							</div>
 							<div class="courseTagContentMainItem">
@@ -445,7 +445,7 @@
 									<i class="fas fa-file-alt"></i>
 								</div>
 								<div class="courseTagContentMainItemBody">
-									16 các tài liệu bổ trợ
+									{{ count($course->doc) }} các tài liệu bổ trợ
 								</div>
 							</div>
 							<div class="courseTagContentMainItem">
@@ -494,4 +494,9 @@
 @stop
 @section('script')
 	<script type="text/javascript" src="js/courses/detail.js"></script>
+	<script>
+		console.log($('.lessonMainVideoItem').length);
+		$('.conutVideo').text($('.lessonMainVideoItem').length);
+
+	</script>
 @stop

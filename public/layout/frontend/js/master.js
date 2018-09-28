@@ -10,6 +10,12 @@ $(document).ready(function () {
         $('.loadingPage').fadeOut();
     }
 
+
+    $("form").submit(function(){
+        $('.loadingPage').show();
+        $('.loadingPage').css('opacity', '0.5');
+    });
+
     setTimeout(function(){
         $('.masterError').fadeOut();
     },4000);

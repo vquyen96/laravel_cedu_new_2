@@ -136,6 +136,18 @@
 
 	}
 
+	function timestamp_format($timestamp){
+        if (time() - $timestamp > 86400) {
+            $timestamp = date('d/m/Y H:m', $timestamp);
+        } else if(time() - $timestamp > 3600*24){
+            $time = time() - $timestamp;
+            $timestamp = round($time / (3600*24), 0, PHP_ROUND_HALF_DOWN) . ' ngày trước';
+        } else {
+            $time = time() - $timestamp;
+            $timestamp = round($time / 3600, 0, PHP_ROUND_HALF_DOWN) . ' giờ trước';
+        }
+        return $timestamp;
+    }
 
 
 	function getUrl() {

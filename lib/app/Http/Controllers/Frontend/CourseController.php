@@ -277,7 +277,6 @@ class CourseController extends Controller
                     foreach ($data['part'] as $part) {
                         // dd($part->lesson);
                         foreach ($part->lesson as $lesson) {
-
                             foreach ($docs as $doc) {
                                 // dd($lesson);
                                 if ($doc->doc_les_id == $lesson->les_id) {
@@ -335,17 +334,16 @@ class CourseController extends Controller
 
         if($lesson){
             $leaning = DB::table('leaning')->where('account_id',$user->id)->where('lesson_id',$req['les_id'])->first();
-
-            
             if($leaning){
-                if($req['current_time'] > $lesson->les_video_duration-5 && $status == 1) $status = 2;
-                else{
-                    $status = $leaning->status;
-                }
+//                dd($req['current_time'].'--'.$lesson->les_video_duration-5);
+//                return response($lesson->les_video_duration-5, 200);
+                $status = $leaning->status;
+                if($req['current_time'] >= ($lesson->les_video_duration-5) && $status == 1) $status = 2;
+
 //                dd(DB::table('leaning')->where('account_id',$user->id)->where('lesson_id',$req['les_id'])->update(['updated_at' => time(),'time_in_video' => $req['current_time'],'status' => $status]));
                 DB::table('leaning')->where('account_id',$user->id)->where('lesson_id',$req['les_id'])->update(['updated_at' => time(),'time_in_video' => $req['current_time'],'status' => $status]);
             }else {
-                if($req['current_time'] > $lesson->les_video_duration-5) $status = 2;
+                if($req['current_time'] >= $lesson->les_video_duration-5) $status = 2;
                 else $status = 1;
                 $data = [
                     'account_id' => $user->id,
@@ -362,6 +360,13 @@ class CourseController extends Controller
         return json_encode([
             'status' => 1
         ]);
+    }
+
+    public function getLearning(){
+        $les_id = (int)Input::get('les_id');
+        $acc_id = (int)Input::get('acc_id');
+        $leaning = Leaning::where('account_id', $acc_id)->where('lesson_id', $les_id)->first();
+        return response( $leaning, 200);
     }
 
     public function getTeacher($slug){

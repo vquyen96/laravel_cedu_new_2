@@ -26,7 +26,7 @@
 			<div class="row">
 				<div class="col-md-4 col-sm-4 col-12">
 					<div class="avatar">
-						<div class="img" style="background: url('{{ file_exists(storage_path('app/avatar/'.$teacher->img)) ? asset('lib/storage/app/avatar/'.$teacher->img) : str_replace("type=normal","width=1920",$teacher->img) }}') no-repeat center /cover"></div>
+						<div class="img" style="background: url('{{ file_exists(storage_path('app/avatar/resized360-'.$teacher->img)) ? asset('lib/storage/app/avatar/resized360-'.$teacher->img) : ($teacher->provider == 'facebook' ? str_replace('type=normal', 'width=1920', $teacher->img) : ($teacher->provider == 'google' ? str_replace('?sz=50', '', $teacher->img) : 'img/no-avatar.jpg')) }}') no-repeat center /cover"></div>
 						<div class="contact">
 							<a href="{{ $teacher->teacher->tea_fb != null ? $teacher->teacher->tea_fb : asset('') }}" class="icon" target="blank"><i class="fab fa-facebook-f"></i></a>
 							<a href="{{ $teacher->teacher->tea_gg != null ? $teacher->teacher->tea_gg : asset('') }}" class="icon" target="blank"><i class="fab fa-google-plus-g"></i></a>
@@ -84,7 +84,7 @@
 							{{$item->cou_name}}
 						</div>
 						<div class="name">
-							<img src="{{ file_exists(storage_path('app/avatar/resized50-'.$teacher->img)) ? asset('lib/storage/app/avatar/resized50-'.$teacher->img) : 'img/no-avatar.jpg'}}">
+							<img src="{{ file_exists(storage_path('app/avatar/resized50-'.$teacher->img)) ? asset('lib/storage/app/avatar/resized50-'.$teacher->img) : ($teacher->provider_id != null ? $teacher->img : 'img/no-avatar.jpg') }}">
 							<p>{{$teacher->name}}</p>
 							<div class="star">
 								@for($i=0;$i<5;$i++)

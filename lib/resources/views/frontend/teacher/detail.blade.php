@@ -478,8 +478,6 @@
 	</div>
 </div>
 {{-- END SỬA VIDEO--}}
-
-
 {{--MODAL TẠO BÀI GIẢNG --}}
 <div class="modal fade"	 id="myModal">
 	<div class="modal-dialog">
@@ -506,8 +504,6 @@
 	</div>
 </div>
 {{-- END TẠO BÀI GIẢNG --}}
-
-
 {{--MODAL UPDATE BÀI GIẢNG --}}
 <div class="modal fade"	 id="myModaledit">
 	<div class="modal-dialog">
@@ -534,8 +530,6 @@
 	</div>
 </div>
 {{-- UPDATE BÀI GIẢNG --}}
-
-
 {{--MODAL TẠO TÀI LIỆU--}}
 <div class="modal fade"	 id="modal_add_doc">
 	<div class="modal-dialog">
@@ -559,7 +553,7 @@
 					<div class="form_item">
 						<div class="inputFile">
 							Chọn file
-							<input id="fileItem" type="file" name="file" class="cssInput">
+							<input id="upload_doc" type="file" name="file" class="cssInput" onchange="Prevew_document()">
 						</div>
 					</div>
 				</div>
