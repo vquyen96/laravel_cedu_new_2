@@ -11,7 +11,7 @@ class PartController extends Controller
     public function getPart($id){
         $data['course'] = Course::find($id);
     	$data['items'] = Part::where('part_cou_id',$id)->orderBy('part_id','desc')->paginate(8);
-    	return view('backend.part',$data);
+    	return view('backend.part.add',$data);
     }
     public function postPart(Request $request,$id){
     	$part = new Part;
@@ -24,7 +24,7 @@ class PartController extends Controller
         $data['course'] = Course::find($cou_id);
     	$data['part'] = Part::find($part_id);
     	$data['items'] = Part::where('part_cou_id',$cou_id)->orderBy('part_id','desc')->paginate(8);
-    	return view('backend.editpart',$data);
+    	return view('backend.part.edit',$data);
     }
     public function postEdit(Request $request, $cou_id, $part_id){
     	$part = Part::find($part_id);

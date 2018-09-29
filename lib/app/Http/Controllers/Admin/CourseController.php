@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Course;
 use App\Models\Group;
 use App\Models\Account;
+use App\Models\Doc;
 use Auth;
 use File;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -21,7 +22,7 @@ class CourseController extends Controller
             $data['items'] = Course::where('cou_tea_id',Auth::user()->id)->orderBy('cou_id','desc')->paginate(7);
         }
         else{
-            $data['items'] = Course::orderBy('cou_name','asc')->where('cou_status', '1')->paginate(20);
+            $data['items'] = Course::where('cou_status', '1')->orderBy('cou_id','desc')->paginate(20);
         }
     	
     	return view('backend.course.list',$data);
@@ -115,6 +116,7 @@ class CourseController extends Controller
                 $i++;
             }
         }
+        $data['docs'] = Doc::where('doc_cou_id', $id)->get();
         $data['lesson'] = $i;
         // dd($data);
         return view('backend.course.edit', $data);

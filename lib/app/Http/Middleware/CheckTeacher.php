@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Account;
 use Closure;
 use Auth;
 class CheckTeacher
@@ -16,7 +17,8 @@ class CheckTeacher
     public function handle($request, Closure $next)
     {
         if(Auth::check()){
-            if(Auth::user()->level == 7){
+            $arr = [Account::TEACHER, Account::ADMIN_SUPER, Account::ADMIN];
+            if(in_array(Auth::user()->level, $arr)){
                 return $next($request);
             }
             else{

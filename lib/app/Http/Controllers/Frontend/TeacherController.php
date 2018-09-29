@@ -337,6 +337,8 @@ class TeacherController extends Controller
         $course = $request->cou;
         $course['cou_slug'] = str_slug($course['cou_name']);
         $course['cou_tea_id'] = Auth::user()->id;
+        $course['cou_status'] = 0;
+
         $image = $request->file('img');
         if ($request->hasFile('img')) {
             $size = [360, 200, 100];

@@ -5,6 +5,7 @@
 
 header{
 	display: flex;
+
 }
 .headerLeft{
 	
@@ -27,6 +28,7 @@ header{
 	font-size: 14px;
 	text-decoration: none;
 	cursor: pointer;
+	white-space: nowrap;
 }
 .inputSearchHead{
 	height: 40px;
@@ -72,6 +74,7 @@ header{
 	font-size: 14px;
 	text-decoration: none;
 	cursor: pointer;
+	white-space: nowrap;
 }
 .headerRightItemNum{
 	position: absolute;
@@ -288,6 +291,7 @@ a.headerItemDropdownItemContent{
 		position: fixed;
 		top: 72px;
 		border-bottom: 1px solid #ccc;
+		overflow: unset;
 	}
 	.headerLeft>div{
 		text-align: left;

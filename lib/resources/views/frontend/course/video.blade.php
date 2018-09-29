@@ -373,13 +373,14 @@
 	<script src="js/plugins/video.js"></script>
 	<script type="text/javascript" src="js/courses/detail.js"></script>
 	<script src="https://vjs.zencdn.net/7.1.0/video.js"></script>
+
 	<script >
         var vid = document.getElementById("my-video_html5_api");
         var url = $('.currentUrl').text();
         $(document).ready(function(){
             $('#my-video_html5_api').on('ended',function(){
                 end();
-                window.location.href = url+'courses/detail/thom-va-nhung-nguoi-ban.html/video/'+{{Request::segment(5)+1}};
+                window.location.href = url+'courses/detail/{{ $course->cou_slug }}.html/video/'+{{Request::segment(5)+1}};
             });
         });
 

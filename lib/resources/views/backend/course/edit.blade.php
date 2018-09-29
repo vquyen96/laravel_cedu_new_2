@@ -210,6 +210,121 @@
                 @endforeach
             @endforeach
         </div>
+
+
+        <div class="videoContentTitle">
+            Tài liệu
+        </div>
+        <div class="editDocument">
+            <ul>
+                @foreach ($docs as $doc)
+                    @if ($doc->doc_les_id == null)
+                        <li class="document">
+                            <a href="{{ asset('teacher/destroy_doc/'.$doc->doc_id) }}"  onclick="return confirm('Bạn có chắc chắn muốn xóa ?')">
+                                <i class="fas fa-trash-alt"></i>
+                            </a>
+                            <div class="doc_name">
+                                {{ $doc->doc_name}}
+                            </div>
+                            <i class="fas fa-edit edit_document" >
+                                <div class="d-none action_form">
+                                    {{asset('teacher/editdoc/'.$doc->doc_id)}}
+                                </div>
+                                <div class="d-none doc_form">{{ $doc->doc_link }}</div>
+                            </i>
+
+                        </li>
+                    @endif
+
+                @endforeach
+
+            </ul>
+            <div class="addDocument" >
+                <i class="fas fa-plus" data-toggle="modal" data-target="#myModal2"></i>
+                Thêm tài liệu
+                <div class="d-none action_form">
+                    {{asset('teacher/doc/'.$item->cou_id)}}
+                </div>
+            </div>
+        </div>
     </div>
 
+    {{--MODAL TẠO TÀI LIỆU--}}
+    <div class="modal fade"	 id="modal_add_doc">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-title">
+                    Tài liệu
+                </div>
+                <form method="post" enctype="multipart/form-data" class="form_add_doc" >
+                    {{ csrf_field() }}
+                    <div class="form_group">
+                        <label>Tên tài liệu</label>
+                        <div class="form_item">
+                            <div class="input">
+                                <input type="text" name="doc_name"  placeholder="Tên tài liệu">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form_group">
+                        <label>File tài liệu</label>
+                        <div class="form_item">
+                            <div class="inputFile">
+                                Chọn file
+                                <input id="upload_doc" type="file" name="file" class="cssInput" onchange="Prevew_document()">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="show_doc">
+                        <iframe id="viewer_doc" frameborder="0" scrolling="no" width="100%" height="600"></iframe>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn-miss" data-dismiss="modal">Không</button>
+                        <button type="submit" class="btn-create">Lưu</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    {{-- END TẠO TÀI LIỆU --}}
+
+
+@stop
+@section('script')
+    <script>
+        var url = $('.currentUrl').text();
+        $('.addDocument').click(function(){
+            var action = $(this).find('.action_form').text();
+            $('.form_add_doc').attr('action', action);
+            $('#modal_add_doc').modal();
+            $('#viewer_doc').hide();
+        });
+
+        $('.edit_document').click(function(){
+            var action = $(this).find('.action_form').text();
+            var doc_name = $(this).prev().text();
+            var doc_link = $(this).find('.doc_form').text();
+            console.log(doc_link);
+
+            doc_name = doc_name.trim();
+            console.log(doc_name);
+            $('input[name="doc_name"]').val(doc_name);
+            $('.form_add_doc').attr('action', action);
+            $('#modal_add_doc').modal();
+
+            $('#viewer_doc').attr('src', url+'/lib/storage/app/doc/' + doc_link );
+            $('#viewer_doc').show();
+        });
+        function Prevew_document() {
+            pdffile=document.getElementById("upload_doc").files[0];
+            var extension = pdffile.name.split('.').pop();
+            if (extension == 'pdf') {
+                pdffile_url=URL.createObjectURL(pdffile);
+                $('#viewer_doc').attr('src',pdffile_url);
+                $('#viewer_doc').show();
+            }
+        }
+
+    </script>
 @stop
