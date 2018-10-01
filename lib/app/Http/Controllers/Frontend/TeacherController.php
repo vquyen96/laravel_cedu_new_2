@@ -375,13 +375,15 @@ class TeacherController extends Controller
     {
         // gmdate("i:s", $request->duration)
         // dd($request->all());
+        $video = $request->file('file');
         $lesson = new Lesson;
-        $lesson->les_name = $request->les_name;
+        $request->les_name != null ? $lesson->les_name = $request->les_name : $lesson->les_name = cut_string($video->getClientOriginalName(), 50);
+
+
         $lesson->les_slug = str_slug($request->les_name);
         $lesson->les_part_id = $id;
 
         $lesson->les_video_duration = $request->duration;
-        $video = $request->file('file');
 
         if ($request->hasFile('file')) {
             $filename = time() . '.' . $video->getClientOriginalExtension();

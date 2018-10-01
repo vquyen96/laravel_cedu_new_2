@@ -5,7 +5,7 @@
 	<base href="{{asset('public/layout/backend')}}/">
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="shortcut icon" href="{{ asset('public/layout/frontend/img/BUT.png') }}">
+	<link rel="shortcut icon" href="../frontend/img/LOGO_CEDU1.png">
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,600,700,800" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/login2.css">

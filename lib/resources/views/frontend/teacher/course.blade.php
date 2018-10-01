@@ -50,6 +50,11 @@
 							<p>Sale off</p>
 						</div>
 						@endif
+						@if($item->cou_status != 1)
+							<div class="courseNoActive">
+								Chờ kích hoạt
+							</div>
+						@endif
 					</div>
 				</div>
 				<div class="col-md-8 col-sm-8 col-12">

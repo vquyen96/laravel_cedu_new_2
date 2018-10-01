@@ -15,10 +15,10 @@
 						</div>
 					</div>
 					<div class="footerLeftBot">
-						Teach what you love. Cedu gives you the tools to create an online cou. Cedu gives you the tools to create an online course.
+						{{ $web_info->content_left_top }}
 					</div>
 					<div class="footerLeftCopyRight">
-						Copyright © 2018 Cedu, Inc.
+						{{ $web_info->content_left_bot }}
 					</div>
 					
 				</div>
@@ -34,7 +34,7 @@
 						 	<i class="fas fa-map-marker-alt"></i>
 						</span>
 						<div class="footerContentBody">
-							Tầng 2, 5, 6 CPHONE Tower, Số 456 Xô Viết Nghệ Tĩnh, P25, Q Bình Thạnh, HCM
+							{{ $web_info->branch_sg }}
 						</div>
 					</div>
 					<div class="footerMidContent">
@@ -42,7 +42,7 @@
 						 	<i class="fas fa-map-marker-alt"></i>
 						</span>
 						<div class="footerContentBody">
-							Tầng 5, Tòa Nhà Diamond Flower, Số 1 Hoàng Đạo Thúy, Thanh Xuân, Hà Nội
+							{{ $web_info->branch_hn }}
 						</div>
 					</div>
 					<div class="footerMidContent">
@@ -50,7 +50,7 @@
 						 	<i class="fa fa-phone" aria-hidden="true"></i>
 						</span>
 						<div class="footerContentBody">
-							1900.633.972    |       08.887.790.111
+							{{ $web_info->hotline }}
 						</div>
 					</div>
 					<div class="footerMidContent">
@@ -58,7 +58,7 @@
 						 	<i class="fa fa-envelope" aria-hidden="true"></i>
 						</span>
 						<div class="footerContentBody">
-							info@ceduvn.com
+							{{ $web_info->email }}
 						</div>
 					</div>
 				</div>
@@ -84,14 +84,14 @@
 		
 	</div>
 </footer>
-<div class="footerBot">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<div class="footerBotContent">
-					Made with  &  in Bentonville, Boston, Joplin, Seattle, and Vergennes.Made with  &  in Bentonville, Boston, Joplin, Seattle, and Vergennes.
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
+{{--<div class="footerBot">--}}
+	{{--<div class="container">--}}
+		{{--<div class="row">--}}
+			{{--<div class="col-md-12">--}}
+				{{--<div class="footerBotContent">--}}
+					{{--Made with  &  in Bentonville, Boston, Joplin, Seattle, and Vergennes.Made with  &  in Bentonville, Boston, Joplin, Seattle, and Vergennes.--}}
+				{{--</div>--}}
+			{{--</div>--}}
+		{{--</div>--}}
+	{{--</div>--}}
+{{--</div>--}}

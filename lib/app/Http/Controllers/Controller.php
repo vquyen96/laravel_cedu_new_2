@@ -7,7 +7,13 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Models\Course;
+use App\Models\Webinfo;
+use App\Models\Group;
+use App\Models\About;
+use App\Models\Noti;
 use simple_html_dom;
+use Illuminate\Support\Facades\View;
+
 
 include_once __DIR__.'/../../../libary/simple_html_dom.php';
 
@@ -15,6 +21,25 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
+    public function __construct()
+    {
+        // Fetch the Site Settings object
+        $this->middleware(function ($request, $next) {
+            $data['web_info'] = $this->web_info();
+            $data['groups'] = Group::where('gr_parent_id', 0)->get();
+            $data['about_list'] = About::all();
+            $data['noti'] = Noti::paginate(6);
+
+            view()->share($data);
+            return $next($request);
+        });
+    }
+
+    function web_info(){
+        $info = Webinfo::first();
+        $info = (object)json_decode($info->info,true);
+        return $info;
+    }
 
 
     function reloadRate($id){

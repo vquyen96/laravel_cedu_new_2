@@ -130,7 +130,7 @@
 									</div>
 								</div>
 							</div>
-							@if (!isset($user->provider) || $user->provider != 'facebook')
+							{{--@if (!isset($user->provider) || $user->provider != 'facebook')--}}
 								<div class="form_group">
 									<label>Email</label>
 									<div class="form_item">
@@ -142,7 +142,7 @@
 										</div>
 									</div>
 								</div>
-							@endif
+							{{--@endif--}}
 								
 							<div class="form_group">
 								<label>Số điện thoại</label>

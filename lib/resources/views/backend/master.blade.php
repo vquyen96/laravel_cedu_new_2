@@ -188,6 +188,11 @@
 					Giới thiệu
 				</a>
 			</li>
+			<li>
+				<a href="{{asset('admin/website_info')}}" class="navAccount @if (Request::segment(2) == 'website_info')  active @endif">
+					Thông tin website
+				</a>
+			</li>
 			@endif
 			<li>
 				<a href="{{asset('logout')}}" class="navAccount">

@@ -23,6 +23,9 @@ class UserController extends Controller
     public function getCourseDoing()
     {
         $learning_last = Leaning::where('account_id', Auth::user()->id)->orderByDesc('updated_at')->first();
+        if ($learning_last == null){
+            $learning_last = Leaning::orderByDesc('updated_at')->first();
+        }
         $video = Lesson::find($learning_last->lesson_id);
         $video->time_last = $learning_last->updated_at;
         $count = 0;

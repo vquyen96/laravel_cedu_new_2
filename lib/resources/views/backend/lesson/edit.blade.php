@@ -37,7 +37,7 @@
                         <label>Tài liệu</label>
 
                         <input type="file" name="file_doc" id="upload_doc" onchange="Prevew_document()" class="form-control">
-                        <iframe id="viewer_doc" frameborder="0" scrolling="no" width="100%" height="600" class="d-none" src=""></iframe>
+                        <iframe id="viewer_doc" frameborder="0" scrolling="no" width="100%" height="600" class="{{ !isset($doc) ? 'd-none' : '' }}" src="{{ isset($doc) ? asset('lib/storage/app/doc/'.$doc->doc_link) : ''}}"></iframe>
                     </div>
 
 

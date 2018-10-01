@@ -1,8 +1,8 @@
 @extends('frontend.master')
 @section('title',$news->news_title)
 @section('fb_title', cut_string($news->news_title, 70))
-{{-- @section('fb_description', $articel_detail->summary) --}}
-@section('fb_image', asset('lib/storage/app/news/'.$news->news_img))
+{{--@section('fb_description', cut_string($news->new))--}}
+@section('fb_image',  file_exists(storage_path('/app/news/resized360-'.$news->news_img)) ? asset('lib/storage/app/news/resized360-'.$news->news_img) : file_exists(storage_path('/app/news/'.$news->news_img)) ? asset('lib/storage/app/news/'.$news->news_img) : $news->news_img )
 @section('main')
 <link rel="stylesheet" type="text/css" href="css/news/news.css">
 	<div class="instruction">

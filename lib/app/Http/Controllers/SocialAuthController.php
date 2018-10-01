@@ -95,7 +95,7 @@ class SocialAuthController extends Controller
             $authUser = Account::where('provider_id', $user->id)->first();
             if ($authUser) return $authUser;
 
-            if ($provider == 'facebook') {
+            if ($user->email == null || $user->email == "" ) {
                 $user->email = $user->id;
             }
             return Account::create([

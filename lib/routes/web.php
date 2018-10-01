@@ -224,6 +224,12 @@ Route::group(['namespace'=>'Admin', 'middleware'=>'CheckAdmin'],function(){
 			Route::get('delete/{id}', 'NotiController@getDelete');
 			
 		});
+        Route::group(['prefix' => 'website_info'],function(){
+            Route::get('/','WebInfoController@index')->name('website_info');
+            Route::post('/add_info','WebInfoController@add_info')->name('add_info');
+            Route::post('/update_info','WebInfoController@update_info')->name('update_info');
+            Route::get('/delete_info/{id}','WebInfoController@delete_info')->name('delete_info');
+        });
 	});
 });
 Route::group(['namespace'=>'Frontend'],function(){
