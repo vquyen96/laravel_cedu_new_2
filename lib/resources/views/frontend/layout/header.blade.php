@@ -223,6 +223,15 @@
 						Thông tin cá nhân
 					</a>
 				</div>
+				<div class="headerItemDropdownItem">
+					<div class="headerItemDropdownItemIcon">
+						<i class="fas fa-user"></i>
+					</div>
+					<a href="{{ asset('user/history') }}" class="headerItemDropdownItemContent">
+						Lịch sử giao dịch
+					</a>
+				</div>
+				
 				@endif
 
 				@if(Auth::user()->level == 8 || Auth::user()->level == 7)

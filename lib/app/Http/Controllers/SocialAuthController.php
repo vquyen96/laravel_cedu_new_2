@@ -8,8 +8,8 @@ use App\Http\Requests;
 use App\Services\SocialAccountService;
 use Illuminate\Support\Facades\Log;
 use App\Models\Account;
-
-use Socialite, Auth, Redirect, Session, URL;
+use Illuminate\Support\Facades\Auth;
+use Socialite, Redirect, Session, URL;
 class SocialAuthController extends Controller
 {
     public function redirect($social)
@@ -57,12 +57,12 @@ class SocialAuthController extends Controller
     {
 
         try {
-            $user = Socialite::driver($provider)->user();
+            $user = Socialite::driver($provider)->stateless()->user();
 //             dd($user);
             $authUser = $this->findOrCreateUser($user, $provider);
             $arr = ['email' => $authUser->email, 'password' => $authUser->provider_id];
-//            dd($authUser);
-            if(Auth::attempt($arr, true )){
+            Auth::loginUsingId($authUser->id);
+            if(Auth::check()){
                 // return Redirect::to(Session::get('pre_url'));
                 if (Auth::user()->level > 6) {
                     return redirect('')->with('success','Đăng nhập thành công');
@@ -95,9 +95,9 @@ class SocialAuthController extends Controller
             $authUser = Account::where('provider_id', $user->id)->first();
             if ($authUser) return $authUser;
 
-            if ($user->email == null || $user->email == "" ) {
-                $user->email = $user->id;
-            }
+//            if ($user->email == null || $user->email == "" ) {
+//                $user->email = $user->id;
+//            }
             return Account::create([
                 'name'     => $user->name,
                 'email'    => $user->email,

@@ -42,21 +42,7 @@
 				<td class="tableTD"><a href="{{asset('admin/order/detail/'.$item->ord_id)}}">{{$item->ord_phone}}</a></td>
 				<td class="tableTD"><a href="{{asset('admin/order/detail/'.$item->ord_id)}}"><b style="color: #e33;">{{number_format($item->ord_total_price,0,',','.')}} VND </b></a></td>
 				<td>
-					@switch($item->ord_payment)
-						@case(1)
-							Tại nhà
-							@break
-						@case(2)
-							Ngân Lượng
-							@break
-						@case(3)
-							Paypal
-							@break
-						@case(4)
-							Bảo kim
-							@break
-					@endswitch
-
+					{{ order_payment($item->ord_payment) }}
 				</td>
 				<td>
 					@switch($item->ord_status)

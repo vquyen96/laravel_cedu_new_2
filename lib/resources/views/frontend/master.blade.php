@@ -17,7 +17,8 @@
 	<link rel="shortcut icon" href="img/LOGO_CEDU1.png">
 	<meta charset="utf-8">
 	<meta name="csrf-token" content="{{ csrf_token() }}">
-	<meta property="og:url" 		content="{{Request::url()}}" />
+	<meta property="og:url" 		content="{{ str_replace('https', 'http', Request::url())}}" />
+	<link rel="canonical" href="{{ Request::url() }}" />
 
 	<meta property="fb:app_id" 		content="1577563652342523" />
 	<meta property="og:title" 		content="@yield('fb_title')" />

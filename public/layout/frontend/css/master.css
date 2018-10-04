@@ -43,7 +43,21 @@
 
 }
 
+.d-flex{
+	display: flex;
+}
+.bold{
+	font-weight: bold;
+}
 
+.btn-blue {
+	color: #fff !important;
+	background-color: #2d317f;
+	outline: none;
+}
+.btn-blue:hover{
+	color: #fff;
+}
 /*paginateCustom*/
 .paginationCourseAll{
 	padding: 0;

@@ -24,7 +24,7 @@
                 >
             </a>
             <a href="{{ asset('') }}" class="instruction_item">
-                Thành công
+                Xong
             </a>
         </div>
         

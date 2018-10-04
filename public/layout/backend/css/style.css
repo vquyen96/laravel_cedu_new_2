@@ -6,7 +6,7 @@ body {
     background: #eee;
 }
 .d-none{
-    display: none;
+    display: none !important;
 }
 .canvasjs-chart-credit {
     display: none !important;
@@ -221,9 +221,14 @@ nav {
     position: fixed;
     top: 90px;
     left: 0;
-    width: 200px;
-    height: 100%;;
+    width: 230px;
+    height: 80%;
+    overflow: auto;
 }
+nav::-webkit-scrollbar {
+    width: 10px;
+}
+
 
 nav ul {
     padding: 0;
@@ -232,7 +237,11 @@ nav ul {
 nav ul li {
     float: left;
     list-style: none;
-    width: 100%;
+    width: 80%;
+
+}
+nav ul li:last-child{
+    margin-bottom: 50px;
 }
 
 nav ul li a {
@@ -359,7 +368,7 @@ main {
     width: 140px;
     height: 80px;
     border-radius: 10px;
-    box-shadow: 4px 8px 12px 0px #0000003b;
+    box-shadow: 1px 1px 2px #ccc;
 }
 
 .tableTD a {

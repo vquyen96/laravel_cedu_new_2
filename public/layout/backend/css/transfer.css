@@ -1,0 +1,62 @@
+.modal-content{
+    padding: 0;
+    max-height: 96%;
+    overflow: auto;
+}
+.modal-title{
+    margin-bottom: 0;
+}
+.modalCourse {
+    margin-bottom: 50px;
+}
+.modalCourseItem {
+    display: flex;
+    margin-bottom: 20px;
+}
+.modalCourseItemImg {
+    width: 200px;
+    border-radius: 10px;
+    margin-right: 20px;
+}
+.modalCourseItemImg:after {
+    content: '';
+    display: block;
+    padding-bottom: 72%;
+}
+.modalCourseName{
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #999;
+}
+.modalCoursePrice{
+    color: #171940;
+    font-weight: 600;
+}
+
+
+.modalOrderTitle {
+    font-size: 20px;
+    font-weight: bold;
+    color: #666;
+    margin-bottom: 20px;
+}
+.modalOrderContent {
+    display: flex;
+    margin-bottom: 10px;
+    height: 34px;
+    line-height: 34px;
+}
+.modalOrderContentLeft {
+    padding-right: 10px;
+    font-weight: 600;
+    color: #999;
+}
+.modalOrderContentRight {
+    color: #777;
+}
+
+.modal-footer {
+    padding: 15px;
+    text-align: right;
+    border-top: 1px solid #e5e5e5;
+}

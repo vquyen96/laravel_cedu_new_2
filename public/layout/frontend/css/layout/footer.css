@@ -1,3 +1,6 @@
+.mb-2{
+    margin-bottom: 5px;
+}
 footer{
 	background: #F8F8FB;
 	padding-top: 60px;
@@ -36,6 +39,7 @@ footer{
     font-size: 1em;
     line-height: 1.5em;
     color: #666;
+    text-align: justify;
 }
 .footerLeftCopyRight{
 	font-family: 'Montserrat', sans-serif;

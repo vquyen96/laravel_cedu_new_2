@@ -11,6 +11,7 @@ use App\Models\Webinfo;
 use App\Models\Group;
 use App\Models\About;
 use App\Models\Noti;
+use App\Models\Order;
 use simple_html_dom;
 use Illuminate\Support\Facades\View;
 
@@ -105,5 +106,57 @@ class Controller extends BaseController
         $dom = new simple_html_dom($content);
 
         return $dom;
+    }
+
+    function create_ord_code($ord_payment){
+        switch ($ord_payment) {
+            case 1:
+                $code_value = 'COD_';
+                break;
+            case 2:
+                $code_value = 'NL_';
+                break;
+            case 3:
+                $code_value = 'PP_';
+                break;
+            case 4:
+                $code_value = 'CK_';
+                break;
+            case 5:
+                $code_value = 'CT_';
+                break;
+            default:
+                return 'error';
+                break;
+        }
+        
+        while (true) {
+            $code = $code_value.mt_rand(100000, 999999);
+            $codeExit = Order::where('ord_code',$code)->first();
+            if ($codeExit == null) {
+                break;
+            }
+        }
+        return $code;
+    }
+
+    function get_time_h_m_s($time_input){
+        $time = $time_input - time();
+        if($time <= 0){
+            return [
+                'h' => 0,
+                'm' => 0,
+                's' => 0,
+            ];
+        }
+        $h = floor($time / 3600);
+        $m = floor(($time - $h*3600)/60);
+        $s = floor($time - $h*3600 - $m*60);
+
+        return [
+            'h' => $h,
+            'm' => $m,
+            's' => $s,
+        ];
     }
 }

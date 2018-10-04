@@ -72,22 +72,8 @@
 					Số tiền : {{number_format($order->ord_total_price,0,',','.')}} VNĐ
 				</div>
 				<div class="col-md-6 col-sm-6 col-xs-12">
-					Phương thức thanh toán :
-					@switch($order->ord_payment)
-						@case(1)
-							Tại nhà
-							@break
-						@case(2)
-							Tại công ty
-							@break
-						@case(3)
-							Thẻ VISA
-							@break
-						@case(4)
-							Chuyển khoản
-							@break
-						
-					@endswitch
+					Phương thức thanh toán : {{ order_payment($order->ord_payment) }}
+					
 				</div>
 			</div>
 		</div>

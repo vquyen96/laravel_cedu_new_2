@@ -11,6 +11,10 @@ use App\Models\OrderDetail;
 use App\Models\Aff;
 use App\Models\Code;
 use App\Models\Account;
+use App\Models\Bank;
+
+use Illuminate\Support\Facades\Input;
+
 use Cart;
 use Auth;
 use Mail;
@@ -25,10 +29,13 @@ class CartController extends Controller
         if (Auth::check()) {
             $order = Order::where('ord_acc_id', Auth()->user()->id)->get();
             foreach ($order as $item) {
-                $courseExist = OrderDetail::where('orderDe_cou_id',$course->cou_id)->where('orderDe_ord_id',$item->ord_id)->first();
-                if ($courseExist != null) {
-                    $countCouExit = 1;
+                if($item->ord_status == 0){
+                    $courseExist = OrderDetail::where('orderDe_cou_id',$course->cou_id)->where('orderDe_ord_id',$item->ord_id)->first();
+                    if ($courseExist != null) {
+                        $countCouExit = 1;
+                    }
                 }
+                    
             }
         }
         
@@ -66,10 +73,13 @@ class CartController extends Controller
         if (Auth::check()) {
             $order = Order::where('ord_acc_id', Auth()->user()->id)->get();
             foreach ($order as $item) {
-                $courseExist = OrderDetail::where('orderDe_cou_id',$course->cou_id)->where('orderDe_ord_id',$item->ord_id)->first();
-                if ($courseExist != null) {
-                    $countCouExit = 1;
+                if($item->ord_status == 0){
+                    $courseExist = OrderDetail::where('orderDe_cou_id',$course->cou_id)->where('orderDe_ord_id',$item->ord_id)->first();
+                    if ($courseExist != null) {
+                        $countCouExit = 1;
+                    }
                 }
+                    
             }
         }
         
@@ -366,9 +376,9 @@ class CartController extends Controller
                     return redirect('/')->with('error', 'Giỏ hàng của bạn không có gì');
                 }
                 $percent = ($total/$total_old)*100;
-
-                $data['items'] = $items;
+                $bank = Bank::all();
                 $data = [
+                    'banks'=> $bank,
                     'items' => $items,
                     'total' => $total,
                     'total_old' => $total_old,
@@ -643,4 +653,137 @@ class CartController extends Controller
         return view('frontend.cart.complete');
     }
     
+    public function postTranfer(Request $request){
+        if(count(Cart::content()) == 0){
+            return redirect('/')->with('error', 'Bạn không có khóa học nào !');
+        }
+        DB::beginTransaction();
+
+        $order = new Order;
+        $order->ord_payment = 4;
+        $order->ord_acc_id = Auth::user()->id;
+        $order->ord_code = $this->create_ord_code($order->ord_payment);
+        $order->ord_phone = $request->phone;
+        $order->ord_note = 'Thanh toán đơn '.$order->ord_code;
+        $order->ord_bank = $request->bank;
+        $total = str_replace(",","",Cart::total());
+        $total = (int)$total;
+        $order->ord_total_price = $total;
+        $order->ord_status = 1 ;
+        // dd($order);
+        $order->save();
+        $data['cart'] = Cart::content();
+        
+        sleep(2);
+        foreach ($data['cart'] as $item) {
+            $orderdetail = new OrderDetail;
+            $orderdetail->orderDe_name = $item->name;
+            $orderdetail->orderDe_price = $item->price;
+            $orderdetail->orderDe_qty = $item->qty;
+            $orderdetail->orderDe_ord_id = $order->ord_id;
+            $orderdetail->orderDe_cou_id = $item->id;
+            $aff = Aff::where('aff_code', $item->options->aff)->first();
+            if($aff != null){
+                $orderdetail->orderDe_aff_id = $aff->aff_acc_id;
+            }
+            $orderdetail->save();
+        }
+        
+        // $data['order'] = $order;
+        // $email = Auth::user()->email;
+        // $data['cart'] = Cart::content();
+        // $data['total'] = $total;
+
+        // $data['image'] = $orderdetail->course->cou_img;
+        // // return view('frontend.email', $data);
+
+        // Mail::send('frontend.email.pay_home', $data, function($message) use ($email){
+        //     $message->from('info@ceduvn.com', 'Ceduvn');
+        //     $message->to($email, $email)->subject('Thank You!');
+        //     // $message->cc('thongminh.depzai@gmail.com', 'boss');
+        //     $message->subject('Hóa đơn khóa học');
+        // });
+        DB::commit();
+
+        
+        Cart::destroy();
+        
+        return redirect('cart/info/'.$order->ord_id);
+
+    }
+    public function infoTransfer($ord_id){
+        $order = Order::find($ord_id);
+        if (time() - strtotime($order->created_at) > 7200 ) {
+            return redirect('/')->with('error', 'Đơn hàng đã hết thời gian');
+        }
+        if($order->ord_status != 1){
+            return redirect('user/history')->with('error', 'Đơn hàng không còn ở chế độ chờ');
+        }
+        if (!Auth::check() || $order->ord_acc_id != Auth::user()->id){
+            return redirect('/');
+        }
+        $bank = Bank::find($order->ord_bank);
+        $data = [
+            'time_del' => $this->get_time_h_m_s(strtotime($order->created_at)+7200),
+            'order' => $order,
+            'bank' => $bank
+        ];
+        return view('frontend.cart.info_transfer', $data);
+    }
+
+
+    function update_status(){
+        $id = Input::get('id');
+        $status = Input::get('status');
+        $order = Order::find($id);
+        if (!$order) return response('Không tìm thấy đơn', 404);
+        $order->ord_status = $status;
+        $order->status = $status;
+        $order->save();
+        return response($order, 200);
+    }
+    function check_status(){
+        $id = Input::get('id');
+        $order = Order::find($id);
+        if (!$order) return response('Không tìm thấy đơn', 404);
+        return response($order->ord_status, 200);
+    }
+
+
+
+    function complete(Request $request){
+        $status = $request->get('status');
+        $data['step'] = 3;
+        if($status == 3){
+            return view('public.payment.complete',$data)->with('success','Đơn hàng đã được thanh toán thành công');
+        }else if ($status == 4){
+            return view('public.payment.complete',$data)->with('danger','Đơn hàng đã bị hủy');
+        }
+        return view('public.payment.complete',$data);
+    }
+
+    public function update_transfer(Request $request){
+        $order = Order::find($request->id);
+        $order->ord_bank_user = $request->bank_transfer;
+        $image = $request->file('img');
+
+        if ($request->hasFile('img')) {
+            if (filesize($image) < 1500000) {
+                $order->ord_img = saveImage([$image], [1000], 'order');
+                if ($order->ord_img == false) {
+                    return back()->with('error', 'Ảnh của bạn bị lỗi !!! vui lòng thay ảnh khác');
+                }
+            } else {
+                return back()->with('error', 'Dung lượng ảnh của bạn quá lớn');
+            }
+        }else{
+            return back()->with('error', 'Bạn phải gửi ảnh hóa đơn lên');
+        }
+        $order->ord_status = -2;
+        $order->save();
+        return back()->with('success', 'Bạn sẽ nhận đưuọc thông báo khi khóa học được kích hoạt');
+    }
+    public function getCompleteNew(Request $request){
+
+    }
 }

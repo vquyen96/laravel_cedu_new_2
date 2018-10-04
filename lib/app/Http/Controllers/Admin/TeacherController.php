@@ -115,27 +115,7 @@ class TeacherController extends Controller
     }
 
     public function getDetail($id){
-        
-        if(Teacher::where('tea_acc_id',$id)->first() == null){
-            $teacher = new Teacher;
-            $teacher->tea_templace = 1;
-            $teacher->tea_img_head = "";
-            $teacher->tea_img_foot = "";
-
-            $teacher->tea_gender = 1;
-            $teacher->tea_specialize = "";
-            $teacher->tea_degree = "Cử nhân";
-            $teacher->tea_email = Account::find($id)->email;
-            $teacher->tea_fb = " ";
-            $teacher->tea_follow = 10;
-            $teacher->tea_lesson = 10;
-            $teacher->tea_exp = 10;
-            $teacher->tea_work_place = " ";
-            $teacher->tea_acc_id = $id;
-            $teacher->save();
-            sleep(1);
-        }
-        $data['teacher'] = Teacher::where('tea_acc_id',$id)->first();
+        $data['teacher'] = findOrCreateTeacher($id);
 
         return view('backend.teacher.detail', $data);
     }
@@ -232,5 +212,28 @@ class TeacherController extends Controller
     public function getDeleteSto($tea, $sto){
         Story::destroy($sto);
         return back();
+    }
+
+    function findOrCreateTeacher($acc_id){
+        $teacher = Teacher::where('tea_acc_id',$acc_id)->first();
+        if($teacher == null){
+            $teacher = new Teacher;
+            $teacher->tea_templace = 1;
+            $teacher->tea_img_head = "";
+            $teacher->tea_img_foot = "";
+
+            $teacher->tea_gender = 1;
+            $teacher->tea_specialize = "";
+            $teacher->tea_degree = "Cử nhân";
+            $teacher->tea_email = Account::find($id)->email;
+            $teacher->tea_fb = " ";
+            $teacher->tea_follow = 10;
+            $teacher->tea_lesson = 10;
+            $teacher->tea_exp = 10;
+            $teacher->tea_work_place = " ";
+            $teacher->tea_acc_id = $id;
+            $teacher->save();
+        }
+        return $teacher;
     }
 }

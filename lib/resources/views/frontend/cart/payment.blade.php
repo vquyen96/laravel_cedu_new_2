@@ -37,7 +37,7 @@
                             @foreach ( $items as $item)
                             <div class="cart_item">
                                 <div class="cart_item_left">
-                                    <div class="cart_item_ava" style="background: url('{{asset('lib/storage/app/course/'.$item->cou_img)}}') no-repeat center /cover;"></div>
+                                    <div class="cart_item_ava" style="background: url('{{asset('lib/storage/app/course/resized200-'.$item->cou_img)}}') no-repeat center /cover;"></div>
                                 </div>
                                 <div class="cart_item_right">
                                     <div class="cart_item_name">
@@ -45,7 +45,7 @@
                                     </div>
                                     <div class="cart_item_content">
                                         
-                                        <div class="cart_item_oldprice {{ $item->cou_price_old <= 0 ? 'd-none' : '' }}">
+                                        <div class="cart_item_oldprice {{ $item->cou_sale == 0 ? 'd-none' : '' }}">
                                             <del>{{ number_format($item->cou_price_old, 0, ',', '.') }}</del>
                                         </div>
                                         <div class="cart_item_price">
@@ -101,19 +101,59 @@
                     </div>
                     <div class="paymentRightShow">
                         <i class="far fa-circle"></i>
-                        Thanh toán online
+                        Thanh toán chuyển khoản
                     </div>
                     <div class="paymentRightHide">
                         <div class="paymentRightHideTitle">
                             <i class="far fa-circle"></i>
-                            Thanh toán online
+                            Thanh toán chuyển khoản
                         </div>
                         <div class="paymentRightHideText">
-                            <em>Thanh toán trực tiếp qua thẻ ATM hoặc Visa, Mastercard, Discover, Paypal, Bảo Kim, Ngân Lượng. Sau khi thanh toán thành công, bạn sẽ nhận được mã code qua số điện thoại và email.</em>
+                            Bạn có thể chuyển khoản tại quầy giao dịch, qua Internet Banking hoặc ATM <br>
+                            <em>Lưu ý: Phí chuyển khoản sẽ do bạn trả</em>
                         </div>
-                        <a target="_blank" href="{{ asset('cart/get_ngan_luong') }}" class="buttonSubmit">
-                            Thanh toán
-                        </a>
+                        <form method="post" action="{{ asset('cart/transfer') }}" id="form_transfer">
+                            {{ csrf_field() }}
+                            <div class="paymentRightForm">
+                                <div class="paymentRightHideText">
+                                    <span>Họ và tên:</span> {{ ' '.Auth::user()->name }}
+                                </div>
+                                <div class="paymentRightHideText">
+                                    <span>Mail:</span>
+                                    <input type="email" name="email" class="" placeholder="Email cua" value="{{ Auth::user()->email }}" required>
+                                </div>
+                                <div class="paymentRightHideText">
+                                    <span>Số điện thoại </span>
+                                    <input type="number" name="phone" class="" placeholder="Nhập số điện thoại của bạn">
+                                </div>
+                                <div class="paymentRightHideText d-none">
+                                    <span>Bank</span>
+                                    <input type="text" name="bank" class="" placeholder="Ngân hàng">
+                                </div>
+                                <button type="button" class="buttonSubmit transfer">Xác nhận</button>
+                            </div>
+                            <div class="paymentRightChooce">
+                                <div class="row">
+                                    @foreach($banks as $bank)
+                                    <div class="col-md-3 col-sm-4 col-xs-4">
+                                        <div class="bank" value="{{ $bank->id }}" style="background: url('{{ asset('lib/storage/app/bank/resized200-'.$bank->img) }}') no-repeat center /cover;"></div>
+                                    </div>
+                                    @endforeach
+
+
+
+                                </div>
+
+                            </div>
+
+                        </form>
+                        {{--<div class="paymentRightHideText">--}}
+                            {{--<em>Thanh toán trực tiếp qua thẻ ATM hoặc Visa, Mastercard, Discover, Paypal, Bảo Kim, Ngân Lượng. Sau khi thanh toán thành công, bạn sẽ nhận được mã code qua số điện thoại và email.</em>--}}
+                        {{--</div>--}}
+                        {{--<a target="_blank" href="{{ asset('cart/get_ngan_luong') }}" class="buttonSubmit">--}}
+                            {{--Thanh toán--}}
+                        {{--</a>--}}
+
                     </div>
                     <div class="paymentRightShow">
                         <i class="far fa-circle"></i>

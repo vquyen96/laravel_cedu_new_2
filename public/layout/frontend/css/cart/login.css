@@ -210,7 +210,8 @@
 .paymentRightHideText span{
 	color: #666;
 	font-weight: bold;
-
+	display: inline-block;
+	width: 150px;
 	
 }
 .paymentRightHideBold{
@@ -218,7 +219,21 @@
 	font-weight: bold;
 	color: #666;
 }
+.paymentRightChooce{
+	display: none;
+}
+.bank{
+	border: 1px dotted #999999;
+	border-radius: 5px;
+	margin-bottom: 20px;
+	cursor: pointer;
 
+}
+.bank:after{
+	content: '';
+	display: block;
+	padding-top: 56%;
+}
 
 
 .buttonSubmit{

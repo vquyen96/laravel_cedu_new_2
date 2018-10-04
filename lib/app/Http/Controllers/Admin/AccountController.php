@@ -42,6 +42,8 @@ class AccountController extends Controller
             }
             $acc->level = $request->level;
             $acc->save();
+            sleep(1);
+            if ($acc->level == 7) app(\App\Http\Controllers\TeacherController::class)->findOrCreateTeacher($acc->id);
 
             return redirect('admin/account')->with('success','Thêm tài khoản thành công');
         } 

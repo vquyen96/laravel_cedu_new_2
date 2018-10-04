@@ -27,8 +27,6 @@ Route::group(['prefix' => 'register', 'middleware'=>'CheckLogedOut'], function()
 Route::get('logout','Admin\LoginController@getLogout');
 
 Route::group(['namespace'=>'Admin', 'middleware'=>'CheckAdmin'],function(){
-	
-	
 	Route::group(['prefix'=>'admin','middleware'=>'CheckLogedIn'],function(){
 		Route::get('/','HomeController@getHome');
 		Route::get('home_teacher','HomeController@getHomeTeacher');
@@ -138,8 +136,16 @@ Route::group(['namespace'=>'Admin', 'middleware'=>'CheckAdmin'],function(){
 			Route::get('ship/{id}','OrderController@getShip');
 			Route::get('done/{id}','OrderController@getDone');
 			Route::get('deny/{id}','OrderController@getDeny');
+
 			
 		});
+        Route::group(['prefix'=>'transfer'],function(){
+            Route::get('/','OrderController@getTransfer');
+            Route::get('active/{id}','OrderController@getTransferActive');
+            Route::get('deny/{id}','OrderController@getTransferDeny');
+
+        });
+
 		Route::get('order_detail_teacher','OrderController@getOrderDetailTeacher');
 
 		Route::group(['prefix'=>'comment'],function(){
@@ -211,6 +217,15 @@ Route::group(['namespace'=>'Admin', 'middleware'=>'CheckAdmin'],function(){
 
 		});
 
+		Route::group(['prefix'=>'bank'],function(){
+			Route::get('/','BankController@getList');
+			Route::get('add','BankController@getAdd');
+			Route::post('add','BankController@postAdd');
+			Route::get('edit/{id}','BankController@getEdit');
+			Route::post('edit/{id}','BankController@postEdit');
+			Route::get('delete/{id}','BankController@getDelete');
+		});
+
 		Route::group(['prefix' => 'gift'],function(){
 			Route::get('/' , 'GiftController@getList');
 			Route::post('/' , 'GiftController@postGift');
@@ -258,6 +273,9 @@ Route::group(['namespace'=>'Frontend'],function(){
 
 		Route::get('change_pass', 'UserController@getChangePass');
 		Route::post('change_pass', 'UserController@postChangePass');
+
+		Route::get('history', 'UserController@getHistory');
+        Route::post('list_orderdetail', 'UserController@list_orderdetail');
 
 		
 	});
@@ -412,9 +430,18 @@ Route::group(['namespace'=>'Frontend'],function(){
 		Route::get('complete_nganluong', 'CartController@getCompleteNganLuong');
 		Route::get('cancel', 'CartController@getCancelNganLuong');
 
+		Route::post('transfer', 'CartController@postTranfer');
+		Route::get('info/{ord_id}', 'CartController@infoTransfer');
 
 		Route::get('complete_company', 'CartController@getEmailCompany');
 		// Route::post('post_ngan_luong','CartController@postNganLuong');
+
+        Route::post('update_status', 'CartController@update_status');
+        Route::post('check_status', 'CartController@check_status');
+        Route::post('update_transfer', 'CartController@update_transfer');
+        Route::get('complete', 'CartController@getCompleteNew');
+
+
 	});
 
 	Route::get('{slug}', 'HomeController@getToHome');
@@ -431,8 +458,13 @@ Route::group(['namespace'=>'Frontend'],function(){
 Route::get('/redirect/{social}', 'SocialAuthController@redirect');
 Route::get('/callback/{social}', 'SocialAuthController@callback');
 
-Route::get('/auth/{provider}', 'SocialAuthController@redirectToProvider');
-Route::get('/auth/{provide}/callback', 'SocialAuthController@handleProviderCallback');
+
+
+Route::group(['prefix'=>'auth','middleware'=>'CheckLogedOut'],function(){
+    Route::get('/{provider}', 'SocialAuthController@redirectToProvider');
+    Route::get('/{provide}/callback', 'SocialAuthController@handleProviderCallback');
+});
+
 
 Route::resource('payment','PaymentController');
 Route::get('errors', 'ErrorsController@getError');

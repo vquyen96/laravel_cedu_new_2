@@ -14,6 +14,11 @@ use App\Models\OrderDetail;
 use App\Models\Account_Request;
 use App\Models\Leaning;
 use App\Models\Group;
+use App\Models\Order;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\View;
+use App\Models\Bank;
+
 use Auth;
 use DateTime;
 use Hash;
@@ -41,8 +46,8 @@ class UserController extends Controller
         $acc = Account::find(Auth::user()->id);
         $list_ids = [];
         foreach ($acc->order as $order) {
-            foreach ($order->orderDe as $orderDe) {
-                if ($orderDe->order->ord_status == 0) {
+            if ($order->ord_status == 0) {
+                foreach ($order->orderDe as $orderDe) {
                     $list_lessons_ids = [];
                     foreach ($orderDe->course->part as $part) {
                         foreach ($part->lesson as $lesson) {
@@ -80,19 +85,21 @@ class UserController extends Controller
         $acc = Account::find(Auth::user()->id);
         $list_ids = [];
         foreach ($acc->order as $order) {
-            foreach ($order->orderDe as $orderDe) {
-//                $list_ids[] = $orderDe->orderDe_cou_id;
-                $list_lessons_ids = [];
-                foreach ($orderDe->course->part as $part) {
-                    foreach ($part->lesson as $lesson) {
-                        $list_lessons_ids[] = $lesson->les_id;
+            if ($order->ord_status == 0) {
+                foreach ($order->orderDe as $orderDe) {
+                    $list_lessons_ids = [];
+                    foreach ($orderDe->course->part as $part) {
+                        foreach ($part->lesson as $lesson) {
+                            $list_lessons_ids[] = $lesson->les_id;
+                        }
+                    }
+                    $done = Leaning::where('account_id', Auth::user()->id)->whereIn('lesson_id', $list_lessons_ids)->where('status', 2)->get();
+                    if (count($done) == count($list_lessons_ids)) {
+                        $list_ids[] = $orderDe->orderDe_cou_id;
                     }
                 }
-                $done = Leaning::where('account_id', Auth::user()->id)->whereIn('lesson_id', $list_lessons_ids)->where('status', 2)->get();
-                if (count($done) == count($list_lessons_ids)) {
-                    $list_ids[] = $orderDe->orderDe_cou_id;
-                }
             }
+                
         }
 
         $courses = Course::whereIn('cou_id', $list_ids)->where('cou_status', 1)->paginate(9);
@@ -359,5 +366,29 @@ class UserController extends Controller
         }
     }
 
+    public function getHistory(){
+        $acc = Account::find(Auth::user()->id);
+        $orders = Order::where('ord_acc_id', $acc->id)->orderByDesc('ord_id')->paginate(10);
+        foreach ($orders as $key => $order) {
+            if ($order->ord_payment == 4 && time() - strtotime($order->created_at) > 7200 && $order->ord_status == 1) {
+
+                $order->ord_status = -1;
+                $order->save();
+            }
+        }
+        $data = [
+            'acc' => $acc,
+            'orders' => $orders
+        ];
+        return view('frontend.user.his_user', $data);
+    }
+    function list_orderdetail(){
+        $id_order = Input::get('id_order');
+        $data['order'] = Order::find($id_order);
+        $data['orderdetail'] = OrderDetail::where('orderDe_ord_id', $id_order)->orderByDesc('orderDe_id')->get();
+        $data['bank'] = Bank::find( $data['order']->ord_bank);
+        $view = View::make('frontend.user.list_ord', $data)->render();
+        return response($view, 200);
+    }
 
 }

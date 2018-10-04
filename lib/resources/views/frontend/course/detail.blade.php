@@ -332,7 +332,7 @@
 										Nhận xét của bạn
 									</div>
 									<div class="rateMainItemContentStar">
-										<div class="rateMainItemContentStarContent last">
+										<div class="rateMainItemContentStarContent last rateStar">
 											@for($i=0;$i<5;$i++)
 												<i class="fa fa-star startLast" aria-hidden="true" value="{{ $i }}"></i>
 											@endfor

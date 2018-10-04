@@ -54,7 +54,7 @@
                                     <a href="{{asset('cart/delete/'.$item->cou_row_id)}}" class="cart_item_remove">
                                         <i class="fas fa-trash-alt"></i>
                                     </a>
-                                    <div class="cart_item_oldprice {{ $item->cou_price_old <= 0 ? 'd-none' : '' }}">
+                                    <div class="cart_item_oldprice {{ $item->cou_sale == 0 ? 'd-none' : '' }}">
                                         <del>{{ number_format($item->cou_price_old, 0, ',', '.') }}</del>
                                     </div>
                                     <div class="cart_item_price">

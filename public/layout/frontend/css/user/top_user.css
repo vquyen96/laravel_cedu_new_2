@@ -94,7 +94,7 @@ tbody p{
 		line-height: unset;
 	}
 	.table{
-		width: 500px;
+		min-width: 800px;
 	}
 	#body{
 		margin: 15px 0;

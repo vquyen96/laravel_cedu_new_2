@@ -14,16 +14,15 @@ class OrderController extends Controller
 {
     public function getList(){
         if (Auth::user()->level == 7) {
-            return redirect('admin/order_detail_teacher');
+            return redirect('teacher/dashboard');
         }
-    	$data['items'] = Order::orderBy('ord_id','desc')->paginate(10);
-
-    	return view('backend.order',$data);
+    	$data['items'] = Order::where('ord_payment', 1 )->orderBy('ord_id','desc')->paginate(10);
+    	return view('backend.order.ship',$data);
     }
     public function getDetail($id){
     	$data['order'] = Order::find($id);
     	$data['items'] = OrderDetail::where('orderDe_ord_id', $id)->get();
-    	return view('backend.orderdetail',$data);
+    	return view('backend.order.detail',$data);
     }
     public function getShip($id){
 
@@ -119,6 +118,48 @@ class OrderController extends Controller
             Order::destroy($order->ord_id);
         }
         dd('ok');
+    }
+    public function getTransfer(){
+        if (Auth::user()->level == 7) {
+            return redirect('teacher/dashboard');
+        }
+        $data['items'] = Order::where('ord_payment', 4 )->orderBy('ord_id','desc')->paginate(10);
+    	return view('backend.order.transfer',$data);
+    }
+
+    public function getTransferActive($id){
+        $order = Order::find($id);
+        if($order->update(['ord_status' => 0])) {
+            foreach ($order->orderDe as $orderDe) {
+                while (true) {
+                    $code_value   = mt_rand(100000, 999999);
+                    $codeExit = Code::where('code_value',$code_value)->first();
+                    if($codeExit == null){
+                        $code = new Code;
+                        $code->code_value = $code_value;
+                        $code->code_orderDe_id = $orderDe->orderDe_id;
+                        $code->code_status = 1;
+                        $code->save();
+                        break;
+                    }
+                }
+                $email = $order->acc->email;
+                $data['code'] = $code;
+
+                Mail::send('frontend.email.active', $data, function($message) use ($email){
+                    $message->from('info@ceduvn.com', 'Ceduvn');
+                    $message->to($email, $email)->subject('Kích hoạt khóa học thành công');
+                });
+            }
+            return back()->with('success','Kích hoạt thành công');
+        };
+
+        return back()->with('error','Lỗi');
+    }
+    public function getTransferDeny($id){
+        $order = Order::find($id);
+        if($order->update(['ord_status' => -1])) return back();
+        return back()->with('error','Lỗi');
     }
 
 }

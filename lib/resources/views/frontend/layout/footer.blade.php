@@ -15,7 +15,11 @@
 						</div>
 					</div>
 					<div class="footerLeftBot">
-						{{ $web_info->content_left_top }}
+						<div class="mb-2">{!! $web_info->content_left_top_1 !!}</div>
+						<div class="mb-2">{!! $web_info->content_left_top_2 !!}</div>
+						<div class="mb-2">{!! $web_info->content_left_top_3 !!}</div>
+						<div class="mb-2">{!! $web_info->content_left_top_4 !!}</div>
+						<div class="mb-2">{!! $web_info->content_left_top_5 !!}</div>
 					</div>
 					<div class="footerLeftCopyRight">
 						{{ $web_info->content_left_bot }}

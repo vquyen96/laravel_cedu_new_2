@@ -150,4 +150,11 @@ function getAff(){
 	      }
 	    });
 	});
+
+
+    $('.rateStar .fa-star').hover(function(){
+        $(this).prevAll().addClass('starActive');
+        $(this).addClass('starActive');
+        $(this).nextAll().removeClass('starActive');
+    });
 }

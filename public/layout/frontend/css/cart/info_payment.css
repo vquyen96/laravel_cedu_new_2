@@ -1,0 +1,180 @@
+.main_body{
+    padding-top: 50px;
+    overflow: hidden;
+    margin-bottom: 100px;
+}
+
+.fs-14{
+    font-size: 14px;
+}
+.fs-12{
+    font-size: 12px;
+}
+.main_title h1 {
+    font-size: 48px;
+    font-weight: bold;
+    color: #2D317F;
+    line-height: 59px;
+    margin: 0 0 20px;
+}
+.confirm-box{
+    border: 1px solid #ccc;
+    position: relative;
+    padding: 20px;
+    font-weight: 600;
+    border-radius: 10px;
+}
+
+.confirm-box-main{
+    padding: 30px;
+    margin-bottom: 20px;
+}
+
+.confirm-box-header{
+    font-weight: bold;
+    margin: 20px 0;
+}
+
+.confirm-box-body{
+    border: 1px solid #ccc;
+    position: relative;
+    padding: 20px;
+    border-radius: 5px;
+}
+.bankHead{
+    display: flex;
+}
+.bankImg{
+    width: 100px;
+    border: 1px dotted #999999;
+    border-radius: 10px;
+    margin-right: 20px;
+    flex-shrink: 0;
+}
+.bankImg:after {
+    content: '';
+    display: block;
+    padding-top: 56%;
+}
+.bankName{
+    align-items: center;
+    display: flex;
+}
+
+
+
+
+
+.navigation{
+    justify-content: center;
+}
+
+.navigation li{
+    
+    font-size: 16px;
+    font-weight: 600;
+    padding: 0 37px;
+    color: #999;
+}
+.navigation li.active{
+    color: #C2D44E;
+}
+
+
+/*book-box*/
+.book-box{
+    height: 100%;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+.book-box-header{
+    background: #fcc72e;
+    
+    font-weight: 600;
+    height: 45px;
+    line-height: 45px;
+    text-align: center;
+    color: #fff;
+}
+.book-box-body{
+    padding: 20px;
+    position: relative;
+}
+.book-homestay{
+    display: flex;
+}
+.book-image{
+    height: 110px;
+    width: 110px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    border-radius: 10px;
+}
+.book-homestay-code{
+    color: #C2D44E;
+}
+.book-homestay-info{
+    padding: 5px 20px;
+    flex: 1;
+}
+.book-homestay-name{
+    font-weight: 600;
+    color: black;
+    font-size: 16px;
+}
+.book-homestay-address{
+    
+    color: #999;
+    font-size: 16px;
+}
+.book-info{
+    padding: 30px 0;
+}
+.book-info-row{
+    display: flex;
+    font-size: 14px;
+    font-weight: 600;
+    
+    margin-bottom: 12px;
+}
+.book-info-row-last{
+    display: flex;
+}
+.book-info-left{
+    flex: 1;
+    text-align: left;
+}
+.book-info-right{
+    flex: 1;
+    text-align: right;
+}
+.book-info-discount{
+    color: #D11D1D;
+    font-style: italic;
+    font-size: 12px;
+}
+.book-info-row-last .book-info-left{
+    flex: 1;
+    text-transform: uppercase;
+    
+    text-align: left;
+    font-weight: 600;
+}
+.book-info-row-last .book-info-right{
+    flex: 1;
+    
+    font-weight: bold;
+    text-align: right;
+}
+
+@media screen and (max-width: 768px){
+    .confirm-box{
+        margin-bottom: 20px;
+    }
+    .d-flex{
+        display: unset;
+    }
+}
