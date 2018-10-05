@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Demo for jQuery validate plugin</title>
+	<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+	<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js" type="text/javascript"></script>
+	<script src="demoValidation.js" type="text/javascript"></script>
+	<style>
+	label.error{
+		color: red;
+	}
+</style>
+</head>
+<body>
+	<div id="main">
+		<form method="get" id="demoForm" action="">
+			<p>
+				<label>Username</label>
+				<input name="user" type="text" />
+			</p>
+			<p>
+				<label>email</label>
+				<input id="email" type="email" name="email" />
+			</p>
+			<p>
+				<label>phone</label>
+				<input id="phon" type="phone" name="phone" />
+			</p>
+			<p>
+				<label>Password</label>
+				<input id="password" type="password" name="password" />
+			</p>
+			<p>
+				<label>Re-Password</label>
+				<input id="re-password" type="password" name="re-password" />
+			</p>
+			<p>
+				<input type="submit" value="Register" id="register"/>
+			</p>
+		</form>
+	</div>
+</body>
+<script type="text/javascript">
+	$().ready(function() {
+		$("#demoForm").validate({
+			ignore: [],
+
+			rules: {
+
+				"user": {
+					required: true,
+					maxlength: 15
+				},
+				"email": {
+					required: true,
+					email: true,
+				},
+				"phone": {
+					required: true,
+					number: true,
+					rangelength: [10, 11],
+				},
+				"password": {
+					required: true,
+					minlength: 8
+				},
+				"re-password": {
+					equalTo: "#password",
+					minlength: 8
+				}
+			},
+			messages: {
+
+				"user": {
+					required: true,
+					maxlength: 15
+				},
+				"email": {
+					required: "nhập email",
+					email: "mail k đúng"
+				},
+				"phone": {
+					required: "k cos số",
+					number: "số k đúng định dạng",
+					rangelength:"số k phug hợp",
+				},
+				"password": {
+					required: true,
+					minlength: 8
+				},
+				"re-password": {
+					equalTo: "#password",
+					minlength: 8
+				}
+			}
+		});
+	});
+</script>
+</html>

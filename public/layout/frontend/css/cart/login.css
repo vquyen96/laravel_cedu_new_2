@@ -265,6 +265,12 @@ a.buttonSubmit{
 	outline: none;	
 	flex: 1;
 }
+label{
+	font-weight: unset; 
+    color: red;
+    font-style: italic;
+    font-size: 12px;
+}
 @media screen and (max-width: 768px){
 	.cart_item_left {
 		width: 200px;
