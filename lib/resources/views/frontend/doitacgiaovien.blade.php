@@ -88,7 +88,7 @@
 					<div class="contactItem">
 						<div class="contactItemImg">
 							<img src="{{asset('public/layout/frontend/img/email.png')}}">
-							<p>abc@ceduvn.com</p>
+							<p>teacher@ceduvn.com</p>
 						</div>
 					</div>
 				</div>
@@ -158,7 +158,7 @@
 								<div class="main02Main">
 									<div class="main02Item">
 										<img src="{{asset('public/layout/frontend/img/quangba.png')}}">
-										<p>Quảng bá đến triệu học viên</p>
+										<p>Quảng bá đến hàng triệu học viên </p>
 									</div>
 								</div>
 								<div class="main02Main">
@@ -170,13 +170,13 @@
 								<div class="main02Main">
 									<div class="main02Item">
 										<img src="{{asset('public/layout/frontend/img/bannhieulan.png')}}">
-										<p>Một khóa học đưuọc bán n lần</p>
+										<p>Xây 1 khóa, bán n lần</p>
 									</div>
 								</div>
 								<div class="main02Main">
 									<div class="main02Item">
 										<img src="{{asset('public/layout/frontend/img/phattrienthuonghieu.png')}}">
-										<p>Được phát triển thương hiệu cá nhân</p>
+										<p>Xây dựng và phát triển thương hiệu cá nhân</p>
 									</div>
 								</div>
 									
@@ -202,7 +202,7 @@
 									<div class="main03BodyItem">
 										<div class="num96">1</div>
 										<b>Đăng ký</b>
-										<p>Đây là môt đoạn text để test , chỉ test thôi ^^</p>
+										<p>Thủ tục đăng ký nhanh chóng chỉ trong 1 phút</p>
 									</div>
 								</div>
 							</div>
@@ -211,7 +211,7 @@
 									<div class="main03BodyItem">
 										<div class="num96">2</div>
 										<b>Soạn đề cương</b>
-										<p>Đây là môt đoạn text để test , chỉ test thôi ^^</p>
+										<p>Xây dựng đề cương chất lượng, hấp dẫn học viên.</p>
 									</div>
 								</div>
 							</div>
@@ -220,7 +220,7 @@
 									<div class="main03BodyItem">
 										<div class="num96">3</div>
 										<b>Dựng video</b>
-										<p>Đây là môt đoạn text để test , chỉ test thôi ^^</p>
+										<p>Toàn bộ khâu dựng, hậu kỳ sẽ được CEDU hỗ trợ, tư vấn.</p>
 									</div>
 								</div>
 							</div>
@@ -234,7 +234,7 @@
 									<div class="main03BodyItem">
 										<div class="num96">4</div>
 										<b>Phát Hành</b>
-										<p>Đây là môt đoạn text để test , chỉ test thôi ^^</p>
+										<p>CEDU sẽ chịu trách nhiệm phát hành và quảng bá khóa học.</p>
 									</div>
 								</div>
 							</div>
@@ -243,7 +243,7 @@
 									<div class="main03BodyItem">
 										<div class="num96">5</div>
 										<b>Thu Nhập</b>
-										<p>Đây là môt đoạn text để test , chỉ test thôi ^^</p>
+										<p>Giảng viên sẽ được chia sẻ lợi nhuận trên từng khóa học.</p>
 									</div>
 								</div>
 							</div>
@@ -268,7 +268,7 @@
 								<div class="main04Body">
 									<div class="main04BodyItem">
 										<img src="{{asset('public/layout/frontend/img/giaoduc4.0.png')}}">
-										<p>Giảng dạy theo nền công nghệ 4.0</p>
+										<p>Giảng dạy theo hướng công nghệ 4.0</p>
 									</div>
 								</div>
 							</div>
@@ -276,7 +276,7 @@
 								<div class="main04Body">
 									<div class="main04BodyItem">
 										<img src="{{asset('public/layout/frontend/img/lantoakienthuc.png')}}">
-										<p>Lan tỏa kiến thức đến mọi người</p>
+										<p>Là cầu nối lan tỏa tri thức đến mọi người.</p>
 									</div>
 								</div>
 							</div>
@@ -284,7 +284,7 @@
 								<div class="main04Body">
 									<div class="main04BodyItem">
 										<img src="{{asset('public/layout/frontend/img/chatluonghangdau.png')}}">
-										<p>Luôn đạt chất lượng giảng dạy lên hàng đầu</p>
+										<p>Luôn đặt chất lượng giảng dạy lên hàng đầu.</p>
 									</div>
 								</div>
 							</div>

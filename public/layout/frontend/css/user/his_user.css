@@ -9,6 +9,7 @@
     width: 200px;
     border-radius: 10px;
     margin-right: 20px;
+    flex-shrink: 0;
 }
 .modalCourseItemImg:after {
     content: '';
@@ -23,8 +24,15 @@
 .modalCoursePrice{
     color: #171940;
     font-weight: 600;
+    margin-bottom: 15px;
 }
+.modalCourseDiscount{
+    color: #999;
+}
+.modalCourseDiscount span:first-child{
+    font-weight: 600;
 
+}
 
 .modalOrderTitle {
     font-size: 20px;

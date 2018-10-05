@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\Models\Discount;
 use App\Models\Lesson;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -371,7 +372,6 @@ class UserController extends Controller
         $orders = Order::where('ord_acc_id', $acc->id)->orderByDesc('ord_id')->paginate(10);
         foreach ($orders as $key => $order) {
             if ($order->ord_payment == 4 && time() - strtotime($order->created_at) > 7200 && $order->ord_status == 1) {
-
                 $order->ord_status = -1;
                 $order->save();
             }
@@ -386,7 +386,11 @@ class UserController extends Controller
         $id_order = Input::get('id_order');
         $data['order'] = Order::find($id_order);
         $data['orderdetail'] = OrderDetail::where('orderDe_ord_id', $id_order)->orderByDesc('orderDe_id')->get();
+        foreach ($data['orderdetail'] as $orderdetail){
+            $orderdetail->dis = Discount::find($orderdetail->orderDe_dis_id);
+        }
         $data['bank'] = Bank::find( $data['order']->ord_bank);
+
         $view = View::make('frontend.user.list_ord', $data)->render();
         return response($view, 200);
     }

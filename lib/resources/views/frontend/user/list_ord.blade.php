@@ -8,13 +8,19 @@
     <div class="modalCourse">
         @foreach($orderdetail as $orderDe)
             <div class="modalCourseItem">
-                <div class="modalCourseItemImg" style="background: url('{{ asset('lib/storage/app/course/resized200-'.$orderDe->course->cou_img) }}') no-repeat center /cover"></div>
+                <div class="modalCourseItemImg" style="background: url('{{ file_exists(storage_path('app/course/resized200-'.$orderDe->course->cou_img)) ? asset('lib/storage/app/course/resized200-'.$orderDe->course->cou_img) : 'img/no_image.jpg'}}') no-repeat center /cover"></div>
                 <div class="modalCourseItemContent">
                     <div class="modalCourseName">
                         {{ $orderDe->course->cou_name }}
                     </div>
                     <div class="modalCoursePrice">
                         {{ number_format($orderDe->orderDe_price) }}
+                    </div>
+                    <div class="modalCourseDiscount">
+                        @if(isset($orderDe->dis))
+                            <span>Mã giảm giá: </span>
+                            <span>{{ $orderDe->dis->code }}</span>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -32,6 +38,7 @@
                 <div class="modalOrderContentLeft">Ngân hàng của CEDU:</div>
                 <div class="modalOrderContentRight">{{ $bank->nickname }}</div>
             </div>
+
             <div class="modalOrderContent">
                 <div class="modalOrderContentLeft">Ngân hàng chuyển tiền: </div>
                 <div class="modalOrderContentRight">

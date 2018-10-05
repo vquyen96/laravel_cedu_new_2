@@ -91,7 +91,7 @@
 					<p>Khách hàng</p>
 				</div>
 				<div class="content">
-					<p>Người mua sản phẩm, dịch vụ trực tuyến của nhà cung cấp thông qua liên kết giới thiệu của các đối tác (Affiliater). Đây là đối tượng để đối tác nhắm tới.</p>
+					<p>Người mua sản phẩm, dịch vụ trực tuyến của nhà cung cấp thông qua liên kết giới thiệu của các đối tác (Affiliater).</p>
 				</div>
 			</div>
 			<div class="mid">
@@ -100,7 +100,7 @@
 					<p>Affiliater</p>
 				</div>
 				<div class="content">
-					<p>Là những người như chúng ta: marketer, affiliater, có sở hữu website, blog hay các trang mạng xã hội, fanpage, kênh youtube,… muốn kiếm thêm thu nhập từ việc quảng bá các sản phẩm cho nhà cung cấp.</p>
+					<p>Maketer, affiliater, có sở hữu website, blog hay các trang mạng xã hội muốn kiếm thêm thu nhập từ việc quảng bá các sản phẩn của nhà cung cấp.</p>
 				</div>
 			</div>
 			<div class="right">
@@ -109,7 +109,7 @@
 					<p>Nhà cung cấp</p>
 				</div>
 				<div class="content">
-					<p>Công ty, doanh nghiệp cung cấp sản phẩm, dịch vụ muốn gia tăng lợi nhuận từ kinh doanh internet, thay vì chỉ kinh doanh theo hình thức cũ.</p>
+					<p>Maketer, affiliater, có sở hữu website, blog hay các trang mạng xã hội muốn kiếm thêm thu nhập từ việc quảng bá các sản phẩn của nhà cung cấp</p>
 				</div>
 			</div>
 			<div class="arrowLeft">
@@ -131,7 +131,7 @@
 				</div>
 				<div class="makeItemContent">
 					<h4>01. ĐĂNG KÝ</h4>
-					<p>Sau khi bạn đăng ký thành công sẽ có bộ phận nhân sự gọi điện để xác nhận</p>
+					<p>Sau khi đăng ký thành công, sẽ có đại diện bộ phận nhân sự xác nhận qua điện thoại.</p>
 				</div>
 			</div>
 			<div class="makeItem">
@@ -140,7 +140,7 @@
 				</div>
 				<div class="makeItemContent">
 					<h4>02. LẤY LINK</h4>
-					<p>Tìm khóa học bạn yêu thích và muốn chia sẻ. Sau đó, click link AFFILIATE dành riêng cho bạn</p>
+					<p>Lựa chọn khóa học bạn yêu thích. Sau đó, click link AFFILIATE dành riêng cho bạn.</p>
 				</div>
 			</div>
 			<div class="makeItem">
@@ -149,7 +149,7 @@
 				</div>
 				<div class="makeItemContent">
 					<h4>03. CHIA SẺ KHÓA HỌC</h4>
-					<p>Sau khi lấy link bạn chia sẻ link AFFILIATE trên website, Facebook, Blog, Email, forum, chạy quảng cáo...</p>
+					<p>Chia sẽ link vừa nhận trên các website, blog hay các trang mạng xã hội.</p>
 				</div>
 			</div>
 			<div class="makeItem">
@@ -158,7 +158,7 @@
 				</div>
 				<div class="makeItemContent">
 					<h4>04. NHẬN HOA HỒNG</h4>
-					<p>Nếu khách hàng vào link AFFILIATE của bạn để mua KHÓA HỌC, bạn sẽ nhận được hoa hồng >= 35%</p>
+					<p>Bạn sẽ nhận được hoa hồng >=35% khi khách hàng vào link AFFILIATE của bạn để mua khóa học.</p>
 				</div>
 			</div>
 		</div>
@@ -173,21 +173,21 @@
 				<img src="{{ asset('public/layout/frontend/img/Vector Smart Object.png') }}">
 				<div class="whyMainItemContent">
 					<h3>01</h3>
-					<p>Khóa học chất lượng, đa dạng từ các Thầy cô có bề dày kinh nghiệm</p>
+					<p>Hệ thống các khóa học đa dạng, chất lượng</p>
 				</div>
 			</div>
 			<div class="whyMainItem">
 				<img src="{{ asset('public/layout/frontend/img/Vector Smart Object.png') }}">
 				<div class="whyMainItemContent">
 					<h3>02</h3>
-					<p>Bạn được hưởng hoa hồng hấp dẫn >=35% khi có khách hàng mua khóa học từ link của bạn</p>
+					<p>Được hưởng hoa hồng lên đến 35%</p>
 				</div>
 			</div>
 			<div class="whyMainItem">
 				<img src="{{ asset('public/layout/frontend/img/Vector Smart Object.png') }}">
 				<div class="whyMainItemContent">
 					<h3>03</h3>
-					<p>Luôn có đội ngũ hỗ trợ bạn khi bạn gặp khó khăn trong vấn đề chia sẻ khóa học.</p>
+					<p>Đội ngũ tư vấn, hỗ trợ chuyên nghiệp</p>
 				</div>
 			</div>
 		</div>

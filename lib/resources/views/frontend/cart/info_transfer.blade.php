@@ -194,7 +194,7 @@
                                 
                                 <hr>
                                 <div class="book-info-row">
-                                    <span class="book-info-discount">Giảm (-20%)</span>
+                                    <span class="book-info-discount">Giảm (-{{ number_format( 100 - $percent,2, '.','.') }}%)</span>
                                 </div>
                                 <div class="book-info-row-last">
                                     <span class="book-info-left">TỔNG</span>
