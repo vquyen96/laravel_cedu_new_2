@@ -44,21 +44,21 @@
                         @foreach ( $items as $item)
                         <div class="cart_item">
                             <div class="cart_item_left">
-                                <div class="cart_item_ava" style="background: url('{{ file_exists(storage_path('app/course/resized200-'.$item->cou_img)) ? asset('lib/storage/app/course/resized200-'.$item->cou_img) : 'img/no_image.jpg'}}') no-repeat center /cover;"></div>
+                                <div class="cart_item_ava" style="background: url('{{ file_exists(storage_path('app/course/resized200-'.$item->cou->cou_img)) ? asset('lib/storage/app/course/resized200-'.$item->cou->cou_img) : 'img/no_image.jpg'}}') no-repeat center /cover;"></div>
                             </div>
                             <div class="cart_item_right">
                                 <div class="cart_item_name">
-                                    {{ $item->cou_name }}
+                                    {{ $item->name }}
                                 </div>
                                 <div class="cart_item_content">
-                                    <a href="{{asset('cart/delete/'.$item->cou_row_id)}}" class="cart_item_remove">
+                                    <a href="{{asset('cart/delete/'.$item->rowId)}}" class="cart_item_remove">
                                         <i class="fas fa-trash-alt"></i>
                                     </a>
-                                    <div class="cart_item_oldprice {{ $item->cou_sale == 0 ? 'd-none' : '' }}">
-                                        <del>{{ number_format($item->cou_price_old, 0, ',', '.') }}</del>
+                                    <div class="cart_item_oldprice {{ $item->cou->cou_price == $item->price ? 'd-none' : '' }}">
+                                        <del>{{ number_format($item->cou->cou_price, 0, ',', '.') }}</del>
                                     </div>
                                     <div class="cart_item_price">
-                                        {{ number_format($item->cou_price, 0, ',', '.') }}
+                                        {{ number_format($item->price, 0, ',', '.') }}
                                     </div>
                                 </div>
                             </div>
@@ -85,10 +85,15 @@
                                 {{number_format($percent, 1 ,',','.')}}% off 
                             </div>
                         </div>
+                        @if( $total == $total_old)
                         <div class="saleCode">
-                            <input type="text" name="code" class="" placeholder="Mã giảm giá">
-                            <input type="submit" name="sbm" value="Xác nhận">
+                            <form action="cart/update_dis" method="post" >
+                                {{ csrf_field() }}
+                                <input type="text" name="code" class="" placeholder="Mã giảm giá">
+                                <input type="submit" name="sbm" value="Xác nhận">
+                            </form>
                         </div>
+                        @endif
                         <div class="btnPayment">
                             <a href="{{asset('cart/login')}}">
                                 Thanh toán

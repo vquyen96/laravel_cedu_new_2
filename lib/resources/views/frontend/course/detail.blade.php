@@ -382,23 +382,18 @@
 							<div class="courseTagPrice">
 								
 								<span class="courseTagOldPrice">
-									{{-- <i class="fa fa-circle" aria-hidden="true"></i> --}}
-
 									@if ($course->cou_sale != 0)
 										<del>{{number_format($course->cou_price_old,0,',','.')}} </del>
 									@endif
-
-									{{-- <div class="courseMainItemGroup_Time">
-										<div class="courseMainItemGroup">
-											{{ $item->group->gr_name }}
-										</div>
-										<div class="courseMainItemTime">
-											Update {{date_format($item->updated_at,"m/Y")}}
-										</div>
-									</div> --}}
-									
 								</span>
-								{{number_format($course->cou_price,0,',','.')}}
+								<span class="courseTagNewPrice">
+									{{number_format($course->cou_price,0,',','.')}}
+								</span>
+								<span class="courseTagNewPrice_raw d-none">
+									{{ $course->cou_price }}
+								</span>
+
+
 							</div>
 						@endif
 							
@@ -406,10 +401,18 @@
 					<div class="courseTagContent">
 						@if (!isset($active))
 							<div class="courseTagContentCode">
-								<input type="text" name="code" class="formCode" placeholder="Mã giảm giá">
-								<button class="formCode">Xác nhận</button>
+								<input type="text" name="dis" class="formCode" placeholder="Mã giảm giá">
+								<button class="formDis">Xác nhận</button>
 							</div>
-
+							<div class="get_dis">
+								<div class="aff_name"></div>
+								<div class="aff_check">
+									<i class="fas fa-check"></i>
+								</div>
+								<div class="aff_deny">
+									<i class="fas fa-times"></i>
+								</div>
+							</div>
 							<div class="courseTagContentCode">
 								<input type="text" name="code_aff" class="formCode" placeholder="Mã nhân viên tư vấn">
 								<button class="formCodeAff">Xác nhận</button>

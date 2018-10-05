@@ -17,6 +17,7 @@
     width: 200px;
     border-radius: 10px;
     margin-right: 20px;
+    flex-shrink: 0;
 }
 .modalCourseItemImg:after {
     content: '';

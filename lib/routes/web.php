@@ -146,6 +146,15 @@ Route::group(['namespace'=>'Admin', 'middleware'=>'CheckAdmin'],function(){
 
         });
 
+        Route::group(['prefix'=>'discount'],function(){
+            Route::get('/','DiscountController@getList');
+            Route::get('add','DiscountController@getAdd');
+            Route::post('add','DiscountController@postAdd');
+            Route::get('edit/{id}','DiscountController@getEdit');
+            Route::post('edit/{id}','DiscountController@postEdit');
+            Route::get('delete/{id}','DiscountController@getDelete');
+        });
+
 		Route::get('order_detail_teacher','OrderController@getOrderDetailTeacher');
 
 		Route::group(['prefix'=>'comment'],function(){
@@ -445,6 +454,7 @@ Route::group(['namespace'=>'Frontend'],function(){
 	});
 
 	Route::get('{slug}', 'HomeController@getToHome');
+	Route::post('check_discount', 'DiscountController@check_discount');
 
 
 

@@ -146,7 +146,7 @@
             </li>
         @endif
 
-        @if(Auth::user()->level ==  1 || Auth::user()->level ==  3 )
+        @if( Auth::user()->level ==  1 || Auth::user()->level <=  3 )
             <li>
                 <a href="{{asset('admin/bank')}}" class="navAccount @if (Request::segment(2) == 'bank')  active @endif">
                     Ngân hàng
@@ -162,6 +162,11 @@
                 <a href="{{asset('admin/transfer')}}"
                    class="navAccount @if (Request::segment(2) == 'transfer')  active @endif">
                     Chuyển khoản
+                </a>
+            </li>
+            <li>
+                <a href="{{asset('admin/discount')}}" class="navAccount @if (Request::segment(2) == 'discount')  active @endif">
+                    Mã giảm giá
                 </a>
             </li>
 

@@ -158,7 +158,7 @@
                                     <p class="fs-14">Chủ tài khoản: {{ $bank->acc_name }}</p>
                                     <p class="fs-14">Nội dung thanh toán: {{ $order->ord_note }}</p>
                                     <hr>
-                                    <p class="fs-14">Số tiền cần thanh toán: <span class="bold">{{number_format(900000 )}}đ</span></p>
+                                    <p class="fs-14">Số tiền cần thanh toán: <span class="bold">{{number_format($order->ord_total_price)}}đ</span></p>
                                     <p class="italic fs-12"><i class="fas fa-exclamation-circle" style="color: #fcc72e;"></i> Lưu ý: -Bạn cần thanh toán chính xác số tiền đặt phòng của mình</p>
                                     <p class="italic fs-12"><i class="fas fa-exclamation-circle" style="color: #fcc72e;"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nếu thanh toán qua chuyển khoản bạn cần chụp lại ảnh gửi cho chúng tôi</p>
                                 </div>

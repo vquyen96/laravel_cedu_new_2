@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\Models\Discount;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Group;
@@ -12,7 +13,6 @@ use App\Models\Aff;
 use App\Models\Code;
 use App\Models\Account;
 use App\Models\Bank;
-
 use Illuminate\Support\Facades\Input;
 
 use Cart;
@@ -48,12 +48,30 @@ class CartController extends Controller
                 }
             }
             if ($courseExit == 0) {
-                if($request->aff == null){
-                    Cart::add(['id'=>$course->cou_id, 'name'=>$course->cou_name, 'qty'=>1, 'price'=>$course->cou_price , 'options'=>['img'=>$course->cou_img,'tea'=>$course->tea->name]]);
+                if ($request->dis != null){
+                    $dis = Discount::where('code', $request->dis)->first();
+                }
+                if ($request->dis == null || $dis == null){
+                    if($request->aff == null){
+                        Cart::add(['id'=>$course->cou_id, 'name'=>$course->cou_name, 'qty'=>1, 'price'=>$course->cou_price , 'options'=>['img'=>$course->cou_img,'tea'=>$course->tea->name]]);
+                    }
+                    else{
+                        Cart::add(['id'=>$course->cou_id, 'name'=>$course->cou_name, 'qty'=>1, 'price'=>$course->cou_price , 'options'=>['img'=>$course->cou_img,'tea'=>$course->tea->name, 'aff'=>$request->aff]]);
+                    }
                 }
                 else{
-                    Cart::add(['id'=>$course->cou_id, 'name'=>$course->cou_name, 'qty'=>1, 'price'=>$course->cou_price , 'options'=>['img'=>$course->cou_img,'tea'=>$course->tea->name, 'aff'=>$request->aff]]);
+                    if ($dis->created_at > time()) return back('error', 'Mã giảm giá của bạn chưa đến ngày');
+                    if ($dis->timeout < time()) return back('error', 'Mã giảm giá của bạn đã hết hạn');
+                    $course->cou_price *= ((100 - $dis->percent)/100);
+                    if($request->aff == null){
+                        Cart::add(['id'=>$course->cou_id, 'name'=>$course->cou_name, 'qty'=>1, 'price'=>$course->cou_price , 'options'=>['img'=>$course->cou_img, 'dis'=>$dis->code , 'tea'=>$course->tea->name]]);
+                    }
+                    else{
+                        Cart::add(['id'=>$course->cou_id, 'name'=>$course->cou_name, 'qty'=>1, 'price'=>$course->cou_price , 'options'=>['img'=>$course->cou_img, 'dis'=>$dis->code , 'tea'=>$course->tea->name, 'aff'=>$request->aff]]);
+                    }
+
                 }
+
                 return back()->with('success','Khoá học đã được thêm vào giỏ hàng');
             }
             else{
@@ -92,12 +110,30 @@ class CartController extends Controller
                 }
             }
             if ($courseExit == 0) {
-                if($request->aff == null){
-                    Cart::add(['id'=>$course->cou_id, 'name'=>$course->cou_name, 'qty'=>1, 'price'=>$course->cou_price , 'options'=>['img'=>$course->cou_img,'tea'=>$course->tea->name]]);
+                if ($request->dis != null){
+                    $dis = Discount::where('code', $request->dis)->first();
+                }
+                if ($request->dis == null || $dis == null){
+                    if($request->aff == null){
+                        Cart::add(['id'=>$course->cou_id, 'name'=>$course->cou_name, 'qty'=>1, 'price'=>$course->cou_price , 'options'=>['img'=>$course->cou_img,'tea'=>$course->tea->name]]);
+                    }
+                    else{
+                        Cart::add(['id'=>$course->cou_id, 'name'=>$course->cou_name, 'qty'=>1, 'price'=>$course->cou_price , 'options'=>['img'=>$course->cou_img,'tea'=>$course->tea->name, 'aff'=>$request->aff]]);
+                    }
                 }
                 else{
-                    Cart::add(['id'=>$course->cou_id, 'name'=>$course->cou_name, 'qty'=>1, 'price'=>$course->cou_price , 'options'=>['img'=>$course->cou_img,'tea'=>$course->tea->name, 'aff'=>$request->aff]]);
+                    if ($dis->created_at > time()) return back('error', 'Mã giảm giá của bạn chưa đến ngày');
+                    if ($dis->timeout < time()) return back('error', 'Mã giảm giá của bạn đã hết hạn');
+                    $course->cou_price *= ((100 - $dis->percent)/100);
+                    if($request->aff == null){
+                        Cart::add(['id'=>$course->cou_id, 'name'=>$course->cou_name, 'qty'=>1, 'price'=>$course->cou_price , 'options'=>['img'=>$course->cou_img, 'dis'=>$dis->code , 'tea'=>$course->tea->name]]);
+                    }
+                    else{
+                        Cart::add(['id'=>$course->cou_id, 'name'=>$course->cou_name, 'qty'=>1, 'price'=>$course->cou_price , 'options'=>['img'=>$course->cou_img, 'dis'=>$dis->code , 'tea'=>$course->tea->name, 'aff'=>$request->aff]]);
+                    }
+
                 }
+
                 return redirect('cart/show')->with('success','Khoá học đã được thêm vào giỏ hàng');
             }
             else{
@@ -113,37 +149,21 @@ class CartController extends Controller
     	// $data['total'] = str_replace(".00","",Cart::total());
 
     	$cart = Cart::content();
-        $list_cart = [];
-        foreach ($cart as $item) {
-            $list_cart[] = $item->id;
-        }
-
-        $items = Course::whereIn('cou_id', $list_cart)->get();
         $total = 0;
         $total_old = 0;
-        foreach ($items as $item) {
-            $total += $item->cou_price;
-            if ($item->cou_price_old != 0) {
-                $total_old += $item->cou_price_old;
-            }
-            else{
-                $total_old += $item->cou_price;
-            }
-            foreach ($cart as $cart_item) {
-                if ($item->cou_id == $cart_item->id) {
-                    $item->cou_row_id = $cart_item->rowId;
-                }
-            }
+        foreach ($cart as $item) {
+//            $list_cart[] = $item->id;
+            $item->cou = Course::find($item->id);
+            $total_old += $item->cou->cou_price;
+            $total += $item->price;
         }
         if ($total_old == 0) {
-            $total_old = 1;
             return redirect('/')->with('error', 'Giỏ hàng của bạn không có gì');
         }
         $percent = ($total/$total_old)*100;
 
-        // $data['items'] = $items;
         $data = [
-            'items' => $items,
+            'items' => $cart,
             'total' => $total,
             'total_old' => $total_old,
             'percent' => $percent
@@ -161,7 +181,6 @@ class CartController extends Controller
     	}
     	return back();
     }
-
     public function getUpdateCart(Request $request){
     	Cart::update($request->rowId, $request->qty);
     }
@@ -287,61 +306,37 @@ class CartController extends Controller
                     }
                 }
             }
-
-            
-
             Cart::destroy();
         }
 
     	return view('frontend.cart.complete');
     }
     public function getPaymentLogin(){
+        if (Auth::check()) return redirect('cart');
         if (Cart::total() == "0.00") {
             return redirect('cart/show');
         }
-        else{
-            if(Auth::check()){
-                return redirect('cart/');
-            }
-            $cart = Cart::content();
-            $list_cart = [];
-            foreach ($cart as $item) {
-                $list_cart[] = $item->id;
-            }
-
-            $items = Course::whereIn('cou_id', $list_cart)->get();
-            $total = 0;
-            $total_old = 0;
-            foreach ($items as $item) {
-                $total += $item->cou_price;
-                if ($item->cou_price_old != 0) {
-                    $total_old += $item->cou_price_old;
-                }
-                else{
-                    $total_old += $item->cou_price;
-                }
-                foreach ($cart as $cart_item) {
-                    if ($item->cou_id == $cart_item->id) {
-                        $item->cou_row_id = $cart_item->rowId;
-                    }
-                }
-            }
-            if ($total_old == 0) {
-                $total_old = 1;
-                return redirect('/')->with('error', 'Giỏ hàng của bạn không có gì');
-            }
-            $percent = ($total/$total_old)*100;
-
-            $data['items'] = $items;
-            $data = [
-                'items' => $items,
-                'total' => $total,
-                'total_old' => $total_old,
-                'percent' => $percent
-            ];
-            // dd($items);
-            return view('frontend.cart.login', $data);
+        $cart = Cart::content();
+        $total = 0;
+        $total_old = 0;
+        foreach ($cart as $item) {
+            $item->cou = Course::find($item->id);
+            $total_old += $item->cou->cou_price;
+            $total += $item->price;
         }
+        if ($total_old == 0) {
+            return redirect('/')->with('error', 'Giỏ hàng của bạn không có gì');
+        }
+        $percent = ($total/$total_old)*100;
+
+        $data = [
+            'items' => $cart,
+            'total' => $total,
+            'total_old' => $total_old,
+            'percent' => $percent
+        ];
+
+        return view('frontend.cart.login', $data);
     }
     public function getPayment(){
         if (Cart::total() == "0.00") {
@@ -349,37 +344,22 @@ class CartController extends Controller
         }else{
             if (Auth::check()) {
                 $cart = Cart::content();
-                $list_cart = [];
-                foreach ($cart as $item) {
-                    $list_cart[] = $item->id;
-                }
-
-                $items = Course::whereIn('cou_id', $list_cart)->get();
                 $total = 0;
                 $total_old = 0;
-                foreach ($items as $item) {
-                    $total += $item->cou_price;
-                    if ($item->cou_price_old != 0) {
-                        $total_old += $item->cou_price_old;
-                    }
-                    else{
-                        $total_old += $item->cou_price;
-                    }
-                    foreach ($cart as $cart_item) {
-                        if ($item->cou_id == $cart_item->id) {
-                            $item->cou_row_id = $cart_item->rowId;
-                        }
-                    }
+                foreach ($cart as $item) {
+                    $item->cou = Course::find($item->id);
+                    $total_old += $item->cou->cou_price;
+                    $total += $item->price;
                 }
                 if ($total_old == 0) {
-                    $total_old = 1;
                     return redirect('/')->with('error', 'Giỏ hàng của bạn không có gì');
                 }
                 $percent = ($total/$total_old)*100;
+
                 $bank = Bank::all();
                 $data = [
                     'banks'=> $bank,
-                    'items' => $items,
+                    'items' => $cart,
                     'total' => $total,
                     'total_old' => $total_old,
                     'percent' => $percent

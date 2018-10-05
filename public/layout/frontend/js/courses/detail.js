@@ -4,11 +4,19 @@ $( document ).ready(function(){
 	if ($(window).width() >= 768){
         tagScroll();
 	}
+    $('.rateStar .fa-star').hover(function(){
+        $(this).prevAll().addClass('starActive');
+        $(this).addClass('starActive');
+        $(this).nextAll().removeClass('starActive');
+    });
 
 	postRate();
 	showDetailCourse();
 	showMore();
 	getAff();
+	getdiscount();
+
+
 });
 
 function getRateChart (){
@@ -133,10 +141,10 @@ function getAff(){
 	      },
 	      success: function (resp) {
 	      	if (resp == 'error') {
-	      		$('.get_aff').html('Không tìm thấy');
+	      		$('.get_aff').html('<div class="aff_name">Không tìm thấy</div>');
 	      		$('.get_aff').css({'height':'auto' , 'padding': '5px 15px'});
 	      	}else{
-	      		$('.get_aff').html(resp);
+	      		$('.get_aff').html('<div class="aff_name">'+resp+'</div>');
 		      	$('.get_aff').css({'height':'auto' , 'padding': '5px 15px'});
 		      	history.pushState(null, '', url+'/courses/detail/'+cou_slug+'?aff='+code);
 		      	$('.courseTagContentAddCart a').attr('href', url+'cart/add/'+cou_slug+'?aff='+code);
@@ -152,9 +160,47 @@ function getAff(){
 	});
 
 
-    $('.rateStar .fa-star').hover(function(){
-        $(this).prevAll().addClass('starActive');
-        $(this).addClass('starActive');
-        $(this).nextAll().removeClass('starActive');
-    });
+}
+function getdiscount(){
+	$(document).on('click', '.formDis' , function(){
+		$('.get_dis').css({'height':'0' , 'padding': '0'});
+		var price = $('.courseTagNewPrice_raw').text();
+		var url = $('.currentUrl').text();
+		var code = $('input[name="dis"]').val();
+		var url_add = $('.courseTagContentAddCart a').attr('href');
+        var url_buy = $('.courseTagContentBuy a').attr('href');
+		console.log(code);
+		$.ajax({
+	      method: 'POST',
+	      url: url+'check_discount',
+	      data: {
+	          '_token': $('meta[name="csrf-token"]').attr('content'),
+	          'code': code,
+	      },
+	      success: function (resp) {
+	      	console.log(resp);
+	      	$('.aff_name').text(resp.name+' -'+resp.percent+'%');
+		  	$('.aff_deny').hide();
+		  	$('.aff_check').show();
+		  	$('.get_dis').css({'height':'auto' , 'padding': '5px 15px'});
+		  	url_add.split("?") == 1 ? $('.courseTagContentAddCart a').attr('href', url_add+'?dis='+code) : $('.courseTagContentAddCart a').attr('href', url_add+'&dis='+code);
+		  	url_buy.split("?") == 1 ? $('.courseTagContentBuy a').attr('href', url_buy+'?dis='+code) : $('.courseTagContentBuy a').attr('href', url_buy+'&dis='+code);
+
+		  	$('.courseTagOldPrice del').text(price.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1."));
+		  	$('.courseTagNewPrice').text((price*(100-resp.percent)/100).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1."));
+
+
+          },
+	      error: function (resp) {
+	      	console.log(resp.responseText);
+	      	$('.aff_name').text(resp.responseText);
+			$('.aff_deny').show();
+			$('.aff_check').hide();
+	      	$('.get_dis').css({'height':'auto' , 'padding': '5px 15px'});
+	        return false;
+	      }
+	    });
+	});
+
+
 }

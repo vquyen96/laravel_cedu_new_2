@@ -5,11 +5,7 @@
 @section('fb_image',asset('public/layout/frontend/img/dayne-topkin-60559-unsplash.png'))
 @section('main')
     <link rel="stylesheet" type="text/css" href="css/cart/login.css">
-
-    
     <div class="instruction">
-
-
         <div class="instruction_body">
             <a href="{{ asset('') }}" class="instruction_item">
                 Trang chủ
@@ -37,19 +33,19 @@
                             @foreach ( $items as $item)
                             <div class="cart_item">
                                 <div class="cart_item_left">
-                                    <div class="cart_item_ava" style="background: url('{{asset('lib/storage/app/course/'.$item->cou_img)}}') no-repeat center /cover;"></div>
+                                    <div class="cart_item_ava" style="background: url('{{ file_exists(storage_path('app/course/resized200-'.$item->cou->cou_img)) ? asset('lib/storage/app/course/resized200-'.$item->cou->cou_img) : 'img/no_image.jpg'}}') no-repeat center /cover"></div>
                                 </div>
                                 <div class="cart_item_right">
                                     <div class="cart_item_name">
-                                        {{ $item->cou_name }}
+                                        {{ $item->name }}
                                     </div>
                                     <div class="cart_item_content">
                                         
-                                        <div class="cart_item_oldprice {{ $item->cou_price_old <= 0 ? 'd-none' : '' }}">
-                                            <del>{{ number_format($item->cou_price_old, 0, ',', '.') }}</del>
+                                        <div class="cart_item_oldprice {{ $item->cou->cou_price == $item->price ? 'd-none' : '' }}">
+                                            <del>{{ number_format($item->cou->cou_price, 0, ',', '.') }}</del>
                                         </div>
                                         <div class="cart_item_price">
-                                            {{ number_format($item->cou_price, 0, ',', '.') }}
+                                            {{ number_format($item->price, 0, ',', '.') }}
                                         </div>
                                     </div>
                                 </div>

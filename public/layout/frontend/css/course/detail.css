@@ -711,7 +711,7 @@ a.teacherMainLeftName{
   margin-left: 5px;
   outline: none;
 }
-.get_aff{
+.get_aff, .get_dis{
 	display: flex;
     margin-top: -15px;
     background: #eee;
@@ -738,6 +738,11 @@ a.teacherMainLeftName{
 	color: #999;
 	font-weight: 600;
 	flex: 1;
+}
+.aff_deny{
+	color: #a44;
+	line-height: 30px;
+	display: none;
 }
 .aff_check{
 	color: #484;
