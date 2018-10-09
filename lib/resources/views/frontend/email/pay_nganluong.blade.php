@@ -1,8 +1,8 @@
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 <div style="background:#ddd; padding: 20px; font-family: 'Roboto', sans-serif;">
-    <div style="width: 900px;margin: auto;overflow: hidden;">
-        <div style="float: left;width: 50%;background: #35465c;height: 700px;">
+    <div style="width: 900px;margin: auto;display: flex;">
+        <div style="width: 50%;background: #35465c;">
             <div style="font-family: 'Roboto', sans-serif;color: #cecece; font-size: 16px; font-weight: 300;margin-left: 20px;padding: 0 10px;margin-top: 20px;border-left: 3px solid #cecece;">
                 <h3 style="color: #cecece;">KHÓA HỌC:</h3>
                 @foreach($order->orderDe as $item)
@@ -11,10 +11,10 @@
             </div>
 
             {{-- THIẾU ẢNH --}}
-            <div style="width: 100%;height: 500px;background: url('{{ asset('lib/storage/app/course/'.$image)}}') no-repeat center/cover;">
+            <div style="width: 100%;height: 600px;background: url('{{ asset('lib/storage/app/course/'.$image)}}') no-repeat center/cover;">
             </div>
         </div>
-        <div style="float: left;width: 50%;background: #eeeeee;">
+        <div style="width: 50%;background: #eeeeee;">
             <div class="logo">
                 <img src="{{asset('public/layout/frontend/img/logo-png.png')}}" style="width: 110px;height: 80px;margin-top: 20px;">
             </div>
@@ -57,7 +57,6 @@
                 <p style="font-family: 'Roboto', sans-serif;color: #666666; font-size: 12px; font-weight: 300;
 				">Cảm ơn Quý khách đã sử dụng Sản phẩm của Công ty chúng Tôi!</p>
             </div>
-
         </div>
     </div>
 </div>

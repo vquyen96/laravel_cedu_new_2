@@ -18,7 +18,9 @@ use Illuminate\Support\Facades\Cache;
 use Auth;
 class HomeController extends Controller
 {
+
     public function getHome(){
+        // dd($this->web_info());
         $data['banner'] = Banner::where('ban_link', 'Banner trang chủ')->first();
     	return view('frontend.index.home',$data);
     }
