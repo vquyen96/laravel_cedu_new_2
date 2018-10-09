@@ -106,5 +106,6 @@ h3{
 @media screen and (max-width: 768px){
     .code input[type=text]{
         width: unset;
+        max-width: 96%;
     }
 }

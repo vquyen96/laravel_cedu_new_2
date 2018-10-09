@@ -390,8 +390,27 @@ class UserController extends Controller
             $orderdetail->dis = Discount::find($orderdetail->orderDe_dis_id);
         }
         $data['bank'] = Bank::find( $data['order']->ord_bank);
+        switch ($data['order']->ord_payment){
+            case 1:
+                $view = View::make('frontend.user.list_ord_cod', $data)->render();
+                break;
+            case 2:
+                $view = View::make('frontend.user.list_ord_cod', $data)->render();
+                break;
+            case 3:
+                $view = View::make('frontend.user.list_ord_cod', $data)->render();
+                break;
+            case 4:
+                $view = View::make('frontend.user.list_ord_ck', $data)->render();
+                break;
+            case 5:
+                $view = View::make('frontend.user.list_ord_cod', $data)->render();
+                break;
+            default:
+                return response('Đơn hàng này bị lỗi rồi', 501);
 
-        $view = View::make('frontend.user.list_ord', $data)->render();
+        }
+
         return response($view, 200);
     }
 

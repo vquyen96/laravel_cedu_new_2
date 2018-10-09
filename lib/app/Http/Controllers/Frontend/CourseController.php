@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\Models\OrderDetail;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Course;
@@ -116,7 +117,7 @@ class CourseController extends Controller
                 $orderDe_id = 0;
                 $code = 0;
                 foreach ($cou->orderDe as $item) {
-                    if ($item->order != null && $item->order->ord_acc_id == Auth::user()->id) {
+                    if ($item->order != null && $item->order->ord_acc_id == Auth::user()->id && $item->order->ord_status == 0) {
                         $orderDe_id = $item->orderDe_id;
                     }
                 }
@@ -249,7 +250,6 @@ class CourseController extends Controller
         // dd($data);
         return view('frontend.course.all',$data);
     }
-
     public function getVideo($slug, $id){
         $data['course'] = Course::where('cou_slug',$slug)->first();
         if ($data['course']->group->gr_parent_id != 0) {
@@ -289,10 +289,8 @@ class CourseController extends Controller
                             else $lesson->check = 0;
                             $data['listVideo'][$index_video] = $lesson;
                             $index_video++;
-
                         }
                         // dd($part->lesson);
-                        
                     }
                     // dd($data['listVideo']);
                     if ($id < 0 || $id >= count($data['listVideo'])) {
@@ -301,7 +299,8 @@ class CourseController extends Controller
                     else{
 
                         $data['video'] = $data['listVideo'][$id];
-                        
+                        $data['video']->les_link = asset('video/'.$data['video']->les_link);
+//                        $data['video']->les_link = asset('video/'.str_replace(".mp4","",$data['video']->les_link));
                     }
 
                     $leaning = DB::table('leaning')->where('account_id',$user->id)->where('lesson_id',$data['listVideo'][$id]->les_id)->first();
@@ -325,7 +324,6 @@ class CourseController extends Controller
 
                     
     }
-
     function update_time_les(Request $request){
         $req = $request->all();
         $user = Auth::user();
@@ -361,20 +359,17 @@ class CourseController extends Controller
             'status' => 1
         ]);
     }
-
     public function getLearning(){
         $les_id = (int)Input::get('les_id');
         $acc_id = (int)Input::get('acc_id');
         $leaning = Leaning::where('account_id', $acc_id)->where('lesson_id', $les_id)->first();
         return response( $leaning, 200);
     }
-
     public function getTeacher($slug){
         $course = Course::where('cou_slug',$slug)->first();
         $data['teacher'] = $course->tea;
         return view('frontend.teacher',$data);
     }
-
     public function getActive($slug){
         if(Auth::check()){
 
@@ -386,7 +381,6 @@ class CourseController extends Controller
                         $orderDe_id = $item->orderDe_id;
                     }
                 }
-
                 $code = Code::where('code_orderDe_id',$orderDe_id)->first();
                 if($code != null){
                     if($code->code_status == 1){
@@ -414,19 +408,11 @@ class CourseController extends Controller
                         return redirect('courses/detail/'.$slug.'.html')->with('error','Bạn chưa kích hoạt khóa học này');
                     }
                 }
-                else{
-                    return redirect('courses/detail/'.$slug.'.html')->with('error','Bạn đã cố gắng');
-                }
+                else return redirect('courses/detail/'.$slug.'.html')->with('error','Bạn đã cố gắng');
             }
-            else{
-                return back()->with('error','Khóa học của chúng tôi đang trong quá trình bảo trì');
-            }   
-                
+            else return back()->with('error','Khóa học của chúng tôi đang trong quá trình bảo trì');
         }
-        else{
-            return redirect('courses/detail/'.$slug.'.html')->with('error','Bạn phải đăng nhập');
-        }
-            
+        else return redirect('courses/detail/'.$slug.'.html')->with('error','Bạn phải đăng nhập');
     }
     public function postRate(){
         $star = (int)Input::get('star');

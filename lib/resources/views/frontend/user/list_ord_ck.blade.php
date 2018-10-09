@@ -19,7 +19,7 @@
                     <div class="modalCourseDiscount">
                         @if(isset($orderDe->dis))
                             <span>Mã giảm giá: </span>
-                            <span>{{ $orderDe->dis->code }}</span>
+                            <span>{{ $orderDe->dis->code }} (-{{ $orderDe->dis->percent }}%)</span>
                         @endif
                     </div>
                 </div>
@@ -74,7 +74,7 @@
     <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
     @if(\Illuminate\Support\Facades\Auth::check() && \Illuminate\Support\Facades\Auth::user()->level <= 3)
         <a href="{{ asset('admin/transfer/active/'.$order->ord_id) }}" onclick="return confirm('Bạn có chắc chắn muốn kích hoạt ?')" class="btn btn-success">Kích hoạt</a>
-        <a href="{{ asset('admin/transfer/deny'.$order->ord_id) }}" onclick="return confirm('Bạn có chắc chắn muốn từ chối ?')" class="btn btn-danger">Từ chối</a>
+        <a href="{{ asset('admin/transfer/deny/'.$order->ord_id) }}" onclick="return confirm('Bạn có chắc chắn muốn từ chối ?')" class="btn btn-danger">Từ chối</a>
     @endif
 
     @if($order->ord_status == 1 && \Illuminate\Support\Facades\Auth::check() && \Illuminate\Support\Facades\Auth::user()->level > 3)

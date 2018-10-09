@@ -19,7 +19,13 @@ use Auth;
 class HomeController extends Controller
 {
     public function getHome(){
-        $data['banner'] = Banner::where('ban_link', 'Banner trang chủ')->first();
+        if ( Auth::check() && $this->checkemail(Auth::user()->email) || Auth::guest() ){
+
+        }
+        else{
+            return 'Errorr';
+        }
+        $data['banner'] = Banner::where('ban_link', 'Banner trang chủ')->inRandomOrder()->first();
     	return view('frontend.index.home',$data);
     }
     public function getToHome(){
@@ -132,6 +138,23 @@ class HomeController extends Controller
             default:
                 return response('error', 404);
                 break;
+        }
+    }
+    public function getEmail(){
+        if (\Illuminate\Support\Facades\Auth::check()){
+            return view('frontend.forgot.email');
+        }
+    }
+    public function postEmail(Request $request){
+        $email = $request->email;
+        $emailExists = Account::where('email', $email)->first();
+        if ($emailExists == null){
+            $acc = Account::find(Auth::user()->id);
+            $acc->update(['email'=>$email]);
+            return redirect('/')->with('success', 'Cập nhật email thành công');
+        }
+        else{
+            return back()->with('error', 'email đã tồn tại');
         }
     }
 

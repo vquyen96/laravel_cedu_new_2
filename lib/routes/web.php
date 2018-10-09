@@ -32,6 +32,7 @@ Route::group(['namespace'=>'Admin', 'middleware'=>'CheckAdmin'],function(){
 		Route::get('home_teacher','HomeController@getHomeTeacher');
 
 
+
 		Route::group(['prefix' => 'update'], function(){
 			Route::get('course_student', 'UpdateController@course_student');
 			Route::get('course_star', 'UpdateController@course_star');
@@ -256,13 +257,17 @@ Route::group(['namespace'=>'Admin', 'middleware'=>'CheckAdmin'],function(){
         });
 	});
 });
+
+
 Route::group(['namespace'=>'Frontend'],function(){
 	Route::get('code','CodeController@getActiveCode');
 	Route::post('code','CodeController@postActiveCode');
 
+    Route::get('get_email', 'HomeController@getEmail');
+    Route::post('get_email', 'HomeController@postEmail');
 	
 	Route::post('loginHome','HomeController@postLogin');
-	Route::get('/','HomeController@getHome');
+	Route::get('/','HomeController@getHome')->middleware('CheckEmailAccount');
 	
 	Route::post('get_course_home', 'HomeController@get_course_home');
 	Route::post('get_templace', 'HomeController@get_templace');
@@ -294,7 +299,7 @@ Route::group(['namespace'=>'Frontend'],function(){
 		Route::get('history','AffController@getHistory');
 		Route::get('dashboard', 'AffController@getDashboard');
 		Route::get('share/{slug}','AffController@getShare');
-		Route::post('acc_req','AffController@postReq');
+		Route::post('acc_req','AffController@postReq')->middleware('CheckEmailAccount');
 	});
 
 
@@ -308,10 +313,10 @@ Route::group(['namespace'=>'Frontend'],function(){
 	Route::get('/slide_home_head', 'BannerController@HomeHead');
 
 	Route::get('affiliate', 'PartnerController@getAffiliate');
-	Route::post('affiliate', 'PartnerController@postAffiliate');
+	Route::post('affiliate', 'PartnerController@postAffiliate')->middleware('CheckEmailAccount');
 	
 	Route::get('doitacgiaovien', 'PartnerController@getGiaovien');
-	Route::post('doitacgiaovien', 'PartnerController@postGiaovien');
+	Route::post('doitacgiaovien', 'PartnerController@postGiaovien')->middleware('CheckEmailAccount');
 
 
 	Route::group(['prefix' => 'teacher', 'middleware' => 'CheckTeacher'], function(){
@@ -339,7 +344,7 @@ Route::group(['namespace'=>'Frontend'],function(){
 		Route::post('editdoc/{id}','TeacherController@editDoc');
 
 		// Route::post('group_child_from', 'TeacherController@get_group_child_form');
-		Route::post('acc_req','TeacherController@postReq');
+		Route::post('acc_req','TeacherController@postReq')->middleware('CheckEmailAccount');
 
 	});
 	Route::post('teacher/group_child_from', 'TeacherController@get_group_child_form');
@@ -418,7 +423,7 @@ Route::group(['namespace'=>'Frontend'],function(){
 	// });
 	Route::get('noti_seen/{id}', 'NotiControlle@getSeen');
 
-	Route::group(['prefix'=>'cart'],function(){
+	Route::group(['prefix'=>'cart', 'middleware'=>'CheckEmailAccount'],function(){
 		Route::get('/','CartController@getPayment');
 		Route::post('/','CartController@postPayment');
 
@@ -428,7 +433,7 @@ Route::group(['namespace'=>'Frontend'],function(){
 		Route::get('buy/{slug}.html','CartController@getBuyNow');
 
 		Route::get('show', 'CartController@getShowCart');
-		Route::post('show', 'CartController@postComplete');
+//		Route::post('show', 'CartController@postComplete');
 
 		Route::get('delete/{id}', 'CartController@getDeleteCart');
 
@@ -450,6 +455,7 @@ Route::group(['namespace'=>'Frontend'],function(){
         Route::post('update_transfer', 'CartController@update_transfer');
         Route::get('complete', 'CartController@getCompleteNew');
 
+        Route::post('update_dis', 'CartController@update_dis');
 
 	});
 
@@ -478,3 +484,23 @@ Route::group(['prefix'=>'auth','middleware'=>'CheckLogedOut'],function(){
 
 Route::resource('payment','PaymentController');
 Route::get('errors', 'ErrorsController@getError');
+
+
+Route::get('/player/run', function () {
+
+    $video = asset('video/[Offical MV] Đưa nhau đi trốn - Đen ft. Linh Cáo (Prod. by Suicidal illness).mp4');
+    $mime = "video/mp4";
+    $title = "Os Simpsons";
+    return view('resources_views_player')->with(compact('video', 'mime', 'title'));
+});
+Route::get('/video/{filename}', function ($filename) {
+    // Pasta dos videos.
+    $videosDir = base_path('public/uploads/');
+    if (file_exists($filePath = $videosDir."/".$filename)) {
+        $stream = new \App\Http\VideoStream($filePath);
+        return response()->stream(function() use ($stream) {
+            $stream->start();
+        });
+    }
+    return response("File doesn't exists", 404);
+});

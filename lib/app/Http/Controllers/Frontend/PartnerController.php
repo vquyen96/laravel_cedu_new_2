@@ -17,7 +17,7 @@ class PartnerController extends Controller
     	// $data['teacher'] = Account::where('level',3)->paginate(3);
         // $data['teacher'] = Teacher::orderBy('tea_featured','desc')->paginate(3);
             $data['teacher'] = Teacher::orderBy('tea_featured','desc')->take(10)->get();
-            $data['banner'] = Banner::where('ban_link', 'Banner đối tác')->first();
+            $data['banner'] = Banner::where('ban_link', 'Banner đối tác')->inRandomOrder()->first();
             
     	return view('frontend.partner.partner',$data);
     }

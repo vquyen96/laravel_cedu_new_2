@@ -222,10 +222,11 @@
 								{{ $course->rating->count()}} review
 							</div>
 							<div class="teacherMainRightGroup">
-								Java, Android & Python Expert Developer
+								{{ $course->tea->teacher->tea_specialize }}
+
 							</div>
 							<div class="teacherMainRightContent">
-								{!! $course->tea->content !!}
+								{!! $course->tea->summary !!}
 							</div>
 							<div class="btnShowMore">
 								<a href="{{ asset('teacher/'.$course->tea->email) }}">Xem thêm >>></a>
@@ -317,7 +318,7 @@
 							</div>
 						@endforeach
 						@if (Auth::check() && isset($active))
-							<div class="rateMainItem">
+							<div class="rateMainItem form">
 								<div class="rateMainItemAva">
 									<div class="rateMainItemAvaImg" style="background: url('{{ file_exists(storage_path('app/avatar/resized360-'.Auth::user()->img)) ? asset('lib/storage/app/avatar/resized360-'.Auth::user()->img) : (Auth::user()->provider == 'facebook' ? str_replace('type=normal', 'width=1920', Auth::user()->img) : (Auth::user()->provider == 'google' ? str_replace('?sz=50', '', Auth::user()->img) : 'img/no-avatar.jpg')) }}') no-repeat center /cover;" >
 										

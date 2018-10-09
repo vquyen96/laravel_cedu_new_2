@@ -73,7 +73,7 @@
 				 	{{--</video>--}}
 					<video id="my-video" class="video-js" controls preload="auto"
 						   poster="img/poster72.png" autoplay  src="" data-setup='{ "playbackRates": [0.5, 0.75, 1, 1.5, 2, 4, 8] }'>
-						<source src="{{ asset('lib/public/uploads/'.$video->les_link) }}" type='video/webm'>
+						<source src="{{ $video->les_link }}" type='video/webm'>
 
 					</video>
 				</div>
@@ -249,7 +249,7 @@
 								</div>
 							</div>
 						@endforeach
-						<div class="rateMainItem">
+						<div class="rateMainItem form">
 							<div class="rateMainItemAva">
 								<div class="rateMainItemAvaImg" style="background: url('{{ file_exists(storage_path('app/avatar/resized360-'.Auth::user()->img)) ? asset('lib/storage/app/avatar/resized360-'.Auth::user()->img) : (Auth::user()->provider == 'facebook' ? str_replace('type=normal', 'width=1920', Auth::user()->img) : (Auth::user()->provider == 'google' ? str_replace('?sz=50', '', Auth::user()->img) : 'img/no-avatar.jpg')) }}') no-repeat center /cover" >
 

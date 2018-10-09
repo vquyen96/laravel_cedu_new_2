@@ -339,13 +339,25 @@ class CartController extends Controller
         return view('frontend.cart.login', $data);
     }
     public function getPayment(){
+
         if (Cart::total() == "0.00") {
             return redirect('cart/show');
         }else{
             if (Auth::check()) {
+                $acc = Account::find(Auth::user()->id);
                 $cart = Cart::content();
+
+                $listCart = $this->checkCourseExitCart($acc, $cart);
+                if ($listCart != null){
+                    foreach ($listCart as $cart_item){
+                        Cart::remove($cart_item);
+                        $this->getPayment();
+                    }
+                }
+
                 $total = 0;
                 $total_old = 0;
+
                 foreach ($cart as $item) {
                     $item->cou = Course::find($item->id);
                     $total_old += $item->cou->cou_price;
@@ -381,7 +393,7 @@ class CartController extends Controller
         $order->ord_payment = 1;
         $order->ord_acc_id = Auth::user()->id;
         $order->ord_note = $request->note;
-        $order->ord_adress = $request->city." | ".$request->quan." | ".$request->phuong." | ".$request->adress;
+        $order->ord_adress = $request->city." | ".$request->quan." | ".$request->adress;
         $order->ord_code = $this->create_ord_code($order->ord_payment);
         $order->ord_phone = $request->phone;
         $total = str_replace(",","",Cart::total());
@@ -785,6 +797,31 @@ class CartController extends Controller
         return back()->with('success', 'Bạn sẽ nhận đưuọc thông báo khi khóa học được kích hoạt');
     }
     public function getCompleteNew(Request $request){
+
+    }
+
+    public function update_dis(Request $request){
+        $dis_code = $request->code;
+        $dis = Discount::where('code', $dis_code)->first();
+        if ($dis == null){
+            return back()->with('error', 'Mã khuyến mãi của bạn không đúng');
+        }
+        if ($dis->created_at > time()){
+            return back()->with('error', 'Chương trình khuyến mãi chưa bắt đầu');
+        }
+        if ($dis->timeout < time()){
+            return back()->with('error', 'Chương trình khuyến mãi đã kết thúc');
+        }
+        if ($dis != null && $dis->created_at < time() && $dis->timeout > time()){
+            $carts = Cart::content();
+
+            $option = ['dis'=> $dis_code ] ;
+            foreach ($carts as $cart){
+                Cart::update($cart->rowId,['price' => ( $cart->price*(100 - $dis->percent) )/100, 'options'=>$option]);
+            }
+            return back()->with('success', 'Mã khuyến mãi của bạn đã được áp dụng');
+        }
+        return back()->with('error', 'Lỗi không xác định');
 
     }
 }

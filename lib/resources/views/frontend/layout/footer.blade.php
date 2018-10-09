@@ -38,7 +38,7 @@
 						 	<i class="fas fa-map-marker-alt"></i>
 						</span>
 						<div class="footerContentBody">
-							{{ $web_info->branch_sg }}
+							{!! $web_info->branch_sg !!}
 						</div>
 					</div>
 					<div class="footerMidContent">
@@ -46,7 +46,7 @@
 						 	<i class="fas fa-map-marker-alt"></i>
 						</span>
 						<div class="footerContentBody">
-							{{ $web_info->branch_hn }}
+							{!! $web_info->branch_hn !!}
 						</div>
 					</div>
 					<div class="footerMidContent">
@@ -54,7 +54,7 @@
 						 	<i class="fa fa-phone" aria-hidden="true"></i>
 						</span>
 						<div class="footerContentBody">
-							{{ $web_info->hotline }}
+							{!! $web_info->hotline !!}
 						</div>
 					</div>
 					<div class="footerMidContent">
@@ -62,7 +62,7 @@
 						 	<i class="fa fa-envelope" aria-hidden="true"></i>
 						</span>
 						<div class="footerContentBody">
-							{{ $web_info->email }}
+							{!! $web_info->email !!}
 						</div>
 					</div>
 				</div>
@@ -76,7 +76,7 @@
 					@foreach($about_list as $item)
 						<div class="footerRightContent">
 							<a href="{{ asset('about/'.$item->about_slug.'.html') }}" class="footerContentBody">
-								{{$item->about_name}}
+								{!! $item->about_name !!}
 							</a>
 						</div>
 						

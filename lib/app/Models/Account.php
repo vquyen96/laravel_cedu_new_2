@@ -62,7 +62,6 @@ class Account extends Model implements AuthenticatableContract, CanResetPassword
         if(is_null($check)){
             return static::create($input);
         }
-
         return $check;
         
     }

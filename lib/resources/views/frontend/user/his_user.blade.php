@@ -36,7 +36,7 @@
                                 <th><p class="tieu-de">#</p></th>
                                 <th><p class="tieu-de">Mã đơn hàng</p></th>
                                 <th><p class="tieu-de">Giá</p></th>
-                                <th><p class="tieu-de">Giảm giá</p></th>
+                                {{--<th><p class="tieu-de">Giảm giá</p></th>--}}
                                 <th><p class="tieu-de">Chờ thanh toán</p></th>
                                 <th><p class="tieu-de">Trạng thái</p></th>
                                 <th><p class="tieu-de">Hình thức</p></th>
@@ -57,9 +57,9 @@
                                     <td class="orderPrice">
                                         <p>{{number_format($order->ord_total_price,0,',','.')}} VND</p>
                                     </td>
-                                    <td>
-                                        <p>{{  $order->ord_discount == null ? '0' : $order->ord_discount}}</p>
-                                    </td>
+                                    {{--<td>--}}
+                                        {{--<p>{{  $order->ord_discount == null ? '0' : $order->ord_discount}}</p>--}}
+                                    {{--</td>--}}
                                     <td>
                                         <p>{{ (time() - strtotime($order->created_at)) < 7200 && $order->ord_payment == 4 && $order->ord_status == 1 ? gmdate("H:i:s", 7200 - (time() - strtotime($order->created_at))) : '0' }}</p>
                                     </td>

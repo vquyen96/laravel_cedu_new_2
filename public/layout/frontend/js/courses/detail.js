@@ -74,7 +74,9 @@ function postRate(){
     	var star = $('.startLast.starActive').length;
     	var content = $('.rateMainItemContentBody textarea').val();
     	var cou_id = $('.cou_id').text();
-    	console.log(star + '----'+ content);
+    	var ava_bg = $(this).parents('.rateMainItem').find('.rateMainItemAvaImg').attr('style');
+    	var name = $(this).parents('.rateMainItem').find('.rateMainItemAvaName').text();
+    	console.log(ava_bg);
 
     	var url = $('.currentUrl').text();
     	$.ajax({
@@ -87,7 +89,27 @@ function postRate(){
 	          'cou_id' : cou_id
 	      },
 	      success: function () {
-	      	location.reload();
+	      	$('.rateMainItem.form').remove();
+			var model = $('.rateMainItem').eq(0).html();
+
+			$('.rateMain').append('<div class="rateMainItem">'+model+'</div>');
+			var last_item = $('.rateMainItem').eq($('.rateMainItem').length - 1);
+			last_item.find('.rateMainItemAvaImg').attr('style', ava_bg);
+			last_item.find('.rateMainItemAvaName').text(name);
+			last_item.find('.rateMainItemAvaTime').text('Bây giờ');
+			last_item.find('.rateMainItemContentBody').text(content);
+			var stars = last_item.find('.rateMainItemContentStarContent .fa-star');
+			for (var i = 0; i < stars.length ; i++){
+
+				if (i < star ) {
+					stars.eq(i).attr('class','fa fa-star starActive');
+                }
+				else {
+					stars.eq(i).attr('class','fa fa-star');
+                }
+			}
+			console.log(star);
+	      	// location.reload();
 	       	return true;
 	      },
 	      error: function () {

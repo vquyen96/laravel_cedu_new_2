@@ -1,6 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta charset="utf-8">
+	<meta name="csrf-token" content="{{ csrf_token() }}">
+	<meta property="og:url" 		content="{{ str_replace('https', 'http', Request::url())}}" />
+
+
+	<meta property="fb:app_id" 		content="1577563652342523" />
+	<meta property="og:title" 		content="@yield('fb_title')" />
+	<meta property="og:description" content="@yield('fb_description')" />
+	<meta property="og:image" 		content="@yield('fb_image')" />
+	<meta property="og:image:type" 	content="image/png">
+	<meta property="og:image:width" content="300">
+	<meta property="og:image:height" content="300">
 	<!-- Global Site Tag (gtag.js) - Google Analytics -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=GA_TRACKING_ID"></script>
 	<script>
@@ -15,18 +27,7 @@
 
 	<base href="{{asset('public/layout/frontend')}}/">
 	<link rel="shortcut icon" href="img/LOGO_CEDU1.png">
-	<meta charset="utf-8">
-	<meta name="csrf-token" content="{{ csrf_token() }}">
-	<meta property="og:url" 		content="{{ str_replace('https', 'http', Request::url())}}" />
-	<link rel="canonical" href="{{ Request::url() }}" />
 
-	<meta property="fb:app_id" 		content="1577563652342523" />
-	<meta property="og:title" 		content="@yield('fb_title')" />
-	<meta property="og:description" content="@yield('fb_description')" />
-	<meta property="og:image" 		content="@yield('fb_image')" />
-	<meta property="og:image:type" 	content="image/png">
-	<meta property="og:image:width" content="300">
-	<meta property="og:image:height" content="300">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
     {{-- <meta property="og:url" content="https://developers.zalo.me/" />
@@ -58,7 +59,11 @@
 
 	<div id="status">
 	</div>
-	
+	<div id="messenger">
+		<a href="https://www.facebook.com/messages/t/ceducationvn" target="_blank">
+			<img src="img/messenger-1495274_960_720.png" alt="">
+		</a>
+	</div>
 	<div class="masterError">
 		<div class="masterErrorContent">
 			@include('errors.note')
@@ -66,7 +71,7 @@
 	</div>
 	<div class="loadingPage">
 		<div class="loadingPageIcon">
-			<img src="img/Pacman-0.8s-200px.gif">
+			<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
 		</div>
 	</div>
 	<input type="hidden" name="url" value="{{ asset('')}}">
