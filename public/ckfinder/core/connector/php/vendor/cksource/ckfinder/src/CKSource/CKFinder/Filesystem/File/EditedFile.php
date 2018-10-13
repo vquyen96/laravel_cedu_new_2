@@ -3,8 +3,8 @@
 /*
  * CKFinder
  * ========
- * http://cksource.com/ckfinder
- * Copyright (C) 2007-2016, CKSource - Frederico Knabben. All rights reserved.
+ * https://ckeditor.com/ckeditor-4/ckfinder/
+ * Copyright (c) 2007-2018, CKSource - Frederico Knabben. All rights reserved.
  *
  * The software, this file and its contents are subject to the CKFinder
  * License. Please read the license.txt file before using, installing, copying,
@@ -64,7 +64,20 @@ class EditedFile extends ExistingFile
     public function __construct($fileName, CKFinder $app, $newFileName = null)
     {
         $this->workingFolder = $app['working_folder'];
-        $this->newFileName = $newFileName;
+
+        $config = $app['config'];
+
+        $fileName = static::secureName(
+            $fileName,
+            $config->get('disallowUnsafeCharacters'),
+            $config->get('forceAscii')
+        );
+
+        $this->newFileName = static::secureName(
+            $newFileName,
+            $config->get('disallowUnsafeCharacters'),
+            $config->get('forceAscii')
+        );
 
         parent::__construct($fileName, $this->workingFolder->getClientCurrentFolder(), $this->workingFolder->getResourceType(), $app);
     }

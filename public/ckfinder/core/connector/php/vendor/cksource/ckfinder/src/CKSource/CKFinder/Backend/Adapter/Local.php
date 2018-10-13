@@ -3,8 +3,8 @@
 /*
  * CKFinder
  * ========
- * http://cksource.com/ckfinder
- * Copyright (C) 2007-2016, CKSource - Frederico Knabben. All rights reserved.
+ * https://ckeditor.com/ckeditor-4/ckfinder/
+ * Copyright (c) 2007-2018, CKSource - Frederico Knabben. All rights reserved.
  *
  * The software, this file and its contents are subject to the CKFinder
  * License. Please read the license.txt file before using, installing, copying,
@@ -23,6 +23,7 @@ use CKSource\CKFinder\Filesystem\Path;
 use CKSource\CKFinder\ResourceType\ResourceType;
 use CKSource\CKFinder\Utils;
 use League\Flysystem\Config as FSConfig;
+use SplFileInfo;
 
 /**
  * Local file system adapter.
@@ -68,7 +69,7 @@ class Local extends \League\Flysystem\Adapter\Local
             throw new AccessDeniedException(sprintf('The root folder of backend "%s" is not readable (%s)', $backendConfig['name'], $backendConfig['root']));
         }
 
-        parent::__construct($backendConfig['root']);
+        parent::__construct($backendConfig['root'], LOCK_EX, self::SKIP_LINKS);
     }
 
     /**
@@ -287,5 +288,49 @@ class Local extends \League\Flysystem\Adapter\Local
         closedir($fh);
 
         return $hasChildren;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function normalizeFileInfo(SplFileInfo $file)
+    {
+        if ($this->backendConfig['followSymlinks']) {
+            return $this->mapFileInfo($file);
+        }
+
+        return parent::normalizeFileInfo($file);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function mapFileInfo(SplFileInfo $file)
+    {
+        $normalized = parent::mapFileInfo($file);
+
+        if ($this->backendConfig['followSymlinks'] && $file->isLink()) {
+            $normalized['type'] = $file->isDir() ? 'dir' : 'file';
+
+            if ($normalized['type'] === 'file') {
+                $normalized['size'] = $file->getSize();
+            }
+        }
+
+        return $normalized;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function deleteDir($dirname)
+    {
+        $location = $this->applyPathPrefix($dirname);
+
+        if ($this->backendConfig['followSymlinks'] && is_link($location)) {
+            return unlink($location);
+        } else {
+            return parent::deleteDir($dirname);
+        }
     }
 }

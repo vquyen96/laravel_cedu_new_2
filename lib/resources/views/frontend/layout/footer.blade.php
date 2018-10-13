@@ -21,10 +21,10 @@
 						<div class="mb-2">{!! $web_info->content_left_top_4 !!}</div>
 						<div class="mb-2">{!! $web_info->content_left_top_5 !!}</div>
 					</div>
-					<div class="footerLeftCopyRight">
-						{{ $web_info->content_left_bot }}
-					</div>
-					
+					{{--<div class="footerLeftCopyRight">--}}
+						{{--{{ $web_info->content_left_bot }}--}}
+					{{--</div>--}}
+					{{----}}
 				</div>
 			</div>
 			<div class="col-md-1 col-sm-12 col-xs-12"></div>
@@ -84,8 +84,24 @@
 					
 				</div>
 			</div>
-		</div> 
-		
+		</div>
+	</div>
+	<div class="sub_footer">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-6">
+					{{ $web_info->content_left_bot }}
+				</div>
+				<div class="col-sm-6 text-right">
+					<a href="https://www.facebook.com/ceducationvn/" class="Society fb" target="_blank">
+						<i class="fab fa-facebook-f"></i>
+					</a>
+					<a href="https://www.facebook.com/ceducationvn/" class="Society yt" target="_blank">
+						<i class="fab fa-youtube"></i>
+					</a>
+				</div>
+			</div>
+		</div>
 	</div>
 </footer>
 {{--<div class="footerBot">--}}

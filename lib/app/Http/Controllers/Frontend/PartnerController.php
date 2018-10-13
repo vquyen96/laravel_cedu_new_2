@@ -22,7 +22,7 @@ class PartnerController extends Controller
     	return view('frontend.partner.partner',$data);
     }
     public function getAffiliate(){
-    	return view('frontend.affiliate');
+    	return view('frontend.landing.goto_affiliate');
     }
     public function postAffiliate(AddAccountRequest $request){
         if (Auth::check()) {
@@ -89,7 +89,7 @@ class PartnerController extends Controller
     }
 
     public function getGiaovien(){
-    	return view('frontend.doitacgiaovien');
+    	return view('frontend.landing.goto_teacher');
     }
     public function postGiaovien(Request $request){
         if (Auth::check()) {

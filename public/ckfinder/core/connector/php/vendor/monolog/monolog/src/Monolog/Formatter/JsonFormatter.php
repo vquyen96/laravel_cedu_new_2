@@ -28,6 +28,7 @@ class JsonFormatter extends NormalizerFormatter
 
     protected $batchMode;
     protected $appendNewline;
+
     /**
      * @var bool
      */
@@ -35,6 +36,7 @@ class JsonFormatter extends NormalizerFormatter
 
     /**
      * @param int $batchMode
+     * @param bool $appendNewline
      */
     public function __construct($batchMode = self::BATCH_MODE_JSON, $appendNewline = true)
     {
@@ -136,18 +138,23 @@ class JsonFormatter extends NormalizerFormatter
      *
      * @return mixed
      */
-    protected function normalize($data)
+    protected function normalize($data, $depth = 0)
     {
+        if ($depth > 9) {
+            return 'Over 9 levels deep, aborting normalization';
+        }
+
         if (is_array($data) || $data instanceof \Traversable) {
             $normalized = array();
 
             $count = 1;
             foreach ($data as $key => $value) {
-                if ($count++ >= 1000) {
-                    $normalized['...'] = 'Over 1000 items, aborting normalization';
+                if ($count++ > 1000) {
+                    $normalized['...'] = 'Over 1000 items ('.count($data).' total), aborting normalization';
                     break;
                 }
-                $normalized[$key] = $this->normalize($value);
+
+                $normalized[$key] = $this->normalize($value, $depth+1);
             }
 
             return $normalized;

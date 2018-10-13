@@ -166,7 +166,7 @@ function getAff(){
 	      		$('.get_aff').html('<div class="aff_name">Không tìm thấy</div>');
 	      		$('.get_aff').css({'height':'auto' , 'padding': '5px 15px'});
 	      	}else{
-	      		$('.get_aff').html('<div class="aff_name">'+resp+'</div>');
+	      		$('.get_aff').html(resp);
 		      	$('.get_aff').css({'height':'auto' , 'padding': '5px 15px'});
 		      	history.pushState(null, '', url+'/courses/detail/'+cou_slug+'?aff='+code);
 		      	$('.courseTagContentAddCart a').attr('href', url+'cart/add/'+cou_slug+'?aff='+code);
@@ -201,9 +201,9 @@ function getdiscount(){
 	      },
 	      success: function (resp) {
 	      	console.log(resp);
-	      	$('.aff_name').text(resp.name+' -'+resp.percent+'%');
-		  	$('.aff_deny').hide();
-		  	$('.aff_check').show();
+	      	$('.get_dis .aff_name').text(resp.name+' -'+resp.percent+'%');
+		  	$('.get_dis .aff_deny').hide();
+		  	$('.get_dis .aff_check').show();
 		  	$('.get_dis').css({'height':'auto' , 'padding': '5px 15px'});
 		  	url_add.split("?") == 1 ? $('.courseTagContentAddCart a').attr('href', url_add+'?dis='+code) : $('.courseTagContentAddCart a').attr('href', url_add+'&dis='+code);
 		  	url_buy.split("?") == 1 ? $('.courseTagContentBuy a').attr('href', url_buy+'?dis='+code) : $('.courseTagContentBuy a').attr('href', url_buy+'&dis='+code);
@@ -215,9 +215,9 @@ function getdiscount(){
           },
 	      error: function (resp) {
 	      	console.log(resp.responseText);
-	      	$('.aff_name').text(resp.responseText);
-			$('.aff_deny').show();
-			$('.aff_check').hide();
+	      	$('.get_dis .aff_name').text(resp.responseText);
+			$('.get_dis .aff_deny').show();
+			$('.get_dis .aff_check').hide();
 	      	$('.get_dis').css({'height':'auto' , 'padding': '5px 15px'});
 	        return false;
 	      }

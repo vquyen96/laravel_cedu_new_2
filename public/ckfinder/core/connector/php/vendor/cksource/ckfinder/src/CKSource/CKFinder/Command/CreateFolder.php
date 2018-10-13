@@ -3,8 +3,8 @@
 /*
  * CKFinder
  * ========
- * http://cksource.com/ckfinder
- * Copyright (C) 2007-2016, CKSource - Frederico Knabben. All rights reserved.
+ * https://ckeditor.com/ckeditor-4/ckfinder/
+ * Copyright (c) 2007-2018, CKSource - Frederico Knabben. All rights reserved.
  *
  * The software, this file and its contents are subject to the CKFinder
  * License. Please read the license.txt file before using, installing, copying,
@@ -36,12 +36,13 @@ class CreateFolder extends CommandAbstract
         $dispatcher->dispatch(CKFinderEvent::CREATE_FOLDER, $createFolderEvent);
 
         $created = false;
+        $createdFolderName = null;
 
         if (!$createFolderEvent->isPropagationStopped()) {
             $newFolderName = $createFolderEvent->getNewFolderName();
-            $created = $workingFolder->createDir($newFolderName);
+            list($createdFolderName, $created) = $workingFolder->createDir($newFolderName);
         }
 
-        return array('newFolder' => $newFolderName, 'created' => (int) $created);
+        return array('newFolder' => $createdFolderName, 'created' => (int) $created);
     }
 }
