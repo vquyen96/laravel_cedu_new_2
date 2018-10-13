@@ -25,6 +25,7 @@ class AffController extends Controller
 //            $aff->aff_earnings = $total_profit;
 //            $aff->save();
 //        }
+        dd(this->web_info());
 
         $data['top_aff'] = Aff::orderByDesc('aff_earnings')->get();
 

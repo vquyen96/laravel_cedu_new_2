@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Cache;
 use Auth;
 class HomeController extends Controller
 {
+
     public function getHome(){
         if ( Auth::check() && $this->checkemail(Auth::user()->email) || Auth::guest() ){
 
