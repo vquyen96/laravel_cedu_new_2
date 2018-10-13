@@ -158,6 +158,10 @@ class OrderController extends Controller
     }
     public function getTransferDeny($id){
         $order = Order::find($id);
+        foreach ($order->orderDe as $orderDe) {
+            $orderDe->code->update(['code_status' => 0]);
+        }
+
         if($order->update(['ord_status' => -1])) return back();
         return back()->with('error','Lỗi');
     }

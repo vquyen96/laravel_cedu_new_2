@@ -3,8 +3,8 @@
 /*
  * CKFinder
  * ========
- * http://cksource.com/ckfinder
- * Copyright (C) 2007-2016, CKSource - Frederico Knabben. All rights reserved.
+ * https://ckeditor.com/ckeditor-4/ckfinder/
+ * Copyright (c) 2007-2018, CKSource - Frederico Knabben. All rights reserved.
  *
  * The software, this file and its contents are subject to the CKFinder
  * License. Please read the license.txt file before using, installing, copying,
@@ -16,7 +16,7 @@ namespace CKSource\CKFinder\Acl;
 
 /**
  * The Permission class.
- * 
+ *
  * @copyright 2016 CKSource - Frederico Knabben
  */
 class Permission
@@ -41,7 +41,7 @@ class Permission
 
     /**
      * Returns an array of all permissions defined in the Permission class constants.
-     * 
+     *
      * @return array an array of permission constants in the form of
      *               PERMISSION_NAME => value
      */
@@ -54,11 +54,11 @@ class Permission
 
     /**
      * Returns a numeric value for the passed permission name.
-     * 
+     *
      * @param string $name permission constant name
-     * 
+     *
      * @return int permission value
-     * 
+     *
      * @throws \InvalidArgumentException when the permission with a given name was not found.
      */
     public static function byName($name)

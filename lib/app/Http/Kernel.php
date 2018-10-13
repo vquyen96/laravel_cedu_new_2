@@ -52,6 +52,7 @@ class Kernel extends HttpKernel
      */
     protected $routeMiddleware = [
         'CORS' => \App\Http\Middleware\CORS::class,
+        'CheckEmailAccount' => \App\Http\Middleware\CheckEmailAccount::class,
         'CheckDetailAccount' => \App\Http\Middleware\CheckDetailAccount::class,
         'CheckDetailTeacher' => \App\Http\Middleware\CheckDetailTeacher::class,
         'CheckDetailCourse' => \App\Http\Middleware\CheckDetailCourse::class,

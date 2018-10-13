@@ -1,5 +1,5 @@
 @extends('frontend.master')
-@section('title','Quên mật khẩu')
+@section('title','Nhập email')
 @section('main')
     <link rel="stylesheet" type="text/css" href="css/code.css">
     <div class="instruction">
@@ -12,7 +12,7 @@
                 >
             </a>
             <a href="{{ asset('forgot_pass') }}" class="instruction_item">
-                Quên mật khẩu
+                Nhập email
             </a>
         </div>
     </div>

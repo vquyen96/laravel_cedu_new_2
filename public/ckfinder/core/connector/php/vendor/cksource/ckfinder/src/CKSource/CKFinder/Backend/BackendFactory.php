@@ -3,8 +3,8 @@
 /*
  * CKFinder
  * ========
- * http://cksource.com/ckfinder
- * Copyright (C) 2007-2016, CKSource - Frederico Knabben. All rights reserved.
+ * https://ckeditor.com/ckeditor-4/ckfinder/
+ * Copyright (c) 2007-2018, CKSource - Frederico Knabben. All rights reserved.
  *
  * The software, this file and its contents are subject to the CKFinder
  * License. Please read the license.txt file before using, installing, copying,
@@ -25,13 +25,13 @@ use CKSource\CKFinder\Filesystem\Path;
 use League\Flysystem\AdapterInterface;
 use League\Flysystem\Cached\CachedAdapter;
 use League\Flysystem\Cached\CacheInterface;
-use League\Flysystem\Adapter\Ftp as FtpAdapter;
+use CKSource\CKFinder\Backend\Adapter\Ftp as FtpAdapter;
 use CKSource\CKFinder\Backend\Adapter\AwsS3 as AwsS3Adapter;
 use CKSource\CKFinder\Backend\Adapter\Azure as AzureAdapter;
-use Dropbox\Client as DropboxClient;
 use Aws\S3\S3Client;
 use CKSource\CKFinder\Backend\Adapter\Cache\Storage\Memory as MemoryCache;
-use WindowsAzure\Common\ServicesBuilder;
+use MicrosoftAzure\Storage\Common\ServicesBuilder;
+use Spatie\Dropbox\Client as DropboxClient;
 
 /**
  * The BackendFactory class.
@@ -107,7 +107,6 @@ class BackendFactory
         });
 
         $this->registerAdapter('ftp', function ($backendConfig) {
-
             $configurable = array('host', 'port', 'username', 'password', 'ssl', 'timeout', 'root', 'permPrivate', 'permPublic', 'passive');
 
             $config = array_intersect_key($backendConfig, array_flip($configurable));
@@ -116,23 +115,27 @@ class BackendFactory
         });
 
         $this->registerAdapter('dropbox', function ($backendConfig) {
+            $client = new DropboxClient($backendConfig['token']);
+            $adapter = new DropboxAdapter($client, $backendConfig);
 
-            $client = new DropboxClient($backendConfig['token'], $backendConfig['username']);
-
-            return $this->createBackend($backendConfig, new DropboxAdapter($client, $backendConfig));
+            return $this->createBackend($backendConfig, $adapter);
         });
 
         $this->registerAdapter('s3', function ($backendConfig) {
             $clientConfig = array(
-                'key'    => $backendConfig['key'],
-                'secret' => $backendConfig['secret'],
+                'credentials' => array(
+                    'key'    => $backendConfig['key'],
+                    'secret' => $backendConfig['secret']
+                ),
+                'signature_version' => isset($backendConfig['signature']) ? $backendConfig['signature'] : 'v4',
+                'version' => isset($backendConfig['version']) ? $backendConfig['version'] : 'latest'
             );
 
             if (isset($backendConfig['region'])) {
                 $clientConfig['region'] = $backendConfig['region'];
             }
 
-            $client = S3Client::factory($clientConfig);
+            $client = new S3Client($clientConfig);
 
             $filesystemConfig = array(
                 'visibility' => isset($backendConfig['visibility']) ? $backendConfig['visibility'] : 'private'

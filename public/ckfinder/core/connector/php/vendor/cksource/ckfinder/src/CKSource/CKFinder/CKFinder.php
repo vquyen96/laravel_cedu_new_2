@@ -3,8 +3,8 @@
 /*
  * CKFinder
  * ========
- * http://cksource.com/ckfinder
- * Copyright (C) 2007-2016, CKSource - Frederico Knabben. All rights reserved.
+ * https://ckeditor.com/ckeditor-4/ckfinder/
+ * Copyright (c) 2007-2018, CKSource - Frederico Knabben. All rights reserved.
  *
  * The software, this file and its contents are subject to the CKFinder
  * License. Please read the license.txt file before using, installing, copying,
@@ -46,6 +46,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
+use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\HttpKernel\Event\GetResponseForControllerResultEvent;
 use Symfony\Component\HttpKernel\HttpKernel;
 use Symfony\Component\EventDispatcher\EventDispatcher;
@@ -62,7 +63,7 @@ use Symfony\Component\HttpKernel\KernelEvents;
  */
 class CKFinder extends Container implements HttpKernelInterface
 {
-    const VERSION = '3.3.0';
+    const VERSION = '3.4.2';
 
     const COMMANDS_NAMESPACE = 'CKSource\\CKFinder\\Command\\';
     const PLUGINS_NAMESPACE = 'CKSource\\CKFinder\\Plugin\\';
@@ -104,6 +105,7 @@ class CKFinder extends Container implements HttpKernelInterface
         $this['dispatcher'] = function () use ($app) {
             $eventDispatcher = new EventDispatcher();
 
+            $eventDispatcher->addListener(KernelEvents::REQUEST, array($this, 'handleOptionsRequest'), 512);
             $eventDispatcher->addListener(KernelEvents::VIEW, array($this, 'createResponse'), -512);
             $eventDispatcher->addListener(KernelEvents::RESPONSE, array($this, 'afterCommand'), -512);
 
@@ -230,7 +232,9 @@ class CKFinder extends Container implements HttpKernelInterface
      */
     public function checkCsrfToken(Request $request)
     {
-        if ($request->getMethod() === Request::METHOD_GET) {
+        $ignoredMethods = array(Request::METHOD_GET, Request::METHOD_OPTIONS);
+
+        if (in_array($request->getMethod(), $ignoredMethods)) {
             return;
         }
 
@@ -240,6 +244,34 @@ class CKFinder extends Container implements HttpKernelInterface
         if (!$csrfTokenValidator->validate($request)) {
             throw new InvalidCsrfTokenException();
         }
+    }
+
+    /**
+     * A handler for the OPTIONS HTTP method.
+     *
+     * If the request HTTP method is OPTIONS, it returns an empty response with
+     * extra headers defined in the configuration.
+     * This handler is executed very early, so if required, the response is set
+     * even before the controller for the current request is resolved.
+     *
+     * @param GetResponseEvent $event
+     */
+    public function handleOptionsRequest(GetResponseEvent $event)
+    {
+        if ($event->getRequest()->isMethod(Request::METHOD_OPTIONS)) {
+            $event->setResponse(Response::create('', Response::HTTP_OK, $this->getExtraHeaders()));
+        }
+    }
+
+    /**
+     * Returns an array of extra headers defined in the `headers` configuration option.
+     *
+     * @return array An array of headers.
+     */
+    protected function getExtraHeaders()
+    {
+        $headers = $this['config']->get('headers');
+        return is_array($headers) ? $headers : array();
     }
 
     /**
@@ -280,7 +312,10 @@ class CKFinder extends Container implements HttpKernelInterface
         // #161 Clear any garbage from the output
         Response::closeOutputBuffers(0, false);
 
-        $event->setResponse($afterCommandEvent->getResponse());
+        $response = $afterCommandEvent->getResponse();
+        $response->headers->add($this->getExtraHeaders());
+
+        $event->setResponse($response);
     }
 
     /**
@@ -318,7 +353,7 @@ class CKFinder extends Container implements HttpKernelInterface
 
     /**
      * Returns the BackedFactory service.
-     * 
+     *
      * @return BackendFactory
      */
     public function getBackendFactory()
@@ -460,8 +495,8 @@ class CKFinder extends Container implements HttpKernelInterface
     {
         $errorMessage = 'The PHP installation does not meet the minimum system requirements for CKFinder. %s Please refer to CKFinder documentation for more details.';
 
-        if (version_compare(PHP_VERSION, '5.4.0') < 0) {
-            throw new CKFinderException(sprintf($errorMessage, 'Your PHP version is too old. CKFinder 3.x requires PHP 5.4+.'), Error::CUSTOM_ERROR);
+        if (version_compare(PHP_VERSION, '5.6.0') < 0) {
+            throw new CKFinderException(sprintf($errorMessage, 'Your PHP version is too old. CKFinder 3.x requires PHP 5.6+.'), Error::CUSTOM_ERROR);
         }
 
         $missingExtensions = array();

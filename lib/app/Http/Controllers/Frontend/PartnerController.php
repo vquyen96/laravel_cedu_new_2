@@ -17,12 +17,12 @@ class PartnerController extends Controller
     	// $data['teacher'] = Account::where('level',3)->paginate(3);
         // $data['teacher'] = Teacher::orderBy('tea_featured','desc')->paginate(3);
             $data['teacher'] = Teacher::orderBy('tea_featured','desc')->take(10)->get();
-            $data['banner'] = Banner::where('ban_link', 'Banner đối tác')->first();
+            $data['banner'] = Banner::where('ban_link', 'Banner đối tác')->inRandomOrder()->first();
             
     	return view('frontend.partner.partner',$data);
     }
     public function getAffiliate(){
-    	return view('frontend.affiliate');
+    	return view('frontend.landing.goto_affiliate');
     }
     public function postAffiliate(AddAccountRequest $request){
         if (Auth::check()) {
@@ -89,7 +89,7 @@ class PartnerController extends Controller
     }
 
     public function getGiaovien(){
-    	return view('frontend.doitacgiaovien');
+    	return view('frontend.landing.goto_teacher');
     }
     public function postGiaovien(Request $request){
         if (Auth::check()) {

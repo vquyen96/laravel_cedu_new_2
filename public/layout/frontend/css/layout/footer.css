@@ -6,7 +6,7 @@ footer{
 	padding-top: 60px;
 }
 .footerLeft{
-	margin-bottom: 50px;
+	/*margin-bottom: 50px;*/
 }
 .footerLeftTop{
 	border-bottom: 1px solid #999;
@@ -91,4 +91,25 @@ footer{
 	font-weight: 500;
 	color: #fff;
 	font-size: 16px;
+}
+.sub_footer{
+    height: 40px;
+    line-height: 40px;
+    background: rgba(0, 0, 0, .1);
+}
+a.Society {
+    display: inline-block;
+    margin-left: 5px;
+    color: #fff;
+    height: 30px;
+    line-height: 30px;
+    width: 30px;
+    text-align: center;
+    background: rgba(0, 0, 0, .2);
+}
+a.Society.fb:hover {
+    background: #4267b2;
+}
+a.Society.yt:hover {
+    background: #f00;
 }

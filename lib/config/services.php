@@ -37,7 +37,7 @@ return [
     'facebook' => [
         'client_id' => '1577563652342523',
         'client_secret' => '34be9522e5f3d4debd126245a474619b',
-        'redirect' => 'https://ceduvn.com/auth/facebook/callback',
+        'redirect' => 'http://demo2-cgroup.com/auth/facebook/callback',
         // 'redirect' => 'https://ceduvn.com/errors',
     ],
     
@@ -54,7 +54,7 @@ return [
     'google' => [
         'client_id' => '135092102718-46cj889n3kjq1bk7d5b53o4b76dub1gc.apps.googleusercontent.com',
         'client_secret' => 'JrElwcihBo6EW9WEMepxxl0x',
-        'redirect' => 'https://ceduvn.com/auth/google/callback',
+        'redirect' => 'http://demo2-cgroup.com/auth/google/callback',
 
     ],
 

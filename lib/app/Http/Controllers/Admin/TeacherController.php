@@ -115,7 +115,7 @@ class TeacherController extends Controller
     }
 
     public function getDetail($id){
-        $data['teacher'] = findOrCreateTeacher($id);
+        $data['teacher'] = $this->findOrCreateTeacher($id);
 
         return view('backend.teacher.detail', $data);
     }
@@ -225,13 +225,13 @@ class TeacherController extends Controller
             $teacher->tea_gender = 1;
             $teacher->tea_specialize = "";
             $teacher->tea_degree = "Cử nhân";
-            $teacher->tea_email = Account::find($id)->email;
+            $teacher->tea_email = Account::find($acc_id)->email;
             $teacher->tea_fb = " ";
             $teacher->tea_follow = 10;
             $teacher->tea_lesson = 10;
             $teacher->tea_exp = 10;
             $teacher->tea_work_place = " ";
-            $teacher->tea_acc_id = $id;
+            $teacher->tea_acc_id = $acc_id;
             $teacher->save();
         }
         return $teacher;

@@ -2,8 +2,8 @@
 /*
  * CKFinder
  * ========
- * http://cksource.com/ckfinder
- * Copyright (c) 2007-2016, CKSource - Frederico Knabben. All rights reserved.
+ * https://ckeditor.com/ckeditor-4/ckfinder/
+ * Copyright (c) 2007-2018, CKSource - Frederico Knabben. All rights reserved.
  *
  * The software, this file and its contents are subject to the CKFinder
  * License. Please read the license.txt file before using, installing, copying,

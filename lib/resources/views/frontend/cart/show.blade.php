@@ -87,7 +87,7 @@
                         </div>
                         @if( $total == $total_old)
                         <div class="saleCode">
-                            <form action="cart/update_dis" method="post" >
+                            <form action="{{ asset('cart/update_dis') }}" method="post" >
                                 {{ csrf_field() }}
                                 <input type="text" name="code" class="" placeholder="Mã giảm giá">
                                 <input type="submit" name="sbm" value="Xác nhận">

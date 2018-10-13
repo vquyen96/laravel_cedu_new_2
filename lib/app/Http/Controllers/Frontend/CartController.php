@@ -227,7 +227,7 @@ class CartController extends Controller
         $data['total'] = Cart::total();
         $data['image'] = Course::find($data['cart'][0]->id)->cou_img;
         // return view('frontend.email', $data);
-        dd($data);
+
 //        Mail::send('frontend.email.pay_home', $data, function($message) use ($email){
 //            $message->from('info@ceduvn.com', 'Ceduvn');
 //            $message->to($email, $email)->subject('Thank You!');
@@ -339,13 +339,25 @@ class CartController extends Controller
         return view('frontend.cart.login', $data);
     }
     public function getPayment(){
+
         if (Cart::total() == "0.00") {
             return redirect('cart/show');
         }else{
             if (Auth::check()) {
+                $acc = Account::find(Auth::user()->id);
                 $cart = Cart::content();
+
+                $listCart = $this->checkCourseExitCart($acc, $cart);
+                if ($listCart != null){
+                    foreach ($listCart as $cart_item){
+                        Cart::remove($cart_item);
+                        $this->getPayment();
+                    }
+                }
+
                 $total = 0;
                 $total_old = 0;
+
                 foreach ($cart as $item) {
                     $item->cou = Course::find($item->id);
                     $total_old += $item->cou->cou_price;
@@ -381,8 +393,8 @@ class CartController extends Controller
         $order->ord_payment = 1;
         $order->ord_acc_id = Auth::user()->id;
         $order->ord_note = $request->note;
-        $order->ord_adress = $request->city." | ".$request->quan." | ".$request->phuong." | ".$request->adress;
-        // dd($order->ord_adress);
+        $order->ord_adress = $request->city." | ".$request->quan." | ".$request->adress;
+        $order->ord_code = $this->create_ord_code($order->ord_payment);
         $order->ord_phone = $request->phone;
         $total = str_replace(",","",Cart::total());
         $total = (int)$total;
@@ -403,6 +415,11 @@ class CartController extends Controller
             $aff = Aff::where('aff_code', $item->options->aff)->first();
             if($aff != null){
                 $orderdetail->orderDe_aff_id = $aff->aff_acc_id;
+            }
+            $dis = Discount::where('code', $item->options->dis)->first();
+
+            if($dis != null){
+                $orderdetail->orderDe_dis_id = $dis->id;
             }
             
             $orderdetail->save();
@@ -666,6 +683,11 @@ class CartController extends Controller
             if($aff != null){
                 $orderdetail->orderDe_aff_id = $aff->aff_acc_id;
             }
+            $dis = Discount::where('code', $item->options->dis)->first();
+
+            if($dis != null){
+                $orderdetail->orderDe_dis_id = $dis->id;
+            }
             $orderdetail->save();
         }
         
@@ -703,7 +725,18 @@ class CartController extends Controller
             return redirect('/');
         }
         $bank = Bank::find($order->ord_bank);
+
+        $total = 0;
+        $total_old = 0;
+        foreach ($order->orderDe as $orderDe) {
+
+            $total_old += $orderDe->course->cou_price;
+            $total += $orderDe->orderDe_price;
+        }
+        $percent = ($total/$total_old)*100;
+
         $data = [
+            'percent' => $percent,
             'time_del' => $this->get_time_h_m_s(strtotime($order->created_at)+7200),
             'order' => $order,
             'bank' => $bank
@@ -764,6 +797,31 @@ class CartController extends Controller
         return back()->with('success', 'Bạn sẽ nhận đưuọc thông báo khi khóa học được kích hoạt');
     }
     public function getCompleteNew(Request $request){
+
+    }
+
+    public function update_dis(Request $request){
+        $dis_code = $request->code;
+        $dis = Discount::where('code', $dis_code)->first();
+        if ($dis == null){
+            return back()->with('error', 'Mã khuyến mãi của bạn không đúng');
+        }
+        if ($dis->created_at > time()){
+            return back()->with('error', 'Chương trình khuyến mãi chưa bắt đầu');
+        }
+        if ($dis->timeout < time()){
+            return back()->with('error', 'Chương trình khuyến mãi đã kết thúc');
+        }
+        if ($dis != null && $dis->created_at < time() && $dis->timeout > time()){
+            $carts = Cart::content();
+
+            $option = ['dis'=> $dis_code ] ;
+            foreach ($carts as $cart){
+                Cart::update($cart->rowId,['price' => ( $cart->price*(100 - $dis->percent) )/100, 'options'=>$option]);
+            }
+            return back()->with('success', 'Mã khuyến mãi của bạn đã được áp dụng');
+        }
+        return back()->with('error', 'Lỗi không xác định');
 
     }
 }

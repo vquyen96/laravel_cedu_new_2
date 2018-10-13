@@ -104,6 +104,8 @@
 }
 .book-homestay{
     display: flex;
+    margin-bottom: 20px;
+
 }
 .book-image{
     height: 110px;

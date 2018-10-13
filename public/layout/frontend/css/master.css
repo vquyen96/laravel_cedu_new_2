@@ -9,6 +9,62 @@
 	font-family: 'Montserrat', sans-serif;
 }
 
+	.lds-ellipsis {
+		display: inline-block;
+		position: relative;
+		width: 64px;
+		height: 64px;
+	}
+	.lds-ellipsis div {
+		position: absolute;
+		top: 27px;
+		width: 11px;
+		height: 11px;
+		border-radius: 50%;
+		background: #FCC72E;
+		animation-timing-function: cubic-bezier(0, 1, 1, 0);
+	}
+	.lds-ellipsis div:nth-child(1) {
+		left: 6px;
+		animation: lds-ellipsis1 0.6s infinite;
+	}
+	.lds-ellipsis div:nth-child(2) {
+		left: 6px;
+		animation: lds-ellipsis2 0.6s infinite;
+	}
+	.lds-ellipsis div:nth-child(3) {
+		left: 26px;
+		animation: lds-ellipsis2 0.6s infinite;
+	}
+	.lds-ellipsis div:nth-child(4) {
+		left: 45px;
+		animation: lds-ellipsis3 0.6s infinite;
+	}
+	@keyframes lds-ellipsis1 {
+		0% {
+			transform: scale(0);
+		}
+		100% {
+			transform: scale(1);
+		}
+	}
+	@keyframes lds-ellipsis3 {
+		0% {
+			transform: scale(1);
+		}
+		100% {
+			transform: scale(0);
+		}
+	}
+	@keyframes lds-ellipsis2 {
+		0% {
+			transform: translate(0, 0);
+		}
+		100% {
+			transform: translate(19px, 0);
+		}
+	}
+
 .masterError{
 	position: fixed;
     z-index: 9;
@@ -37,11 +93,22 @@
 	position: absolute;
 	top: 50%;
 	left: 50%;
-	width: 120px;
-	height: 120px;
+
 	transform: translate(-50%, -50%);
 
 }
+#messenger{
+	position: fixed;
+	bottom: 20px;
+	right: 20px;
+	z-index: 4;
+	width: 60px;
+	height: 60px;
+}
+#messenger a img{
+	width: 100%;
+}
+
 
 .d-flex{
 	display: flex;

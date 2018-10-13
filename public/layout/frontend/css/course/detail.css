@@ -392,6 +392,8 @@ a.teacherMainLeftName{
 	font-size: 14px;
 	line-height: 22px;
 	color: #666;
+	margin-bottom: 12px;
+
 }
 .teacherMainRightContent{
 	height: 155px;

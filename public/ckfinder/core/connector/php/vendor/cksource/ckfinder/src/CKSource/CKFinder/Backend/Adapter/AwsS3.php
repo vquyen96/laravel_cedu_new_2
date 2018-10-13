@@ -3,8 +3,8 @@
 /*
  * CKFinder
  * ========
- * http://cksource.com/ckfinder
- * Copyright (C) 2007-2016, CKSource - Frederico Knabben. All rights reserved.
+ * https://ckeditor.com/ckeditor-4/ckfinder/
+ * Copyright (c) 2007-2018, CKSource - Frederico Knabben. All rights reserved.
  *
  * The software, this file and its contents are subject to the CKFinder
  * License. Please read the license.txt file before using, installing, copying,
@@ -17,7 +17,7 @@ namespace CKSource\CKFinder\Backend\Adapter;
 use CKSource\CKFinder\CKFinder;
 use CKSource\CKFinder\ContainerAwareInterface;
 use CKSource\CKFinder\Operation\OperationManager;
-use League\Flysystem\AwsS3v2\AwsS3Adapter;
+use League\Flysystem\AwsS3v3\AwsS3Adapter;
 use League\Flysystem\Util\MimeType;
 
 /**
@@ -52,7 +52,7 @@ class AwsS3 extends AwsS3Adapter implements ContainerAwareInterface, EmulateRena
     {
         $sourcePath = $this->applyPathPrefix(rtrim($path, '/') . '/');
 
-        $objectsIterator = $this->client->getIterator('listObjects', [
+        $objectsIterator = $this->s3Client->getIterator('ListObjects', [
             'Bucket' => $this->bucket,
             'Prefix' => $sourcePath,
         ]);
@@ -72,7 +72,7 @@ class AwsS3 extends AwsS3Adapter implements ContainerAwareInterface, EmulateRena
             $current = 0;
 
             foreach ($objects as $entry) {
-                $this->client->copyObject(array(
+                $this->s3Client->copyObject(array(
                     'Bucket'     => $this->bucket,
                     'Key'        => $this->replacePath($entry['Key'], $path, $newPath),
                     'CopySource' => urlencode($this->bucket . '/' . $entry['Key']),
@@ -82,7 +82,7 @@ class AwsS3 extends AwsS3Adapter implements ContainerAwareInterface, EmulateRena
                     // Delete target folder in case if operation was aborted
                     $targetPath = $this->applyPathPrefix(rtrim($newPath, '/') . '/');
 
-                    $this->client->deleteMatchingObjects($this->bucket, $targetPath);
+                    $this->s3Client->deleteMatchingObjects($this->bucket, $targetPath);
 
                     return true;
                 }
@@ -90,7 +90,7 @@ class AwsS3 extends AwsS3Adapter implements ContainerAwareInterface, EmulateRena
                 $operation->updateStatus(array('total' => $total, 'current' => ++$current));
             }
 
-            $this->client->deleteMatchingObjects($this->bucket, $sourcePath);
+            $this->s3Client->deleteMatchingObjects($this->bucket, $sourcePath);
         }
 
         return true;
@@ -125,7 +125,7 @@ class AwsS3 extends AwsS3Adapter implements ContainerAwareInterface, EmulateRena
     {
         $objectPath = $this->applyPathPrefix($path);
 
-        return $this->client->getObjectUrl($this->bucket, $objectPath);
+        return $this->s3Client->getObjectUrl($this->bucket, $objectPath);
     }
 
     /**
@@ -139,7 +139,7 @@ class AwsS3 extends AwsS3Adapter implements ContainerAwareInterface, EmulateRena
     {
         $ext = pathinfo($path, PATHINFO_EXTENSION);
 
-        $mimeType = MimeType::detectByFileExtension($ext);
+        $mimeType = MimeType::detectByFileExtension(strtolower($ext));
 
         return $mimeType ? array('mimetype' => $mimeType) : parent::getMimetype($path);
     }

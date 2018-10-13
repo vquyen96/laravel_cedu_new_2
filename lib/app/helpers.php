@@ -129,7 +129,7 @@
 				return round(($date-$time)/$min).' phút trước';
 			}
 			else{
-				return 'bây giờ';
+				return 'Bây giờ';
 			}
 		}
 			

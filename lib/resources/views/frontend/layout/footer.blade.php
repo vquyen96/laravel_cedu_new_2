@@ -21,10 +21,10 @@
 						<div class="mb-2">{!! $web_info->content_left_top_4 !!}</div>
 						<div class="mb-2">{!! $web_info->content_left_top_5 !!}</div>
 					</div>
-					<div class="footerLeftCopyRight">
-						{{ $web_info->content_left_bot }}
-					</div>
-					
+					{{--<div class="footerLeftCopyRight">--}}
+						{{--{{ $web_info->content_left_bot }}--}}
+					{{--</div>--}}
+					{{----}}
 				</div>
 			</div>
 			<div class="col-md-1 col-sm-12 col-xs-12"></div>
@@ -38,7 +38,7 @@
 						 	<i class="fas fa-map-marker-alt"></i>
 						</span>
 						<div class="footerContentBody">
-							{{ $web_info->branch_sg }}
+							{!! $web_info->branch_sg !!}
 						</div>
 					</div>
 					<div class="footerMidContent">
@@ -46,7 +46,7 @@
 						 	<i class="fas fa-map-marker-alt"></i>
 						</span>
 						<div class="footerContentBody">
-							{{ $web_info->branch_hn }}
+							{!! $web_info->branch_hn !!}
 						</div>
 					</div>
 					<div class="footerMidContent">
@@ -54,7 +54,7 @@
 						 	<i class="fa fa-phone" aria-hidden="true"></i>
 						</span>
 						<div class="footerContentBody">
-							{{ $web_info->hotline }}
+							{!! $web_info->hotline !!}
 						</div>
 					</div>
 					<div class="footerMidContent">
@@ -62,7 +62,7 @@
 						 	<i class="fa fa-envelope" aria-hidden="true"></i>
 						</span>
 						<div class="footerContentBody">
-							{{ $web_info->email }}
+							{!! $web_info->email !!}
 						</div>
 					</div>
 				</div>
@@ -76,7 +76,7 @@
 					@foreach($about_list as $item)
 						<div class="footerRightContent">
 							<a href="{{ asset('about/'.$item->about_slug.'.html') }}" class="footerContentBody">
-								{{$item->about_name}}
+								{!! $item->about_name !!}
 							</a>
 						</div>
 						
@@ -84,8 +84,24 @@
 					
 				</div>
 			</div>
-		</div> 
-		
+		</div>
+	</div>
+	<div class="sub_footer">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-6">
+					{{ $web_info->content_left_bot }}
+				</div>
+				<div class="col-sm-6 text-right">
+					<a href="https://www.facebook.com/ceducationvn/" class="Society fb" target="_blank">
+						<i class="fab fa-facebook-f"></i>
+					</a>
+					<a href="https://www.facebook.com/ceducationvn/" class="Society yt" target="_blank">
+						<i class="fab fa-youtube"></i>
+					</a>
+				</div>
+			</div>
+		</div>
 	</div>
 </footer>
 {{--<div class="footerBot">--}}
